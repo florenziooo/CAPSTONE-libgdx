@@ -1,8 +1,0 @@
-PixelMaps/CIT.tiled-project
-PixelMaps/CIT.tiled-session
-PixelMaps/TestMap.tmx
-PixelMaps/TileSets16x16/Modern_Exteriors_Complete_Tileset.tsx
-PixelMaps/TileSets16x16/asdasd.tsx
-PixelMaps/Tiles/Modern_Exteriors_Complete_Tileset.png
-PixelMaps/Tiles/asdasd.png
-Sprites/CollegeMale1.png
