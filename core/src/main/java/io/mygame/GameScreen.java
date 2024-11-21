@@ -1,6 +1,5 @@
 package io.mygame;
 
-import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
@@ -13,7 +12,7 @@ import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import io.entity.Player;
 
 public class GameScreen implements Screen {
-    private static final int TILE_SIZE = 48; // 16 * 3
+    private static final int TILE_SIZE = 72; // 16 * 3
     private static final int SCREEN_WIDTH = TILE_SIZE * 16;
     private static final int SCREEN_HEIGHT = TILE_SIZE * 12;
 
@@ -31,7 +30,7 @@ public class GameScreen implements Screen {
         batch = new SpriteBatch();
 
         // Load map
-        map = new TmxMapLoader().load("assets/PixelMaps/TestMap.tmx");
+        map = new TmxMapLoader().load("PixelMaps/TestMap.tmx");
         mapRenderer = new OrthogonalTiledMapRenderer(map);
 
 
@@ -44,10 +43,10 @@ public class GameScreen implements Screen {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         // Set the camera position to center the player
-        camera.position.set(player  .getX() + 8, player.getY() + 16, 0); // Offset to center player (16x32 -> 8 and 16)
+        camera.position.set(player.getX() + 8, player.getY() + 16, 0); // Offset to center player (16x32 -> 8 and 16)
 
         // Update the camera's position and zoom level
-        camera.zoom = 0.25f;  // Adjust this value as needed
+        camera.zoom = 0.35f;  // Adjust this value as needed
         camera.update();
 
         // Apply the camera transformation

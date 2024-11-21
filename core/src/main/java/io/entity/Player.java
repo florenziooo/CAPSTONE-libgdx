@@ -7,7 +7,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 public class Player extends GameObject {
-    private static final float SPEED = 200f;
+    private static final float SPEED = 75f;
 
     private final Animation<TextureRegion> frontIdleAnimation, rightIdleAnimation, leftIdleAnimation, backIdleAnimation;
     private final Animation<TextureRegion> frontWalkAnimation, rightWalkAnimation, leftWalkAnimation, backWalkAnimation;
@@ -119,32 +119,37 @@ public class Player extends GameObject {
     }
 
     public void moveUpRight() {
-        x += SPEED * Gdx.graphics.getDeltaTime();
-        y += SPEED * Gdx.graphics.getDeltaTime();
+        float diagonalSpeed = SPEED * Gdx.graphics.getDeltaTime() / (float) Math.sqrt(2);
+        x += diagonalSpeed;
+        y += diagonalSpeed;
         direction = Direction.RIGHT;
         isMoving = true;
     }
 
     public void moveUpLeft() {
-        x -= SPEED * Gdx.graphics.getDeltaTime();
-        y += SPEED * Gdx.graphics.getDeltaTime();
+        float diagonalSpeed = SPEED * Gdx.graphics.getDeltaTime() / (float) Math.sqrt(2);
+        x -= diagonalSpeed;
+        y += diagonalSpeed;
         direction = Direction.LEFT;
         isMoving = true;
     }
 
     public void moveDownRight() {
-        x += SPEED * Gdx.graphics.getDeltaTime();
-        y -= SPEED * Gdx.graphics.getDeltaTime();
+        float diagonalSpeed = SPEED * Gdx.graphics.getDeltaTime() / (float) Math.sqrt(2);
+        x += diagonalSpeed;
+        y -= diagonalSpeed;
         direction = Direction.RIGHT;
         isMoving = true;
     }
 
     public void moveDownLeft() {
-        x -= SPEED * Gdx.graphics.getDeltaTime();
-        y -= SPEED * Gdx.graphics.getDeltaTime();
+        float diagonalSpeed = SPEED * Gdx.graphics.getDeltaTime() / (float) Math.sqrt(2);
+        x -= diagonalSpeed;
+        y -= diagonalSpeed;
         direction = Direction.LEFT;
         isMoving = true;
     }
+
 
     public void stop() {
         isMoving = false;
