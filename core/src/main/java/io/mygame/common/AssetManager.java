@@ -1,10 +1,11 @@
-package io.mygame;
+package io.mygame.common;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import io.entity.GameObject;
+import io.mygame.screens.GameScreen;
+import io.mygame.entities.GameObject;
 
 import java.util.ArrayList;
 import java.util.List;
