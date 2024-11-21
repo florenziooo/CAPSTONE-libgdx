@@ -12,7 +12,6 @@ import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import io.entity.Player;
 
-/** First screen of the application. Displayed after the application is created. */
 public class GameScreen implements Screen {
     private static final int TILE_SIZE = 48; // 16 * 3
     private static final int SCREEN_WIDTH = TILE_SIZE * 16;
@@ -23,7 +22,6 @@ public class GameScreen implements Screen {
     private Player player;
     private TiledMap map;
     private OrthogonalTiledMapRenderer mapRenderer;
-    private AssetManager assetManager;
 
     @Override
     public void show() {
@@ -33,13 +31,11 @@ public class GameScreen implements Screen {
         batch = new SpriteBatch();
 
         // Load map
-        map = new TmxMapLoader().load("map.tmx");
+        map = new TmxMapLoader().load("assets/PixelMaps/TestMap.tmx");
         mapRenderer = new OrthogonalTiledMapRenderer(map);
 
-        // Initialize player and assets
-        player = new Player(this);
-        assetManager = new AssetManager(this);
-        assetManager.setupObjects();
+
+        player = new Player();
     }
 
     @Override
@@ -47,35 +43,68 @@ public class GameScreen implements Screen {
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
+        // Set the camera position to center the player
+        camera.position.set(player  .getX() + 8, player.getY() + 16, 0); // Offset to center player (16x32 -> 8 and 16)
+
+        // Update the camera's position and zoom level
+        camera.zoom = 0.25f;  // Adjust this value as needed
         camera.update();
+
+        // Apply the camera transformation
         batch.setProjectionMatrix(camera.combined);
 
+        // Set the map renderer view to the camera's position
         mapRenderer.setView(camera);
         mapRenderer.render();
 
+        // Begin rendering the player
         batch.begin();
         player.update(delta);
         player.render(batch);
-        assetManager.renderObjects(batch);
         batch.end();
 
+        // Handle input to move the player
         handleInput();
     }
 
     private void handleInput() {
-        if (Gdx.input.isKeyPressed(Input.Keys.W)) player.moveUp();
-        if (Gdx.input.isKeyPressed(Input.Keys.S)) player.moveDown();
-        if (Gdx.input.isKeyPressed(Input.Keys.A)) player.moveLeft();
-        if (Gdx.input.isKeyPressed(Input.Keys.D)) player.moveRight();
+
+        player.stop();
+
+        if (Gdx.input.isKeyPressed(Input.Keys.W) && Gdx.input.isKeyPressed(Input.Keys.D)) {
+            player.moveUpRight();
+        } else if (Gdx.input.isKeyPressed(Input.Keys.W) && Gdx.input.isKeyPressed(Input.Keys.A)) {
+            player.moveUpLeft();
+        } else if (Gdx.input.isKeyPressed(Input.Keys.S) && Gdx.input.isKeyPressed(Input.Keys.D)) {
+            player.moveDownRight();
+        } else if (Gdx.input.isKeyPressed(Input.Keys.S) && Gdx.input.isKeyPressed(Input.Keys.A)) {
+            player.moveDownLeft();
+        } else if (Gdx.input.isKeyPressed(Input.Keys.W)) {
+            player.moveUp();
+        } else if (Gdx.input.isKeyPressed(Input.Keys.S)) {
+            player.moveDown();
+        } else if (Gdx.input.isKeyPressed(Input.Keys.A)) {
+            player.moveLeft();
+        } else if (Gdx.input.isKeyPressed(Input.Keys.D)) {
+            player.moveRight();
+        }
+
+        // Stop movement if no key is pressed
+        if (!Gdx.input.isKeyPressed(Input.Keys.W) && !Gdx.input.isKeyPressed(Input.Keys.A) &&
+                !Gdx.input.isKeyPressed(Input.Keys.S) && !Gdx.input.isKeyPressed(Input.Keys.D)) {
+            player.stop();
+        }
     }
+
+
 
     @Override
     public void resize(int width, int height) {
-        camera.viewportWidth = width;
-        camera.viewportHeight = height;
+        // Adjust camera viewport size based on screen resolution and zoom level
+        camera.viewportWidth = width / camera.zoom;
+        camera.viewportHeight = height / camera.zoom;
         camera.update();
     }
-
 
     @Override
     public void pause() {
