@@ -1,4 +1,4 @@
-package io.mygame;
+package io.mygame.screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
@@ -9,7 +9,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
-import io.entity.Player;
+import io.mygame.entities.Player;
 
 public class GameScreen implements Screen {
     private static final int TILE_SIZE = 72; // 16 * 3

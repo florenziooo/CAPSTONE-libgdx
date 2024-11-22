@@ -1,4 +1,4 @@
-package io.entity;
+package io.mygame.entities;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
@@ -47,7 +47,7 @@ public class Player extends GameObject {
             }
         }
 
-        return new Animation<>(0.1f, frames); // Create an animation with the extracted frames
+        return new Animation<>(0.2f, frames); // Create an animation with the extracted frames
     }
 
     public void update(float delta) {
