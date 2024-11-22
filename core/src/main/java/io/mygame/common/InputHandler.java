@@ -1,9 +1,7 @@
 package io.mygame.common;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.InputProcessor;
 import io.mygame.entities.Player;
-import com.badlogic.gdx.Input;
 public class InputHandler{
     Player player;
     public InputHandler(Player player){
