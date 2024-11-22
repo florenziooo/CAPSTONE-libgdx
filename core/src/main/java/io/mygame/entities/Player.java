@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import io.mygame.common.InputHandler;
 
 public class Player extends GameObject {
     private static final float SPEED = 75f;
@@ -12,10 +13,10 @@ public class Player extends GameObject {
     private final Animation<TextureRegion> frontIdleAnimation, rightIdleAnimation, leftIdleAnimation, backIdleAnimation;
     private final Animation<TextureRegion> frontWalkAnimation, rightWalkAnimation, leftWalkAnimation, backWalkAnimation;
     private Animation<TextureRegion> currentAnimation;
-
     private float stateTime = 0;
     private boolean isMoving = false;
     private Direction direction = Direction.FRONT;
+    private InputHandler inputHandler = new InputHandler(this);
 
     public Player() {
         super(null, 400, 300);
@@ -95,59 +96,35 @@ public class Player extends GameObject {
     }
 
     public void moveUp() {
-        y += SPEED * Gdx.graphics.getDeltaTime();
-        direction = Direction.BACK;
-        isMoving = true;
+        inputHandler.moveUp();
     }
 
     public void moveDown() {
-        y -= SPEED * Gdx.graphics.getDeltaTime();
-        direction = Direction.FRONT;
-        isMoving = true;
+        inputHandler.moveDown();
     }
 
     public void moveLeft() {
-        x -= SPEED * Gdx.graphics.getDeltaTime();
-        direction = Direction.LEFT;
-        isMoving = true;
+        inputHandler.moveLeft();
     }
 
     public void moveRight() {
-        x += SPEED * Gdx.graphics.getDeltaTime();
-        direction = Direction.RIGHT;
-        isMoving = true;
+        inputHandler.moveRight();
     }
 
     public void moveUpRight() {
-        float diagonalSpeed = SPEED * Gdx.graphics.getDeltaTime() / (float) Math.sqrt(2);
-        x += diagonalSpeed;
-        y += diagonalSpeed;
-        direction = Direction.RIGHT;
-        isMoving = true;
+        inputHandler.moveUpRight();
     }
 
     public void moveUpLeft() {
-        float diagonalSpeed = SPEED * Gdx.graphics.getDeltaTime() / (float) Math.sqrt(2);
-        x -= diagonalSpeed;
-        y += diagonalSpeed;
-        direction = Direction.LEFT;
-        isMoving = true;
+        inputHandler.moveUpLeft();
     }
 
     public void moveDownRight() {
-        float diagonalSpeed = SPEED * Gdx.graphics.getDeltaTime() / (float) Math.sqrt(2);
-        x += diagonalSpeed;
-        y -= diagonalSpeed;
-        direction = Direction.RIGHT;
-        isMoving = true;
+        inputHandler.moveDownRight();
     }
 
     public void moveDownLeft() {
-        float diagonalSpeed = SPEED * Gdx.graphics.getDeltaTime() / (float) Math.sqrt(2);
-        x -= diagonalSpeed;
-        y -= diagonalSpeed;
-        direction = Direction.LEFT;
-        isMoving = true;
+        inputHandler.moveDownLeft();
     }
 
 
@@ -168,4 +145,22 @@ public class Player extends GameObject {
         return y;
     }
 
+    public float getSPEED() {
+        return SPEED;
+    }
+
+    public void setY(float y){
+        this.y = y;
+    }
+
+    public void setX(float x){
+        this.x = x;
+    }
+
+    public void setIsMoving(boolean isMoving){
+        this.isMoving = isMoving;
+    }
+    public void setDirection(Direction direction) {
+        this.direction = direction;
+    }
 }
