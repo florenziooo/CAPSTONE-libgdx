@@ -7,7 +7,10 @@ import com.badlogic.gdx.math.Rectangle;
 
 public class GameObject {
     private final TextureRegion texture;
-    private float x, y, width, height;
+    private float x;
+    private float y;
+    private final float width;
+    private final float height;
     private float collisionWidth, collisionHeight;
     private Rectangle collisionBox;
     private Polygon collisionPolygon;
