@@ -2,7 +2,6 @@ package io.mygame.entities;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.math.Polygon;
 import io.mygame.common.AnimationLoader;
 import io.mygame.common.InputHandler;
 import io.mygame.enums.Direction;
@@ -96,19 +95,6 @@ public class Player extends GameObject {
     public void moveDownLeft() {
         inputHandler.moveDownLeft();
     }
-
-    private float previousX, previousY;
-
-    public void savePreviousPosition() {
-        previousX = getX();
-        previousY = getY();
-    }
-
-    public void revertToPreviousPosition() {
-        setX(previousX);
-        setY(previousY);
-    }
-
 
     public void stop() {
         isMoving = false;

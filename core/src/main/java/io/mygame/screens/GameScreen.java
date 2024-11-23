@@ -5,23 +5,14 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
-import com.badlogic.gdx.maps.MapLayer;
-import com.badlogic.gdx.maps.MapObject;
-import com.badlogic.gdx.maps.objects.PolygonMapObject;
-import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
-import com.badlogic.gdx.math.Intersector;
-import com.badlogic.gdx.math.Polygon;
-import com.badlogic.gdx.math.Rectangle;
-import com.badlogic.gdx.math.Shape2D;
-import io.mygame.entities.NPC;
+import io.mygame.common.CollisionHandler;
 import io.mygame.entities.Player;
+import io.mygame.entities.NPC;
+import io.mygame.factories.EntityFactory;
 
 public class GameScreen extends WildCatScreen {
     private SpriteBatch batch;
@@ -31,11 +22,7 @@ public class GameScreen extends WildCatScreen {
     private OrthogonalTiledMapRenderer renderer;
     private OrthographicCamera camera;
 
-    private final float zoomScale = 0.35f;
-
-    // DEBUGGING
-    private final boolean debugMode = true;
-    private ShapeRenderer shapeRenderer;
+    private CollisionHandler collisionHandler;
 
     public GameScreen(Game game) {
         super(game);
@@ -51,13 +38,9 @@ public class GameScreen extends WildCatScreen {
         batch = new SpriteBatch();
         player = new Player();
 
-        Texture texture = new Texture(Gdx.files.internal("Sprites/CITBOY.png"));
-        TextureRegion textureRegion = new TextureRegion(texture,0,0,16,32);
+        npc = EntityFactory.createNPC("Sprites/CITBOY.png", 144, 64);
 
-        npc = new NPC(textureRegion, 144,64);
-        // DEBUGGING COLLISION
-
-        shapeRenderer  = new ShapeRenderer();
+        collisionHandler = new CollisionHandler(player, npc, map, camera);
     }
 
 
@@ -98,68 +81,7 @@ public class GameScreen extends WildCatScreen {
 
     private void logic() {
         player.updateBoundingBox(player.getX(), player.getY());
-
-        if (debugMode) {
-            shapeRenderer.setProjectionMatrix(camera.combined);
-            shapeRenderer.begin(ShapeRenderer.ShapeType.Line);
-
-            // Draw the player's collision box
-            shapeRenderer.setColor(0, 1, 0, 1); // Green for the player
-            Rectangle playerCollisionBox = player.getCollisionBox();
-            shapeRenderer.rect(playerCollisionBox.x, playerCollisionBox.y, playerCollisionBox.width, playerCollisionBox.height);
-
-            // Get the "basic collisions" layer as an Object Layer
-            MapLayer objectLayer = map.getLayers().get("basic collisions");
-
-            if (objectLayer != null) {
-                for (MapObject object : objectLayer.getObjects()) {
-                    if (object instanceof RectangleMapObject) {
-                        // Draw RectangleMapObject
-                        Rectangle rectangle = ((RectangleMapObject) object).getRectangle();
-                        shapeRenderer.setColor(1, 0, 0, 1); // Red for rectangles
-                        shapeRenderer.rect(rectangle.x, rectangle.y, rectangle.width, rectangle.height);
-                    } else if (object instanceof PolygonMapObject) {
-                        // Draw PolygonMapObject
-                        Polygon polygon = ((PolygonMapObject) object).getPolygon();
-                        shapeRenderer.setColor(0, 0, 1, 1); // Blue for polygons
-                        shapeRenderer.polygon(polygon.getTransformedVertices());
-                    }
-                }
-            } else {
-                System.out.println("Object layer 'basic collisions' not found!");
-            }
-            System.out.println("draw buddy");
-            shapeRenderer.end();
-        }
-
-        // Collision logic (unchanged)
-        MapLayer objectLayer = map.getLayers().get("basic collisions");
-        if (objectLayer != null) {
-            boolean collisionDetected = false;
-            for (MapObject object : objectLayer.getObjects()) {
-                if (object instanceof RectangleMapObject) {
-                    Rectangle rectangle = ((RectangleMapObject) object).getRectangle();
-                    if (player.getCollisionBox().overlaps(rectangle)) {
-                        collisionDetected = true;
-                        break;
-                    }
-                } else if (object instanceof PolygonMapObject) {
-                    Polygon polygon = ((PolygonMapObject) object).getPolygon();
-                    if (Intersector.overlapConvexPolygons(player.getCollisionPolygon(), polygon)) {
-                        collisionDetected = true;
-                        break;
-                    }
-                }
-            }
-
-            if (collisionDetected) {
-                System.out.println("Stoppp baa please");
-                player.revertToPreviousPosition();
-            } else {
-                player.savePreviousPosition();
-                System.out.println("No Collisions");
-            }
-        }
+        collisionHandler.handleCollision();
     }
 
 
@@ -171,7 +93,7 @@ public class GameScreen extends WildCatScreen {
         camera.position.set(player.getX() + 8, player.getY() + 16, 0); // Offset to center player (16x32 -> 8 and 16)
 
         // Update the camera's position and zoom level
-        camera.zoom = zoomScale;
+        camera.zoom = 0.35f;
         camera.update();
 
         batch.setProjectionMatrix(camera.combined);
@@ -186,6 +108,7 @@ public class GameScreen extends WildCatScreen {
 
         // Rendering the npc
         npc.render(batch);
+
         batch.end();
     }
 
@@ -223,6 +146,6 @@ public class GameScreen extends WildCatScreen {
         batch.dispose();
         map.dispose();
         renderer.dispose();
-        shapeRenderer.dispose();
+        collisionHandler.dispose();
     }
 }
