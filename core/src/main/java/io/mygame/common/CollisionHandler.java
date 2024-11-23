@@ -89,8 +89,6 @@ public class CollisionHandler {
                 }
             }
 
-
-
             if (collisionDetected) {
                 revertToPreviousPosition();
             } else {
