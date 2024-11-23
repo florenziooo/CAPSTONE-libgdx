@@ -6,6 +6,7 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.maps.MapLayer;
 import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.maps.objects.PolygonMapObject;
@@ -16,6 +17,7 @@ import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.math.Polygon;
 import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.math.Shape2D;
 import io.mygame.entities.Player;
 
 public class GameScreen extends WildCatScreen {
@@ -28,6 +30,9 @@ public class GameScreen extends WildCatScreen {
 
     private final float zoomScale = 0.35f;
 
+    // DEBUGGING
+    private final boolean debugMode = true;
+    private ShapeRenderer shapeRenderer;
 
     public GameScreen(Game game) {
         super(game);
@@ -42,14 +47,17 @@ public class GameScreen extends WildCatScreen {
 
         batch = new SpriteBatch();
         player = new Player();
+
+        // DEBUGGING COLLISION
+        shapeRenderer  = new ShapeRenderer();
     }
 
 
     @Override
     public void render(float delta) {
         input();
-        logic();
         draw(delta);
+        logic();
     }
 
     private void input() {
@@ -81,23 +89,53 @@ public class GameScreen extends WildCatScreen {
     }
 
     private void logic() {
-        player.updateBoundingBox((int) player.getX(), (int) player.getY());
+        player.updateBoundingBox(player.getX(), player.getY());
 
-        // Get the "basic collisions" layer as an Object Layer
+        if (debugMode) {
+            shapeRenderer.setProjectionMatrix(camera.combined);
+            shapeRenderer.begin(ShapeRenderer.ShapeType.Line);
+
+            // Draw the player's collision box
+            shapeRenderer.setColor(0, 1, 0, 1); // Green for the player
+            Rectangle playerCollisionBox = player.getCollisionBox();
+            shapeRenderer.rect(playerCollisionBox.x, playerCollisionBox.y, playerCollisionBox.width, playerCollisionBox.height);
+
+            // Get the "basic collisions" layer as an Object Layer
+            MapLayer objectLayer = map.getLayers().get("basic collisions");
+
+            if (objectLayer != null) {
+                for (MapObject object : objectLayer.getObjects()) {
+                    if (object instanceof RectangleMapObject) {
+                        // Draw RectangleMapObject
+                        Rectangle rectangle = ((RectangleMapObject) object).getRectangle();
+                        shapeRenderer.setColor(1, 0, 0, 1); // Red for rectangles
+                        shapeRenderer.rect(rectangle.x, rectangle.y, rectangle.width, rectangle.height);
+                    } else if (object instanceof PolygonMapObject) {
+                        // Draw PolygonMapObject
+                        Polygon polygon = ((PolygonMapObject) object).getPolygon();
+                        shapeRenderer.setColor(0, 0, 1, 1); // Blue for polygons
+                        shapeRenderer.polygon(polygon.getTransformedVertices());
+                    }
+                }
+            } else {
+                System.out.println("Object layer 'basic collisions' not found!");
+            }
+            System.out.println("draw buddy");
+            shapeRenderer.end();
+        }
+
+        // Collision logic (unchanged)
         MapLayer objectLayer = map.getLayers().get("basic collisions");
-
         if (objectLayer != null) {
             boolean collisionDetected = false;
             for (MapObject object : objectLayer.getObjects()) {
                 if (object instanceof RectangleMapObject) {
-                    // Handle RectangleMapObject (as before)
                     Rectangle rectangle = ((RectangleMapObject) object).getRectangle();
                     if (player.getCollisionBox().overlaps(rectangle)) {
                         collisionDetected = true;
                         break;
                     }
                 } else if (object instanceof PolygonMapObject) {
-                    // Handle PolygonMapObject
                     Polygon polygon = ((PolygonMapObject) object).getPolygon();
                     if (Intersector.overlapConvexPolygons(player.getCollisionPolygon(), polygon)) {
                         collisionDetected = true;
@@ -106,17 +144,16 @@ public class GameScreen extends WildCatScreen {
                 }
             }
 
-            if(collisionDetected) {
+            if (collisionDetected) {
                 System.out.println("Stoppp baa please");
                 player.revertToPreviousPosition();
             } else {
                 player.savePreviousPosition();
                 System.out.println("No Collisions");
             }
-        } else {
-            System.out.println("Object layer 'basic collisions' not found!");
         }
     }
+
 
     private void draw(float delta) {
         Gdx.gl.glClearColor(0, 0, 0, 1);
@@ -175,5 +212,6 @@ public class GameScreen extends WildCatScreen {
         batch.dispose();
         map.dispose();
         renderer.dispose();
+        shapeRenderer.dispose();
     }
 }

@@ -1,11 +1,11 @@
 package io.mygame.entities;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Polygon;
 import io.mygame.common.AnimationLoader;
 import io.mygame.common.InputHandler;
+import io.mygame.enums.Direction;
 
 public class Player extends GameObject {
     private static final float SPEED = 75f;
@@ -14,7 +14,7 @@ public class Player extends GameObject {
     private float stateTime = 0;
     private boolean isMoving = false;
     private Direction direction = Direction.FRONT;
-    private InputHandler inputHandler = new InputHandler(this);
+    private final InputHandler inputHandler = new InputHandler(this);
 
     public Player() {
         super(144, 0, 16, 32);
@@ -62,7 +62,7 @@ public class Player extends GameObject {
     // Render the current animation frame
     public void render(SpriteBatch batch) {
         TextureRegion currentFrame = playerAnimation.getCurrentAnimation().getKeyFrame(stateTime, true);
-        batch.draw(currentFrame, x, y, width, height); // Draw at the current position
+        batch.draw(currentFrame, getX(), getY(), getWidth(), getHeight()); // Draw at the current position
     }
 
     public void moveUp() {
@@ -97,16 +97,6 @@ public class Player extends GameObject {
         inputHandler.moveDownLeft();
     }
 
-    public Polygon getCollisionPolygon() {
-        Polygon polygon = new Polygon(new float[]{
-            getX(), getY(),
-            getX() + getWidth(), getY(),
-            getX() + getWidth(), getY() + getHeight(),
-            getX(), getY() + getHeight()
-        });
-        return polygon;
-    }
-
     private float previousX, previousY;
 
     public void savePreviousPosition() {
@@ -115,8 +105,8 @@ public class Player extends GameObject {
     }
 
     public void revertToPreviousPosition() {
-        x = previousX;
-        y = previousY;
+        setX(previousX);
+        setY(previousY);
     }
 
 
@@ -124,37 +114,15 @@ public class Player extends GameObject {
         isMoving = false;
     }
 
-    public float getX() {
-        return x;
-    }
-
-    public float getY() {
-        return y;
-    }
-
     public float getSPEED() {
         return SPEED;
-    }
-
-    public void setY(float y){
-        this.y = y;
-    }
-
-    public void setX(float x){
-        this.x = x;
     }
 
     public void setIsMoving(boolean isMoving){
         this.isMoving = isMoving;
     }
+
     public void setDirection(Direction direction) {
         this.direction = direction;
-    }
-    public float getHeight() {
-        return height;
-    }
-
-    public float getWidth() {
-        return width;
     }
 }

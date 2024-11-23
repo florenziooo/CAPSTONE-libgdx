@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" width="30" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="14" nextobjectid="39">
+<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" width="30" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="14" nextobjectid="48">
  <tileset firstgid="1" source="TileSets16x16/Modern_Exteriors_Complete_Tileset.tsx"/>
  <tileset firstgid="69345" source="TileSets16x16/asdasd.tsx"/>
  <layer id="1" name="Background" width="30" height="20">
@@ -252,9 +252,6 @@
   <object id="30" x="65.0909" y="10.3636">
    <polygon points="0,0 28.7273,0.363636 29.2727,10.1818 21.4545,13.2727 21.4545,18.1818 17.4545,21.8182 10.9091,21.4545 8.18182,18.1818 8,13.2727 0.363636,10.5455"/>
   </object>
-  <object id="31" x="175.75" y="0">
-   <polygon points="0,0 1,206.25 127.75,207.25 127.75,192 10,192 10.75,-0.5"/>
-  </object>
   <object id="32" x="193.375" y="37.875">
    <polygon points="0,0 14.25,0.125 14.625,25.625 0,25.75"/>
   </object>
@@ -275,6 +272,12 @@
   </object>
   <object id="38" x="256" y="32.125">
    <polygon points="0,0 32.375,-0.125 31.625,16 -0.125,15.75"/>
+  </object>
+  <object id="46" x="175.333" y="-1.33333">
+   <polygon points="0,0 9,-0.666667 10,207.667 2,207.667"/>
+  </object>
+  <object id="47" x="176.333" y="191.667">
+   <polygon points="0,0 127.667,1.33333 128,16.3333 0.333333,15.3333"/>
   </object>
  </objectgroup>
 </map>

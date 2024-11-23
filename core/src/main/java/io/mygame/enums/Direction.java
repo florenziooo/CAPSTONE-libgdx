@@ -1,5 +1,5 @@
-package io.mygame.entities;
+package io.mygame.enums;
 
-enum Direction {
+public enum Direction {
     FRONT, RIGHT, LEFT, BACK, FRONT_RIGHT, FRONT_LEFT, BACK_RIGHT, BACK_LEFT
 }
