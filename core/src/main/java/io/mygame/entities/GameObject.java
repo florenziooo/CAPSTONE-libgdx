@@ -14,6 +14,7 @@ public class GameObject {
     private float collisionWidth, collisionHeight;
     private Rectangle collisionBox;
     private Polygon collisionPolygon;
+    private final float yOffset = 5; // Made constant to ensure consistency
 
     public GameObject(TextureRegion texture, float x, float y) {
         this.texture = texture;
@@ -36,21 +37,27 @@ public class GameObject {
     private void initializeCollisionBox() {
         collisionWidth = width / 2;
         collisionHeight = height / 4;
-        float collisionX = x + (width / 2) - (collisionWidth / 2);
-        float yOffset = 5;
-        float collisionY = y + (height / 2) - (collisionHeight / 2) - yOffset;
+        float collisionX = calculateCollisionX();
+        float collisionY = calculateCollisionY();
         collisionBox = new Rectangle(collisionX, collisionY, collisionWidth, collisionHeight);
     }
 
-    public void updateBoundingBox(float x, float y) {
-        this.x = x;
-        this.y = y;
+    private float calculateCollisionX() {
+        return x + (width / 2) - (collisionWidth / 2);
+    }
 
-        float yOffset = 5;
-        collisionBox.setPosition(
-            x + (width / 2) - (collisionWidth / 2),
-            y + (height / 2) - (collisionHeight / 2) - yOffset
-        );
+    private float calculateCollisionY() {
+        return y + (height / 2) - (collisionHeight / 2) - yOffset;
+    }
+
+    public void updateBoundingBox(float newX, float newY) {
+        this.x = newX;
+        this.y = newY;
+        updateCollisionPositions();
+    }
+
+    private void updateCollisionPositions() {
+        collisionBox.setPosition(calculateCollisionX(), calculateCollisionY());
 
         if (collisionPolygon != null) {
             collisionPolygon.setPosition(collisionBox.x, collisionBox.y);
@@ -69,6 +76,7 @@ public class GameObject {
 
     public Polygon getCollisionPolygon() {
         if (collisionPolygon == null) {
+            // Create polygon vertices relative to origin (0,0)
             collisionPolygon = new Polygon(new float[]{
                 0, 0,
                 collisionWidth, 0,
@@ -76,8 +84,8 @@ public class GameObject {
                 0, collisionHeight
             });
             collisionPolygon.setOrigin(collisionWidth / 2, collisionHeight / 2);
+            collisionPolygon.setPosition(collisionBox.x, collisionBox.y);
         }
-        collisionPolygon.setPosition(collisionBox.x, collisionBox.y);
         return collisionPolygon;
     }
 
@@ -86,8 +94,23 @@ public class GameObject {
     public float getY() { return y; }
     public float getWidth() { return width; }
     public float getHeight() { return height; }
+    public float getCollisionWidth() { return collisionWidth; }
+    public float getCollisionHeight() { return collisionHeight; }
 
     // Setters
-    public void setX(float x) { this.x = x; }
-    public void setY(float y) { this.y = y; }
+    public void setX(float newX) {
+        this.x = newX;
+        updateCollisionPositions();
+    }
+
+    public void setY(float newY) {
+        this.y = newY;
+        updateCollisionPositions();
+    }
+
+    public void setPosition(float newX, float newY) {
+        this.x = newX;
+        this.y = newY;
+        updateCollisionPositions();
+    }
 }
