@@ -7,6 +7,6 @@ import io.mygame.screens.GameScreen;
 public class GameLauncher extends Game {
     @Override
     public void create() {
-        setScreen(new GameScreen());
+        setScreen(new GameScreen(this));
     }
 }
