@@ -5,7 +5,9 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.maps.MapLayer;
 import com.badlogic.gdx.maps.MapObject;
@@ -18,12 +20,13 @@ import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.math.Polygon;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Shape2D;
+import io.mygame.entities.NPC;
 import io.mygame.entities.Player;
 
 public class GameScreen extends WildCatScreen {
     private SpriteBatch batch;
     private Player player;
-
+    private NPC npc;
     private TiledMap map;
     private OrthogonalTiledMapRenderer renderer;
     private OrthographicCamera camera;
@@ -48,7 +51,12 @@ public class GameScreen extends WildCatScreen {
         batch = new SpriteBatch();
         player = new Player();
 
+        Texture texture = new Texture(Gdx.files.internal("Sprites/CITBOY.png"));
+        TextureRegion textureRegion = new TextureRegion(texture,0,0,16,32);
+
+        npc = new NPC(textureRegion, 144,64);
         // DEBUGGING COLLISION
+
         shapeRenderer  = new ShapeRenderer();
     }
 
@@ -175,6 +183,9 @@ public class GameScreen extends WildCatScreen {
         batch.begin();
         player.update(delta);
         player.render(batch);
+
+        // Rendering the npc
+        npc.render(batch);
         batch.end();
     }
 
