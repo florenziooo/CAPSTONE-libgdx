@@ -104,10 +104,15 @@ public class GameScreen extends WildCatScreen {
         // Begin rendering the player
         batch.begin();
         player.update(delta);
-        player.render(batch);
 
-        // Rendering the npc
-        npc.render(batch);
+        // Determine rendering order based on y-coordinate
+        if (player.getY() > npc.getY()) {
+            player.render(batch); // Player is behind NPC
+            npc.render(batch);
+        } else {
+            npc.render(batch); // NPC is behind Player
+            player.render(batch);
+        }
 
         batch.end();
     }

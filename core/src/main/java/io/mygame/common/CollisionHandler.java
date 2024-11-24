@@ -71,7 +71,7 @@ public class CollisionHandler {
         // Collision logic (unchanged)
         MapLayer objectLayer = map.getLayers().get("basic collisions");
         if (objectLayer != null) {
-            Rectangle npcCollisionRectangle = new Rectangle(npc.getX(), npc.getY()+4, npc.getWidth(), npc.getHeight()-16);
+            Rectangle npcCollisionRectangle = new Rectangle(npc.getX(), npc.getY()+8, npc.getWidth(), npc.getHeight()-24);
             boolean collisionDetected = entity.getCollisionBox().overlaps(npcCollisionRectangle);
             for (MapObject object : objectLayer.getObjects()) {
                 if (object instanceof RectangleMapObject) {
