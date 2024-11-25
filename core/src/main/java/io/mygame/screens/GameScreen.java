@@ -52,8 +52,7 @@ public class GameScreen extends WildCatScreen {
             System.out.println("Layer Name: " + layer.getName());
 
             // Check if it's a tile layer
-            if (layer instanceof TiledMapTileLayer) {
-                TiledMapTileLayer tileLayer = (TiledMapTileLayer) layer;
+            if (layer instanceof TiledMapTileLayer tileLayer) {
 
                 // Safely retrieve the "type" property
                 String type = tileLayer.getProperties().get("type", String.class); // Cast property to String
@@ -61,7 +60,7 @@ public class GameScreen extends WildCatScreen {
 
                 if (type != null) {
                     if (type.equals("foreground")) {
-                        foreground.add(tileLayer);;
+                        foreground.add(tileLayer);
                     } else {
                         background.add(tileLayer);
                         System.out.println(tileLayer.getProperties().get("type", String.class));
@@ -80,8 +79,8 @@ public class GameScreen extends WildCatScreen {
     @Override
     public void render(float delta) {
         input();
-        logic();
         draw();
+        logic();
     }
 
     private void draw() {
@@ -93,7 +92,6 @@ public class GameScreen extends WildCatScreen {
         camera.zoom = 0.35f;
         camera.update();
 
-        // Set projection matrices
         batch.setProjectionMatrix(camera.combined);
         renderer.setView(camera);
 
@@ -153,14 +151,6 @@ public class GameScreen extends WildCatScreen {
         camera.viewportHeight = height / camera.zoom;
         camera.viewportWidth = width / camera.zoom;
         camera.update();
-    }
-
-    @Override
-    public void pause() {
-    }
-
-    @Override
-    public void resume() {
     }
 
     @Override
