@@ -1,5 +1,6 @@
 package io.mygame.entities;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import io.mygame.common.AnimationLoader;
@@ -20,7 +21,9 @@ public class Player extends GameObject {
         playerAnimation = new AnimationLoader("Sprites/CollegeMale1.png");
     }
 
-    public void update(float delta) {
+    public void update() {
+        float delta = Gdx.graphics.getDeltaTime();
+
         stateTime += delta;  // Update the state time for animation
 
         if (isMoving) {

@@ -7,10 +7,8 @@ import com.badlogic.gdx.math.Rectangle;
 
 public class GameObject {
     private final TextureRegion texture;
-    private float x;
-    private float y;
-    private final float width;
-    private final float height;
+    private float x, y;
+    private float width, height;
     private float collisionWidth, collisionHeight;
     private Rectangle collisionBox;
     private Polygon collisionPolygon;
@@ -33,7 +31,7 @@ public class GameObject {
         initializeCollisionBox();
     }
 
-    private void initializeCollisionBox() {
+    protected void initializeCollisionBox() {
         collisionWidth = width / 2;
         collisionHeight = height / 4;
         float collisionX = x + (width / 2) - (collisionWidth / 2);
@@ -84,10 +82,13 @@ public class GameObject {
     // Getters
     public float getX() { return x; }
     public float getY() { return y; }
+
     public float getWidth() { return width; }
     public float getHeight() { return height; }
 
     // Setters
     public void setX(float x) { this.x = x; }
     public void setY(float y) { this.y = y; }
+    public void setWidth(float width) { this.width = width; }
+    public void setHeight(float height) { this.height = height; }
 }
