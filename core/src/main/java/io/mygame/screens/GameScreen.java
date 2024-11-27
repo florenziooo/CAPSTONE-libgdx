@@ -13,6 +13,8 @@ import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 
+import com.badlogic.gdx.utils.viewport.FitViewport;
+import com.badlogic.gdx.utils.viewport.Viewport;
 import io.mygame.common.CollisionHandler;
 import io.mygame.entities.Player;
 
@@ -25,7 +27,11 @@ public class GameScreen extends WildCatScreen {
     private TiledMap map;
     private OrthogonalTiledMapRenderer renderer;
     private OrthographicCamera camera;
+    private Viewport viewport;
     private CollisionHandler collisionHandler;
+
+    private final int SCREEN_WIDTH = 640;
+    private final int WORLD_HEIGHT = 360;
 
     private List<TiledMapTileLayer> background;
     private List<TiledMapTileLayer> foreground;
@@ -39,6 +45,7 @@ public class GameScreen extends WildCatScreen {
         map = new TmxMapLoader().load("PixelMaps/TestMap.tmx");
         renderer = new OrthogonalTiledMapRenderer(map);
         camera = new OrthographicCamera();
+        viewport = new FitViewport(SCREEN_WIDTH, WORLD_HEIGHT, camera);
 
         batch = new SpriteBatch();
         player = new Player();
@@ -89,8 +96,8 @@ public class GameScreen extends WildCatScreen {
 
         // Update camera
         camera.position.set(player.getX() + 8, player.getY() + 16, 0);
-        camera.zoom = 0.35f;
         camera.update();
+        viewport.apply();
 
         batch.setProjectionMatrix(camera.combined);
         renderer.setView(camera);
@@ -148,9 +155,8 @@ public class GameScreen extends WildCatScreen {
 
     @Override
     public void resize(int width, int height) {
-        camera.viewportHeight = height / camera.zoom;
-        camera.viewportWidth = width / camera.zoom;
         camera.update();
+        viewport.update(width, height);
     }
 
     @Override
