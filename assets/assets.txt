@@ -7,3 +7,13 @@ PixelMaps/Tiles/Modern_Exteriors_Complete_Tileset.png
 PixelMaps/Tiles/asdasd.png
 Sprites/CollegeMale1.png
 images/main_menu_bg.png
+skins/main_menu_button/red/C&C Red Alert [INET](1).fnt
+skins/main_menu_button/red/red.atlas
+skins/main_menu_button/red/red.json
+skins/main_menu_button/red/red.png
+skins/main_menu_button/red_scmp/main_menu_button_red.scmp
+skins/main_menu_button/yellow/C&C Red Alert [INET](1).fnt
+skins/main_menu_button/yellow/yellow.atlas
+skins/main_menu_button/yellow/yellow.json
+skins/main_menu_button/yellow/yellow.png
+skins/main_menu_button/yellow_scmp/main_menu_button_yellow.scmp
