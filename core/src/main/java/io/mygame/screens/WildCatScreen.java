@@ -14,7 +14,7 @@ public abstract class WildCatScreen implements Screen {
     public void resize(int width, int height) {}
 
     @Override
-    public void show() {}
+    public abstract void show();
 
     @Override
     public void hide() {}

@@ -6,35 +6,78 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.maps.MapLayer;
+import com.badlogic.gdx.maps.MapLayers;
 import com.badlogic.gdx.maps.tiled.TiledMap;
+import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
+
+import com.badlogic.gdx.utils.viewport.FitViewport;
+import com.badlogic.gdx.utils.viewport.Viewport;
 import io.mygame.common.CollisionHandler;
 import io.mygame.entities.Player;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class GameScreen extends WildCatScreen {
     private SpriteBatch batch;
     private Player player;
-
     private TiledMap map;
     private OrthogonalTiledMapRenderer renderer;
     private OrthographicCamera camera;
-
+    private Viewport viewport;
     private CollisionHandler collisionHandler;
+
+    private final int SCREEN_WIDTH = 640;
+    private final int WORLD_HEIGHT = 360;
+
+    private List<TiledMapTileLayer> background;
+    private List<TiledMapTileLayer> foreground;
 
     public GameScreen(Game game) {
         super(game);
     }
-
 
     @Override
     public void show() {
         map = new TmxMapLoader().load("PixelMaps/TestMap.tmx");
         renderer = new OrthogonalTiledMapRenderer(map);
         camera = new OrthographicCamera();
+        viewport = new FitViewport(SCREEN_WIDTH, WORLD_HEIGHT, camera);
 
         batch = new SpriteBatch();
         player = new Player();
+
+        MapLayers mapLayers = map.getLayers();
+        background = new ArrayList<>();
+        foreground = new ArrayList<>();
+
+        // Iterate through each layer
+        for (MapLayer layer : mapLayers) {
+            System.out.println("Layer Name: " + layer.getName());
+
+            // Check if it's a tile layer
+            if (layer instanceof TiledMapTileLayer tileLayer) {
+
+                // Safely retrieve the "type" property
+                String type = tileLayer.getProperties().get("type", String.class); // Cast property to String
+                System.out.println("Type: " + type);
+
+                if (type != null) {
+                    if (type.equals("foreground")) {
+                        foreground.add(tileLayer);
+                    } else {
+                        background.add(tileLayer);
+                        System.out.println(tileLayer.getProperties().get("type", String.class));
+                    }
+                } else {
+                    background.add(tileLayer);
+                    System.out.println("Layer '" + tileLayer.getName() + "' does not have a 'type' property.");
+                }
+            }
+        }
 
         collisionHandler = new CollisionHandler(player, map, camera);
     }
@@ -43,8 +86,43 @@ public class GameScreen extends WildCatScreen {
     @Override
     public void render(float delta) {
         input();
-        draw(delta);
+        draw();
         logic();
+    }
+
+    private void draw() {
+        Gdx.gl.glClearColor(0, 0, 0, 1);
+        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+
+        // Update camera
+        camera.position.set(player.getX() + 8, player.getY() + 16, 0);
+        camera.update();
+        viewport.apply();
+
+        batch.setProjectionMatrix(camera.combined);
+        renderer.setView(camera);
+
+        renderer.getBatch().begin();
+        System.out.println("Background:");
+        for(TiledMapTileLayer layer : background) {
+            renderer.renderTileLayer(layer);
+            System.out.println(layer.getName());
+        }
+        renderer.getBatch().end();
+
+        batch.begin();
+        System.out.println("Drawing Player");
+        player.update();
+        player.render(batch);
+        batch.end();
+
+        renderer.getBatch().begin();
+        System.out.println("Foreground:");
+        for(TiledMapTileLayer layer : foreground) {
+            System.out.println(layer.getName());
+            renderer.renderTileLayer(layer);
+        }
+        renderer.getBatch().end();
     }
 
     private void input() {
@@ -67,71 +145,24 @@ public class GameScreen extends WildCatScreen {
         } else if (Gdx.input.isKeyPressed(Input.Keys.D)) {
             player.moveRight();
         }
-
-        // Stop movement if no key is pressed
-        if (!Gdx.input.isKeyPressed(Input.Keys.W) && !Gdx.input.isKeyPressed(Input.Keys.A) &&
-            !Gdx.input.isKeyPressed(Input.Keys.S) && !Gdx.input.isKeyPressed(Input.Keys.D)) {
-            player.stop();
-        }
     }
 
     private void logic() {
         player.updateBoundingBox(player.getX(), player.getY());
         collisionHandler.handleCollision();
+        System.out.println(player.getX() + " " + player.getY());
     }
-
-
-    private void draw(float delta) {
-        Gdx.gl.glClearColor(0, 0, 0, 1);
-        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-
-        // Set the camera position to center the player
-        camera.position.set(player.getX() + 8, player.getY() + 16, 0); // Offset to center player (16x32 -> 8 and 16)
-
-        // Update the camera's position and zoom level
-        camera.zoom = 0.35f;
-        camera.update();
-
-        batch.setProjectionMatrix(camera.combined);
-
-        renderer.setView(camera);
-        renderer.render();
-
-        // Begin rendering the player
-        batch.begin();
-        player.update(delta);
-        player.render(batch);
-        batch.end();
-    }
-
 
     @Override
     public void resize(int width, int height) {
-        // Adjust camera viewport size based on screen resolution and zoom level
-        camera.viewportHeight = height / camera.zoom;
-        camera.viewportWidth = width / camera.zoom;
         camera.update();
+        viewport.update(width, height);
     }
-
-
-    @Override
-    public void pause() {
-        // Invoked when your application is paused.
-    }
-
-
-    @Override
-    public void resume() {
-        // Invoked when your application is resumed after pause.
-    }
-
 
     @Override
     public void hide() {
-        // This method is called when another screen replaces this one.
         dispose();
     }
-
 
     @Override
     public void dispose() {

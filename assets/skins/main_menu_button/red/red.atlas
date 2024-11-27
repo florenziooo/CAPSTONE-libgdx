@@ -1,0 +1,94 @@
+
+red.png
+size: 1024, 1024
+format: RGBA8888
+filter: Linear, Linear
+repeat: none
+C&C Red Alert [INET](1)
+  rotate: false
+  xy: 1, 722
+  size: 505, 129
+  orig: 505, 129
+  offset: 0, 0
+  index: -1
+down_red
+  rotate: false
+  xy: 1, 230
+  size: 345, 80
+  split: 7, 10, 16, 12
+  pad: 13, 16, 20, 17
+  orig: 345, 80
+  offset: 0, 0
+  index: -1
+over_red
+  rotate: false
+  xy: 1, 66
+  size: 345, 80
+  split: 7, 10, 11, 18
+  pad: 13, 18, 15, 22
+  orig: 345, 80
+  offset: 0, 0
+  index: -1
+up_red
+  rotate: false
+  xy: 1, 148
+  size: 345, 80
+  split: 7, 10, 11, 18
+  pad: 13, 18, 15, 22
+  orig: 345, 80
+  offset: 0, 0
+  index: -1
+checked
+  rotate: false
+  xy: 508, 771
+  size: 345, 80
+  split: 7, 7, 11, 17
+  pad: 14, 14, 15, 22
+  orig: 345, 80
+  offset: 0, 0
+  index: -1
+checked_over
+  rotate: false
+  xy: 1, 558
+  size: 345, 80
+  split: 7, 7, 11, 17
+  pad: 14, 14, 15, 22
+  orig: 345, 80
+  offset: 0, 0
+  index: -1
+down
+  rotate: false
+  xy: 1, 640
+  size: 345, 80
+  split: 7, 7, 15, 11
+  pad: 14, 14, 21, 17
+  orig: 345, 80
+  offset: 0, 0
+  index: -1
+down2
+  rotate: false
+  xy: 1, 312
+  size: 345, 80
+  split: 6, 8, 16, 11
+  pad: 17, 18, 21, 17
+  orig: 345, 80
+  offset: 0, 0
+  index: -1
+over
+  rotate: false
+  xy: 1, 476
+  size: 345, 80
+  split: 7, 7, 11, 17
+  pad: 14, 14, 15, 22
+  orig: 345, 80
+  offset: 0, 0
+  index: -1
+up
+  rotate: false
+  xy: 1, 394
+  size: 345, 80
+  split: 7, 7, 11, 17
+  pad: 14, 14, 15, 22
+  orig: 345, 80
+  offset: 0, 0
+  index: -1
