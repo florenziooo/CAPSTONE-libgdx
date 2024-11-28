@@ -73,11 +73,11 @@
             "scaleInDock": 1
         },
         "TestMap.tmx": {
-            "scale": 1.5,
-            "selectedLayer": 0,
+            "scale": 3.1147,
+            "selectedLayer": 9,
             "viewCenter": {
-                "x": 130.33333333333331,
-                "y": 217.99999999999997
+                "x": 94.71217131665972,
+                "y": 152.82370693806786
             }
         },
         "TileSets/CollegeMale1.tsx": {

@@ -7,6 +7,7 @@ PixelMaps/Tiles/Modern_Exteriors_Complete_Tileset.png
 PixelMaps/Tiles/asdasd.png
 Sprites/CollegeMale1.png
 images/main_menu_bg.png
+images/main_menu_bg2.gif
 skins/main_menu_button/red/C&C Red Alert [INET](1).fnt
 skins/main_menu_button/red/red.atlas
 skins/main_menu_button/red/red.json
@@ -17,3 +18,21 @@ skins/main_menu_button/yellow/yellow.atlas
 skins/main_menu_button/yellow/yellow.json
 skins/main_menu_button/yellow/yellow.png
 skins/main_menu_button/yellow_scmp/main_menu_button_yellow.scmp
+sound/ambience/heavy_traffic.wav
+sound/ambience/mild_traffic.mp3
+sound/footsteps/walk_1.wav
+sound/footsteps/walk_2.wav
+sound/footsteps/walk_3.wav
+sound/footsteps/walk_4.wav
+sound/footsteps/walk_5.wav
+sound/footsteps/walk_6.wav
+sound/footsteps/walk_7.wav
+sound/music/the_secret_spring.mp3
+sound/music/the_secret_spring_loopable.mp3
+sound/ui/popup/popup_1.wav
+sound/ui/popup/popup_2.wav
+sound/ui/select/select_1.wav
+sound/ui/select/select_2.wav
+sound/ui/select/select_3.wav
+sound/ui/smartphone/smartphone_in.wav
+sound/ui/smartphone/smartphone_out.wav

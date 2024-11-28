@@ -2,6 +2,7 @@ package io.mygame.screens;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -12,6 +13,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
+import io.mygame.common.SoundManager;
 
 public class MainMenu extends WildCatScreen {
     private Texture background;
@@ -25,6 +27,8 @@ public class MainMenu extends WildCatScreen {
     private TextButton loadButton;
     private TextButton exitButton;
 
+    private Music bgMusic;
+
     private float time = 0;
 
     public MainMenu(Game game) {
@@ -37,6 +41,10 @@ public class MainMenu extends WildCatScreen {
         batch = new SpriteBatch();
         stage = new Stage(new ScreenViewport());
         Gdx.input.setInputProcessor(stage);
+
+        SoundManager opening = new SoundManager.Builder()
+            .setbgMusic("sound/music/the_secret_spring_loopable.mp3")
+            .setAmbience("sound/ambience/mild_traffic.mp3").build();
 
         table = new Table();
         table.setY(-250);
