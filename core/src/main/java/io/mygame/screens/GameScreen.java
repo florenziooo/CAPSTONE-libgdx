@@ -13,10 +13,12 @@ import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 
+import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import io.mygame.common.CollisionHandler;
 import io.mygame.entities.Player;
+import io.mygame.ui.PlayerHUD;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,9 +31,12 @@ public class GameScreen extends WildCatScreen {
     private OrthographicCamera camera;
     private Viewport viewport;
     private CollisionHandler collisionHandler;
+    private PlayerHUD playerHUD;
 
     private final int SCREEN_WIDTH = 640;
     private final int WORLD_HEIGHT = 360;
+//    private final int SCREEN_WIDTH = 1920;
+//    private final int WORLD_HEIGHT = 1080;
 
     private List<TiledMapTileLayer> background;
     private List<TiledMapTileLayer> foreground;
@@ -49,6 +54,8 @@ public class GameScreen extends WildCatScreen {
 
         batch = new SpriteBatch();
         player = new Player();
+
+        playerHUD = new PlayerHUD();
 
         MapLayers mapLayers = map.getLayers();
         background = new ArrayList<>();
@@ -88,6 +95,7 @@ public class GameScreen extends WildCatScreen {
         input();
         draw();
         logic();
+        playerHUD.render();
     }
 
     private void draw() {
@@ -155,8 +163,8 @@ public class GameScreen extends WildCatScreen {
 
     @Override
     public void resize(int width, int height) {
-        camera.update();
         viewport.update(width, height);
+        playerHUD.resize(width, height);
     }
 
     @Override
@@ -166,9 +174,15 @@ public class GameScreen extends WildCatScreen {
 
     @Override
     public void dispose() {
+        playerHUD.dispose();
         batch.dispose();
         map.dispose();
         renderer.dispose();
         collisionHandler.dispose();
+    }
+
+    @Override
+    public void changeScreen(GameScreen screen) {
+        game.setScreen(screen);
     }
 }

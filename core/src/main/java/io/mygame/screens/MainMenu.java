@@ -12,20 +12,15 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
+import io.mygame.ui.UI;
 
 public class MainMenu extends WildCatScreen {
     private Texture background;
     private SpriteBatch batch;
     private Stage stage;
-    private Table table;
     private Skin redSkin;
     private Skin yellowSkin;
-
-    private TextButton startButton;
-    private TextButton loadButton;
-    private TextButton exitButton;
-
-    private float time = 0;
+    private UI ui;
 
     public MainMenu(Game game) {
         super(game);
@@ -38,29 +33,30 @@ public class MainMenu extends WildCatScreen {
         stage = new Stage(new ScreenViewport());
         Gdx.input.setInputProcessor(stage);
 
-        table = new Table();
-        table.setY(-250);
-        table.setFillParent(true);
-        stage.addActor(table);
-
         yellowSkin = new Skin(Gdx.files.internal("skins/main_menu_button/yellow/yellow.json"));
         redSkin = new Skin(Gdx.files.internal("skins/main_menu_button/red/red.json"));
 
-        startButton = new TextButton("START GAME", yellowSkin);
+        Table table = new Table();
+        table.setY(-250);
+        table.setFillParent(true);
+        table.setDebug(false);
+        stage.addActor(table);
+
+        TextButton startButton = new TextButton("START GAME", yellowSkin);
         table.add(startButton).space(15f);
         table.row();
 
-        loadButton = new TextButton("LOAD GAME", yellowSkin);
+        TextButton loadButton = new TextButton("LOAD GAME", yellowSkin);
         table.add(loadButton).space(15f);
         table.row();
 
-        exitButton = new TextButton("EXIT GAME", redSkin);
+        TextButton exitButton = new TextButton("EXIT GAME", redSkin);
         table.add(exitButton).space(15f);
 
         startButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                game.setScreen(new GameScreen(game));
+                changeScreen(new GameScreen(game));
             }
         });
     }
@@ -81,5 +77,12 @@ public class MainMenu extends WildCatScreen {
     public void dispose() {
         stage.dispose();
         batch.dispose();
+        redSkin.dispose();
+        yellowSkin.dispose();
+    }
+
+    @Override
+    public void changeScreen(GameScreen screen) {
+        game.setScreen(screen);
     }
 }

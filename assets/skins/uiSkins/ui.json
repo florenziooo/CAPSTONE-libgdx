@@ -1,0 +1,153 @@
+{
+"com.badlogic.gdx.graphics.g2d.BitmapFont": {
+	"Red_Alert": {
+		"file": "C&C Red Alert [INET](2).fnt",
+		"scaledSize": -1,
+		"markupEnabled": false,
+		"flip": false
+	},
+	"Red_Alert_body": {
+		"file": "C&C Red Alert [INET](4).fnt",
+		"scaledSize": -1,
+		"markupEnabled": false,
+		"flip": false
+	},
+	"Red_Alert_header2": {
+		"file": "C&C Red Alert [INET](5).fnt",
+		"scaledSize": -1,
+		"markupEnabled": false,
+		"flip": false
+	},
+	"Red_Alert_Heading": {
+		"file": "C&C Red Alert [INET](3).fnt",
+		"scaledSize": -1,
+		"markupEnabled": false,
+		"flip": false
+	}
+},
+"com.badlogic.gdx.graphics.Color": {
+	"black": {
+		"r": 0,
+		"g": 0,
+		"b": 0,
+		"a": 1
+	},
+	"white": {
+		"r": 1,
+		"g": 1,
+		"b": 1,
+		"a": 1
+	}
+},
+"com.badlogic.gdx.scenes.scene2d.ui.Button$ButtonStyle": {
+	"stats_btn": {
+		"up": "stats_btn1",
+		"checked": "stats_btn2"
+	},
+	"open_menu_btn": {
+		"up": "hud_btn1",
+		"down": "hud_btn2"
+	},
+	"exit_btn": {
+		"up": "exit_btn"
+	}
+},
+"com.badlogic.gdx.scenes.scene2d.ui.CheckBox$CheckBoxStyle": {
+	"default": {
+		"checkboxOn": "stats_btn1",
+		"checkboxOff": "stats_btn2",
+		"font": "Red_Alert",
+		"fontColor": "black"
+	},
+	"stats_cb": {
+		"checkboxOn": "stats_btn2",
+		"checkboxOff": "stats_btn1",
+		"font": "Red_Alert",
+		"fontColor": "black"
+	},
+	"map_cb": {
+		"checkboxOn": "map_btn2",
+		"checkboxOff": "map_btn1",
+		"font": "Red_Alert",
+		"fontColor": "black"
+	},
+	"exp_cb": {
+		"checkboxOn": "exp_btn2",
+		"checkboxOff": "exp_btn1",
+		"font": "Red_Alert",
+		"fontColor": "black"
+	},
+	"settings_cb": {
+		"checkboxOn": "settings_btn2",
+		"checkboxOff": "settings_btn1",
+		"font": "Red_Alert",
+		"fontColor": "black"
+	}
+},
+"com.badlogic.gdx.scenes.scene2d.ui.ImageButton$ImageButtonStyle": {
+	"default": {
+		"imageUp": "download (2)",
+		"up": "paper",
+		"over": "paper_focus.9"
+	}
+},
+"com.badlogic.gdx.scenes.scene2d.ui.ImageTextButton$ImageTextButtonStyle": {
+	"default": {
+		"imageUp": "paper",
+		"imageDown": "paper",
+		"font": "Red_Alert",
+		"fontColor": "black"
+	}
+},
+"com.badlogic.gdx.scenes.scene2d.ui.Label$LabelStyle": {
+	"default": {
+		"font": "Red_Alert",
+		"fontColor": "black"
+	},
+	"black": {
+		"font": "Red_Alert",
+		"fontColor": "black"
+	},
+	"white": {
+		"font": "Red_Alert",
+		"fontColor": "white"
+	},
+	"header": {
+		"font": "Red_Alert_Heading",
+		"fontColor": "black"
+	},
+	"body": {
+		"font": "Red_Alert_body",
+		"fontColor": "black"
+	},
+	"header2": {
+		"font": "Red_Alert_header2",
+		"fontColor": "black"
+	}
+},
+"com.badlogic.gdx.scenes.scene2d.ui.ScrollPane$ScrollPaneStyle": {
+	"default": {
+		"vScroll": "scroll_bar",
+		"vScrollKnob": "scroll_knob"
+	}
+},
+"com.badlogic.gdx.scenes.scene2d.ui.Slider$SliderStyle": {
+	"default-horizontal": {
+		"background": "volumeb.9",
+		"knob": "volume_knobb.9"
+	}
+},
+"com.badlogic.gdx.scenes.scene2d.ui.TextButton$TextButtonStyle": {
+	"btn1": {
+		"font": "Red_Alert",
+		"fontColor": "black",
+		"up": "menu_button",
+		"down": "menu_button2"
+	}
+},
+"com.badlogic.gdx.scenes.scene2d.ui.TextTooltip$TextTooltipStyle": {
+	"default": {
+		"label": "default"
+	}
+}
+}

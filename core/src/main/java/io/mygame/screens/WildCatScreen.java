@@ -3,7 +3,7 @@ package io.mygame.screens;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Screen;
 
-public abstract class WildCatScreen implements Screen {
+public abstract class WildCatScreen implements Screen, ScreenState {
     Game game;
 
     public WildCatScreen(Game game) {

@@ -4,6 +4,7 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Cursor;
 import com.badlogic.gdx.graphics.Pixmap;
+import io.mygame.common.GameManager;
 import io.mygame.screens.MainMenu;
 
 /** {@link com.badlogic.gdx.ApplicationListener} implementation shared by all platforms. */
