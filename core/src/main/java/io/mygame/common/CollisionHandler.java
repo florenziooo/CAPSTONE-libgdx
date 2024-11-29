@@ -13,6 +13,10 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import io.mygame.entities.GameObject;
 
+/**
+ * Handles collision detection for an entity against objects in a TiledMap.
+ * Provides methods for checking collisions, drawing debug information, and managing entity positions.
+ */
 public class CollisionHandler {
     private final GameObject entity;
     private final TiledMap map;
@@ -23,6 +27,13 @@ public class CollisionHandler {
     private final Vector2 movement = new Vector2();
     private float currentX, currentY;
 
+    /**
+     * Constructs a CollisionHandler for handling collisions of a specific entity on a TiledMap.
+     *
+     * @param entity  The GameObject entity that will be checked for collisions.
+     * @param map     The TiledMap that contains the collision objects.
+     * @param camera  The camera used for rendering debug information.
+     */
     public CollisionHandler(GameObject entity, TiledMap map, OrthographicCamera camera) {
         this.entity = entity;
         this.map = map;
@@ -30,55 +41,95 @@ public class CollisionHandler {
         this.shapeRenderer = new ShapeRenderer();
     }
 
+    /**
+     * Handles the collision detection and resolution for the entity.
+     * This method checks if the entity collides with objects in the map and adjusts its position accordingly.
+     * If the entity collides, it attempts to move in a way that avoids the collision.
+     * It also draws debug information if debug mode is enabled.
+     *
+     * @throws RuntimeException If there is an error related to the collision detection process (e.g., null or cast exceptions).
+     */
     public void handleCollision() {
-        MapLayer objectLayer = map.getLayers().get("basic collisions");
-        if (objectLayer == null) return;
+        String collisionName = "basic collisions";
+        try {
+            MapLayer objectLayer = map.getLayers().get(collisionName);
+            if (objectLayer == null) throw new NullPointerException();
 
-        currentX = entity.getX();
-        currentY = entity.getY();
-        movement.x = currentX - previousX;
-        movement.y = currentY - previousY;
-
-        if (checkCollision(objectLayer)) {
-            float tempY = entity.getY();
-            entity.setY(previousY);
+            currentX = entity.getX();
+            currentY = entity.getY();
+            movement.x = currentX - previousX;
+            movement.y = currentY - previousY;
 
             if (checkCollision(objectLayer)) {
-                entity.setY(tempY);
-                entity.setX(previousX);
+                float tempY = entity.getY();
+                entity.setY(previousY);
 
                 if (checkCollision(objectLayer)) {
-                    revertToPreviousPosition();
+                    entity.setY(tempY);
+                    entity.setX(previousX);
+
+                    if (checkCollision(objectLayer)) {
+                        revertToPreviousPosition();
+                    } else {
+                        savePreviousPosition();
+                    }
                 } else {
                     savePreviousPosition();
                 }
             } else {
                 savePreviousPosition();
             }
-        } else {
-            savePreviousPosition();
-        }
 
-        drawDebug(objectLayer);
+            drawDebug(objectLayer);
+        } catch (NullPointerException e) {
+            System.err.println("NullPointerException: Collision object (" + collisionName + ") not found in the tiled map:  " + e.getMessage());
+            throw new RuntimeException("Error: " + e.getMessage());
+        } catch (ClassCastException e) {
+            System.err.println("ClassCastException: Object is not a MapLayer class" + e.getMessage());
+            throw new RuntimeException("Error: " + e.getMessage());
+        } catch (Exception e) {
+            System.err.println("Exception: " + e.getMessage());
+            throw new RuntimeException("Error: " + e.getMessage());
+        }
     }
 
+    /**
+     * Checks if the entity collides with any objects in the specified MapLayer.
+     * This method checks if the entity's collision box overlaps with rectangular or polygonal objects in the map layer.
+     *
+     * @param objectLayer The MapLayer containing collision objects.
+     * @return true if the entity collides with any object in the MapLayer, false otherwise.
+     */
     private boolean checkCollision(MapLayer objectLayer) {
-        for (MapObject object : objectLayer.getObjects()) {
-            if (object instanceof RectangleMapObject) {
-                Rectangle rectangle = ((RectangleMapObject) object).getRectangle();
-                if (entity.getCollisionBox().overlaps(rectangle)) {
-                    return true;
-                }
-            } else if (object instanceof PolygonMapObject) {
-                Polygon polygon = ((PolygonMapObject) object).getPolygon();
-                if (Intersector.overlapConvexPolygons(entity.getCollisionPolygon(), polygon)) {
-                    return true;
+        try {
+            for (MapObject object : objectLayer.getObjects()) {
+                if (object instanceof RectangleMapObject) {
+                    Rectangle rectangle = ((RectangleMapObject) object).getRectangle();
+                    if (entity.getCollisionBox().overlaps(rectangle)) {
+                        return true;
+                    }
+                } else if (object instanceof PolygonMapObject) {
+                    Polygon polygon = ((PolygonMapObject) object).getPolygon();
+                    if (Intersector.overlapConvexPolygons(entity.getCollisionPolygon(), polygon)) {
+                        return true;
+                    }
+                } else {
+                    throw new ClassCastException("Object is not a RectangleMapObject nor a PolygonMapObject");
                 }
             }
+            return false;
+        } catch (ClassCastException e) {
+            System.err.println("ClassCastException: " + e.getMessage());
+            throw new RuntimeException("Error: " + e.getMessage());
         }
-        return false;
     }
 
+    /**
+     * Draws debug information to the screen, such as the player's collision box, movement vector, and collision objects.
+     * The drawing is done using a ShapeRenderer.
+     *
+     * @param objectLayer The MapLayer containing collision objects to be drawn.
+     */
     private void drawDebug(MapLayer objectLayer) {
         if (!debugMode) return;
 
@@ -110,16 +161,27 @@ public class CollisionHandler {
         shapeRenderer.end();
     }
 
+    /**
+     * Saves the current position of the entity to be used later for collision handling.
+     * This method records the current X and Y positions of the entity.
+     */
     public void savePreviousPosition() {
         previousX = entity.getX();
         previousY = entity.getY();
     }
 
+    /**
+     * Reverts the entity's position to its previous saved position.
+     * This is used to restore the entity's position if a collision occurs.
+     */
     public void revertToPreviousPosition() {
         entity.setX(previousX);
         entity.setY(previousY);
     }
 
+    /**
+     * Disposes of resources used by the CollisionHandler, including the ShapeRenderer and the TiledMap.
+     */
     public void dispose() {
         shapeRenderer.dispose();
         map.dispose();

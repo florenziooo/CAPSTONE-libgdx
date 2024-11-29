@@ -18,10 +18,10 @@ skins/main_menu_button/yellow/yellow.atlas
 skins/main_menu_button/yellow/yellow.json
 skins/main_menu_button/yellow/yellow.png
 skins/main_menu_button/yellow_scmp/main_menu_button_yellow.scmp
-skins/ui/C&C Red Alert [INET](2).fnt
-skins/ui/C&C Red Alert [INET](3).fnt
-skins/ui/C&C Red Alert [INET](4).fnt
-skins/ui/C&C Red Alert [INET](5).fnt
-skins/ui/ui.atlas
-skins/ui/ui.json
-skins/ui/ui.png
+skins/uiSkins/C&C Red Alert [INET](2).fnt
+skins/uiSkins/C&C Red Alert [INET](3).fnt
+skins/uiSkins/C&C Red Alert [INET](4).fnt
+skins/uiSkins/C&C Red Alert [INET](5).fnt
+skins/uiSkins/ui.atlas
+skins/uiSkins/ui.json
+skins/uiSkins/ui.png

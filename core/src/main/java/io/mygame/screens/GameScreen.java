@@ -1,22 +1,22 @@
 package io.mygame.screens;
 
+import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.maps.MapLayer;
 import com.badlogic.gdx.maps.MapLayers;
+import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
-import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
-
-import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
+
 import io.mygame.common.CollisionHandler;
+import io.mygame.ui.InventoryMenu;
 import io.mygame.entities.Player;
 import io.mygame.ui.PlayerHUD;
 
@@ -24,27 +24,43 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class GameScreen extends WildCatScreen {
+    /************ RENDERERS ************/
     private SpriteBatch batch;
-    private Player player;
-    private TiledMap map;
     private OrthogonalTiledMapRenderer renderer;
-    private OrthographicCamera camera;
-    private Viewport viewport;
-    private CollisionHandler collisionHandler;
-    private PlayerHUD playerHUD;
 
+    /************ ENTITY ************/
+    private Player player;
+
+    /************ COLLISION HANDLER ************/
+    private CollisionHandler collisionHandler;
+
+    /************ USER INTERFACES ************/
+    private PlayerHUD playerHUD;
+    private InventoryMenu inventoryMenu;
+
+    /************ SCREEN VIEWPORT SIZE ************/
+    private Viewport viewport;
+    private OrthographicCamera camera;
     private final int SCREEN_WIDTH = 640;
     private final int WORLD_HEIGHT = 360;
-//    private final int SCREEN_WIDTH = 1920;
-//    private final int WORLD_HEIGHT = 1080;
 
+    /************ TILED MAPS ************/
+    private TiledMap map;
     private List<TiledMapTileLayer> background;
     private List<TiledMapTileLayer> foreground;
 
+    /**
+     * Constructor for the GameScreen class.
+     *
+     * @param game the main game instance
+     */
     public GameScreen(Game game) {
         super(game);
     }
 
+    /**
+     * Called when the screen is shown. Initializes the map, renderer, camera, viewport, player, and other components.
+     */
     @Override
     public void show() {
         map = new TmxMapLoader().load("PixelMaps/TestMap.tmx");
@@ -57,39 +73,52 @@ public class GameScreen extends WildCatScreen {
 
         playerHUD = new PlayerHUD();
 
+
         MapLayers mapLayers = map.getLayers();
         background = new ArrayList<>();
         foreground = new ArrayList<>();
 
         // Iterate through each layer
         for (MapLayer layer : mapLayers) {
-            System.out.println("Layer Name: " + layer.getName());
+            try {
+                String layerName = layer.getName();
+                System.out.println("Layer Name: " + (layerName != null ? layerName : "Unnamed Layer"));
 
-            // Check if it's a tile layer
-            if (layer instanceof TiledMapTileLayer tileLayer) {
+                if (layer instanceof TiledMapTileLayer tileLayer) {
+                    String type = null;
+                    try {
+                        type = tileLayer.getProperties().get("type", String.class);
+                    } catch (ClassCastException e) {
+                        System.err.println("Error: 'type' property in layer '" + layerName + "' is not a String.");
+                        throw new RuntimeException("Error: " + e.getMessage());
+                    }
 
-                // Safely retrieve the "type" property
-                String type = tileLayer.getProperties().get("type", String.class); // Cast property to String
-                System.out.println("Type: " + type);
-
-                if (type != null) {
-                    if (type.equals("foreground")) {
-                        foreground.add(tileLayer);
+                    if (type != null) {
+                        if (type.equals("foreground")) {
+                            foreground.add(tileLayer);
+                        } else {
+                            background.add(tileLayer);
+                            System.out.println("Background type: " + type);
+                        }
                     } else {
                         background.add(tileLayer);
-                        System.out.println(tileLayer.getProperties().get("type", String.class));
+                        System.out.println("Layer '" + layerName + "' does not have a 'type' property.");
                     }
-                } else {
-                    background.add(tileLayer);
-                    System.out.println("Layer '" + tileLayer.getName() + "' does not have a 'type' property.");
                 }
+            } catch (Exception e) {
+                System.err.println("An error occurred while processing a layer: " + e.getMessage());
+                throw new RuntimeException("Error: " + e.getMessage());
             }
         }
 
         collisionHandler = new CollisionHandler(player, map, camera);
     }
 
-
+    /**
+     * Renders the screen. Called every frame.
+     *
+     * @param delta the time in seconds since the last frame
+     */
     @Override
     public void render(float delta) {
         input();
@@ -98,6 +127,9 @@ public class GameScreen extends WildCatScreen {
         playerHUD.render();
     }
 
+    /**
+     * Handles the drawing of the map, player, and other graphical elements.
+     */
     private void draw() {
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
@@ -133,6 +165,9 @@ public class GameScreen extends WildCatScreen {
         renderer.getBatch().end();
     }
 
+    /**
+     * Processes player input for movement.
+     */
     private void input() {
         player.stop();
 
@@ -155,23 +190,38 @@ public class GameScreen extends WildCatScreen {
         }
     }
 
+    /**
+     * Contains game logic updates, including collision handling and player bounding box updates.
+     */
     private void logic() {
         player.updateBoundingBox(player.getX(), player.getY());
         collisionHandler.handleCollision();
         System.out.println(player.getX() + " " + player.getY());
     }
 
+    /**
+     * Resizes the viewport and HUD when the screen dimensions change.
+     *
+     * @param width  the new screen width
+     * @param height the new screen height
+     */
     @Override
     public void resize(int width, int height) {
         viewport.update(width, height);
         playerHUD.resize(width, height);
     }
 
+    /**
+     * Hides the screen and disposes of resources.
+     */
     @Override
     public void hide() {
         dispose();
     }
 
+    /**
+     * Disposes of all resources used by the screen.
+     */
     @Override
     public void dispose() {
         playerHUD.dispose();
@@ -181,6 +231,11 @@ public class GameScreen extends WildCatScreen {
         collisionHandler.dispose();
     }
 
+    /**
+     * Changes the current screen to a new GameScreen.
+     *
+     * @param screen the new screen to be displayed
+     */
     @Override
     public void changeScreen(GameScreen screen) {
         game.setScreen(screen);

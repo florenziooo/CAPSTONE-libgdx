@@ -12,7 +12,6 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
-import io.mygame.ui.UI;
 
 public class MainMenu extends WildCatScreen {
     private Texture background;
@@ -20,7 +19,6 @@ public class MainMenu extends WildCatScreen {
     private Stage stage;
     private Skin redSkin;
     private Skin yellowSkin;
-    private UI ui;
 
     public MainMenu(Game game) {
         super(game);

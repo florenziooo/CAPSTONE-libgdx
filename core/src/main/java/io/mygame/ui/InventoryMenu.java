@@ -9,23 +9,8 @@ import com.badlogic.gdx.utils.Scaling;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 
 public class InventoryMenu extends UI {
-    private Table root;
-    private Label playerName;
-    private Button menuButton;
-
     public InventoryMenu() {
         super(new ScreenViewport());
-
-        playerName = new Label("Hello", skin, "default");
-        menuButton = new Button(skin, "open_menu_btn");
-        statsTable();
-
-        menuButton.addListener(new ChangeListener() {
-            @Override
-            public void changed(ChangeEvent changeEvent, Actor actor) {
-                playerName.setText("Hello World");
-            }
-        });
     }
 
     @Override
@@ -44,8 +29,8 @@ public class InventoryMenu extends UI {
 
         Stack stack = new Stack();
 
-        Image image = new Image(skin, "menu_bg");
-        stack.addActor(image);
+//        Image image = new Image(skin, "menu_bg");
+//        stack.addActor(image);
 
         Table table1 = new Table();
         table1.setTouchable(Touchable.enabled);
@@ -58,7 +43,7 @@ public class InventoryMenu extends UI {
         table1.add();
 
         table1.row();
-        image = new Image(skin, "avatar_frame");
+        Image image = new Image(skin, "avatar_frame");
         image.setScaling(Scaling.fill);
         table1.add(image).padLeft(34.0f);
 
@@ -98,6 +83,6 @@ public class InventoryMenu extends UI {
     }
 
     private void settingsTable() {
-        
+
     }
 }
