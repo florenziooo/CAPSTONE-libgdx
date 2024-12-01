@@ -2,6 +2,7 @@ package io.mygame.screens;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -61,8 +62,14 @@ public class MainMenu extends WildCatScreen {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
                 sound.addSound("click");
-                dispose();
                 changeScreen(new GameScreen(game, sound));
+            }
+        });
+
+        exitButton.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                Gdx.app.exit();
             }
         });
     }
@@ -88,7 +95,7 @@ public class MainMenu extends WildCatScreen {
     }
 
     @Override
-    public void changeScreen(GameScreen screen) {
+    public void changeScreen(Screen screen) {
         game.setScreen(screen);
     }
 }
