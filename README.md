@@ -21,12 +21,42 @@ This game is a tribute to the vibrant community and culture of Cebu Institute of
  - Members of the Supreme Student Government for their support.
  - Players Like You who bring the Wildcat’s Den to life.
 
+
+## Design Patterns
+### Singleton Design Pattern
+#### GameManager Class
+The Singleton Design Pattern is implemented in the `GameManager` class to ensure that only one instance of the class exists during the game's lifecycle. This pattern provides a single point of access to shared data, such as `playerName`, `npcFound`, `buildingsFound`, and `volume`, making it easy to manage and synchronize game state globally.
+
+### Builder Design Pattern
+#### SoundManager Class
+The **Builder Design Pattern** is used in the `SoundManager` class to simplify the creation of complex sound objects with multiple configurations. The `Builder` class allows incremental and flexible object construction through method chaining.
+
+- The `Builder` class provides methods like `setbgMusic()` and `setAmbience()` to set specific properties of the `SoundManager` instance.
+- The `build()` method creates a new `SoundManager` instance, passing the builder itself for initialization.
+
+### State Design Pattern
+#### Screen State Class
+The **State Design Pattern** is implemented through the `ScreenState` interface and the `WildCatScreen` abstract class. This pattern allows the game's screen to change dynamically, representing different states of the application (e.g., main menu, gameplay, or pause menu).
+
+- **`ScreenState` Interface**: Defines the behavior for transitioning between screens with the `changeScreen(GameScreen screen)` method.
+- **`WildCatScreen` Abstract Class**: Serves as a base class for specific screens, like gameplay or menus, and ensures consistent structure and behavior for screen management.
+
+This pattern simplifies state transitions and promotes better organization by encapsulating screen-specific behavior in separate classes.
+### Game Loop Design Pattern
+
+The **Game Loop Design Pattern** is inherently utilized in the `Game` class provided by the libGDX framework. This pattern is foundational in game development, managing the continuous update and rendering cycle that drives a game.
+
+- **Core Concept**: The game loop ensures that the game processes input, updates the game state, and renders frames in a consistent and efficient manner, regardless of the platform or hardware.
+- **Implementation in libGDX**:
+    - The `render()` method in the `Game` class is called repeatedly, typically synchronized with the frame rate. It invokes the `render()` method of the active `Screen`, passing the time delta since the last frame.
+    - Methods like `pause()`, `resume()`, and `resize()` handle transitions between different game states or screen dimensions.
+    - The `setScreen()` method allows swapping between different game screens while maintaining a consistent loop.
+
+In the `GameLauncher` class, which extends `Game`, the `create()` method initializes resources and sets the initial game screen (e.g., `MainMenu`). The game loop then manages the flow of the application, invoking the screen's `render()` and other lifecycle methods as needed.
+
+This design pattern ensures that the game's state remains synchronized with the rendering process, providing smooth gameplay and responsiveness.
+
 ## Additional References
-
-
-
-
-
 
 This is a [libGDX](https://libgdx.com/) project generated with [gdx-liftoff](https://github.com/libgdx/gdx-liftoff).
 

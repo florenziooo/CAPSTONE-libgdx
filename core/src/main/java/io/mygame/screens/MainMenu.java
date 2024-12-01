@@ -18,7 +18,6 @@ public class MainMenu extends WildCatScreen {
     private Texture background;
     private SpriteBatch batch;
     private Stage stage;
-    private Table table;
     private Skin redSkin;
     private Skin yellowSkin;
 
@@ -38,7 +37,6 @@ public class MainMenu extends WildCatScreen {
             .setAmbience("sound/ambience/mild_traffic.mp3")
             .build();
 
-        table = new Table();
         yellowSkin = new Skin(Gdx.files.internal("skins/main_menu_button/yellow/yellow.json"));
         redSkin = new Skin(Gdx.files.internal("skins/main_menu_button/red/red.json"));
 
@@ -62,7 +60,7 @@ public class MainMenu extends WildCatScreen {
         startButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                sound.addSound("click"); //TODO CHANGE
+                sound.addSound("click");
                 dispose();
                 changeScreen(new GameScreen(game, sound));
             }
