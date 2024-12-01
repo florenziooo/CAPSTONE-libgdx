@@ -13,12 +13,16 @@ public class AnimationLoader {
     private Animation<TextureRegion> frontWalkAnimation, rightWalkAnimation, leftWalkAnimation, backWalkAnimation;
     private Animation<TextureRegion> currentAnimation;
 
-    public AnimationLoader(String path) {
+    public AnimationLoader(String path, String entityType) {
         this.path = path;
-        load();
+        if(entityType.equalsIgnoreCase("player")) {
+            loadPlayer();
+        }else if(entityType.equalsIgnoreCase("npc")){
+            loadNpc();
+        }
     }
 
-    private void load() {
+    private void loadPlayer() {
         try {
             Texture spriteSheet = new Texture(Gdx.files.internal(path));
             TextureRegion[][] tmpFrames = TextureRegion.split(spriteSheet, 16, 32);
@@ -35,6 +39,29 @@ public class AnimationLoader {
 
             currentAnimation = frontIdleAnimation;
         } catch (GdxRuntimeException e) {
+            System.err.println("Failed to load the texture. Ensure the file path is correct: " + e.getMessage());
+        } catch (IllegalArgumentException e) {
+            System.err.println("Invalid sprite sheet dimensions for splitting: " + e.getMessage());
+        } catch (NullPointerException e) {
+            System.err.println("A null value was encountered. Check the 'path' variable or texture operations: " + e.getMessage());
+        } catch (Exception e) {
+            System.err.println("An unexpected error occurred: " + e.getMessage());
+        }
+    }
+
+    private void loadNpc() {
+        try {
+            Texture spriteSheet = new Texture(Gdx.files.internal(path));
+
+            TextureRegion[][] tmpFrames = TextureRegion.split(spriteSheet, 16, 32);
+
+            frontWalkAnimation = extractFrames(tmpFrames, 0);
+            rightWalkAnimation = extractFrames(tmpFrames, 1);
+            backWalkAnimation = extractFrames(tmpFrames, 2);
+            leftWalkAnimation = extractFrames(tmpFrames, 3);
+
+            currentAnimation = frontWalkAnimation;
+        }catch (GdxRuntimeException e) {
             System.err.println("Failed to load the texture. Ensure the file path is correct: " + e.getMessage());
         } catch (IllegalArgumentException e) {
             System.err.println("Invalid sprite sheet dimensions for splitting: " + e.getMessage());
