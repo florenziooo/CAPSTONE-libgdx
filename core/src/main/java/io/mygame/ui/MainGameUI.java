@@ -104,14 +104,6 @@ public class MainGameUI extends UI {
         stack.addActor(table1);
         table.add(stack);
         stage.addActor(table);
-
-
-//        statsCb.addListener(new ChangeListener() {
-//            @Override
-//            public void changed(ChangeEvent changeEvent, Actor actor) {
-//
-//            }
-//        });
     }
 
     private void statsTable() {

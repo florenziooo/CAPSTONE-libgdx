@@ -51,13 +51,13 @@ public class GameScreen extends WildCatScreen {
     private float footstepTimer = 0f; // timer for footstep sound
     private static final float FOOTSTEP_DELAY = 0.5f; // delay in seconds between footsteps
 
-    public GameScreen(Game game, SoundManager sound) {
     /**
      * Constructor for the GameScreen class.
      *
      * @param game the main game instance
+     * @param sound the sound of the game
      */
-    public GameScreen(Game game) {
+    public GameScreen(Game game, SoundManager sound) {
         super(game);
         this.sound = sound; // reuse the SoundManager from the MainMenu
     }
