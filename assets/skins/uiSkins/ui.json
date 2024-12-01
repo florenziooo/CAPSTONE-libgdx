@@ -1,5 +1,11 @@
 {
 "com.badlogic.gdx.graphics.g2d.BitmapFont": {
+	"name_tag": {
+		"file": "C&C Red Alert [INET](6).fnt",
+		"scaledSize": -1,
+		"markupEnabled": false,
+		"flip": false
+	},
 	"Red_Alert": {
 		"file": "C&C Red Alert [INET](2).fnt",
 		"scaledSize": -1,
@@ -40,6 +46,9 @@
 	}
 },
 "com.badlogic.gdx.scenes.scene2d.ui.Button$ButtonStyle": {
+	"default": {
+		"up": "exit_btn"
+	},
 	"stats_btn": {
 		"up": "stats_btn1",
 		"checked": "stats_btn2"
@@ -122,6 +131,10 @@
 	},
 	"header2": {
 		"font": "Red_Alert_header2",
+		"fontColor": "black"
+	},
+	"header3": {
+		"font": "name_tag",
 		"fontColor": "black"
 	}
 },

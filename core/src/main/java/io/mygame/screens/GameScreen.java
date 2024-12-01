@@ -16,9 +16,8 @@ import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
 import io.mygame.common.CollisionHandler;
-import io.mygame.ui.InventoryMenu;
 import io.mygame.entities.Player;
-import io.mygame.ui.PlayerHUD;
+import io.mygame.ui.MainGameUI;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,9 +33,8 @@ public class GameScreen extends WildCatScreen {
     /************ COLLISION HANDLER ************/
     private CollisionHandler collisionHandler;
 
-    /************ USER INTERFACES ************/
-    private PlayerHUD playerHUD;
-    private InventoryMenu inventoryMenu;
+    /************ USER INTERFACES ***********/
+    private MainGameUI mainGameUI;
 
     /************ SCREEN VIEWPORT SIZE ************/
     private Viewport viewport;
@@ -71,8 +69,7 @@ public class GameScreen extends WildCatScreen {
         batch = new SpriteBatch();
         player = new Player();
 
-        playerHUD = new PlayerHUD();
-
+        mainGameUI = new MainGameUI();
 
         MapLayers mapLayers = map.getLayers();
         background = new ArrayList<>();
@@ -124,7 +121,7 @@ public class GameScreen extends WildCatScreen {
         input();
         draw();
         logic();
-        playerHUD.render();
+        mainGameUI.render();
     }
 
     /**
@@ -208,7 +205,7 @@ public class GameScreen extends WildCatScreen {
     @Override
     public void resize(int width, int height) {
         viewport.update(width, height);
-        playerHUD.resize(width, height);
+        mainGameUI.resize(width, height);
     }
 
     /**
@@ -224,7 +221,7 @@ public class GameScreen extends WildCatScreen {
      */
     @Override
     public void dispose() {
-        playerHUD.dispose();
+        mainGameUI.dispose();
         batch.dispose();
         map.dispose();
         renderer.dispose();

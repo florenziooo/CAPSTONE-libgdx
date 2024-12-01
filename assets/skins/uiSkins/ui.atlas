@@ -32,9 +32,16 @@ C&C Red Alert [INET](5)
   orig: 506, 282
   offset: 0, 0
   index: -1
+C&C Red Alert [INET](6)
+  rotate: false
+  xy: 1203, 1610
+  size: 505, 111
+  orig: 505, 111
+  offset: 0, 0
+  index: -1
 exit_btn
   rotate: false
-  xy: 331, 815
+  xy: 1295, 1310
   size: 60, 60
   split: 9, 9, 7, 8
   pad: 0, 0, 0, 0
@@ -43,7 +50,7 @@ exit_btn
   index: -1
 exp_btn1
   rotate: false
-  xy: 1, 384
+  xy: 1, 16
   size: 90, 90
   split: 0, 0, 0, 0
   pad: 10, 17, 10, 16
@@ -52,7 +59,7 @@ exp_btn1
   index: -1
 exp_btn2
   rotate: false
-  xy: 1108, 1153
+  xy: 228, 243
   size: 90, 90
   split: 10, 0, 0, 0
   pad: 18, 2, 11, 16
@@ -70,7 +77,7 @@ hud_btn1
   index: -1
 hud_btn2
   rotate: false
-  xy: 1643, 1661
+  xy: 349, 616
   size: 60, 60
   split: 9, 9, 11, 8
   pad: 0, 0, 0, 0
@@ -79,7 +86,7 @@ hud_btn2
   index: -1
 map_btn1
   rotate: false
-  xy: 239, 785
+  xy: 1203, 1280
   size: 90, 90
   split: 4, 13, 4, 11
   pad: 11, 17, 11, 17
@@ -88,7 +95,7 @@ map_btn1
   index: -1
 map_btn2
   rotate: false
-  xy: 703, 973
+  xy: 1441, 1518
   size: 90, 90
   split: 11, 0, 1, 1
   pad: 19, 3, 11, 17
@@ -97,7 +104,7 @@ map_btn2
   index: -1
 menu_button
   rotate: false
-  xy: 1203, 1259
+  xy: 1711, 1773
   size: 90, 27
   split: 0, 0, 0, 0
   pad: 11, 13, 7, 9
@@ -124,7 +131,7 @@ paper
   index: -1
 paper_focus.9
   rotate: false
-  xy: 1, 476
+  xy: 1711, 1802
   size: 192, 161
   split: 0, 0, 0, 0
   pad: 12, 11, 12, 12
@@ -141,7 +148,7 @@ scroll_bar
   index: -1
 scroll_knob
   rotate: false
-  xy: 195, 537
+  xy: 1441, 1416
   size: 30, 100
   split: 0, 0, 0, 0
   orig: 30, 100
@@ -149,7 +156,7 @@ scroll_knob
   index: -1
 settings_btn1
   rotate: false
-  xy: 1551, 1539
+  xy: 703, 973
   size: 90, 90
   split: 0, 0, 0, 0
   pad: 10, 17, 10, 17
@@ -158,7 +165,7 @@ settings_btn1
   index: -1
 settings_btn2
   rotate: false
-  xy: 239, 693
+  xy: 1108, 1153
   size: 90, 90
   split: 10, 0, 0, 0
   pad: 18, 2, 10, 16
@@ -176,7 +183,7 @@ stats_btn1
   index: -1
 stats_btn2
   rotate: false
-  xy: 1551, 1631
+  xy: 349, 678
   size: 90, 90
   split: 13, 0, 3, 10
   pad: 18, 3, 10, 17
@@ -202,7 +209,7 @@ volume2.9
   index: -1
 volume_knob
   rotate: false
-  xy: 703, 940
+  xy: 441, 737
   size: 16, 31
   split: 1, 1, 5, 5
   pad: 0, 0, 0, 0
@@ -211,7 +218,7 @@ volume_knob
   index: -1
 volume_knobb.9
   rotate: false
-  xy: 795, 986
+  xy: 1905, 1886
   size: 48, 77
   split: 0, 0, 0, 0
   orig: 48, 77
@@ -227,21 +234,28 @@ volumeb.9
   index: -1
 avatar_frame
   rotate: false
-  xy: 1203, 1288
+  xy: 1, 335
   size: 346, 433
   orig: 346, 433
   offset: 0, 0
   index: -1
+player_hud
+  rotate: false
+  xy: 1, 770
+  size: 499, 105
+  orig: 499, 105
+  offset: 0, 0
+  index: -1
 baa74329fd4dfce929e4468ae48305f1
   rotate: false
-  xy: 1, 639
+  xy: 1203, 1372
   size: 236, 236
   orig: 236, 236
   offset: 0, 0
   index: -1
 download (2)
   rotate: false
-  xy: 1711, 1738
+  xy: 1, 108
   size: 225, 225
   orig: 225, 225
   offset: 0, 0

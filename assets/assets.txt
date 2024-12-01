@@ -5,7 +5,6 @@ PixelMaps/TileSets16x16/Modern_Exteriors_Complete_Tileset.tsx
 PixelMaps/TileSets16x16/asdasd.tsx
 PixelMaps/Tiles/Modern_Exteriors_Complete_Tileset.png
 PixelMaps/Tiles/asdasd.png
-Sprites/CollegeMale1.png
 cursor/cursor.png
 images/main_menu_bg.png
 skins/main_menu_button/red/C&C Red Alert [INET](1).fnt
@@ -22,6 +21,8 @@ skins/uiSkins/C&C Red Alert [INET](2).fnt
 skins/uiSkins/C&C Red Alert [INET](3).fnt
 skins/uiSkins/C&C Red Alert [INET](4).fnt
 skins/uiSkins/C&C Red Alert [INET](5).fnt
+skins/uiSkins/C&C Red Alert [INET](6).fnt
 skins/uiSkins/ui.atlas
 skins/uiSkins/ui.json
 skins/uiSkins/ui.png
+sprites/CollegeMale1.png
