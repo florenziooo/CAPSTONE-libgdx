@@ -114,15 +114,15 @@ public class CollisionHandler {
 
                 npc.setMovement(currentNpcX - (currentNpcX - npc.getPreviousX()), currentNpcY - (currentNpcY - npc.getPreviousY()));
 
-                if (checkNpcTileCollision(objectLayer, npc) || checkNpcCollision(npc)) {
+                if (checkPlayerNpcCollision() || checkNpcTileCollision(objectLayer, npc) || checkNpcCollision(npc)) {
                     float tempY = npc.getY();
                     npc.setY(npc.getPreviousY());
 
-                    if (checkNpcTileCollision(objectLayer, npc) || checkNpcCollision(npc)) {
+                    if (checkPlayerNpcCollision() || checkNpcTileCollision(objectLayer, npc) || checkNpcCollision(npc)) {
                         npc.setY(tempY);
                         npc.setX(npc.getPreviousX());
 
-                        if (checkNpcTileCollision(objectLayer, npc) || checkNpcCollision(npc)) {
+                        if (checkPlayerNpcCollision() || checkNpcTileCollision(objectLayer, npc) || checkNpcCollision(npc)) {
                             revertToPreviousPositionNpc(npc);
                         } else {
                             savePreviousPositionNpc(npc);

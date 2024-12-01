@@ -18,12 +18,17 @@ public class NPC extends GameObject {
     private float currentX, currentY;
     private float previousX, previousY;
     private final Vector2 movement = new Vector2();
+    private final String movementType;
+    private float originalX, originalY;
 
-    public NPC(TextureRegion texture, float x, float y, boolean canWalk) {
+    public NPC(TextureRegion texture, float x, float y, boolean canWalk, String movementType) {
         super(texture, x, y);
+        originalX = x;
+        originalY = y;
         this.npcAnimation = new AnimationLoader("Sprites/CITBOY.png", "npc");
         this.canWalk = canWalk;
         this.moving = canWalk;
+        this.movementType = movementType;
     }
 
     public void render(SpriteBatch batch) {
@@ -32,7 +37,13 @@ public class NPC extends GameObject {
     }
 
     public void update() {
-        moveTowardsTarget();
+        if(movementType.equalsIgnoreCase("targeted")) {
+            moveTowardsTarget();
+        }else if(movementType.equalsIgnoreCase("horizontal")) {
+            moveHorizontally();
+        }else if(movementType.equalsIgnoreCase("vertical")) {
+            moveVertically();
+        }
         stateTime += Gdx.graphics.getDeltaTime();
     }
 
@@ -61,6 +72,33 @@ public class NPC extends GameObject {
         }
     }
 
+    private void moveHorizontally() {
+        float delta = Gdx.graphics.getDeltaTime();
+        float distance = targetX - getX();
+
+        if (Math.abs(distance) > 1) {
+            float stepX = (distance > 0 ? 1 : -1) * SPEED * delta;
+            setPosition(getX() + stepX, getY());
+            updateDirection();
+        } else {
+            targetX = originalX;
+            originalX = getX();
+        }
+    }
+
+    private void moveVertically() {
+        float delta = Gdx.graphics.getDeltaTime();
+        float distance = targetY - getY();
+
+        if (Math.abs(distance) > 1) {
+            float stepY = (distance > 0 ? 1 : -1) * SPEED * delta;
+            setPosition(getX(), getY() + stepY);
+            updateDirection();
+        } else {
+            targetY = originalY;
+            originalY = getY();
+        }
+    }
 
     private void updateDirection() {
 
@@ -97,6 +135,7 @@ public class NPC extends GameObject {
             case BACK -> npcAnimation.setCurrentAnimation("backWalk");
         }
     }
+
 
     public void setTarget(float x, float y) {
         this.targetX = x;

@@ -205,12 +205,8 @@ public class GameScreen extends WildCatScreen {
         collisionHandler.handlePlayerCollision();
         for(NPC npc : npcs){
             if(npc.isCanWalk()){
-                NPC npc2 = npcs.get(0);
+                NPC npc2 = npcs.get(4);
                 npc2.setTarget(player.getX() + 32, player.getY() + 32);
-                npc2 = npcs.get(2);
-                npc2.setTarget(player.getX() - 32, player.getY() - 32);
-                npc2 = npcs.get(4);
-                npc2.setTarget(player.getX() + 32, player.getY() - 32);
                 npc2 = npcs.get(6);
                 npc2.setTarget(player.getX() - 32, player.getY() + 32);
                 npc.updateBoundingBox(npc.getX(), npc.getY());
