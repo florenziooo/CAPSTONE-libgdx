@@ -1,5 +1,6 @@
 package io.mygame.screens;
 
+import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
@@ -75,7 +76,7 @@ public class GameScreen extends WildCatScreen {
         batch = new SpriteBatch();
         player = new Player();
 
-        mainGameUI = new MainGameUI();
+        mainGameUI = new MainGameUI(this, game);
 
         MapLayers mapLayers = map.getLayers();
         background = new ArrayList<>();
@@ -101,11 +102,9 @@ public class GameScreen extends WildCatScreen {
                             foreground.add(tileLayer);
                         } else {
                             background.add(tileLayer);
-                            System.out.println("Background type: " + type);
                         }
                     } else {
                         background.add(tileLayer);
-                        System.out.println("Layer '" + layerName + "' does not have a 'type' property.");
                     }
                 }
             } catch (Exception e) {
@@ -146,23 +145,19 @@ public class GameScreen extends WildCatScreen {
         renderer.setView(camera);
 
         renderer.getBatch().begin();
-        System.out.println("Background:");
+
         for(TiledMapTileLayer layer : background) {
             renderer.renderTileLayer(layer);
-            System.out.println(layer.getName());
         }
         renderer.getBatch().end();
 
         batch.begin();
-        System.out.println("Drawing Player");
         player.update();
         player.render(batch);
         batch.end();
 
         renderer.getBatch().begin();
-        System.out.println("Foreground:");
         for(TiledMapTileLayer layer : foreground) {
-            System.out.println(layer.getName());
             renderer.renderTileLayer(layer);
         }
         renderer.getBatch().end();
@@ -209,6 +204,8 @@ public class GameScreen extends WildCatScreen {
             sound.addSound("walk");
             footstepTimer = 0f;
         }
+
+        mainGameUI.keyMenuHandler();
     }
 
 
@@ -218,7 +215,6 @@ public class GameScreen extends WildCatScreen {
     private void logic() {
         player.updateBoundingBox(player.getX(), player.getY());
         collisionHandler.handleCollision();
-        System.out.println(player.getX() + " " + player.getY());
     }
 
     /**
@@ -259,7 +255,8 @@ public class GameScreen extends WildCatScreen {
      * @param screen the new screen to be displayed
      */
     @Override
-    public void changeScreen(GameScreen screen) {
+    public void changeScreen(Screen screen) {
+//        dispose();
         game.setScreen(screen);
     }
 }

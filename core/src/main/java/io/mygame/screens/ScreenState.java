@@ -1,5 +1,7 @@
 package io.mygame.screens;
 
+import com.badlogic.gdx.Screen;
+
 public interface ScreenState {
-    void changeScreen(GameScreen screen);
+    void changeScreen(Screen screen);
 }

@@ -11,10 +11,10 @@ import io.mygame.screens.MainMenu;
 public class GameLauncher extends Game {
     @Override
     public void create() {
-        Pixmap pixmap = new Pixmap(Gdx.files.internal("cursor/cursor.png"));
-        Cursor customCursor = Gdx.graphics.newCursor(pixmap, 4, 4);
+        Pixmap cursor = new Pixmap(Gdx.files.internal("cursor/cursor.png"));
+        Cursor customCursor = Gdx.graphics.newCursor(cursor, 4, 4);
         Gdx.graphics.setCursor(customCursor);
-        pixmap.dispose();
+        cursor.dispose();
 
         setScreen(new MainMenu(this));
     }

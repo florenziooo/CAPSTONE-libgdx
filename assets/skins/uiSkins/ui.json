@@ -1,6 +1,6 @@
 {
 "com.badlogic.gdx.graphics.g2d.BitmapFont": {
-	"name_tag": {
+	"header3": {
 		"file": "C&C Red Alert [INET](6).fnt",
 		"scaledSize": -1,
 		"markupEnabled": false,
@@ -59,6 +59,10 @@
 	},
 	"exit_btn": {
 		"up": "exit_btn"
+	},
+	"areas_btn": {
+		"up": "paper",
+		"over": "paper_focus.9"
 	}
 },
 "com.badlogic.gdx.scenes.scene2d.ui.CheckBox$CheckBoxStyle": {
@@ -134,7 +138,7 @@
 		"fontColor": "black"
 	},
 	"header3": {
-		"font": "name_tag",
+		"font": "header3",
 		"fontColor": "black"
 	}
 },
@@ -148,9 +152,18 @@
 	"default-horizontal": {
 		"background": "volumeb.9",
 		"knob": "volume_knobb.9"
+	},
+	"default-vertical": {
+		"background": "volumeb.9"
 	}
 },
 "com.badlogic.gdx.scenes.scene2d.ui.TextButton$TextButtonStyle": {
+	"default": {
+		"font": "Red_Alert",
+		"fontColor": "black",
+		"up": "menu_button",
+		"down": "menu_button2"
+	},
 	"btn1": {
 		"font": "Red_Alert",
 		"fontColor": "black",
