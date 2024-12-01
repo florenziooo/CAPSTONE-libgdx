@@ -16,6 +16,7 @@ import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
 import io.mygame.common.CollisionHandler;
+import io.mygame.common.SoundManager;
 import io.mygame.entities.Player;
 import io.mygame.ui.MainGameUI;
 
@@ -47,6 +48,10 @@ public class GameScreen extends WildCatScreen {
     private List<TiledMapTileLayer> background;
     private List<TiledMapTileLayer> foreground;
 
+    private float footstepTimer = 0f; // timer for footstep sound
+    private static final float FOOTSTEP_DELAY = 0.5f; // delay in seconds between footsteps
+
+    public GameScreen(Game game, SoundManager sound) {
     /**
      * Constructor for the GameScreen class.
      *
@@ -54,6 +59,7 @@ public class GameScreen extends WildCatScreen {
      */
     public GameScreen(Game game) {
         super(game);
+        this.sound = sound; // reuse the SoundManager from the MainMenu
     }
 
     /**
@@ -118,7 +124,7 @@ public class GameScreen extends WildCatScreen {
      */
     @Override
     public void render(float delta) {
-        input();
+        input(delta);
         draw();
         logic();
         mainGameUI.render();
@@ -165,27 +171,46 @@ public class GameScreen extends WildCatScreen {
     /**
      * Processes player input for movement.
      */
-    private void input() {
+    private void input(float delta) {
         player.stop();
+
+        // Update the footstep timer
+        footstepTimer += delta;
+
+        boolean isMoving = false;
 
         if (Gdx.input.isKeyPressed(Input.Keys.W) && Gdx.input.isKeyPressed(Input.Keys.D)) {
             player.moveUpRight();
+            isMoving = true;
         } else if (Gdx.input.isKeyPressed(Input.Keys.W) && Gdx.input.isKeyPressed(Input.Keys.A)) {
             player.moveUpLeft();
+            isMoving = true;
         } else if (Gdx.input.isKeyPressed(Input.Keys.S) && Gdx.input.isKeyPressed(Input.Keys.D)) {
             player.moveDownRight();
+            isMoving = true;
         } else if (Gdx.input.isKeyPressed(Input.Keys.S) && Gdx.input.isKeyPressed(Input.Keys.A)) {
             player.moveDownLeft();
+            isMoving = true;
         } else if (Gdx.input.isKeyPressed(Input.Keys.W)) {
             player.moveUp();
+            isMoving = true;
         } else if (Gdx.input.isKeyPressed(Input.Keys.S)) {
             player.moveDown();
+            isMoving = true;
         } else if (Gdx.input.isKeyPressed(Input.Keys.A)) {
             player.moveLeft();
+            isMoving = true;
         } else if (Gdx.input.isKeyPressed(Input.Keys.D)) {
             player.moveRight();
+            isMoving = true;
+        }
+
+        if (isMoving && footstepTimer >= FOOTSTEP_DELAY) {
+            sound.addSound("walk");
+            footstepTimer = 0f;
         }
     }
+
 
     /**
      * Contains game logic updates, including collision handling and player bounding box updates.
