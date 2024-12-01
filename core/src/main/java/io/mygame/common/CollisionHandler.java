@@ -12,6 +12,9 @@ import com.badlogic.gdx.math.Polygon;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import io.mygame.entities.GameObject;
+import io.mygame.entities.NPC;
+
+import java.util.List;
 
 /**
  * Handles collision detection for an entity against objects in a TiledMap.
@@ -26,6 +29,10 @@ public class CollisionHandler {
     private float previousX, previousY;
     private final Vector2 movement = new Vector2();
     private float currentX, currentY;
+    private float previousNpcX, previousNpcY;
+    private final Vector2 movementNpc = new Vector2();
+    private float currentNpcX, currentNpcY;
+    private List<NPC> npcs;
 
     /**
      * Constructs a CollisionHandler for handling collisions of a specific entity on a TiledMap.
@@ -34,8 +41,9 @@ public class CollisionHandler {
      * @param map     The TiledMap that contains the collision objects.
      * @param camera  The camera used for rendering debug information.
      */
-    public CollisionHandler(GameObject entity, TiledMap map, OrthographicCamera camera) {
+    public CollisionHandler(GameObject entity, List<NPC> npcs, TiledMap map, OrthographicCamera camera) {
         this.entity = entity;
+        this.npcs = npcs;
         this.map = map;
         this.camera = camera;
         this.shapeRenderer = new ShapeRenderer();
@@ -60,15 +68,15 @@ public class CollisionHandler {
             movement.x = currentX - previousX;
             movement.y = currentY - previousY;
 
-            if (checkCollision(objectLayer)) {
+            if (checkPlayerNpcCollision() || checkPlayerTileCollision(objectLayer)) {
                 float tempY = entity.getY();
                 entity.setY(previousY);
 
-                if (checkCollision(objectLayer)) {
+                if (checkPlayerNpcCollision() || checkPlayerTileCollision(objectLayer)) {
                     entity.setY(tempY);
                     entity.setX(previousX);
 
-                    if (checkCollision(objectLayer)) {
+                    if (checkPlayerNpcCollision() || checkPlayerTileCollision(objectLayer)) {
                         revertToPreviousPosition();
                     } else {
                         savePreviousPosition();
@@ -93,6 +101,53 @@ public class CollisionHandler {
         }
     }
 
+    public void handleNpcCollision() {
+        String collisionName = "basic collisions";
+        try {
+            MapLayer objectLayer = map.getLayers().get(collisionName);
+            if (objectLayer == null) throw new NullPointerException();
+
+            for (NPC npc : npcs) {
+
+                currentNpcX = npc.getX();
+                currentNpcY = npc.getY();
+
+                npc.setMovement(currentNpcX - (currentNpcX - npc.getPreviousX()), currentNpcY - (currentNpcY - npc.getPreviousY()));
+
+                if (checkPlayerNpcCollision() || checkNpcTileCollision(objectLayer, npc) || checkNpcCollision(npc)) {
+                    float tempY = npc.getY();
+                    npc.setY(npc.getPreviousY());
+
+                    if (checkPlayerNpcCollision() || checkNpcTileCollision(objectLayer, npc) || checkNpcCollision(npc)) {
+                        npc.setY(tempY);
+                        npc.setX(npc.getPreviousX());
+
+                        if (checkPlayerNpcCollision() || checkNpcTileCollision(objectLayer, npc) || checkNpcCollision(npc)) {
+                            revertToPreviousPositionNpc(npc);
+                        } else {
+                            savePreviousPositionNpc(npc);
+                        }
+                    } else {
+                        savePreviousPositionNpc(npc);
+                    }
+                } else {
+                    savePreviousPositionNpc(npc);
+                }
+
+                drawDebug(objectLayer);
+            }
+        } catch (NullPointerException e) {
+            System.err.println("NullPointerException: Collision object (" + collisionName + ") not found in the tiled map: " + e.getMessage());
+            throw new RuntimeException("Error: " + e.getMessage());
+        } catch (ClassCastException e) {
+            System.err.println("ClassCastException: Object is not a MapLayer class: " + e.getMessage());
+            throw new RuntimeException("Error: " + e.getMessage());
+        } catch (Exception e) {
+            System.err.println("Exception: " + e.getMessage());
+            throw new RuntimeException("Error: " + e.getMessage());
+        }
+    }
+
     /**
      * Checks if the entity collides with any objects in the specified MapLayer.
      * This method checks if the entity's collision box overlaps with rectangular or polygonal objects in the map layer.
@@ -100,7 +155,7 @@ public class CollisionHandler {
      * @param objectLayer The MapLayer containing collision objects.
      * @return true if the entity collides with any object in the MapLayer, false otherwise.
      */
-    private boolean checkCollision(MapLayer objectLayer) {
+    private boolean checkPlayerTileCollision(MapLayer objectLayer) {
         try {
             for (MapObject object : objectLayer.getObjects()) {
                 if (object instanceof RectangleMapObject) {
@@ -122,6 +177,46 @@ public class CollisionHandler {
             System.err.println("ClassCastException: " + e.getMessage());
             throw new RuntimeException("Error: " + e.getMessage());
         }
+    }
+
+    private boolean checkPlayerNpcCollision() {
+        if(npcs == null || npcs.isEmpty()) return false;
+        for (NPC npc : npcs) {
+            if (entity.getCollisionBox().overlaps(npc.getCollisionBox()) ||
+                Intersector.overlapConvexPolygons(entity.getCollisionPolygon(), npc.getCollisionPolygon())) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private boolean checkNpcCollision(NPC npc1) {
+        for (NPC npc2 : npcs) {
+            if(!(npc1.equals(npc2))) {
+                if (npc1.getCollisionBox().overlaps(npc2.getCollisionBox()) ||
+                    Intersector.overlapConvexPolygons(npc1.getCollisionPolygon(), npc2.getCollisionPolygon())) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    private boolean checkNpcTileCollision(MapLayer objectLayer, NPC npc) {
+        for (MapObject object : objectLayer.getObjects()) {
+            if (object instanceof RectangleMapObject rectangleObj) {
+                Rectangle rectangle = rectangleObj.getRectangle();
+                if (npc.getCollisionBox().overlaps(rectangle)) {
+                    return true;
+                }
+            } else if (object instanceof PolygonMapObject polygonObj) {
+                Polygon polygon = polygonObj.getPolygon();
+                if (Intersector.overlapConvexPolygons(npc.getCollisionPolygon(), polygon)){
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
     /**
@@ -177,6 +272,16 @@ public class CollisionHandler {
     public void revertToPreviousPosition() {
         entity.setX(previousX);
         entity.setY(previousY);
+    }
+
+    public void savePreviousPositionNpc(NPC npc) {
+        npc.setPreviousX(npc.getX());
+        npc.setPreviousY(npc.getY());
+    }
+
+    public void revertToPreviousPositionNpc(NPC npc) {
+        npc.setX(npc.getPreviousX());
+        npc.setY(npc.getPreviousY());
     }
 
     /**

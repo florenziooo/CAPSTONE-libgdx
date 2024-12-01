@@ -17,6 +17,9 @@ import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
 import io.mygame.common.CollisionHandler;
+import io.mygame.entities.NPC;
+import io.mygame.factories.EntityFactory;
+import io.mygame.ui.InventoryMenu;
 import io.mygame.common.SoundManager;
 import io.mygame.entities.Player;
 import io.mygame.ui.MainGameUI;
@@ -63,6 +66,7 @@ public class GameScreen extends WildCatScreen {
         this.sound = sound; // reuse the SoundManager from the MainMenu
     }
 
+    private List<NPC> npcs;
     /**
      * Called when the screen is shown. Initializes the map, renderer, camera, viewport, player, and other components.
      */
@@ -82,6 +86,7 @@ public class GameScreen extends WildCatScreen {
         background = new ArrayList<>();
         foreground = new ArrayList<>();
 
+        npcs = new ArrayList<>();
         // Iterate through each layer
         for (MapLayer layer : mapLayers) {
             try {
@@ -113,7 +118,8 @@ public class GameScreen extends WildCatScreen {
             }
         }
 
-        collisionHandler = new CollisionHandler(player, map, camera);
+        npcs = EntityFactory.createNPCs();
+        collisionHandler = new CollisionHandler(player, npcs, map, camera);
     }
 
     /**
@@ -154,6 +160,9 @@ public class GameScreen extends WildCatScreen {
         batch.begin();
         player.update();
         player.render(batch);
+        for(NPC npc : npcs){
+            npc.render(batch);
+        }
         batch.end();
 
         renderer.getBatch().begin();
@@ -214,7 +223,19 @@ public class GameScreen extends WildCatScreen {
      */
     private void logic() {
         player.updateBoundingBox(player.getX(), player.getY());
-        collisionHandler.handleCollision();
+        collisionHandler.handlePlayerCollision();
+        for(NPC npc : npcs){
+            if(npc.isCanWalk()){
+                NPC npc2 = npcs.get(4);
+                npc2.setTarget(player.getX() + 32, player.getY() + 32);
+                npc2 = npcs.get(6);
+                npc2.setTarget(player.getX() - 32, player.getY() + 32);
+                npc.updateBoundingBox(npc.getX(), npc.getY());
+                npc.update();
+            }
+        }
+        collisionHandler.handleNpcCollision();
+        System.out.println(player.getX() + " " + player.getY());
     }
 
     /**
