@@ -57,7 +57,7 @@ public class CollisionHandler {
      *
      * @throws RuntimeException If there is an error related to the collision detection process (e.g., null or cast exceptions).
      */
-    public void handleCollision() {
+    public void handlePlayerCollision() {
         String collisionName = "COLLISION";
         try {
             MapLayer objectLayer = map.getLayers().get(collisionName);
@@ -102,7 +102,7 @@ public class CollisionHandler {
     }
 
     public void handleNpcCollision() {
-        String collisionName = "basic collisions";
+        String collisionName = "COLLISION";
         try {
             MapLayer objectLayer = map.getLayers().get(collisionName);
             if (objectLayer == null) throw new NullPointerException();

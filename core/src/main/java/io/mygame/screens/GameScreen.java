@@ -19,7 +19,6 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 import io.mygame.common.CollisionHandler;
 import io.mygame.entities.NPC;
 import io.mygame.factories.EntityFactory;
-import io.mygame.ui.InventoryMenu;
 import io.mygame.common.SoundManager;
 import io.mygame.entities.Player;
 import io.mygame.ui.MainGameUI;
@@ -105,11 +104,14 @@ public class GameScreen extends WildCatScreen {
                     if (type != null) {
                         if (type.equals("foreground")) {
                             foreground.add(tileLayer);
+                            System.out.println("FOREGROUND FOUND");
                         } else {
                             background.add(tileLayer);
+                            System.out.println("BACKGROUND FOUND");
                         }
                     } else {
                         background.add(tileLayer);
+                        System.out.println("BACKGROUND FOUND");
                     }
                 }
             } catch (Exception e) {

@@ -8,8 +8,6 @@ PixelMaps/TileSets16x16/asdasd.tsx
 PixelMaps/Tiles/KindaTiredNGL.png
 PixelMaps/Tiles/Modern_Exteriors_Complete_Tileset.png
 PixelMaps/Tiles/asdasd.png
-Sprites/CITBOY.png
-Sprites/CollegeMale1.png
 PixelMaps/Tiles/ohNo.png
 cursor/cursor.png
 hs_err_pid36261.log
@@ -48,4 +46,5 @@ sound/ui/select/select_2.ogg
 sound/ui/select/select_3.ogg
 sound/ui/smartphone/smartphone_in.wav
 sound/ui/smartphone/smartphone_out.wav
+sprites/CITBOY.png
 sprites/CollegeMale1.png
