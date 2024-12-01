@@ -256,7 +256,6 @@ public class GameScreen extends WildCatScreen {
      */
     @Override
     public void changeScreen(Screen screen) {
-//        dispose();
         game.setScreen(screen);
     }
 }

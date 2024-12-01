@@ -96,11 +96,6 @@ public class MainMenu extends WildCatScreen {
 
     @Override
     public void changeScreen(Screen screen) {
-        Screen currentScreen = game.getScreen();
-        if (currentScreen != null) {
-            currentScreen.dispose();
-        }
-
         game.setScreen(screen);
     }
 }

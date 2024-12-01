@@ -11,7 +11,6 @@ import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
-import io.mygame.screens.GameScreen;
 import io.mygame.screens.MainMenu;
 import io.mygame.screens.ScreenState;
 
@@ -25,6 +24,7 @@ public class MainGameUI extends UI {
     private Button exitBtn;
     private Button menuBtn;
     private Label labelName;
+    private Table currentTable;
 
     public MainGameUI(ScreenState screenState, Game game) {
         super(new ScreenViewport(), screenState, game);
@@ -76,8 +76,8 @@ public class MainGameUI extends UI {
     }
 
     private void statsTable() {
-        Table statsTable = new Table();
-        statsTable.setFillParent(true);
+        currentTable = new Table();
+        currentTable.setFillParent(true);
 
         Stack stack = new Stack();
 
@@ -150,15 +150,15 @@ public class MainGameUI extends UI {
         exitBtn = new Button(skin);
         container.setActor(exitBtn);
         stack.addActor(container);
-        statsTable.add(stack);
-        stage.addActor(statsTable);
+        currentTable.add(stack);
+        stage.addActor(currentTable);
 
-        buttonListener(statsTable);
+        buttonListener();
     }
 
     private void mapTable() {
-        Table mapTable = new Table();
-        mapTable.setFillParent(true);
+        currentTable = new Table();
+        currentTable.setFillParent(true);
 
         Stack stack = new Stack();
 
@@ -209,15 +209,15 @@ public class MainGameUI extends UI {
         exitBtn = new Button(skin);
         container.setActor(exitBtn);
         stack.addActor(container);
-        mapTable.add(stack);
-        stage.addActor(mapTable);
+        currentTable.add(stack);
+        stage.addActor(currentTable);
 
-        buttonListener(mapTable);
+        buttonListener();
     }
 
     private void explorationTable() {
-        Table expTable = new Table();
-        expTable.setFillParent(true);
+        currentTable = new Table();
+        currentTable.setFillParent(true);
 
         Stack stack = new Stack();
 
@@ -306,15 +306,15 @@ public class MainGameUI extends UI {
         exitBtn = new Button(skin);
         container.setActor(exitBtn);
         stack.addActor(container);
-        expTable.add(stack);
-        stage.addActor(expTable);
+        currentTable.add(stack);
+        stage.addActor(currentTable);
 
-        buttonListener(expTable);
+        buttonListener();
     }
 
     private void settingsTable() {
-        Table settingsTable = new Table();
-        settingsTable.setFillParent(true);
+        currentTable = new Table();
+        currentTable.setFillParent(true);
 
         Stack stack = new Stack();
 
@@ -401,7 +401,7 @@ public class MainGameUI extends UI {
         table2.add(label).padBottom(15.0f).align(Align.left);
 
         table2.row();
-        label = new Label("Q - Open Inventory", skin, "body");
+        label = new Label("Q - Open/Exit Inventory", skin, "body");
         table2.add(label).align(Align.left);
         table1.add(table2).spaceLeft(80.0f);
         stack.addActor(table1);
@@ -414,18 +414,18 @@ public class MainGameUI extends UI {
         exitBtn = new Button(skin);
         container.setActor(exitBtn);
         stack.addActor(container);
-        settingsTable.add(stack);
-        stage.addActor(settingsTable);
+        currentTable.add(stack);
+        stage.addActor(currentTable);
 
-        buttonListener(settingsTable);
-        settingButtonListener(settingsTable);
+        buttonListener();
+        settingButtonListener();
     }
 
-    void buttonListener(Table table) {
+    private void buttonListener() {
         statsCb.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent changeEvent, Actor actor) {
-                table.remove();
+                currentTable.remove();
                 statsTable();
             }
         });
@@ -433,7 +433,7 @@ public class MainGameUI extends UI {
         mapCb.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent changeEvent, Actor actor) {
-                table.remove();
+                currentTable.remove();
                 mapTable();
             }
         });
@@ -441,7 +441,7 @@ public class MainGameUI extends UI {
         expCb.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent changeEvent, Actor actor) {
-                table.remove();
+                currentTable.remove();
                 explorationTable();
             }
         });
@@ -449,7 +449,7 @@ public class MainGameUI extends UI {
         settingCb.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent changeEvent, Actor actor) {
-                table.remove();
+                currentTable.remove();
                 settingsTable();
             }
         });
@@ -458,12 +458,12 @@ public class MainGameUI extends UI {
             @Override
             public void changed(ChangeEvent changeEvent, Actor actor) {
                 menuBtn.setTouchable(Touchable.enabled);
-                table.remove();
+                currentTable.remove();
             }
         });
     }
 
-    void settingButtonListener(Table table) {
+    private void settingButtonListener() {
         saveBtn.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent changeEvent, Actor actor) {
@@ -484,6 +484,9 @@ public class MainGameUI extends UI {
             if(menuBtn.getTouchable() == Touchable.enabled) {
                 menuBtn.setTouchable(Touchable.disabled);
                 statsTable();
+            } else {
+                menuBtn.setTouchable(Touchable.enabled);
+                currentTable.remove();
             }
         }
     }
