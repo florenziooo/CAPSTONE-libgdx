@@ -16,7 +16,7 @@ public class SoundManager implements Disposable {
     private Sound currentSound;
 
     public SoundManager(Builder builder) {
-        this.bgVolume = 0.0f;
+        this.bgVolume = 0.1f;
         this.soundVolume = 1f;
 
         this.bgMusic = builder.bgMusic;

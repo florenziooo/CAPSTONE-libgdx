@@ -9,8 +9,8 @@ public class GameObject {
     private final TextureRegion texture;
     private float x, y;
     private float width, height;
-    private float collisionWidth, collisionHeight;
-    private Rectangle collisionBox;
+    protected float collisionWidth, collisionHeight;
+    protected Rectangle collisionBox;
     private Polygon collisionPolygon;
     private final float yOffset = 5; // Made constant to ensure consistency
 

@@ -8,7 +8,6 @@ PixelMaps/Tiles/asdasd.png
 Sprites/CollegeMale1.png
 hs_err_pid36261.log
 images/main_menu_bg.png
-images/main_menu_bg2.gif
 skins/main_menu_button/red/C&C Red Alert [INET](1).fnt
 skins/main_menu_button/red/red.atlas
 skins/main_menu_button/red/red.json
@@ -19,7 +18,6 @@ skins/main_menu_button/yellow/yellow.atlas
 skins/main_menu_button/yellow/yellow.json
 skins/main_menu_button/yellow/yellow.png
 skins/main_menu_button/yellow_scmp/main_menu_button_yellow.scmp
-sound/ambience/heavy_traffic.wav
 sound/ambience/mild_traffic.mp3
 sound/footsteps/walk_1.ogg
 sound/footsteps/walk_2.ogg
