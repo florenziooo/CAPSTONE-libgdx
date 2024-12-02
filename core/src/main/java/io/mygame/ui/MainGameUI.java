@@ -3,21 +3,17 @@ package io.mygame.ui;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
-import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
+import io.mygame.datahandler.GameDataHandler;
 import io.mygame.screens.MainMenu;
 import io.mygame.screens.ScreenState;
-
-import java.util.ArrayList;
 
 public class MainGameUI extends UI {
     private CheckBox statsCb;
@@ -28,7 +24,6 @@ public class MainGameUI extends UI {
     private TextButton returnBtn;
     private Button exitBtn;
     private Button menuBtn;
-    private Label labelName;
     private Table currentTable;
 
     public MainGameUI(ScreenState screenState, Game game) {
@@ -61,7 +56,7 @@ public class MainGameUI extends UI {
         container.padLeft(120.0f);
         container.padTop(12.0f);
 
-        labelName = new Label(gameManager.getPlayerName() + " (CIT-U)", skin, "header3");
+        Label labelName = new Label(gameManager.getPlayerName() + " (CIT-U)", skin, "header3");
         container.setActor(labelName);
         stack.addActor(container);
         table.add(stack);
@@ -472,7 +467,7 @@ public class MainGameUI extends UI {
         saveBtn.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent changeEvent, Actor actor) {
-
+                GameDataHandler.saveGameData();
             }
         });
 

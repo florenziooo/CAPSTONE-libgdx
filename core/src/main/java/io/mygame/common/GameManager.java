@@ -9,7 +9,12 @@ public class GameManager implements Serializable {
     private int buildingsFound;
     private float volume;
 
-    private GameManager() {}
+    private GameManager() {
+        playerName = null;
+        npcFound = 0;
+        buildingsFound = 0;
+        volume = 0;
+    }
 
     public static GameManager getInstance() {
         if(instance == null) instance = new GameManager();
@@ -46,5 +51,20 @@ public class GameManager implements Serializable {
 
     public void setVolume(float volume) {
         this.volume = volume;
+    }
+
+    public void increaseNpcFound() {
+        npcFound++;
+    }
+
+    public void increaseBuildingsFound() {
+        buildingsFound++;
+    }
+
+    public void resetDefaultValues() {
+        playerName = null;
+        npcFound = 0;
+        buildingsFound = 0;
+        volume = 0;
     }
 }

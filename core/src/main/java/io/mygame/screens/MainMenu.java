@@ -13,6 +13,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
+import io.mygame.common.GameManager;
 import io.mygame.common.SoundManager;
 import io.mygame.datahandler.GameDataHandler;
 
@@ -24,6 +25,7 @@ public class MainMenu extends WildCatScreen {
     private Stage stage;
     private Skin redSkin;
     private Skin yellowSkin;
+    private GameManager gameManager;
 
     public MainMenu(Game game) {
         super(game);
@@ -35,6 +37,8 @@ public class MainMenu extends WildCatScreen {
         batch = new SpriteBatch();
         stage = new Stage(new ScreenViewport());
         Gdx.input.setInputProcessor(stage);
+
+        gameManager = GameManager.getInstance();
 
         sound = new SoundManager.Builder()
             .setbgMusic("sound/music/the_secret_spring_loopable.mp3")
@@ -70,6 +74,7 @@ public class MainMenu extends WildCatScreen {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
                 sound.addSound("click");
+                gameManager.resetDefaultValues();
                 GameDataHandler.saveGameData();
                 changeScreen(new GameScreen(game, sound));
             }
@@ -78,7 +83,9 @@ public class MainMenu extends WildCatScreen {
         loadButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-
+                sound.addSound("click");
+                GameDataHandler.loadGameData();
+                changeScreen(new GameScreen(game, sound));
             }
         });
 
