@@ -182,6 +182,26 @@ atlasData: {
 			type: NINE_PATCH
 			hidden: false
 		}
+		{
+			file: C:/Users/Carl/Pictures/Game UI/yellow_button/disabled.9.png
+			bgColor: {
+				r: 1
+				g: 1
+				b: 1
+				a: 1
+			}
+			tint: null
+			tintName: null
+			name: disabled
+			tiled: false
+			minWidth: -1
+			minHeight: -1
+			customized: false
+			tenPatchData: null
+			tvgData: null
+			type: NINE_PATCH
+			hidden: false
+		}
 	]
 	fontDrawables: [
 		{
@@ -217,6 +237,16 @@ jsonData: {
 				a: 1
 			}
 			name: Black
+		}
+		{
+			class: com.ray3k.skincomposer.data.ColorData
+			color: {
+				r: 0.5568628
+				g: 0.5568628
+				b: 0.5568628
+				a: 1
+			}
+			name: gray
 		}
 		{
 			class: com.ray3k.skincomposer.data.ColorData
@@ -1218,7 +1248,7 @@ jsonData: {
 						type: com.badlogic.gdx.graphics.Color
 						name: disabledFontColor
 						optional: true
-						value: null
+						value: gray
 					}
 					checkedFontColor: {
 						type: com.badlogic.gdx.graphics.Color
@@ -1272,7 +1302,7 @@ jsonData: {
 						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
 						name: disabled
 						optional: true
-						value: null
+						value: disabled
 					}
 					checked: {
 						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable

@@ -1,6 +1,8 @@
 package io.mygame.common;
 
-public class GameManager {
+import io.mygame.datahandler.Serializable;
+
+public class GameManager implements Serializable {
     private static GameManager instance;
     private String playerName;
     private int npcFound;
@@ -42,7 +44,7 @@ public class GameManager {
         this.buildingsFound = buildingsFound;
     }
 
-    public void setVolume(int volume) {
+    public void setVolume(float volume) {
         this.volume = volume;
     }
 }

@@ -22,7 +22,6 @@ public class EntityFactory {
         npcs.add(new Student(textureRegion, 3180, 400, false, "in-place"));
         npcs.add(new Guard(textureRegion, 3230, 514, true, "targeted"));
         npcs.add(new Guard(textureRegion, 3200,500, false, "in-place"));
-        npcs.add(new Janitor(textureRegion, 2980, 600,true, "targeted"));
         npcs.add(new Janitor(textureRegion, 3011, 400, false, "in-place"));
 
         NPC npc = npcs.get(0);

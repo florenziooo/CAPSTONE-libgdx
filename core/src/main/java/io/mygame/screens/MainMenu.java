@@ -14,6 +14,9 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import io.mygame.common.SoundManager;
+import io.mygame.datahandler.GameDataHandler;
+
+import java.io.File;
 
 public class MainMenu extends WildCatScreen {
     private Texture background;
@@ -41,6 +44,8 @@ public class MainMenu extends WildCatScreen {
         yellowSkin = new Skin(Gdx.files.internal("skins/main_menu_button/yellow/yellow.json"));
         redSkin = new Skin(Gdx.files.internal("skins/main_menu_button/red/red.json"));
 
+        File dataDirectory = new File(GameDataHandler.dataDirectory);
+
         Table table = new Table();
         table.setY(-250);
         table.setFillParent(true);
@@ -52,6 +57,9 @@ public class MainMenu extends WildCatScreen {
         table.row();
 
         TextButton loadButton = new TextButton("LOAD GAME", yellowSkin);
+        if(!dataDirectory.exists()) {
+            loadButton.setDisabled(true);
+        }
         table.add(loadButton).space(15f);
         table.row();
 
@@ -62,7 +70,15 @@ public class MainMenu extends WildCatScreen {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
                 sound.addSound("click");
+                GameDataHandler.saveGameData();
                 changeScreen(new GameScreen(game, sound));
+            }
+        });
+
+        loadButton.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+
             }
         });
 
