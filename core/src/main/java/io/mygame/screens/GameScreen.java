@@ -156,6 +156,7 @@ public class GameScreen extends WildCatScreen {
 
         for(TiledMapTileLayer layer : background) {
             renderer.renderTileLayer(layer);
+            System.out.println("background");
         }
         renderer.getBatch().end();
 
@@ -170,6 +171,7 @@ public class GameScreen extends WildCatScreen {
         renderer.getBatch().begin();
         for(TiledMapTileLayer layer : foreground) {
             renderer.renderTileLayer(layer);
+            System.out.println("foreground");
         }
         renderer.getBatch().end();
     }

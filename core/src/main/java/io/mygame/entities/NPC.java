@@ -8,7 +8,7 @@ import io.mygame.common.AnimationLoader;
 import io.mygame.enums.Direction;
 
 public class NPC extends GameObject {
-    private static final float SPEED = 75f;
+    private static final float SPEED = 100f;
     private final boolean canWalk;
     private boolean moving;
     private final AnimationLoader npcAnimation;

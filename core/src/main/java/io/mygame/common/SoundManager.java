@@ -10,6 +10,7 @@ import static com.badlogic.gdx.math.MathUtils.random;
 public class SoundManager implements Disposable {
     private Music bgMusic;
     private float bgVolume;
+    private GameManager gameManager;
 
     private float soundVolume;
     private Sound ambience;

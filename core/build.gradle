@@ -10,6 +10,7 @@ dependencies {
   api "com.github.tommyettinger:regexodus:$regExodusVersion"
   api "com.kotcrab.vis:vis-ui:$visUiVersion"
   api "com.rafaskoberg.gdx:typing-label:$typingLabelVersion"
+  implementation 'com.google.code.gson:gson:2.11.0'
 
   if(enableGraalNative == 'true') {
     implementation "io.github.berstanio:gdx-svmhelper-annotations:$graalHelperVersion"

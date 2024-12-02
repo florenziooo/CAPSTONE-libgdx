@@ -16,14 +16,14 @@ public class EntityFactory {
     public static List<NPC> createNPCs() {
         List<NPC> npcs = new ArrayList<>();
 
-        npcs.add(new Teacher(textureRegion, 384, 256, true, "horizontal"));
-        npcs.add(new Teacher(textureRegion, 64,64, false, "in-place"));
-        npcs.add(new Student(textureRegion, 128, 128,true,"vertical"));
-        npcs.add(new Student(textureRegion, 352, 96, false, "in-place"));
-        npcs.add(new Guard(textureRegion, 214, 256, true, "targeted"));
-        npcs.add(new Guard(textureRegion, 512,0, false, "in-place"));
-        npcs.add(new Janitor(textureRegion, 400, 128,true, "targeted"));
-        npcs.add(new Janitor(textureRegion, 128, 256, false, "in-place"));
+        npcs.add(new Teacher(textureRegion, 2995, 316, true, "horizontal"));
+        npcs.add(new Teacher(textureRegion, 3100,400, false, "in-place"));
+        npcs.add(new Student(textureRegion, 3180, 202,true,"vertical"));
+        npcs.add(new Student(textureRegion, 3180, 400, false, "in-place"));
+        npcs.add(new Guard(textureRegion, 3230, 514, true, "targeted"));
+        npcs.add(new Guard(textureRegion, 3200,500, false, "in-place"));
+        npcs.add(new Janitor(textureRegion, 2980, 600,true, "targeted"));
+        npcs.add(new Janitor(textureRegion, 3011, 400, false, "in-place"));
 
         NPC npc = npcs.get(0);
         npc.setTarget(npc.getX() - 100, npc.getY());
