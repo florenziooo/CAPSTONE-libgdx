@@ -1,8 +1,5 @@
 package io.mygame.entities;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Texture;
-
 public abstract class Guard extends NPC {
     public Guard(String fileName, float x, float y, String movementType) {
         super(fileName, x, y, movementType);

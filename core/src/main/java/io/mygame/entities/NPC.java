@@ -4,12 +4,11 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.math.Vector2;
 import io.mygame.common.AnimationLoader;
 import io.mygame.enums.Direction;
 
 public class NPC extends GameObject {
-    private static final float SPEED = 100f;
+    private static final float SPEED = 75f;
     private boolean isMoving = false;
     private final AnimationLoader npcAnimation;
     private float stateTime = 0;
@@ -17,7 +16,6 @@ public class NPC extends GameObject {
     private float targetX, targetY;
     private float currentX, currentY;
     private float previousX, previousY;
-    private final Vector2 movement = new Vector2();
     private final String movementType;
     private float originalX, originalY;
 
@@ -70,6 +68,7 @@ public class NPC extends GameObject {
             updateDirection();
         } else {
             isMoving = false;
+            setStopAnimation();
         }
     }
 
@@ -109,7 +108,7 @@ public class NPC extends GameObject {
         float dx = currentX - previousX;
         float dy = currentY - previousY;
 
-        if (Math.abs(dx) > 0.01f || Math.abs(dy) > 0.01f) { // To handle small changes
+        if (Math.abs(dx) > .1f || Math.abs(dy) > .1f) { // To handle small changes
             if (dx > 0 && dy > 0) {
                 direction = Direction.BACK_RIGHT;
             } else if (dx < 0 && dy > 0) {
@@ -127,13 +126,22 @@ public class NPC extends GameObject {
             } else if (dy < 0) {
                 direction = Direction.FRONT;
             }
+        }
 
-            switch (direction) {
-                case RIGHT, FRONT_RIGHT, BACK_RIGHT-> npcAnimation.setCurrentAnimation("rightWalk");
-                case LEFT, FRONT_LEFT, BACK_LEFT -> npcAnimation.setCurrentAnimation("leftWalk");
-                case FRONT -> npcAnimation.setCurrentAnimation("frontWalk");
-                case BACK -> npcAnimation.setCurrentAnimation("backWalk");
-            }
+        switch (direction) {
+            case RIGHT, FRONT_RIGHT, BACK_RIGHT-> npcAnimation.setCurrentAnimation("rightWalk");
+            case LEFT, FRONT_LEFT, BACK_LEFT -> npcAnimation.setCurrentAnimation("leftWalk");
+            case FRONT -> npcAnimation.setCurrentAnimation("frontWalk");
+            case BACK -> npcAnimation.setCurrentAnimation("backWalk");
+        }
+    }
+
+    public void setStopAnimation(){
+        switch (direction) {
+            case RIGHT, FRONT_RIGHT, BACK_RIGHT-> npcAnimation.setCurrentAnimation("rightIdle");
+            case LEFT, FRONT_LEFT, BACK_LEFT -> npcAnimation.setCurrentAnimation("leftIdle");
+            case FRONT -> npcAnimation.setCurrentAnimation("frontIdle");
+            case BACK -> npcAnimation.setCurrentAnimation("backIdle");
         }
     }
 
@@ -164,10 +172,6 @@ public class NPC extends GameObject {
         this.previousY = previousY;
     }
 
-    public void setMovement(float x, float y){
-        movement.x = x;
-        movement.y = y;
-    }
 
     public void stop() {
         isMoving = false;

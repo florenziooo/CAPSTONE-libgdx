@@ -1,8 +1,5 @@
 package io.mygame.entities;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Texture;
-
 public abstract class Student extends NPC {
 
     public Student(String fileName, float x, float y, String movementType) {
