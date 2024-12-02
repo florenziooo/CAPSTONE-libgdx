@@ -9,6 +9,17 @@ PixelMaps/Tiles/KindaTiredNGL.png
 PixelMaps/Tiles/Modern_Exteriors_Complete_Tileset.png
 PixelMaps/Tiles/asdasd.png
 PixelMaps/Tiles/ohNo.png
+Sprites/CollegeFemale1.png
+Sprites/CollegeFemale2.png
+Sprites/CollegeMale1.png
+Sprites/CollegeMale2.png
+Sprites/FemaleTeacher.png
+Sprites/Guard1.png
+Sprites/Guard2.png
+Sprites/MaleTeacher.png
+Sprites/Pets1.png
+Sprites/Pets2.png
+Sprites/Player.png
 cursor/cursor.png
 hs_err_pid36261.log
 images/main_menu_bg.png
@@ -46,5 +57,3 @@ sound/ui/select/select_2.ogg
 sound/ui/select/select_3.ogg
 sound/ui/smartphone/smartphone_in.wav
 sound/ui/smartphone/smartphone_out.wav
-sprites/CITBOY.png
-sprites/CollegeMale1.png

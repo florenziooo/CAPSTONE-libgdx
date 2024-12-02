@@ -114,15 +114,15 @@ public class CollisionHandler {
 
                 npc.setMovement(currentNpcX - (currentNpcX - npc.getPreviousX()), currentNpcY - (currentNpcY - npc.getPreviousY()));
 
-                if (checkPlayerNpcCollision() || checkNpcTileCollision(objectLayer, npc) || checkNpcCollision(npc)) {
+                if (checkNpcPlayerCollision(npc) || checkNpcTileCollision(objectLayer, npc) || checkNpcCollision(npc)) {
                     float tempY = npc.getY();
                     npc.setY(npc.getPreviousY());
 
-                    if (checkPlayerNpcCollision() || checkNpcTileCollision(objectLayer, npc) || checkNpcCollision(npc)) {
+                    if (checkNpcPlayerCollision(npc) || checkNpcTileCollision(objectLayer, npc) || checkNpcCollision(npc)) {
                         npc.setY(tempY);
                         npc.setX(npc.getPreviousX());
 
-                        if (checkPlayerNpcCollision() || checkNpcTileCollision(objectLayer, npc) || checkNpcCollision(npc)) {
+                        if (checkNpcPlayerCollision(npc) || checkNpcTileCollision(objectLayer, npc) || checkNpcCollision(npc)) {
                             revertToPreviousPositionNpc(npc);
                         } else {
                             savePreviousPositionNpc(npc);
@@ -186,6 +186,14 @@ public class CollisionHandler {
                 Intersector.overlapConvexPolygons(entity.getCollisionPolygon(), npc.getCollisionPolygon())) {
                 return true;
             }
+        }
+        return false;
+    }
+
+    private boolean checkNpcPlayerCollision(NPC npc) {
+        if (entity.getCollisionBox().overlaps(npc.getCollisionBox()) ||
+            Intersector.overlapConvexPolygons(entity.getCollisionPolygon(), npc.getCollisionPolygon())) {
+            return true;
         }
         return false;
     }

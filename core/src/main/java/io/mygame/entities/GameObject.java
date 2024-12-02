@@ -1,12 +1,13 @@
 package io.mygame.entities;
 
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Polygon;
 import com.badlogic.gdx.math.Rectangle;
 
 public class GameObject {
-    private final TextureRegion texture;
+    private final TextureRegion textureRegion;
     private float x, y;
     private float width, height;
     protected float collisionWidth, collisionHeight;
@@ -14,17 +15,26 @@ public class GameObject {
     private Polygon collisionPolygon;
     private final float yOffset = 5; // Made constant to ensure consistency
 
-    public GameObject(TextureRegion texture, float x, float y) {
-        this.texture = texture;
+    public GameObject(TextureRegion textureRegion, float x, float y) {
+        this.textureRegion = textureRegion;
         this.x = x;
         this.y = y;
-        this.width = texture.getRegionWidth();
-        this.height = texture.getRegionHeight();
+        this.width = textureRegion.getRegionWidth();
+        this.height = textureRegion.getRegionHeight();
+        initializeCollisionBox();
+    }
+
+    public GameObject(Texture npcTexture, float x, float y) {
+        this.textureRegion = new TextureRegion(npcTexture, 0, 0, 16, 32);;
+        this.x = x;
+        this.y = y;
+        this.width = textureRegion.getRegionWidth();
+        this.height = textureRegion.getRegionHeight();
         initializeCollisionBox();
     }
 
     public GameObject(float x, float y, float width, float height) {
-        this.texture = null;
+        this.textureRegion = null;
         this.x = x;
         this.y = y;
         this.width = width;
@@ -63,8 +73,8 @@ public class GameObject {
     }
 
     public void render(SpriteBatch batch) {
-        if (texture != null) {
-            batch.draw(texture, x, y);
+        if (textureRegion != null) {
+            batch.draw(textureRegion, x, y);
         }
     }
 

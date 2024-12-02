@@ -17,6 +17,7 @@ import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
 import io.mygame.common.CollisionHandler;
+import io.mygame.entities.GameObject;
 import io.mygame.entities.NPC;
 import io.mygame.factories.EntityFactory;
 import io.mygame.common.SoundManager;
@@ -162,9 +163,17 @@ public class GameScreen extends WildCatScreen {
 
         batch.begin();
         player.update();
-        player.render(batch);
-        for(NPC npc : npcs){
-            npc.render(batch);
+
+        List<GameObject> renderQueue = new ArrayList<>();
+        renderQueue.add(player);
+        renderQueue.addAll(npcs);
+
+// Sort by Y position in descending order
+        renderQueue.sort((a, b) -> Float.compare(b.getY(), a.getY()));
+
+// Render in sorted order
+        for (GameObject obj : renderQueue) {
+            obj.render(batch);
         }
         batch.end();
 
