@@ -3,16 +3,21 @@ package io.mygame.ui;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
+import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import io.mygame.screens.MainMenu;
 import io.mygame.screens.ScreenState;
+
+import java.util.ArrayList;
 
 public class MainGameUI extends UI {
     private CheckBox statsCb;
@@ -253,49 +258,49 @@ public class MainGameUI extends UI {
         table1.align(Align.top);
 
         Label label = new Label("Areas Discovered", skin, "header");
-        table1.add(label);
+        table1.add(label).padBottom(50.0f);
 
         table1.row();
-
         Table table2 = new Table();
 
         ImageButton imageButton = new ImageButton(skin);
-        table2.add(imageButton).padLeft(20.0f).padRight(20.0f);
+        table2.add(imageButton).padLeft(20.0f).padRight(20.0f).padBottom(20.0f);
 
-        imageButton = new ImageButton(skin);
-        table2.add(imageButton).padLeft(20.0f).padRight(20.0f);
+        imageButton = new ImageButton(skin, "RTL");
+        table2.add(imageButton).padLeft(20.0f).padRight(20.0f).padBottom(20.0f);
 
-        imageButton = new ImageButton(skin);
-        table2.add(imageButton).padLeft(20.0f).padRight(20.0f);
+        imageButton = new ImageButton(skin, "GLE");
+        table2.add(imageButton).padLeft(20.0f).padRight(20.0f).padBottom(20.0f);
 
-        table2.row();
-        imageButton = new ImageButton(skin);
-        table2.add(imageButton).padLeft(20.0f).padRight(20.0f);
-
-        imageButton = new ImageButton(skin);
-        table2.add(imageButton).padLeft(20.0f).padRight(20.0f);
-
-        imageButton = new ImageButton(skin);
-        table2.add(imageButton).padLeft(20.0f).padRight(20.0f);
+        imageButton = new ImageButton(skin, "SAL");
+        table2.add(imageButton).padLeft(20.0f).padRight(20.0f).padBottom(20.0f);
 
         table2.row();
-        imageButton = new ImageButton(skin);
-        table2.add(imageButton);
+        imageButton = new ImageButton(skin, "LRAC");
+        table2.add(imageButton).padLeft(20.0f).padRight(20.0f).padBottom(20.0f);
 
-        imageButton = new ImageButton(skin);
-        table2.add(imageButton);
+        imageButton = new ImageButton(skin, "ESPACIO");
+        table2.add(imageButton).padLeft(20.0f).padRight(20.0f).padBottom(20.0f);
 
-        imageButton = new ImageButton(skin);
-        table2.add(imageButton);
+        imageButton = new ImageButton(skin, "PATIO");
+        table2.add(imageButton).padLeft(20.0f).padRight(20.0f).padBottom(20.0f);
+
+        imageButton = new ImageButton(skin, "ACAD");
+        table2.add(imageButton).padLeft(20.0f).padRight(20.0f).padBottom(20.0f);
 
         table2.row();
-        table2.add();
+        imageButton = new ImageButton(skin, "ELEM");
+        table2.add(imageButton).padLeft(20.0f).padRight(20.0f).padBottom(20.0f);
 
-        table2.add();
+        imageButton = new ImageButton(skin, "GYM");
+        table2.add(imageButton).padLeft(20.0f).padRight(20.0f).padBottom(20.0f);
 
-        table2.add();
-        ScrollPane scrollPane = new ScrollPane(table2, skin);
-        table1.add(scrollPane);
+        imageButton = new ImageButton(skin, "CANTEEN");
+        table2.add(imageButton).padLeft(20.0f).padRight(20.0f).padBottom(20.0f);
+
+        imageButton = new ImageButton(skin, "CHAPEL");
+        table2.add(imageButton).padLeft(20.0f).padRight(20.0f).padBottom(20.0f);
+        table1.add(table2).maxHeight(600.0f);
         stack.addActor(table1);
 
         Container container = new Container();

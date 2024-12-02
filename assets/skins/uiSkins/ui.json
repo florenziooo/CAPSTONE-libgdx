@@ -99,9 +99,95 @@
 },
 "com.badlogic.gdx.scenes.scene2d.ui.ImageButton$ImageButtonStyle": {
 	"default": {
-		"imageUp": "download (2)",
+		"imageUp": "building1",
+		"imageDisabled": "paper_disabled",
 		"up": "paper",
-		"over": "paper_focus.9"
+		"over": "paper_focus.9",
+		"disabled": "paper_disabled"
+	},
+	"NGE": {
+		"imageUp": "building1",
+		"imageDisabled": "paper_disabled",
+		"up": "paper",
+		"over": "paper_focus.9",
+		"disabled": "paper_disabled"
+	},
+	"RTL": {
+		"imageUp": "building2",
+		"imageDisabled": "paper_disabled",
+		"up": "paper",
+		"over": "paper_focus.9",
+		"disabled": "paper_disabled"
+	},
+	"GLE": {
+		"imageUp": "building3",
+		"imageDisabled": "paper_disabled",
+		"up": "paper",
+		"over": "paper_focus.9",
+		"disabled": "paper_disabled"
+	},
+	"SAL": {
+		"imageUp": "building4",
+		"imageDisabled": "paper_disabled",
+		"up": "paper",
+		"over": "paper_focus.9",
+		"disabled": "paper_disabled"
+	},
+	"LRAC": {
+		"imageUp": "building5",
+		"imageDisabled": "paper_disabled",
+		"up": "paper",
+		"over": "paper_focus.9",
+		"disabled": "paper_disabled"
+	},
+	"ESPACIO": {
+		"imageUp": "building6",
+		"imageDisabled": "paper_disabled",
+		"up": "paper",
+		"over": "paper_focus.9",
+		"disabled": "paper_disabled"
+	},
+	"PATIO": {
+		"imageUp": "building7",
+		"imageDisabled": "paper_disabled",
+		"up": "paper",
+		"over": "paper_focus.9",
+		"disabled": "paper_disabled"
+	},
+	"ACAD": {
+		"imageUp": "building8",
+		"imageDisabled": "paper_disabled",
+		"up": "paper",
+		"over": "paper_focus.9",
+		"disabled": "paper_disabled"
+	},
+	"ELEM": {
+		"imageUp": "building9",
+		"imageDisabled": "paper_disabled",
+		"up": "paper",
+		"over": "paper_focus.9",
+		"disabled": "paper_disabled"
+	},
+	"GYM": {
+		"imageUp": "building10",
+		"imageDisabled": "paper_disabled",
+		"up": "paper",
+		"over": "paper_focus.9",
+		"disabled": "paper_disabled"
+	},
+	"CANTEEN": {
+		"imageUp": "building11",
+		"imageDisabled": "paper_disabled",
+		"up": "paper",
+		"over": "paper_focus.9",
+		"disabled": "paper_disabled"
+	},
+	"CHAPEL": {
+		"imageUp": "building12",
+		"imageDisabled": "paper_disabled",
+		"up": "paper",
+		"over": "paper_focus.9",
+		"disabled": "paper_disabled"
 	}
 },
 "com.badlogic.gdx.scenes.scene2d.ui.ImageTextButton$ImageTextButtonStyle": {
