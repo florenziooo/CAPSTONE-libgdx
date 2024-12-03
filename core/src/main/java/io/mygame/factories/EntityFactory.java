@@ -17,6 +17,8 @@ public class EntityFactory {
         npcs.add(new Teacher.FemaleTeacher(3200, 500, "in-place"));
         npcs.add(new Guard.Guard1(2980, 600, "targeted"));
         npcs.add(new Guard.Guard2(3011, 400, "in-place"));
+        npcs.add(new Pet.Pet1(2304, 200, "in-place"));
+        npcs.add(new Pet.Pet2(2764, 453, "horizontal"));
 
         setTargets(npcs);
 
@@ -28,5 +30,7 @@ public class EntityFactory {
         npc.setTarget(npc.getX() - 100, npc.getY());
         npc = npcs.get(2);
         npc.setTarget(npc.getX(), npc.getY() + 64);
+        npc = npcs.get(9);
+        npc.setTarget(npc.getX()+64, npc.getY());
     }
 }

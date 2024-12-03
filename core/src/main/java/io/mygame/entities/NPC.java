@@ -18,12 +18,14 @@ public class NPC extends GameObject {
     private float previousX, previousY;
     private final String movementType;
     private float originalX, originalY;
-
-    public NPC(String fileName, float x, float y, String movementType) {
+    private float pauseTime;
+    private final String textureDimensions;
+    public NPC(String fileName, float x, float y, String movementType, String textureDimensions) {
         super(new Texture(Gdx.files.internal(fileName)), x, y);
+        this.textureDimensions = textureDimensions;
         originalX = x;
         originalY = y;
-        this.npcAnimation = new AnimationLoader(fileName, "8x6");
+        this.npcAnimation = new AnimationLoader(fileName, textureDimensions);
         this.movementType = movementType;
         if(!movementType.equalsIgnoreCase("in-place")){
             isMoving = true;
@@ -42,6 +44,9 @@ public class NPC extends GameObject {
             moveHorizontally();
         }else if(movementType.equalsIgnoreCase("vertical")) {
             moveVertically();
+        }else if(movementType.equalsIgnoreCase("in-place")){
+            isMoving = false;
+            setStopAnimation();
         }
         stateTime += Gdx.graphics.getDeltaTime();
     }
@@ -81,8 +86,14 @@ public class NPC extends GameObject {
             setPosition(getX() + stepX, getY());
             updateDirection();
         } else {
-            targetX = originalX;
-            originalX = getX();
+            pauseTime += delta;
+            if(pauseTime >= 5) {
+                targetX = originalX;
+                originalX = getX();
+                pauseTime = 0;
+            }else{
+                setStopAnimation();
+            }
         }
     }
 
@@ -95,8 +106,14 @@ public class NPC extends GameObject {
             setPosition(getX(), getY() + stepY);
             updateDirection();
         } else {
-            targetY = originalY;
-            originalY = getY();
+            pauseTime += delta;
+            if(pauseTime >= 5) {
+                targetY = originalY;
+                originalY = getY();
+                pauseTime = 0;
+            }else{
+                setStopAnimation();
+            }
         }
     }
 
@@ -137,11 +154,13 @@ public class NPC extends GameObject {
     }
 
     public void setStopAnimation(){
-        switch (direction) {
-            case RIGHT, FRONT_RIGHT, BACK_RIGHT-> npcAnimation.setCurrentAnimation("rightIdle");
-            case LEFT, FRONT_LEFT, BACK_LEFT -> npcAnimation.setCurrentAnimation("leftIdle");
-            case FRONT -> npcAnimation.setCurrentAnimation("frontIdle");
-            case BACK -> npcAnimation.setCurrentAnimation("backIdle");
+        if(!textureDimensions.equalsIgnoreCase("4x3")) {
+            switch (direction) {
+                case RIGHT, FRONT_RIGHT, BACK_RIGHT -> npcAnimation.setCurrentAnimation("rightIdle");
+                case LEFT, FRONT_LEFT, BACK_LEFT -> npcAnimation.setCurrentAnimation("leftIdle");
+                case FRONT -> npcAnimation.setCurrentAnimation("frontIdle");
+                case BACK -> npcAnimation.setCurrentAnimation("backIdle");
+            }
         }
     }
 

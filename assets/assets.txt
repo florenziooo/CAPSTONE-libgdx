@@ -54,6 +54,6 @@ sprites/FemaleTeacher.png
 sprites/Guard1.png
 sprites/Guard2.png
 sprites/MaleTeacher.png
-sprites/Pets1.png
-sprites/Pets2.png
+sprites/Pet1.png
+sprites/Pet2.png
 sprites/Player.png

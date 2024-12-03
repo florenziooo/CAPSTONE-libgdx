@@ -244,8 +244,8 @@ public class GameScreen extends WildCatScreen {
                 npc2 = npcs.get(6);
                 npc2.setTarget(player.getX() - 32, player.getY() + 32);
                 npc.updateBoundingBox(npc.getX(), npc.getY());
-                npc.update();
             }
+            npc.update();
         }
         collisionHandler.handleNpcCollision();
         System.out.println(player.getX() + " " + player.getY());
