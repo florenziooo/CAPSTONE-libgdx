@@ -79,7 +79,7 @@ public class GameScreen extends WildCatScreen {
         batch = new SpriteBatch();
         player = new Player();
 
-        mainGameUI = new MainGameUI(this, game);
+        mainGameUI = new MainGameUI(this, game, sound);
 
         MapLayers mapLayers = map.getLayers();
         background = new ArrayList<>();

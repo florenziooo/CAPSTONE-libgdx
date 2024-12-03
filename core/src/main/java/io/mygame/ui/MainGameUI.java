@@ -11,6 +11,8 @@ import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
+import io.mygame.common.GameManager;
+import io.mygame.common.SoundManager;
 import io.mygame.datahandler.GameDataHandler;
 import io.mygame.screens.MainMenu;
 import io.mygame.screens.ScreenState;
@@ -25,9 +27,13 @@ public class MainGameUI extends UI {
     private Button exitBtn;
     private Button menuBtn;
     private Table currentTable;
+    private SoundManager sound;
+    private GameManager gameManager;
 
-    public MainGameUI(ScreenState screenState, Game game) {
+    public MainGameUI(ScreenState screenState, Game game, SoundManager sound) {
         super(new ScreenViewport(), screenState, game);
+        this.sound = sound;
+        gameManager = GameManager.getInstance();
 
         stage = new Stage(new ScreenViewport());
         skin = new Skin(Gdx.files.internal("skins/uiSkins/ui.json"));
@@ -361,9 +367,20 @@ public class MainGameUI extends UI {
 
         table2.row();
         Slider slider = new Slider(0.0f, 1.0f, 0.1f, false, skin, "default-horizontal");
-        slider.setValue(1.0f);
+        slider.setValue(gameManager.getVolume());
+
         slider.setAnimateInterpolation(Interpolation.smooth);
         slider.setVisualInterpolation(Interpolation.smooth);
+
+        slider.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                gameManager.setVolume(slider.getValue());
+                // Update background music volume
+                sound.setGlobalVolume(gameManager.getVolume());
+            }
+        });
+
         table2.add(slider).padBottom(50.0f).fillX();
 
         table2.row();

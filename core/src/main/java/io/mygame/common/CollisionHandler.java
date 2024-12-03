@@ -1,5 +1,7 @@
 package io.mygame.common;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.maps.MapLayer;
@@ -7,14 +9,13 @@ import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.maps.objects.PolygonMapObject;
 import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.maps.tiled.TiledMap;
-import com.badlogic.gdx.math.Intersector;
-import com.badlogic.gdx.math.Polygon;
-import com.badlogic.gdx.math.Rectangle;
-import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.math.*;
 import io.mygame.entities.GameObject;
 import io.mygame.entities.NPC;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Handles collision detection for an entity against objects in a TiledMap.
@@ -33,6 +34,7 @@ public class CollisionHandler {
     private final Vector2 movementNpc = new Vector2();
     private float currentNpcX, currentNpcY;
     private List<NPC> npcs;
+    private Circle interactionCircle;
 
     /**
      * Constructs a CollisionHandler for handling collisions of a specific entity on a TiledMap.
@@ -46,6 +48,7 @@ public class CollisionHandler {
         this.npcs = npcs;
         this.map = map;
         this.camera = camera;
+        this.interactionCircle = new Circle();
         this.shapeRenderer = new ShapeRenderer();
     }
 
@@ -88,6 +91,14 @@ public class CollisionHandler {
                 savePreviousPosition();
             }
 
+            // Update interaction circle position
+            Rectangle playerBox = entity.getCollisionBox();
+            interactionCircle.x = playerBox.x + playerBox.width / 2;
+            interactionCircle.y = playerBox.y + playerBox.height / 2;
+
+            // Check for interactions
+            checkInteractions();
+
             drawDebug(objectLayer);
         } catch (NullPointerException e) {
             System.err.println("NullPointerException: Collision object (" + collisionName + ") not found in the tiled map:  " + e.getMessage());
@@ -98,6 +109,34 @@ public class CollisionHandler {
         } catch (Exception e) {
             System.err.println("Exception: " + e.getMessage());
             throw new RuntimeException("Error: " + e.getMessage());
+        }
+    }
+
+    private Set<String> interactedObjects = new HashSet<>();
+
+    private void checkInteractions() {
+        MapLayer interactionLayer = map.getLayers().get("interaction layer");
+        if (interactionLayer == null) return;
+
+        for (MapObject object : interactionLayer.getObjects()) {
+            if (object instanceof RectangleMapObject) {
+                Rectangle rectangle = ((RectangleMapObject) object).getRectangle();
+                String objectName = object.getName();
+
+                if (Intersector.overlaps(interactionCircle, rectangle) &&
+                    Gdx.input.isKeyPressed(Input.Keys.E) &&
+                    !interactedObjects.contains(objectName)) {
+
+                    System.out.println("HAS INTERACTED WITH: " + objectName);
+                    interactedObjects.add(objectName);
+                }
+
+                // Optional: Allow re-interaction if the player moves away and returns
+                if (!Intersector.overlaps(interactionCircle, rectangle)) {
+                    interactedObjects.remove(objectName);
+                }
+            }
+            // Similar logic can be added for PolygonMapObject if needed
         }
     }
 
@@ -235,6 +274,10 @@ public class CollisionHandler {
         shapeRenderer.setColor(0, 1, 0, 1);
         Rectangle playerBox = entity.getCollisionBox();
         shapeRenderer.rect(playerBox.x, playerBox.y, playerBox.width, playerBox.height);
+
+        // Draw interaction circle
+        shapeRenderer.setColor(0, 1, 1, 1);  // Cyan color for interaction circle
+        shapeRenderer.circle(interactionCircle.x, interactionCircle.y, interactionCircle.radius);
 
         // Draw movement vector
         shapeRenderer.setColor(1, 1, 0, 1);

@@ -8,12 +8,13 @@ public class GameManager implements Serializable {
     private int npcFound;
     private int buildingsFound;
     private float volume;
+    private transient SoundManager soundManager;
 
     private GameManager() {
         playerName = null;
         npcFound = 0;
         buildingsFound = 0;
-        volume = 0;
+        volume = 1.0f;
     }
 
     public static GameManager getInstance() {
@@ -49,8 +50,15 @@ public class GameManager implements Serializable {
         this.buildingsFound = buildingsFound;
     }
 
+    public void setSoundManager(SoundManager soundManager) {
+        this.soundManager = soundManager;
+    }
+
     public void setVolume(float volume) {
         this.volume = volume;
+        if (soundManager != null) {
+            soundManager.setGlobalVolume(this.volume);
+        }
     }
 
     public void increaseNpcFound() {
@@ -65,6 +73,6 @@ public class GameManager implements Serializable {
         playerName = null;
         npcFound = 0;
         buildingsFound = 0;
-        volume = 0;
+        volume = 1.0f;
     }
 }
