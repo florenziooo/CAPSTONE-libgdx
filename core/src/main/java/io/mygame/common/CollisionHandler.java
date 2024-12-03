@@ -48,8 +48,12 @@ public class CollisionHandler {
         this.npcs = npcs;
         this.map = map;
         this.camera = camera;
-        this.interactionCircle = new Circle();
         this.shapeRenderer = new ShapeRenderer();
+
+        // Create an interaction circle slightly larger than the player's collision box
+        Rectangle playerBox = entity.getCollisionBox();
+        float circleRadius = Math.max(playerBox.width, playerBox.height) * 5.0f;
+        this.interactionCircle = new Circle(playerBox.x + playerBox.width / 2, playerBox.y + playerBox.height / 2, circleRadius);
     }
 
     /**

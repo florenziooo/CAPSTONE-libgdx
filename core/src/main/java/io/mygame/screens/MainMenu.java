@@ -91,6 +91,7 @@ public class MainMenu extends WildCatScreen {
         exitButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
+                sound.addSound("click");
                 Gdx.app.exit();
             }
         });
