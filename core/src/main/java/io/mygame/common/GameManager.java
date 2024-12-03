@@ -2,18 +2,18 @@ package io.mygame.common;
 
 import io.mygame.datahandler.Serializable;
 
+import java.util.HashMap;
+
 public class GameManager implements Serializable {
     private static GameManager instance;
     private String playerName;
     private int npcFound;
     private int buildingsFound;
     private float volume;
+    private HashMap<String, Boolean> areasFound;
 
     private GameManager() {
-        playerName = null;
-        npcFound = 0;
-        buildingsFound = 0;
-        volume = 0;
+        resetDefaultValues();
     }
 
     public static GameManager getInstance() {
@@ -53,6 +53,10 @@ public class GameManager implements Serializable {
         this.volume = volume;
     }
 
+    public void setAreaFound(String key) {
+        areasFound.put(key, true);
+    }
+
     public void increaseNpcFound() {
         npcFound++;
     }
@@ -61,10 +65,31 @@ public class GameManager implements Serializable {
         buildingsFound++;
     }
 
+    public boolean getAreaFound(String key) {
+        Boolean value = areasFound.get(key);
+        if (value == null) {
+            throw new IllegalArgumentException("Key: " + key + " not found in HashMap as part of the discoverable areas");
+        }
+        return value;
+    }
+
     public void resetDefaultValues() {
         playerName = null;
         npcFound = 0;
         buildingsFound = 0;
-        volume = 0;
+        volume = 1;
+        areasFound = new HashMap<>();
+        areasFound.put("NGE", false);
+        areasFound.put("RTL", false);
+        areasFound.put("GLE", false);
+        areasFound.put("SAL", false);
+        areasFound.put("Library", false);
+        areasFound.put("Espasyo", false);
+        areasFound.put("Patio", false);
+        areasFound.put("ACAD", false);
+        areasFound.put("ELEM", false);
+        areasFound.put("Gym", false);
+        areasFound.put("Canteen", false);
+        areasFound.put("Chapel", false);
     }
 }
