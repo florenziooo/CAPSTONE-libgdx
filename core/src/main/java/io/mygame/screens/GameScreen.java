@@ -17,12 +17,13 @@ import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
 import io.mygame.common.CollisionHandler;
+import io.mygame.common.SoundManager;
 import io.mygame.entities.GameObject;
 import io.mygame.entities.NPC;
 import io.mygame.factories.EntityFactory;
-import io.mygame.common.SoundManager;
 import io.mygame.entities.Player;
 import io.mygame.ui.MainGameUI;
+import io.mygame.ui.UI;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,7 +40,7 @@ public class GameScreen extends WildCatScreen {
     private CollisionHandler collisionHandler;
 
     /************ USER INTERFACES ***********/
-    private MainGameUI mainGameUI;
+    private UI mainGameUI;
 
     /************ SCREEN VIEWPORT SIZE ************/
     private Viewport viewport;
@@ -59,11 +60,9 @@ public class GameScreen extends WildCatScreen {
      * Constructor for the GameScreen class.
      *
      * @param game the main game instance
-     * @param sound the sound of the game
      */
-    public GameScreen(Game game, SoundManager sound) {
+    public GameScreen(Game game) {
         super(game);
-        this.sound = sound; // reuse the SoundManager from the MainMenu
     }
 
     private List<NPC> npcs;
@@ -157,7 +156,6 @@ public class GameScreen extends WildCatScreen {
 
         for(TiledMapTileLayer layer : background) {
             renderer.renderTileLayer(layer);
-            System.out.println("background");
         }
         renderer.getBatch().end();
 
@@ -180,7 +178,6 @@ public class GameScreen extends WildCatScreen {
         renderer.getBatch().begin();
         for(TiledMapTileLayer layer : foreground) {
             renderer.renderTileLayer(layer);
-            System.out.println("foreground");
         }
         renderer.getBatch().end();
     }
@@ -223,11 +220,11 @@ public class GameScreen extends WildCatScreen {
         }
 
         if (isMoving && footstepTimer >= FOOTSTEP_DELAY) {
-            sound.addSound("walk");
+            ((MainGameUI) mainGameUI).walkSfx();
             footstepTimer = 0f;
         }
 
-        mainGameUI.keyMenuHandler();
+        ((MainGameUI) mainGameUI).keyMenuHandler();
     }
 
 
@@ -248,7 +245,7 @@ public class GameScreen extends WildCatScreen {
             npc.update();
         }
         collisionHandler.handleNpcCollision();
-        System.out.println(player.getX() + " " + player.getY());
+//        System.out.println(player.getX() + " " + player.getY());
     }
 
     /**
@@ -281,15 +278,5 @@ public class GameScreen extends WildCatScreen {
         map.dispose();
         renderer.dispose();
         collisionHandler.dispose();
-    }
-
-    /**
-     * Changes the current screen to a new GameScreen.
-     *
-     * @param screen the new screen to be displayed
-     */
-    @Override
-    public void changeScreen(Screen screen) {
-        game.setScreen(screen);
     }
 }

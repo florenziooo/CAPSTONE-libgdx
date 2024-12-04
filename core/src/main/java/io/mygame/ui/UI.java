@@ -6,20 +6,28 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import io.mygame.common.GameManager;
+import io.mygame.common.SoundManager;
 import io.mygame.screens.ScreenState;
 
 public abstract class UI {
-    private Game game;
+    private final Game game;
     protected Stage stage;
     protected Skin skin;
     protected ScreenState screenState;
-    protected GameManager gameManager = GameManager.getInstance();
+    protected final GameManager gameManager;
+    protected SoundManager soundManager;
 
     public UI(Viewport viewport, ScreenState screenState, Game game) {
         stage = new Stage(viewport);
         Gdx.input.setInputProcessor(stage);
-
         skin = new Skin(Gdx.files.internal("skins/uiSkins/ui.json"));
+
+        gameManager = GameManager.getInstance();
+
+        soundManager = new SoundManager.Builder()
+            .setbgMusic("sound/music/the_secret_spring_loopable.mp3")
+            .setAmbience("sound/ambience/mild_traffic.mp3")
+            .build();
 
         this.screenState = screenState;
         this.game = game;
@@ -41,6 +49,10 @@ public abstract class UI {
 
     public Game getGame() {
         return game;
+    }
+
+    public SoundManager getSoundManager() {
+        return soundManager;
     }
 }
 

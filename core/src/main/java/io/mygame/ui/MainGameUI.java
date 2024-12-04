@@ -11,7 +11,9 @@ import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
-import io.mygame.screens.MainMenu;
+import io.mygame.common.GameManager;
+import io.mygame.datahandler.GameDataHandler;
+import io.mygame.screens.MainMenuScreen;
 import io.mygame.screens.ScreenState;
 
 public class MainGameUI extends UI {
@@ -23,15 +25,23 @@ public class MainGameUI extends UI {
     private TextButton returnBtn;
     private Button exitBtn;
     private Button menuBtn;
-    private Label labelName;
     private Table currentTable;
+
+    private Button ngeBtn;
+    private Button rtlBtn;
+    private Button gleBtn;
+    private Button salBtn;
+    private Button libBtn;
+    private Button espasyoBtn;
+    private Button patioBtn;
+    private Button acadBtn;
+    private Button elemBtn;
+    private Button gymBtn;
+    private Button canteenBtn;
+    private Button chapelBtn;
 
     public MainGameUI(ScreenState screenState, Game game) {
         super(new ScreenViewport(), screenState, game);
-
-        stage = new Stage(new ScreenViewport());
-        skin = new Skin(Gdx.files.internal("skins/uiSkins/ui.json"));
-        Gdx.input.setInputProcessor(stage);
 
         playerHUD();
     }
@@ -56,7 +66,7 @@ public class MainGameUI extends UI {
         container.padLeft(120.0f);
         container.padTop(12.0f);
 
-        labelName = new Label(gameManager.getPlayerName() + " (CIT-U)", skin, "header3");
+        Label labelName = new Label(gameManager.getPlayerName() + " (CIT-U)", skin, "header3");
         container.setActor(labelName);
         stack.addActor(container);
         table.add(stack);
@@ -249,53 +259,70 @@ public class MainGameUI extends UI {
 
         table1 = new Table();
         table1.setTouchable(Touchable.enabled);
-        table1.padTop(60.0f);
+        table1.padTop(70.0f);
         table1.align(Align.top);
 
         Label label = new Label("Areas Discovered", skin, "header");
-        table1.add(label);
+        table1.add(label).padBottom(20.0f);
 
         table1.row();
 
         Table table2 = new Table();
 
-        ImageButton imageButton = new ImageButton(skin);
-        table2.add(imageButton).padLeft(20.0f).padRight(20.0f);
+        ngeBtn = new Button(skin, "NGE");
+        ngeBtn.setDisabled(!gameManager.getAreaFound("NGE"));
+        table2.add(ngeBtn).padRight(10.0f).padBottom(20.0f);
 
-        imageButton = new ImageButton(skin);
-        table2.add(imageButton).padLeft(20.0f).padRight(20.0f);
+        rtlBtn = new Button(skin, "RTL");
+        rtlBtn.setDisabled(!gameManager.getAreaFound("RTL"));
+        table2.add(rtlBtn).padLeft(10.0f).padRight(10.0f).padBottom(20.0f);
 
-        imageButton = new ImageButton(skin);
-        table2.add(imageButton).padLeft(20.0f).padRight(20.0f);
-
-        table2.row();
-        imageButton = new ImageButton(skin);
-        table2.add(imageButton).padLeft(20.0f).padRight(20.0f);
-
-        imageButton = new ImageButton(skin);
-        table2.add(imageButton).padLeft(20.0f).padRight(20.0f);
-
-        imageButton = new ImageButton(skin);
-        table2.add(imageButton).padLeft(20.0f).padRight(20.0f);
+        gleBtn = new Button(skin, "GLE");
+        gleBtn.setDisabled(!gameManager.getAreaFound("GLE"));
+        table2.add(gleBtn).padLeft(10.0f).padBottom(20.0f);
 
         table2.row();
-        imageButton = new ImageButton(skin);
-        table2.add(imageButton);
+        salBtn = new Button(skin, "SAL");
+        salBtn.setDisabled(!gameManager.getAreaFound("SAL"));
+        table2.add(salBtn).padRight(10.0f).padBottom(20.0f);
 
-        imageButton = new ImageButton(skin);
-        table2.add(imageButton);
+        libBtn = new Button(skin, "Library");
+        libBtn.setDisabled(!gameManager.getAreaFound("Library"));
+        table2.add(libBtn).padLeft(10.0f).padRight(10.0f).padBottom(20.0f);
 
-        imageButton = new ImageButton(skin);
-        table2.add(imageButton);
+        espasyoBtn = new Button(skin, "Espasyo");
+        espasyoBtn.setDisabled(!gameManager.getAreaFound("Espasyo"));
+        table2.add(espasyoBtn).padLeft(10.0f).padBottom(20.0f);
 
         table2.row();
-        table2.add();
+        patioBtn = new Button(skin, "Patio");
+        patioBtn.setDisabled(!gameManager.getAreaFound("Patio"));
+        table2.add(patioBtn).padRight(10.0f).padBottom(20.0f);
 
-        table2.add();
+        acadBtn = new Button(skin, "ACAD");
+        acadBtn.setDisabled(!gameManager.getAreaFound("ACAD"));
+        table2.add(acadBtn).padLeft(10.0f).padRight(10.0f).padBottom(20.0f);
 
-        table2.add();
+        elemBtn = new Button(skin, "ELEM");
+        elemBtn.setDisabled(!gameManager.getAreaFound("ELEM"));
+        table2.add(elemBtn).padLeft(10.0f).padBottom(20.0f);
+
+        table2.row();
+        gymBtn = new Button(skin, "Gym");
+        gymBtn.setDisabled(!gameManager.getAreaFound("Gym"));
+        table2.add(gymBtn).padRight(10.0f);
+
+        canteenBtn = new Button(skin, "Canteen");
+        canteenBtn.setDisabled(!gameManager.getAreaFound("Canteen"));
+        table2.add(canteenBtn).padLeft(10.0f).padRight(10.0f);
+
+        chapelBtn = new Button(skin, "Chapel");
+        chapelBtn.setDisabled(!gameManager.getAreaFound("Chapel"));
+        table2.add(chapelBtn).padLeft(10.0f);
+
         ScrollPane scrollPane = new ScrollPane(table2, skin);
-        table1.add(scrollPane);
+        scrollPane.setFadeScrollBars(false);
+        table1.add(scrollPane).align(Align.top).width(1000.0f).height(550.0f);
         stack.addActor(table1);
 
         Container container = new Container();
@@ -310,6 +337,7 @@ public class MainGameUI extends UI {
         stage.addActor(currentTable);
 
         buttonListener();
+        explorationButtonListener();
     }
 
     private void settingsTable() {
@@ -467,14 +495,14 @@ public class MainGameUI extends UI {
         saveBtn.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent changeEvent, Actor actor) {
-
+                GameDataHandler.saveGameData();
             }
         });
 
         returnBtn.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent changeEvent, Actor actor) {
-                screenState.changeScreen(new MainMenu(getGame()));
+                screenState.changeScreen(new MainMenuScreen(getGame()));
             }
         });
     }
@@ -489,6 +517,71 @@ public class MainGameUI extends UI {
                 currentTable.remove();
             }
         }
+    }
+
+    private void explorationButtonListener() {
+        Button[] buttons = new Button[] {ngeBtn, rtlBtn, gleBtn, salBtn,
+            libBtn, espasyoBtn, patioBtn, acadBtn, elemBtn, gymBtn,
+            canteenBtn, chapelBtn};
+
+        for(Button button : buttons) {
+            button.addListener(new ChangeListener() {
+                @Override
+                public void changed(ChangeEvent event, Actor actor) {
+                    if(actor == ngeBtn) {
+                        System.out.println("Nge Button Pressed");
+                    }
+
+                    if(actor == rtlBtn) {
+                        System.out.println("Rtl Button Pressed");
+                    }
+
+                    if(actor == gleBtn) {
+                        System.out.println("Gle Button Pressed");
+                    }
+
+                    if (actor == salBtn) {
+                        System.out.println("Sale Button Pressed");
+                    }
+
+                    if(actor == libBtn) {
+                        System.out.println("Lib Button Pressed");
+                    }
+
+                    if(actor == espasyoBtn) {
+                        System.out.println("Espasyo Button Pressed");
+                    }
+
+                    if(actor == patioBtn) {
+                        System.out.println("Patio Button Pressed");
+                    }
+
+                    if(actor == acadBtn) {
+                        System.out.println("Acad Button Pressed");
+                    }
+
+                    if(actor == elemBtn) {
+                        System.out.println("Elem Button Pressed");
+                    }
+
+                    if(actor == gymBtn) {
+                        System.out.println("Gym Button Pressed");
+                    }
+
+                    if(actor == canteenBtn) {
+                        System.out.println("Canteen Button Pressed");
+                    }
+
+                    if(actor == chapelBtn) {
+                        System.out.println("Chapel Button Pressed");
+                    }
+                }
+            });
+        }
+    }
+
+    public void walkSfx() {
+        soundManager.addSound("walk");
     }
 
     @Override

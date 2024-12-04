@@ -14,6 +14,12 @@
 		"b": 0,
 		"a": 1
 	},
+	"gray": {
+		"r": 0.5568628,
+		"g": 0.5568628,
+		"b": 0.5568628,
+		"a": 1
+	},
 	"white": {
 		"r": 1,
 		"g": 1,
@@ -32,9 +38,11 @@
 	"default": {
 		"font": "PixelFont",
 		"fontColor": "Black",
+		"disabledFontColor": "gray",
 		"up": "up",
 		"down": "down",
-		"over": "over"
+		"over": "over",
+		"disabled": "disabled"
 	}
 }
 }
