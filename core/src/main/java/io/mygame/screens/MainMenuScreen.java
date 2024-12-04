@@ -1,11 +1,9 @@
 package io.mygame.screens;
 
 import com.badlogic.gdx.Game;
-import com.badlogic.gdx.Screen;
+import io.mygame.common.SoundManager;
 import io.mygame.ui.MainMenuUI;
 import io.mygame.ui.UI;
-
-import java.io.File;
 
 public class MainMenuScreen extends WildCatScreen {
     private UI mainMenuUI;
@@ -16,7 +14,11 @@ public class MainMenuScreen extends WildCatScreen {
 
     @Override
     public void show () {
-        mainMenuUI = new MainMenuUI(this, game);
+        soundManager = new SoundManager.Builder()
+            .setbgMusic("sound/music/the_secret_spring_loopable.mp3")
+            .build();
+
+        mainMenuUI = new MainMenuUI(this, game, soundManager);
     }
 
     @Override
