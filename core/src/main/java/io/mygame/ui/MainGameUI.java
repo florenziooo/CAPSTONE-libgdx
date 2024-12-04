@@ -13,11 +13,10 @@ import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import io.mygame.common.GameManager;
 import io.mygame.datahandler.GameDataHandler;
-import io.mygame.screens.MainMenu;
+import io.mygame.screens.MainMenuScreen;
 import io.mygame.screens.ScreenState;
 
 public class MainGameUI extends UI {
-    private final GameManager gameManager;
     private CheckBox statsCb;
     private CheckBox mapCb;
     private CheckBox expCb;
@@ -43,12 +42,6 @@ public class MainGameUI extends UI {
 
     public MainGameUI(ScreenState screenState, Game game) {
         super(new ScreenViewport(), screenState, game);
-
-        stage = new Stage(new ScreenViewport());
-        skin = new Skin(Gdx.files.internal("skins/uiSkins/ui.json"));
-        Gdx.input.setInputProcessor(stage);
-
-        gameManager = GameManager.getInstance();
 
         playerHUD();
     }
@@ -344,6 +337,7 @@ public class MainGameUI extends UI {
         stage.addActor(currentTable);
 
         buttonListener();
+        explorationButtonListener();
     }
 
     private void settingsTable() {
@@ -508,7 +502,7 @@ public class MainGameUI extends UI {
         returnBtn.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent changeEvent, Actor actor) {
-                screenState.changeScreen(new MainMenu(getGame()));
+                screenState.changeScreen(new MainMenuScreen(getGame()));
             }
         });
     }
@@ -584,6 +578,10 @@ public class MainGameUI extends UI {
                 }
             });
         }
+    }
+
+    public void walkSfx() {
+        soundManager.addSound("walk");
     }
 
     @Override

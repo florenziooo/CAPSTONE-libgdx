@@ -29,6 +29,18 @@
 		"scaledSize": -1,
 		"markupEnabled": false,
 		"flip": false
+	},
+	"textFieldFont": {
+		"file": "C&C Red Alert [INET](10).fnt",
+		"scaledSize": -1,
+		"markupEnabled": false,
+		"flip": false
+	},
+	"textFieldMsg": {
+		"file": "C&C Red Alert [INET](9).fnt",
+		"scaledSize": -1,
+		"markupEnabled": false,
+		"flip": false
 	}
 },
 "com.badlogic.gdx.graphics.Color": {
@@ -36,6 +48,18 @@
 		"r": 0,
 		"g": 0,
 		"b": 0,
+		"a": 1
+	},
+	"dusk": {
+		"r": 0.76862746,
+		"g": 0.76862746,
+		"b": 0.76862746,
+		"a": 1
+	},
+	"gray": {
+		"r": 0.5568628,
+		"g": 0.5568628,
+		"b": 0.5568628,
 		"a": 1
 	},
 	"white": {
@@ -223,13 +247,25 @@
 		"font": "Red_Alert",
 		"fontColor": "black",
 		"up": "menu_button",
-		"down": "menu_button2"
+		"down": "menu_button2",
+		"disabled": "menu_button-disabled"
 	},
 	"btn1": {
 		"font": "Red_Alert",
 		"fontColor": "black",
 		"up": "menu_button",
 		"down": "menu_button2"
+	}
+},
+"com.badlogic.gdx.scenes.scene2d.ui.TextField$TextFieldStyle": {
+	"default": {
+		"font": "textFieldFont",
+		"fontColor": "black",
+		"background": "textFieldBg",
+		"cursor": "textFieldCursor",
+		"selection": "textFieldSelection",
+		"messageFont": "textFieldMsg",
+		"messageFontColor": "dusk"
 	}
 },
 "com.badlogic.gdx.scenes.scene2d.ui.TextTooltip$TextTooltipStyle": {
