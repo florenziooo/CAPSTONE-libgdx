@@ -24,11 +24,6 @@ public abstract class UI {
 
         gameManager = GameManager.getInstance();
 
-        soundManager = new SoundManager.Builder()
-            .setbgMusic("sound/music/the_secret_spring_loopable.mp3")
-            .setAmbience("sound/ambience/mild_traffic.mp3")
-            .build();
-
         this.screenState = screenState;
         this.game = game;
     }
