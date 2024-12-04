@@ -17,11 +17,11 @@ import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
 import io.mygame.common.CollisionHandler;
-import io.mygame.common.SoundManager;
 import io.mygame.entities.GameObject;
 import io.mygame.entities.NPC;
 import io.mygame.factories.EntityFactory;
 import io.mygame.entities.Player;
+import io.mygame.common.SoundManager;
 import io.mygame.ui.MainGameUI;
 import io.mygame.ui.UI;
 
@@ -42,6 +42,9 @@ public class GameScreen extends WildCatScreen {
     /************ USER INTERFACES ***********/
     private UI mainGameUI;
 
+    /************ SFX HANDLER ***********/
+    private SoundManager soundManager;
+
     /************ SCREEN VIEWPORT SIZE ************/
     private Viewport viewport;
     private OrthographicCamera camera;
@@ -61,8 +64,9 @@ public class GameScreen extends WildCatScreen {
      *
      * @param game the main game instance
      */
-    public GameScreen(Game game) {
+    public GameScreen(Game game, SoundManager soundManager) {
         super(game);
+        this.soundManager = soundManager;
     }
 
     private List<NPC> npcs;
@@ -71,6 +75,7 @@ public class GameScreen extends WildCatScreen {
      */
     @Override
     public void show() {
+
         map = new TmxMapLoader().load("PixelMaps/TestMap.tmx");
         renderer = new OrthogonalTiledMapRenderer(map);
         camera = new OrthographicCamera();
@@ -79,7 +84,7 @@ public class GameScreen extends WildCatScreen {
         batch = new SpriteBatch();
         player = new Player();
 
-        mainGameUI = new MainGameUI(this, game);
+        mainGameUI = new MainGameUI(this, game, soundManager);
 
         MapLayers mapLayers = map.getLayers();
         background = new ArrayList<>();
@@ -220,7 +225,7 @@ public class GameScreen extends WildCatScreen {
         }
 
         if (isMoving && footstepTimer >= FOOTSTEP_DELAY) {
-            ((MainGameUI) mainGameUI).walkSfx();
+            ((MainGameUI)mainGameUI).walkSFX();
             footstepTimer = 0f;
         }
 

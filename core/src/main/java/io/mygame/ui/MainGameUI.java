@@ -5,13 +5,12 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.scenes.scene2d.Actor;
-import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
-import io.mygame.common.GameManager;
+import io.mygame.common.SoundManager;
 import io.mygame.datahandler.GameDataHandler;
 import io.mygame.screens.MainMenuScreen;
 import io.mygame.screens.ScreenState;
@@ -40,9 +39,8 @@ public class MainGameUI extends UI {
     private Button canteenBtn;
     private Button chapelBtn;
 
-    public MainGameUI(ScreenState screenState, Game game) {
-        super(new ScreenViewport(), screenState, game);
-
+    public MainGameUI(ScreenState screenState, Game game, SoundManager soundManager) {
+        super(new ScreenViewport(), screenState, game, soundManager);
         playerHUD();
     }
 
@@ -66,7 +64,7 @@ public class MainGameUI extends UI {
         container.padLeft(120.0f);
         container.padTop(12.0f);
 
-        Label labelName = new Label(gameManager.getPlayerName() + " (CIT-U)", skin, "header3");
+        Label labelName = new Label(gameManager.getPlayerName(), skin, "header3");
         container.setActor(labelName);
         stack.addActor(container);
         table.add(stack);
@@ -122,7 +120,7 @@ public class MainGameUI extends UI {
         table1.padTop(100.0f);
         table1.align(Align.topLeft);
 
-        Label label = new Label("Hello, <NAME>", skin, "header");
+        Label label = new Label("Hello, " + gameManager.getPlayerName(), skin, "header");
         table1.add(label).padBottom(40.0f).align(Align.left).colspan(2);
 
         table1.row();
@@ -453,6 +451,7 @@ public class MainGameUI extends UI {
         statsCb.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent changeEvent, Actor actor) {
+                soundManager.addSound("click");
                 currentTable.remove();
                 statsTable();
             }
@@ -461,6 +460,7 @@ public class MainGameUI extends UI {
         mapCb.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent changeEvent, Actor actor) {
+                soundManager.addSound("click");
                 currentTable.remove();
                 mapTable();
             }
@@ -469,6 +469,7 @@ public class MainGameUI extends UI {
         expCb.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent changeEvent, Actor actor) {
+                soundManager.addSound("click");
                 currentTable.remove();
                 explorationTable();
             }
@@ -477,6 +478,7 @@ public class MainGameUI extends UI {
         settingCb.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent changeEvent, Actor actor) {
+                soundManager.addSound("click");
                 currentTable.remove();
                 settingsTable();
             }
@@ -485,6 +487,7 @@ public class MainGameUI extends UI {
         exitBtn.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent changeEvent, Actor actor) {
+                soundManager.addSound("click");
                 menuBtn.setTouchable(Touchable.enabled);
                 currentTable.remove();
             }
@@ -495,6 +498,7 @@ public class MainGameUI extends UI {
         saveBtn.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent changeEvent, Actor actor) {
+                soundManager.addSound("click");
                 GameDataHandler.saveGameData();
             }
         });
@@ -502,6 +506,7 @@ public class MainGameUI extends UI {
         returnBtn.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent changeEvent, Actor actor) {
+                soundManager.addSound("click");
                 screenState.changeScreen(new MainMenuScreen(getGame()));
             }
         });
@@ -528,6 +533,8 @@ public class MainGameUI extends UI {
             button.addListener(new ChangeListener() {
                 @Override
                 public void changed(ChangeEvent event, Actor actor) {
+                    soundManager.addSound("click");
+
                     if(actor == ngeBtn) {
                         System.out.println("Nge Button Pressed");
                     }
@@ -580,7 +587,7 @@ public class MainGameUI extends UI {
         }
     }
 
-    public void walkSfx() {
+    public void walkSFX() {
         soundManager.addSound("walk");
     }
 

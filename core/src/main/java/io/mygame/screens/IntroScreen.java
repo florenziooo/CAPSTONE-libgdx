@@ -1,19 +1,20 @@
 package io.mygame.screens;
 
 import com.badlogic.gdx.Game;
-import com.badlogic.gdx.Screen;
+import io.mygame.common.SoundManager;
 import io.mygame.ui.IntroGameUI;
 import io.mygame.ui.UI;
 
 public class IntroScreen extends WildCatScreen {
     private UI introGameUI;
-    public IntroScreen(Game game) {
+    public IntroScreen(Game game, SoundManager soundManager) {
         super(game);
+        this.soundManager = soundManager;
     }
 
     @Override
     public void show() {
-        introGameUI = new IntroGameUI(this, game);
+        introGameUI = new IntroGameUI(this, game, soundManager);
     }
 
     @Override
