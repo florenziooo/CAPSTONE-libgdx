@@ -6,6 +6,12 @@
 		"markupEnabled": false,
 		"flip": false
 	},
+	"popUpDescription": {
+		"file": "C&C Red Alert [INET](11).fnt",
+		"scaledSize": -1,
+		"markupEnabled": false,
+		"flip": false
+	},
 	"Red_Alert": {
 		"file": "C&C Red Alert [INET](2).fnt",
 		"scaledSize": -1,
@@ -29,6 +35,18 @@
 		"scaledSize": -1,
 		"markupEnabled": false,
 		"flip": false
+	},
+	"textFieldFont": {
+		"file": "C&C Red Alert [INET](10).fnt",
+		"scaledSize": -1,
+		"markupEnabled": false,
+		"flip": false
+	},
+	"textFieldMsg": {
+		"file": "C&C Red Alert [INET](9).fnt",
+		"scaledSize": -1,
+		"markupEnabled": false,
+		"flip": false
 	}
 },
 "com.badlogic.gdx.graphics.Color": {
@@ -36,6 +54,18 @@
 		"r": 0,
 		"g": 0,
 		"b": 0,
+		"a": 1
+	},
+	"dusk": {
+		"r": 0.76862746,
+		"g": 0.76862746,
+		"b": 0.76862746,
+		"a": 1
+	},
+	"gray": {
+		"r": 0.5568628,
+		"g": 0.5568628,
+		"b": 0.5568628,
 		"a": 1
 	},
 	"white": {
@@ -63,6 +93,66 @@
 	"areas_btn": {
 		"up": "paper",
 		"over": "paper_focus.9"
+	},
+	"NGE": {
+		"up": "NGE",
+		"over": "NGE-over",
+		"disabled": "Disabled"
+	},
+	"RTL": {
+		"up": "RTL",
+		"over": "RTL-over",
+		"disabled": "Disabled"
+	},
+	"GLE": {
+		"up": "GLE",
+		"over": "GLE-over",
+		"disabled": "Disabled"
+	},
+	"Library": {
+		"up": "Library",
+		"over": "Library-over",
+		"disabled": "Disabled"
+	},
+	"Espasyo": {
+		"up": "Espasyo",
+		"over": "Espasyo-over",
+		"disabled": "Disabled"
+	},
+	"Patio": {
+		"up": "LearningPatio",
+		"over": "LearningPatio-over",
+		"disabled": "Disabled"
+	},
+	"ACAD": {
+		"up": "ACAD",
+		"over": "ACAD-over",
+		"disabled": "Disabled"
+	},
+	"ELEM": {
+		"up": "Elem",
+		"over": "Elem-over",
+		"disabled": "Disabled"
+	},
+	"Gym": {
+		"up": "Gym",
+		"over": "Gym-over",
+		"disabled": "Disabled"
+	},
+	"Canteen": {
+		"up": "Canteen",
+		"over": "Canteen-over",
+		"disabled": "Disabled"
+	},
+	"Chapel": {
+		"up": "Chapel",
+		"over": "Chapel-over",
+		"disabled": "Disabled"
+	},
+	"SAL": {
+		"up": "SAL",
+		"over": "SAL-over",
+		"disabled": "Disabled"
 	}
 },
 "com.badlogic.gdx.scenes.scene2d.ui.CheckBox$CheckBoxStyle": {
@@ -99,91 +189,6 @@
 },
 "com.badlogic.gdx.scenes.scene2d.ui.ImageButton$ImageButtonStyle": {
 	"default": {
-		"imageUp": "building1",
-		"imageDisabled": "paper_disabled",
-		"up": "paper",
-		"over": "paper_focus.9",
-		"disabled": "paper_disabled"
-	},
-	"NGE": {
-		"imageUp": "building1",
-		"imageDisabled": "paper_disabled",
-		"up": "paper",
-		"over": "paper_focus.9",
-		"disabled": "paper_disabled"
-	},
-	"RTL": {
-		"imageUp": "building2",
-		"imageDisabled": "paper_disabled",
-		"up": "paper",
-		"over": "paper_focus.9",
-		"disabled": "paper_disabled"
-	},
-	"GLE": {
-		"imageUp": "building3",
-		"imageDisabled": "paper_disabled",
-		"up": "paper",
-		"over": "paper_focus.9",
-		"disabled": "paper_disabled"
-	},
-	"SAL": {
-		"imageUp": "building4",
-		"imageDisabled": "paper_disabled",
-		"up": "paper",
-		"over": "paper_focus.9",
-		"disabled": "paper_disabled"
-	},
-	"LRAC": {
-		"imageUp": "building5",
-		"imageDisabled": "paper_disabled",
-		"up": "paper",
-		"over": "paper_focus.9",
-		"disabled": "paper_disabled"
-	},
-	"ESPACIO": {
-		"imageUp": "building6",
-		"imageDisabled": "paper_disabled",
-		"up": "paper",
-		"over": "paper_focus.9",
-		"disabled": "paper_disabled"
-	},
-	"PATIO": {
-		"imageUp": "building7",
-		"imageDisabled": "paper_disabled",
-		"up": "paper",
-		"over": "paper_focus.9",
-		"disabled": "paper_disabled"
-	},
-	"ACAD": {
-		"imageUp": "building8",
-		"imageDisabled": "paper_disabled",
-		"up": "paper",
-		"over": "paper_focus.9",
-		"disabled": "paper_disabled"
-	},
-	"ELEM": {
-		"imageUp": "building9",
-		"imageDisabled": "paper_disabled",
-		"up": "paper",
-		"over": "paper_focus.9",
-		"disabled": "paper_disabled"
-	},
-	"GYM": {
-		"imageUp": "building10",
-		"imageDisabled": "paper_disabled",
-		"up": "paper",
-		"over": "paper_focus.9",
-		"disabled": "paper_disabled"
-	},
-	"CANTEEN": {
-		"imageUp": "building11",
-		"imageDisabled": "paper_disabled",
-		"up": "paper",
-		"over": "paper_focus.9",
-		"disabled": "paper_disabled"
-	},
-	"CHAPEL": {
-		"imageUp": "building12",
 		"imageDisabled": "paper_disabled",
 		"up": "paper",
 		"over": "paper_focus.9",
@@ -230,8 +235,8 @@
 },
 "com.badlogic.gdx.scenes.scene2d.ui.ScrollPane$ScrollPaneStyle": {
 	"default": {
-		"vScroll": "scroll_bar",
-		"vScrollKnob": "scroll_knob"
+		"vScroll": "Rectangle 5",
+		"vScrollKnob": "Rectangle 6"
 	}
 },
 "com.badlogic.gdx.scenes.scene2d.ui.Slider$SliderStyle": {
@@ -248,13 +253,29 @@
 		"font": "Red_Alert",
 		"fontColor": "black",
 		"up": "menu_button",
-		"down": "menu_button2"
+		"down": "menu_button2",
+		"disabled": "menu_button-disabled"
 	},
 	"btn1": {
 		"font": "Red_Alert",
 		"fontColor": "black",
 		"up": "menu_button",
 		"down": "menu_button2"
+	}
+},
+"com.badlogic.gdx.scenes.scene2d.ui.TextField$TextFieldStyle": {
+	"default": {
+		"font": "textFieldFont",
+		"fontColor": "black",
+		"background": "textFieldBg",
+		"cursor": "textFieldCursor",
+		"selection": "textFieldSelection",
+		"messageFont": "textFieldMsg",
+		"messageFontColor": "dusk"
+	},
+	"description": {
+		"font": "popUpDescription",
+		"fontColor": "black"
 	}
 },
 "com.badlogic.gdx.scenes.scene2d.ui.TextTooltip$TextTooltipStyle": {

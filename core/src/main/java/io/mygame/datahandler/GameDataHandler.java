@@ -20,6 +20,7 @@ public class GameDataHandler {
             gameManagerInstance.setNpcFound(gameManager.getNpcFound());
             gameManagerInstance.setBuildingFound(gameManager.getBuildingsFound());
             gameManagerInstance.setVolume(gameManager.getVolume());
+            gameManagerInstance.setAreasFound(gameManager.getAreasFound());
         } catch(IOException e) {
             System.err.println("Could not read data file: " + dataPath);
         }

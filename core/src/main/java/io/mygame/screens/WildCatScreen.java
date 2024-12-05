@@ -5,8 +5,8 @@ import com.badlogic.gdx.Screen;
 import io.mygame.common.SoundManager;
 
 public abstract class WildCatScreen implements Screen, ScreenState {
-    Game game;
-    SoundManager sound;
+    protected Game game;
+    protected SoundManager soundManager;
 
     public WildCatScreen(Game game) {
         this.game = game;
@@ -16,17 +16,29 @@ public abstract class WildCatScreen implements Screen, ScreenState {
     public void resize(int width, int height) {}
 
     @Override
-    public abstract void show();
-
-    @Override
-    public void hide() {}
-
-    @Override
     public void pause() {}
 
     @Override
     public void resume() {}
 
     @Override
-    public void dispose() {}
+    public void hide() {}
+
+    public abstract void render(float delta);
+
+    @Override
+    public abstract void show();
+
+    @Override
+    public abstract void dispose();
+
+    /**
+     * Changes the current screen to a new GameScreen.
+     *
+     * @param screen the new screen to be displayed
+     */
+    @Override
+    public void changeScreen(Screen screen) {
+        game.setScreen(screen);
+    }
 }

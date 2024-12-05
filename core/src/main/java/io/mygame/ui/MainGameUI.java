@@ -10,11 +10,12 @@ import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.utils.Align;
+import com.badlogic.gdx.utils.Scaling;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import io.mygame.common.GameManager;
 import io.mygame.common.SoundManager;
 import io.mygame.datahandler.GameDataHandler;
-import io.mygame.screens.MainMenu;
+import io.mygame.screens.MainMenuScreen;
 import io.mygame.screens.ScreenState;
 
 public class MainGameUI extends UI {
@@ -30,16 +31,31 @@ public class MainGameUI extends UI {
     private SoundManager sound;
     private GameManager gameManager;
 
+    private Button ngeBtn;
+    private Button rtlBtn;
+    private Button gleBtn;
+    private Button salBtn;
+    private Button libBtn;
+    private Button espasyoBtn;
+    private Button patioBtn;
+    private Button acadBtn;
+    private Button elemBtn;
+    private Button gymBtn;
+    private Button canteenBtn;
+    private Button chapelBtn;
+    private boolean descriptionViewMode = false;
+
     public MainGameUI(ScreenState screenState, Game game, SoundManager sound) {
         super(new ScreenViewport(), screenState, game);
         this.sound = sound;
         gameManager = GameManager.getInstance();
 
-        stage = new Stage(new ScreenViewport());
-        skin = new Skin(Gdx.files.internal("skins/uiSkins/ui.json"));
-        Gdx.input.setInputProcessor(stage);
 
-        playerHUD();
+
+//    public MainGameUI(ScreenState screenState, Game game, SoundManager soundManager) {
+//        super(new ScreenViewport(), screenState, game, soundManager);
+//        playerHUD();
+//        signUI = new SignDescriptionUI(screenState, game, soundManager);
     }
 
     private void playerHUD() {
@@ -62,7 +78,7 @@ public class MainGameUI extends UI {
         container.padLeft(120.0f);
         container.padTop(12.0f);
 
-        Label labelName = new Label(gameManager.getPlayerName() + " (CIT-U)", skin, "header3");
+        Label labelName = new Label(gameManager.getPlayerName(), skin, "header3");
         container.setActor(labelName);
         stack.addActor(container);
         table.add(stack);
@@ -118,7 +134,7 @@ public class MainGameUI extends UI {
         table1.padTop(100.0f);
         table1.align(Align.topLeft);
 
-        Label label = new Label("Hello, <NAME>", skin, "header");
+        Label label = new Label("Hello, " + gameManager.getPlayerName(), skin, "header");
         table1.add(label).padBottom(40.0f).align(Align.left).colspan(2);
 
         table1.row();
@@ -255,53 +271,71 @@ public class MainGameUI extends UI {
 
         table1 = new Table();
         table1.setTouchable(Touchable.enabled);
-        table1.padTop(60.0f);
+        table1.padTop(70.0f);
         table1.align(Align.top);
 
         Label label = new Label("Areas Discovered", skin, "header");
-        table1.add(label).padBottom(50.0f);
+        table1.add(label).padBottom(20.0f);
 
         table1.row();
+
         Table table2 = new Table();
 
-        ImageButton imageButton = new ImageButton(skin);
-        table2.add(imageButton).padLeft(20.0f).padRight(20.0f).padBottom(20.0f);
+        ngeBtn = new Button(skin, "NGE");
+        ngeBtn.setDisabled(!gameManager.getAreaFound("NGE"));
+        table2.add(ngeBtn).padRight(10.0f).padBottom(20.0f);
 
-        imageButton = new ImageButton(skin, "RTL");
-        table2.add(imageButton).padLeft(20.0f).padRight(20.0f).padBottom(20.0f);
+        rtlBtn = new Button(skin, "RTL");
+        rtlBtn.setDisabled(!gameManager.getAreaFound("RTL"));
+        table2.add(rtlBtn).padLeft(10.0f).padRight(10.0f).padBottom(20.0f);
 
-        imageButton = new ImageButton(skin, "GLE");
-        table2.add(imageButton).padLeft(20.0f).padRight(20.0f).padBottom(20.0f);
-
-        imageButton = new ImageButton(skin, "SAL");
-        table2.add(imageButton).padLeft(20.0f).padRight(20.0f).padBottom(20.0f);
-
-        table2.row();
-        imageButton = new ImageButton(skin, "LRAC");
-        table2.add(imageButton).padLeft(20.0f).padRight(20.0f).padBottom(20.0f);
-
-        imageButton = new ImageButton(skin, "ESPACIO");
-        table2.add(imageButton).padLeft(20.0f).padRight(20.0f).padBottom(20.0f);
-
-        imageButton = new ImageButton(skin, "PATIO");
-        table2.add(imageButton).padLeft(20.0f).padRight(20.0f).padBottom(20.0f);
-
-        imageButton = new ImageButton(skin, "ACAD");
-        table2.add(imageButton).padLeft(20.0f).padRight(20.0f).padBottom(20.0f);
+        gleBtn = new Button(skin, "GLE");
+        gleBtn.setDisabled(!gameManager.getAreaFound("GLE"));
+        table2.add(gleBtn).padLeft(10.0f).padBottom(20.0f);
 
         table2.row();
-        imageButton = new ImageButton(skin, "ELEM");
-        table2.add(imageButton).padLeft(20.0f).padRight(20.0f).padBottom(20.0f);
+        salBtn = new Button(skin, "SAL");
+        salBtn.setDisabled(!gameManager.getAreaFound("SAL"));
+        table2.add(salBtn).padRight(10.0f).padBottom(20.0f);
 
-        imageButton = new ImageButton(skin, "GYM");
-        table2.add(imageButton).padLeft(20.0f).padRight(20.0f).padBottom(20.0f);
+        libBtn = new Button(skin, "Library");
+        System.out.println(gameManager.getAreaFound("Library"));
+        libBtn.setDisabled(!gameManager.getAreaFound("Library"));
+        table2.add(libBtn).padLeft(10.0f).padRight(10.0f).padBottom(20.0f);
 
-        imageButton = new ImageButton(skin, "CANTEEN");
-        table2.add(imageButton).padLeft(20.0f).padRight(20.0f).padBottom(20.0f);
+        espasyoBtn = new Button(skin, "Espasyo");
+        espasyoBtn.setDisabled(!gameManager.getAreaFound("Espasyo"));
+        table2.add(espasyoBtn).padLeft(10.0f).padBottom(20.0f);
 
-        imageButton = new ImageButton(skin, "CHAPEL");
-        table2.add(imageButton).padLeft(20.0f).padRight(20.0f).padBottom(20.0f);
-        table1.add(table2).maxHeight(600.0f);
+        table2.row();
+        patioBtn = new Button(skin, "Patio");
+        patioBtn.setDisabled(!gameManager.getAreaFound("Patio"));
+        table2.add(patioBtn).padRight(10.0f).padBottom(20.0f);
+
+        acadBtn = new Button(skin, "ACAD");
+        acadBtn.setDisabled(!gameManager.getAreaFound("ACAD"));
+        table2.add(acadBtn).padLeft(10.0f).padRight(10.0f).padBottom(20.0f);
+
+        elemBtn = new Button(skin, "ELEM");
+        elemBtn.setDisabled(!gameManager.getAreaFound("ELEM"));
+        table2.add(elemBtn).padLeft(10.0f).padBottom(20.0f);
+
+        table2.row();
+        gymBtn = new Button(skin, "Gym");
+        gymBtn.setDisabled(!gameManager.getAreaFound("Gym"));
+        table2.add(gymBtn).padRight(10.0f);
+
+        canteenBtn = new Button(skin, "Canteen");
+        canteenBtn.setDisabled(!gameManager.getAreaFound("Canteen"));
+        table2.add(canteenBtn).padLeft(10.0f).padRight(10.0f);
+
+        chapelBtn = new Button(skin, "Chapel");
+        chapelBtn.setDisabled(!gameManager.getAreaFound("Chapel"));
+        table2.add(chapelBtn).padLeft(10.0f);
+
+        ScrollPane scrollPane = new ScrollPane(table2, skin);
+        scrollPane.setFadeScrollBars(false);
+        table1.add(scrollPane).align(Align.top).width(1000.0f).height(550.0f);
         stack.addActor(table1);
 
         Container container = new Container();
@@ -316,6 +350,7 @@ public class MainGameUI extends UI {
         stage.addActor(currentTable);
 
         buttonListener();
+        explorationButtonListener();
     }
 
     private void settingsTable() {
@@ -442,6 +477,7 @@ public class MainGameUI extends UI {
         statsCb.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent changeEvent, Actor actor) {
+                sound.addSound("click");
                 currentTable.remove();
                 statsTable();
             }
@@ -450,6 +486,7 @@ public class MainGameUI extends UI {
         mapCb.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent changeEvent, Actor actor) {
+                sound.addSound("click");
                 currentTable.remove();
                 mapTable();
             }
@@ -458,6 +495,7 @@ public class MainGameUI extends UI {
         expCb.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent changeEvent, Actor actor) {
+                sound.addSound("click");
                 currentTable.remove();
                 explorationTable();
             }
@@ -466,6 +504,7 @@ public class MainGameUI extends UI {
         settingCb.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent changeEvent, Actor actor) {
+                sound.addSound("click");
                 currentTable.remove();
                 settingsTable();
             }
@@ -474,6 +513,7 @@ public class MainGameUI extends UI {
         exitBtn.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent changeEvent, Actor actor) {
+                sound.addSound("click");
                 menuBtn.setTouchable(Touchable.enabled);
                 currentTable.remove();
             }
@@ -484,6 +524,7 @@ public class MainGameUI extends UI {
         saveBtn.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent changeEvent, Actor actor) {
+                sound.addSound("click");
                 GameDataHandler.saveGameData();
             }
         });
@@ -491,13 +532,16 @@ public class MainGameUI extends UI {
         returnBtn.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent changeEvent, Actor actor) {
-                screenState.changeScreen(new MainMenu(getGame()));
+                sound.addSound("click");
+                screenState.changeScreen(new MainMenuScreen(getGame()));
             }
         });
     }
 
     public void keyMenuHandler() {
         if(Gdx.input.isKeyJustPressed(Input.Keys.Q)) {
+            if(descriptionViewMode) return;
+
             if(menuBtn.getTouchable() == Touchable.enabled) {
                 menuBtn.setTouchable(Touchable.disabled);
                 statsTable();
@@ -506,6 +550,172 @@ public class MainGameUI extends UI {
                 currentTable.remove();
             }
         }
+    }
+
+    private void explorationButtonListener() {
+        Button[] buttons = new Button[] {ngeBtn, rtlBtn, gleBtn, salBtn,
+            libBtn, espasyoBtn, patioBtn, acadBtn, elemBtn, gymBtn,
+            canteenBtn, chapelBtn};
+
+        for(Button button : buttons) {
+            button.addListener(new ChangeListener() {
+                @Override
+                public void changed(ChangeEvent event, Actor actor) {
+                    sound.addSound("click");
+
+                    if(actor == ngeBtn) {
+                        signDescription("NGE");
+                    }
+
+                    if(actor == rtlBtn) {
+                        signDescription("RTL");
+                    }
+
+                    if(actor == gleBtn) {
+                        signDescription("GLE");
+                    }
+
+                    if (actor == salBtn) {
+                        signDescription("SAL");
+                    }
+
+                    if(actor == libBtn) {
+                        signDescription("Library");
+                    }
+
+                    if(actor == espasyoBtn) {
+                        signDescription("Espasyo");
+                    }
+
+                    if(actor == patioBtn) {
+                        signDescription("Patio");
+                    }
+
+                    if(actor == acadBtn) {
+                        signDescription("ACAD");
+                    }
+
+                    if(actor == elemBtn) {
+                        signDescription("ELEM");
+                    }
+
+                    if(actor == gymBtn) {
+                        signDescription("Gym");
+                    }
+
+                    if(actor == canteenBtn) {
+                        signDescription("Canteen");
+                    }
+
+                    if(actor == chapelBtn) {
+                        signDescription("Chapel");
+                    }
+                }
+            });
+        }
+    }
+
+    public void signDescription(String type) {
+        Table table = new Table();
+        table.setFillParent(true);
+        Stack stack = new Stack();
+        Image image;
+
+        switch(type) {
+            case "NGE":
+                image = new Image(skin, "NGEPop");
+                image.setScaling(Scaling.none);
+                stack.addActor(image);
+                break;
+            case "RTL":
+                image = new Image(skin, "RTLPop");
+                image.setScaling(Scaling.none);
+                stack.addActor(image);
+                break;
+            case "GLE":
+                image = new Image(skin, "GLEPop");
+                image.setScaling(Scaling.none);
+                stack.addActor(image);
+                break;
+            case "SAL":
+                image = new Image(skin, "SALPop");
+                image.setScaling(Scaling.none);
+                stack.addActor(image);
+                break;
+            case "Library":
+                image = new Image(skin, "LIBPop");
+                image.setScaling(Scaling.none);
+                stack.addActor(image);
+                break;
+            case "Espasyo":
+                image = new Image(skin, "EspasyoPop");
+                image.setScaling(Scaling.none);
+                stack.addActor(image);
+                break;
+            case "Patio":
+                image = new Image(skin, "LearningPatioPop");
+                image.setScaling(Scaling.none);
+                stack.addActor(image);
+                break;
+            case "ACAD":
+                image = new Image(skin, "ACADPop");
+                image.setScaling(Scaling.none);
+                stack.addActor(image);
+                break;
+            case "ELEM":
+                image = new Image(skin, "ElemPop");
+                image.setScaling(Scaling.none);
+                stack.addActor(image);
+                break;
+            case "Gym":
+                image = new Image(skin, "GymPop");
+                image.setScaling(Scaling.none);
+                stack.addActor(image);
+                break;
+            case "Canteen":
+                image = new Image(skin, "CanteenPop");
+                image.setScaling(Scaling.none);
+                stack.addActor(image);
+                break;
+            case "Chapel":
+                image = new Image(skin, "ChapelPop");
+                image.setScaling(Scaling.none);
+                stack.addActor(image);
+                break;
+            default:
+                throw new RuntimeException("Sign Description Type does not exist");
+        }
+
+        Container container = new Container();
+        container.align(Align.topRight);
+        container.padRight(20.0f);
+        container.padTop(20.0f);
+
+        descriptionViewMode = true;
+        statsCb.setTouchable(Touchable.disabled);
+        mapCb.setTouchable(Touchable.disabled);
+        expCb.setTouchable(Touchable.disabled);
+        settingCb.setTouchable(Touchable.disabled);
+
+        Button button = new Button(skin);
+        container.setActor(button);
+        stack.addActor(container);
+        table.add(stack);
+        stage.addActor(table);
+
+        button.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                descriptionViewMode = false;
+                statsCb.setTouchable(Touchable.enabled);
+                mapCb.setTouchable(Touchable.enabled);
+                expCb.setTouchable(Touchable.enabled);
+                settingCb.setTouchable(Touchable.enabled);
+
+                sound.addSound("click");
+                table.remove();
+            }
+        });
     }
 
     @Override

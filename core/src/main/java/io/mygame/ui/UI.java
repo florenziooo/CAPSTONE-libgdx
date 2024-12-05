@@ -7,22 +7,27 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import io.mygame.common.GameManager;
 import io.mygame.screens.ScreenState;
+import io.mygame.common.SoundManager;
+
 
 public abstract class UI {
-    private Game game;
+    private final Game game;
     protected Stage stage;
     protected Skin skin;
     protected ScreenState screenState;
-    protected GameManager gameManager = GameManager.getInstance();
+    protected final GameManager gameManager;
+    protected SoundManager soundManager;
 
-    public UI(Viewport viewport, ScreenState screenState, Game game) {
+    public UI(Viewport viewport, ScreenState screenState, Game game, SoundManager soundManager) {
         stage = new Stage(viewport);
         Gdx.input.setInputProcessor(stage);
-
         skin = new Skin(Gdx.files.internal("skins/uiSkins/ui.json"));
+
+        gameManager = GameManager.getInstance();
 
         this.screenState = screenState;
         this.game = game;
+        this.soundManager = soundManager;
     }
 
     public void render() {

@@ -4,128 +4,228 @@ size: 2048, 2048
 format: RGBA8888
 filter: Linear, Linear
 repeat: none
-building1
+IntroScreen
   rotate: false
-  xy: 1003, 962
-  size: 155, 120
-  orig: 155, 120
+  xy: 1, 903
+  size: 1920, 1080
+  orig: 1920, 1080
   offset: 0, 0
   index: -1
-building10
+ACADPop
   rotate: false
-  xy: 857, 279
-  size: 155, 120
-  orig: 155, 120
+  xy: 1, 1
+  size: 1300, 900
+  orig: 1300, 900
   offset: 0, 0
   index: -1
-building11
+
+ui2.png
+size: 2048, 2048
+format: RGBA8888
+filter: Linear, Linear
+repeat: none
+CanteenPop
   rotate: false
-  xy: 857, 157
-  size: 155, 120
-  orig: 155, 120
+  xy: 1, 903
+  size: 1300, 900
+  orig: 1300, 900
   offset: 0, 0
   index: -1
-building12
+ChapelPop
   rotate: false
-  xy: 508, 88
-  size: 155, 120
-  orig: 155, 120
+  xy: 1, 1
+  size: 1300, 900
+  orig: 1300, 900
   offset: 0, 0
   index: -1
-building2
+
+ui3.png
+size: 2048, 2048
+format: RGBA8888
+filter: Linear, Linear
+repeat: none
+ElemPop
   rotate: false
-  xy: 1203, 1283
-  size: 155, 120
-  orig: 155, 120
+  xy: 1, 903
+  size: 1300, 900
+  orig: 1300, 900
   offset: 0, 0
   index: -1
-building3
+EspasyoPop
   rotate: false
-  xy: 1397, 1446
-  size: 155, 120
-  orig: 155, 120
+  xy: 1, 1
+  size: 1300, 900
+  orig: 1300, 900
   offset: 0, 0
   index: -1
-building4
+
+ui4.png
+size: 2048, 2048
+format: RGBA8888
+filter: Linear, Linear
+repeat: none
+GLEPop
   rotate: false
-  xy: 1711, 1682
-  size: 155, 120
-  orig: 155, 120
+  xy: 1, 903
+  size: 1300, 900
+  orig: 1300, 900
   offset: 0, 0
   index: -1
-building5
+GymPop
   rotate: false
-  xy: 1003, 840
-  size: 155, 120
-  orig: 155, 120
+  xy: 1, 1
+  size: 1300, 900
+  orig: 1300, 900
   offset: 0, 0
   index: -1
-building6
+
+ui5.png
+size: 2048, 2048
+format: RGBA8888
+filter: Linear, Linear
+repeat: none
+LIBPop
   rotate: false
-  xy: 1003, 718
-  size: 155, 120
-  orig: 155, 120
+  xy: 1, 1
+  size: 1300, 900
+  orig: 1300, 900
   offset: 0, 0
   index: -1
-building7
+LearningPatioPop
   rotate: false
-  xy: 1554, 1446
-  size: 155, 120
-  orig: 155, 120
+  xy: 1, 903
+  size: 1300, 900
+  orig: 1300, 900
   offset: 0, 0
   index: -1
-building8
+
+ui6.png
+size: 2048, 2048
+format: RGBA8888
+filter: Linear, Linear
+repeat: none
+NGEPop
   rotate: false
-  xy: 857, 523
-  size: 155, 120
-  orig: 155, 120
+  xy: 1, 903
+  size: 1300, 900
+  orig: 1300, 900
   offset: 0, 0
   index: -1
-building9
+RTLPop
   rotate: false
-  xy: 857, 401
-  size: 155, 120
-  orig: 155, 120
+  xy: 1, 1
+  size: 1300, 900
+  orig: 1300, 900
+  offset: 0, 0
+  index: -1
+
+ui7.png
+size: 2048, 2048
+format: RGBA8888
+filter: Linear, Linear
+repeat: none
+SALPop
+  rotate: false
+  xy: 1, 803
+  size: 1300, 900
+  orig: 1300, 900
+  offset: 0, 0
+  index: -1
+menu_bg
+  rotate: false
+  xy: 1, 1
+  size: 1200, 800
+  orig: 1200, 800
+  offset: 0, 0
+  index: -1
+
+ui8.png
+size: 2048, 2048
+format: RGBA8888
+filter: Linear, Linear
+repeat: none
+C&C Red Alert [INET](11)
+  rotate: false
+  xy: 1003, 1543
+  size: 506, 87
+  orig: 506, 87
   offset: 0, 0
   index: -1
 C&C Red Alert [INET](2)
   rotate: false
-  xy: 1203, 1965
+  xy: 1, 1262
   size: 506, 82
   orig: 506, 82
   offset: 0, 0
   index: -1
 C&C Red Alert [INET](3)
   rotate: false
-  xy: 1, 321
+  xy: 1003, 1632
   size: 506, 322
   orig: 506, 322
   offset: 0, 0
   index: -1
 C&C Red Alert [INET](4)
   rotate: false
-  xy: 1, 141
+  xy: 1, 514
   size: 505, 178
   orig: 505, 178
   offset: 0, 0
   index: -1
 C&C Red Alert [INET](5)
   rotate: false
-  xy: 1203, 1681
+  xy: 1, 978
+  size: 506, 282
+  orig: 506, 282
+  offset: 0, 0
+  index: -1
+C&C Red Alert [INET](10)
+  rotate: false
+  xy: 1, 978
   size: 506, 282
   orig: 506, 282
   offset: 0, 0
   index: -1
 C&C Red Alert [INET](6)
   rotate: false
-  xy: 1203, 1568
+  xy: 1003, 1430
   size: 505, 111
   orig: 505, 111
   offset: 0, 0
   index: -1
+C&C Red Alert [INET](9)
+  rotate: false
+  xy: 1, 694
+  size: 506, 282
+  orig: 506, 282
+  offset: 0, 0
+  index: -1
+Rectangle 5
+  rotate: false
+  xy: 2007, 1449
+  size: 11, 539
+  orig: 11, 539
+  offset: 0, 0
+  index: -1
+Rectangle 6
+  rotate: false
+  xy: 1855, 1030
+  size: 13, 381
+  orig: 13, 381
+  offset: 0, 0
+  index: -1
+menu_button-disabled
+  rotate: false
+  xy: 778, 1392
+  size: 90, 27
+  split: 0, 0, 0, 0
+  pad: 4, 3, 3, 5
+  orig: 90, 27
+  offset: 0, 0
+  index: -1
 exit_btn
   rotate: false
-  xy: 1065, 656
+  xy: 1397, 1368
   size: 60, 60
   split: 9, 9, 7, 8
   pad: 0, 0, 0, 0
@@ -134,7 +234,7 @@ exit_btn
   index: -1
 exp_btn1
   rotate: false
-  xy: 1868, 1691
+  xy: 1763, 1229
   size: 90, 90
   split: 0, 0, 0, 0
   pad: 10, 17, 10, 16
@@ -143,7 +243,7 @@ exp_btn1
   index: -1
 exp_btn2
   rotate: false
-  xy: 1397, 1354
+  xy: 1763, 1137
   size: 90, 90
   split: 10, 0, 0, 0
   pad: 18, 2, 11, 16
@@ -152,7 +252,7 @@ exp_btn2
   index: -1
 hud_btn1
   rotate: false
-  xy: 1003, 656
+  xy: 1751, 1961
   size: 60, 60
   split: 10, 10, 6, 8
   pad: 0, 0, 0, 0
@@ -161,7 +261,7 @@ hud_btn1
   index: -1
 hud_btn2
   rotate: false
-  xy: 1963, 1987
+  xy: 1305, 1276
   size: 60, 60
   split: 9, 9, 11, 8
   pad: 0, 0, 0, 0
@@ -170,7 +270,7 @@ hud_btn2
   index: -1
 map_btn1
   rotate: false
-  xy: 1905, 1875
+  xy: 1905, 1442
   size: 90, 90
   split: 4, 13, 4, 11
   pad: 11, 17, 11, 17
@@ -179,7 +279,7 @@ map_btn1
   index: -1
 map_btn2
   rotate: false
-  xy: 1905, 1783
+  xy: 1763, 1321
   size: 90, 90
   split: 11, 0, 1, 1
   pad: 19, 3, 11, 17
@@ -188,7 +288,7 @@ map_btn2
   index: -1
 menu_button
   rotate: false
-  xy: 1, 5
+  xy: 1813, 1413
   size: 90, 27
   split: 0, 0, 0, 0
   pad: 11, 13, 7, 9
@@ -197,7 +297,7 @@ menu_button
   index: -1
 menu_button2
   rotate: false
-  xy: 1203, 1254
+  xy: 1, 16
   size: 90, 27
   split: 0, 0, 0, 0
   pad: 10, 10, 7, 7
@@ -206,7 +306,7 @@ menu_button2
   index: -1
 paper
   rotate: false
-  xy: 1003, 1084
+  xy: 1813, 1860
   size: 192, 161
   split: 0, 0, 0, 0
   pad: 12, 13, 15, 16
@@ -215,32 +315,16 @@ paper
   index: -1
 paper_focus.9
   rotate: false
-  xy: 1203, 1405
+  xy: 1813, 1697
   size: 192, 161
   split: 0, 0, 0, 0
   pad: 12, 11, 12, 12
   orig: 192, 161
   offset: 0, 0
   index: -1
-scroll_bar
-  rotate: false
-  xy: 2025, 1547
-  size: 22, 500
-  split: 0, 0, 0, 0
-  orig: 22, 500
-  offset: 0, 0
-  index: -1
-scroll_knob
-  rotate: false
-  xy: 1160, 982
-  size: 30, 100
-  split: 0, 0, 0, 0
-  orig: 30, 100
-  offset: 0, 0
-  index: -1
 settings_btn1
   rotate: false
-  xy: 1489, 1354
+  xy: 1763, 1045
   size: 90, 90
   split: 0, 0, 0, 0
   pad: 10, 17, 10, 17
@@ -249,7 +333,7 @@ settings_btn1
   index: -1
 settings_btn2
   rotate: false
-  xy: 1581, 1354
+  xy: 1763, 953
   size: 90, 90
   split: 10, 0, 0, 0
   pad: 18, 2, 10, 16
@@ -258,7 +342,7 @@ settings_btn2
   index: -1
 stats_btn1
   rotate: false
-  xy: 665, 118
+  xy: 1305, 1338
   size: 90, 90
   split: 3, 12, 3, 10
   pad: 10, 17, 11, 16
@@ -267,7 +351,7 @@ stats_btn1
   index: -1
 stats_btn2
   rotate: false
-  xy: 757, 118
+  xy: 1813, 1442
   size: 90, 90
   split: 13, 0, 3, 10
   pad: 18, 3, 10, 17
@@ -276,7 +360,7 @@ stats_btn2
   index: -1
 volume
   rotate: false
-  xy: 665, 100
+  xy: 760, 531
   size: 48, 16
   split: 2, 2, 2, 2
   orig: 48, 16
@@ -284,7 +368,7 @@ volume
   index: -1
 volume2.9
   rotate: false
-  xy: 665, 100
+  xy: 760, 531
   size: 48, 16
   split: 0, 0, 0, 0
   pad: 2, 2, 2, 2
@@ -293,7 +377,7 @@ volume2.9
   index: -1
 volume_knob
   rotate: false
-  xy: 93, 1
+  xy: 2007, 1990
   size: 16, 31
   split: 1, 1, 5, 5
   pad: 0, 0, 0, 0
@@ -302,7 +386,7 @@ volume_knob
   index: -1
 volume_knobb.9
   rotate: false
-  xy: 1014, 577
+  xy: 1763, 874
   size: 48, 77
   split: 0, 0, 0, 0
   orig: 48, 77
@@ -310,7 +394,7 @@ volume_knobb.9
   index: -1
 volumeb.9
   rotate: false
-  xy: 1711, 1967
+  xy: 508, 467
   size: 250, 80
   split: 0, 0, 0, 0
   orig: 250, 80
@@ -318,36 +402,227 @@ volumeb.9
   index: -1
 avatar_frame
   rotate: false
-  xy: 509, 210
+  xy: 509, 911
   size: 346, 433
   orig: 346, 433
   offset: 0, 0
   index: -1
+ACAD
+  rotate: false
+  xy: 509, 730
+  size: 300, 179
+  orig: 300, 179
+  offset: 0, 0
+  index: -1
+Canteen
+  rotate: false
+  xy: 1, 45
+  size: 300, 179
+  orig: 300, 179
+  offset: 0, 0
+  index: -1
+Chapel
+  rotate: false
+  xy: 1511, 1775
+  size: 300, 179
+  orig: 300, 179
+  offset: 0, 0
+  index: -1
+Disabled
+  rotate: false
+  xy: 1, 226
+  size: 300, 179
+  orig: 300, 179
+  offset: 0, 0
+  index: -1
+Elem
+  rotate: false
+  xy: 1511, 1594
+  size: 300, 179
+  orig: 300, 179
+  offset: 0, 0
+  index: -1
+Espasyo
+  rotate: false
+  xy: 303, 226
+  size: 300, 179
+  orig: 300, 179
+  offset: 0, 0
+  index: -1
+GLE
+  rotate: false
+  xy: 303, 45
+  size: 300, 179
+  orig: 300, 179
+  offset: 0, 0
+  index: -1
+Gym
+  rotate: false
+  xy: 1511, 1413
+  size: 300, 179
+  orig: 300, 179
+  offset: 0, 0
+  index: -1
+LearningPatio
+  rotate: false
+  xy: 509, 549
+  size: 300, 179
+  orig: 300, 179
+  offset: 0, 0
+  index: -1
+Library
+  rotate: false
+  xy: 1003, 1249
+  size: 300, 179
+  orig: 300, 179
+  offset: 0, 0
+  index: -1
+NGE
+  rotate: false
+  xy: 857, 1068
+  size: 300, 179
+  orig: 300, 179
+  offset: 0, 0
+  index: -1
+RTL
+  rotate: false
+  xy: 857, 887
+  size: 300, 179
+  orig: 300, 179
+  offset: 0, 0
+  index: -1
+SAL
+  rotate: false
+  xy: 811, 706
+  size: 300, 179
+  orig: 300, 179
+  offset: 0, 0
+  index: -1
+ACAD-over
+  rotate: false
+  xy: 811, 525
+  size: 300, 179
+  orig: 300, 179
+  offset: 0, 0
+  index: -1
+Canteen-over
+  rotate: false
+  xy: 1159, 1068
+  size: 300, 179
+  orig: 300, 179
+  offset: 0, 0
+  index: -1
+Chapel-over
+  rotate: false
+  xy: 1159, 887
+  size: 300, 179
+  orig: 300, 179
+  offset: 0, 0
+  index: -1
+Elem-over
+  rotate: false
+  xy: 1113, 706
+  size: 300, 179
+  orig: 300, 179
+  offset: 0, 0
+  index: -1
+Espasyo-over
+  rotate: false
+  xy: 1113, 525
+  size: 300, 179
+  orig: 300, 179
+  offset: 0, 0
+  index: -1
+GLE-over
+  rotate: false
+  xy: 1461, 1232
+  size: 300, 179
+  orig: 300, 179
+  offset: 0, 0
+  index: -1
+Gym-over
+  rotate: false
+  xy: 1461, 1051
+  size: 300, 179
+  orig: 300, 179
+  offset: 0, 0
+  index: -1
+LearningPatio-over
+  rotate: false
+  xy: 1461, 870
+  size: 300, 179
+  orig: 300, 179
+  offset: 0, 0
+  index: -1
+Library-over
+  rotate: false
+  xy: 1415, 689
+  size: 300, 179
+  orig: 300, 179
+  offset: 0, 0
+  index: -1
+NGE-over
+  rotate: false
+  xy: 1415, 508
+  size: 300, 179
+  orig: 300, 179
+  offset: 0, 0
+  index: -1
+RTL-over
+  rotate: false
+  xy: 1717, 689
+  size: 300, 179
+  orig: 300, 179
+  offset: 0, 0
+  index: -1
+SAL-over
+  rotate: false
+  xy: 1717, 508
+  size: 300, 179
+  orig: 300, 179
+  offset: 0, 0
+  index: -1
 map_frame2
   rotate: false
-  xy: 1, 645
+  xy: 1, 1421
   size: 1000, 600
   orig: 1000, 600
   offset: 0, 0
   index: -1
 paper_disabled
   rotate: false
-  xy: 1711, 1804
+  xy: 1813, 1534
   size: 192, 161
   orig: 192, 161
   offset: 0, 0
   index: -1
 player_hud
   rotate: false
-  xy: 1, 34
+  xy: 1, 407
   size: 499, 105
   orig: 499, 105
   offset: 0, 0
   index: -1
-menu_bg
+textFieldBg
   rotate: false
-  xy: 1, 1247
-  size: 1200, 800
-  orig: 1200, 800
+  xy: 1, 1346
+  size: 775, 73
+  split: 0, 0, 0, 0
+  orig: 775, 73
+  offset: 0, 0
+  index: -1
+textFieldCursor
+  rotate: false
+  xy: 502, 447
+  size: 4, 65
+  orig: 4, 65
+  offset: 0, 0
+  index: -1
+textFieldSelection
+  rotate: false
+  xy: 1003, 1956
+  size: 746, 65
+  split: 0, 0, 0, 0
+  orig: 746, 65
   offset: 0, 0
   index: -1

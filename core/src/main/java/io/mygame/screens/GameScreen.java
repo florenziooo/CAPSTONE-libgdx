@@ -21,7 +21,9 @@ import io.mygame.entities.NPC;
 import io.mygame.factories.EntityFactory;
 import io.mygame.common.SoundManager;
 import io.mygame.entities.Player;
+import io.mygame.common.SoundManager;
 import io.mygame.ui.MainGameUI;
+import io.mygame.ui.UI;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,7 +40,7 @@ public class GameScreen extends WildCatScreen {
     private CollisionHandler collisionHandler;
 
     /************ USER INTERFACES ***********/
-    private MainGameUI mainGameUI;
+    private UI mainGameUI;
 
     /************ SCREEN VIEWPORT SIZE ************/
     private Viewport viewport;
@@ -216,7 +218,7 @@ public class GameScreen extends WildCatScreen {
             footstepTimer = 0f;
         }
 
-        mainGameUI.keyMenuHandler();
+        ((MainGameUI) mainGameUI).keyMenuHandler();
     }
 
 

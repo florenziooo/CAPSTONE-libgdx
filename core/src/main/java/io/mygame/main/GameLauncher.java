@@ -4,8 +4,7 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Cursor;
 import com.badlogic.gdx.graphics.Pixmap;
-import io.mygame.common.GameManager;
-import io.mygame.screens.MainMenu;
+import io.mygame.screens.MainMenuScreen;
 
 /** {@link com.badlogic.gdx.ApplicationListener} implementation shared by all platforms. */
 public class GameLauncher extends Game {
@@ -16,6 +15,6 @@ public class GameLauncher extends Game {
         Gdx.graphics.setCursor(customCursor);
         cursor.dispose();
 
-        setScreen(new MainMenu(this));
+        setScreen(new MainMenuScreen(this));
     }
 }
