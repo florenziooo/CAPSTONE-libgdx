@@ -216,7 +216,7 @@ public class GameScreen extends WildCatScreen {
         }
 
         if (isMoving && footstepTimer >= FOOTSTEP_DELAY) {
-            ((MainGameUI)mainGameUI).walkSFX();
+            soundManager.addSound("walk");
             footstepTimer = 0f;
         }
 

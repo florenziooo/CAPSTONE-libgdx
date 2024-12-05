@@ -9,6 +9,7 @@ import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.utils.Align;
+import com.badlogic.gdx.utils.Scaling;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import io.mygame.common.SoundManager;
 import io.mygame.datahandler.GameDataHandler;
@@ -39,9 +40,12 @@ public class MainGameUI extends UI {
     private Button canteenBtn;
     private Button chapelBtn;
 
+    private boolean descriptionViewMode = false;
+
     public MainGameUI(ScreenState screenState, Game game, SoundManager soundManager) {
         super(new ScreenViewport(), screenState, game, soundManager);
         playerHUD();
+//        signUI = new SignDescriptionUI(screenState, game, soundManager);
     }
 
     private void playerHUD() {
@@ -285,6 +289,7 @@ public class MainGameUI extends UI {
         table2.add(salBtn).padRight(10.0f).padBottom(20.0f);
 
         libBtn = new Button(skin, "Library");
+        System.out.println(gameManager.getAreaFound("Library"));
         libBtn.setDisabled(!gameManager.getAreaFound("Library"));
         table2.add(libBtn).padLeft(10.0f).padRight(10.0f).padBottom(20.0f);
 
@@ -514,6 +519,8 @@ public class MainGameUI extends UI {
 
     public void keyMenuHandler() {
         if(Gdx.input.isKeyJustPressed(Input.Keys.Q)) {
+            if(descriptionViewMode) return;
+
             if(menuBtn.getTouchable() == Touchable.enabled) {
                 menuBtn.setTouchable(Touchable.disabled);
                 statsTable();
@@ -536,59 +543,158 @@ public class MainGameUI extends UI {
                     soundManager.addSound("click");
 
                     if(actor == ngeBtn) {
-                        System.out.println("Nge Button Pressed");
+                        signDescription("NGE");
                     }
 
                     if(actor == rtlBtn) {
-                        System.out.println("Rtl Button Pressed");
+                        signDescription("RTL");
                     }
 
                     if(actor == gleBtn) {
-                        System.out.println("Gle Button Pressed");
+                        signDescription("GLE");
                     }
 
                     if (actor == salBtn) {
-                        System.out.println("Sale Button Pressed");
+                        signDescription("SAL");
                     }
 
                     if(actor == libBtn) {
-                        System.out.println("Lib Button Pressed");
+                        signDescription("Library");
                     }
 
                     if(actor == espasyoBtn) {
-                        System.out.println("Espasyo Button Pressed");
+                        signDescription("Espasyo");
                     }
 
                     if(actor == patioBtn) {
-                        System.out.println("Patio Button Pressed");
+                        signDescription("Patio");
                     }
 
                     if(actor == acadBtn) {
-                        System.out.println("Acad Button Pressed");
+                        signDescription("ACAD");
                     }
 
                     if(actor == elemBtn) {
-                        System.out.println("Elem Button Pressed");
+                        signDescription("ELEM");
                     }
 
                     if(actor == gymBtn) {
-                        System.out.println("Gym Button Pressed");
+                        signDescription("Gym");
                     }
 
                     if(actor == canteenBtn) {
-                        System.out.println("Canteen Button Pressed");
+                        signDescription("Canteen");
                     }
 
                     if(actor == chapelBtn) {
-                        System.out.println("Chapel Button Pressed");
+                        signDescription("Chapel");
                     }
                 }
             });
         }
     }
 
-    public void walkSFX() {
-        soundManager.addSound("walk");
+    public void signDescription(String type) {
+        Table table = new Table();
+        table.setFillParent(true);
+        Stack stack = new Stack();
+        Image image;
+
+        switch(type) {
+            case "NGE":
+                image = new Image(skin, "NGEPop");
+                image.setScaling(Scaling.none);
+                stack.addActor(image);
+                break;
+            case "RTL":
+                image = new Image(skin, "RTLPop");
+                image.setScaling(Scaling.none);
+                stack.addActor(image);
+                break;
+            case "GLE":
+                image = new Image(skin, "GLEPop");
+                image.setScaling(Scaling.none);
+                stack.addActor(image);
+                break;
+            case "SAL":
+                image = new Image(skin, "SALPop");
+                image.setScaling(Scaling.none);
+                stack.addActor(image);
+                break;
+            case "Library":
+                image = new Image(skin, "LIBPop");
+                image.setScaling(Scaling.none);
+                stack.addActor(image);
+                break;
+            case "Espasyo":
+                image = new Image(skin, "EspasyoPop");
+                image.setScaling(Scaling.none);
+                stack.addActor(image);
+                break;
+            case "Patio":
+                image = new Image(skin, "LearningPatioPop");
+                image.setScaling(Scaling.none);
+                stack.addActor(image);
+                break;
+            case "ACAD":
+                image = new Image(skin, "ACADPop");
+                image.setScaling(Scaling.none);
+                stack.addActor(image);
+                break;
+            case "ELEM":
+                image = new Image(skin, "ElemPop");
+                image.setScaling(Scaling.none);
+                stack.addActor(image);
+                break;
+            case "Gym":
+                image = new Image(skin, "GymPop");
+                image.setScaling(Scaling.none);
+                stack.addActor(image);
+                break;
+            case "Canteen":
+                image = new Image(skin, "CanteenPop");
+                image.setScaling(Scaling.none);
+                stack.addActor(image);
+                break;
+            case "Chapel":
+                image = new Image(skin, "ChapelPop");
+                image.setScaling(Scaling.none);
+                stack.addActor(image);
+                break;
+            default:
+                throw new RuntimeException("Sign Description Type does not exist");
+        }
+
+        Container container = new Container();
+        container.align(Align.topRight);
+        container.padRight(20.0f);
+        container.padTop(20.0f);
+
+        descriptionViewMode = true;
+        statsCb.setTouchable(Touchable.disabled);
+        mapCb.setTouchable(Touchable.disabled);
+        expCb.setTouchable(Touchable.disabled);
+        settingCb.setTouchable(Touchable.disabled);
+
+        Button button = new Button(skin);
+        container.setActor(button);
+        stack.addActor(container);
+        table.add(stack);
+        stage.addActor(table);
+
+        button.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                descriptionViewMode = false;
+                statsCb.setTouchable(Touchable.enabled);
+                mapCb.setTouchable(Touchable.enabled);
+                expCb.setTouchable(Touchable.enabled);
+                settingCb.setTouchable(Touchable.enabled);
+
+                soundManager.addSound("click");
+                table.remove();
+            }
+        });
     }
 
     @Override

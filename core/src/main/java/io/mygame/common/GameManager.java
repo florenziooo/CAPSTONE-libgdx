@@ -57,6 +57,10 @@ public class GameManager implements Serializable {
         areasFound.put(key, true);
     }
 
+    public void setAreasFound(HashMap<String, Boolean> areasFound) {
+        this.areasFound = areasFound;
+    }
+
     public void increaseNpcFound() {
         npcFound++;
     }
@@ -71,6 +75,10 @@ public class GameManager implements Serializable {
             throw new IllegalArgumentException("Key: " + key + " not found in HashMap as part of the discoverable areas");
         }
         return value;
+    }
+
+    public HashMap<String, Boolean> getAreasFound() {
+        return areasFound;
     }
 
     public void resetDefaultValues() {
