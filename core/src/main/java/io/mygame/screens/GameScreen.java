@@ -21,7 +21,6 @@ import io.mygame.entities.NPC;
 import io.mygame.factories.EntityFactory;
 import io.mygame.common.SoundManager;
 import io.mygame.entities.Player;
-import io.mygame.common.SoundManager;
 import io.mygame.ui.MainGameUI;
 import io.mygame.ui.UI;
 
@@ -64,7 +63,7 @@ public class GameScreen extends WildCatScreen {
      */
     public GameScreen(Game game, SoundManager sound) {
         super(game);
-        this.sound = sound; // reuse the SoundManager from the MainMenu
+        super.sound = sound; // reuse the SoundManager from the MainMenu
     }
 
     private List<NPC> npcs;

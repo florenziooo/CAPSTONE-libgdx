@@ -9,12 +9,12 @@ public class IntroScreen extends WildCatScreen {
     private UI introGameUI;
     public IntroScreen(Game game, SoundManager soundManager) {
         super(game);
-        this.soundManager = soundManager;
+        this.sound = soundManager;
     }
 
     @Override
     public void show() {
-        introGameUI = new IntroGameUI(this, game, soundManager);
+        introGameUI = new IntroGameUI(this, game, sound);
     }
 
     @Override

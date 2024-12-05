@@ -28,8 +28,6 @@ public class MainGameUI extends UI {
     private Button exitBtn;
     private Button menuBtn;
     private Table currentTable;
-    private SoundManager sound;
-    private GameManager gameManager;
 
     private Button ngeBtn;
     private Button rtlBtn;
@@ -46,16 +44,8 @@ public class MainGameUI extends UI {
     private boolean descriptionViewMode = false;
 
     public MainGameUI(ScreenState screenState, Game game, SoundManager sound) {
-        super(new ScreenViewport(), screenState, game);
-        this.sound = sound;
-        gameManager = GameManager.getInstance();
-
-
-
-//    public MainGameUI(ScreenState screenState, Game game, SoundManager soundManager) {
-//        super(new ScreenViewport(), screenState, game, soundManager);
-//        playerHUD();
-//        signUI = new SignDescriptionUI(screenState, game, soundManager);
+        super(new ScreenViewport(), screenState, game, sound);
+        playerHUD();
     }
 
     private void playerHUD() {

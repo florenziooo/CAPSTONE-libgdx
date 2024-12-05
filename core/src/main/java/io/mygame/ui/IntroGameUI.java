@@ -91,18 +91,18 @@ public class IntroGameUI extends UI {
         submitBtn.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                soundManager.addSound("click");
+                sound.addSound("click");
                 gameManager.resetDefaultValues();
                 gameManager.setPlayerName(nameField.getText());
                 GameDataHandler.saveGameData();
-                screenState.changeScreen(new GameScreen(getGame(), soundManager));
+                screenState.changeScreen(new GameScreen(getGame(), sound));
             }
         });
 
         returnBtn.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                soundManager.addSound("click");
+                sound.addSound("click");
                 screenState.changeScreen(new MainMenuScreen(getGame()));
                 System.out.println("Pressed return button");
             }

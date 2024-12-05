@@ -66,17 +66,17 @@ public class MainMenuUI extends UI {
         startBtn.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                soundManager.addSound("click");
-                screenState.changeScreen(new IntroScreen(getGame(), soundManager));
+                sound.addSound("click");
+                screenState.changeScreen(new IntroScreen(getGame(), sound));
             }
         });
 
         loadBtn.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                soundManager.addSound("click");
+                sound.addSound("click");
                 GameDataHandler.loadGameData();
-                screenState.changeScreen(new GameScreen(getGame(), soundManager));
+                screenState.changeScreen(new GameScreen(getGame(), sound));
             }
         });
 

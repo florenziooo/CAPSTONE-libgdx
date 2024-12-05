@@ -6,7 +6,7 @@ import io.mygame.common.SoundManager;
 
 public abstract class WildCatScreen implements Screen, ScreenState {
     protected Game game;
-    protected SoundManager soundManager;
+    protected SoundManager sound;
 
     public WildCatScreen(Game game) {
         this.game = game;

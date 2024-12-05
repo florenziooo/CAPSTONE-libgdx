@@ -16,9 +16,9 @@ public abstract class UI {
     protected Skin skin;
     protected ScreenState screenState;
     protected final GameManager gameManager;
-    protected SoundManager soundManager;
+    protected SoundManager sound;
 
-    public UI(Viewport viewport, ScreenState screenState, Game game, SoundManager soundManager) {
+    public UI(Viewport viewport, ScreenState screenState, Game game, SoundManager sound) {
         stage = new Stage(viewport);
         Gdx.input.setInputProcessor(stage);
         skin = new Skin(Gdx.files.internal("skins/uiSkins/ui.json"));
@@ -27,7 +27,7 @@ public abstract class UI {
 
         this.screenState = screenState;
         this.game = game;
-        this.soundManager = soundManager;
+        this.sound = sound;
     }
 
     public void render() {
