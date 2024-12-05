@@ -25,7 +25,7 @@ public class MainMenu extends WildCatScreen {
     private Stage stage;
     private Skin redSkin;
     private Skin yellowSkin;
-    private GameManager gameManager;
+    private static final GameManager gameManagerInstance = GameManager.getInstance();
 
     public MainMenu(Game game) {
         super(game);
@@ -38,11 +38,9 @@ public class MainMenu extends WildCatScreen {
         stage = new Stage(new ScreenViewport());
         Gdx.input.setInputProcessor(stage);
 
-        gameManager = GameManager.getInstance();
-
-        sound = new SoundManager.Builder()
+        gameManagerInstance.setSoundManager(new SoundManager.Builder()
             .setbgMusic("sound/music/the_secret_spring_loopable.mp3")
-            .build();
+            .build());
 
         yellowSkin = new Skin(Gdx.files.internal("skins/main_menu_button/yellow/yellow.json"));
         redSkin = new Skin(Gdx.files.internal("skins/main_menu_button/red/red.json"));
@@ -72,26 +70,26 @@ public class MainMenu extends WildCatScreen {
         startButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                sound.addSound("click");
-                gameManager.resetDefaultValues();
+                gameManagerInstance.getSoundManager().addSound("click");
+                gameManagerInstance.resetDefaultValues();
                 GameDataHandler.saveGameData();
-                changeScreen(new GameScreen(game, sound));
+                changeScreen(new GameScreen(game));
             }
         });
 
         loadButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                sound.addSound("click");
+                gameManagerInstance.getSoundManager().addSound("click");
                 GameDataHandler.loadGameData();
-                changeScreen(new GameScreen(game, sound));
+                changeScreen(new GameScreen(game));
             }
         });
 
         exitButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                sound.addSound("click");
+                gameManagerInstance.getSoundManager().addSound("click");
                 Gdx.app.exit();
             }
         });

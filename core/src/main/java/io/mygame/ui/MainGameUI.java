@@ -27,12 +27,10 @@ public class MainGameUI extends UI {
     private Button exitBtn;
     private Button menuBtn;
     private Table currentTable;
-    private SoundManager sound;
     private GameManager gameManager;
 
-    public MainGameUI(ScreenState screenState, Game game, SoundManager sound) {
+    public MainGameUI(ScreenState screenState, Game game) {
         super(new ScreenViewport(), screenState, game);
-        this.sound = sound;
         gameManager = GameManager.getInstance();
 
         stage = new Stage(new ScreenViewport());
@@ -377,7 +375,7 @@ public class MainGameUI extends UI {
             public void changed(ChangeEvent event, Actor actor) {
                 gameManager.setVolume(slider.getValue());
                 // Update background music volume
-                sound.setGlobalVolume(gameManager.getVolume());
+                gameManager.getSoundManager().setGlobalVolume(gameManager.getVolume());
             }
         });
 

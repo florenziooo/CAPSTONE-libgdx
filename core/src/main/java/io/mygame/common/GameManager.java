@@ -38,6 +38,8 @@ public class GameManager implements Serializable {
         return volume;
     }
 
+    public SoundManager getSoundManager() { return soundManager; }
+
     public void setPlayerName(String playerName) {
         this.playerName = playerName;
     }
@@ -50,9 +52,7 @@ public class GameManager implements Serializable {
         this.buildingsFound = buildingsFound;
     }
 
-    public void setSoundManager(SoundManager soundManager) {
-        this.soundManager = soundManager;
-    }
+    public void setSoundManager(SoundManager soundManager) { this.soundManager = soundManager; }
 
     public void setVolume(float volume) {
         this.volume = volume;
