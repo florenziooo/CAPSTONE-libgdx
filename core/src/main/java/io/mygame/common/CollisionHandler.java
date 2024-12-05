@@ -128,7 +128,7 @@ public class CollisionHandler {
                 String objectName = object.getName();
 
                 if (Intersector.overlaps(interactionCircle, rectangle) &&
-                    Gdx.input.isKeyPressed(Input.Keys.E) &&
+                    Gdx.input.isKeyJustPressed(Input.Keys.E) &&
                     !interactedObjects.contains(objectName)) {
 
                     System.out.println("HAS INTERACTED WITH: " + objectName);
