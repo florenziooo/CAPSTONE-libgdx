@@ -17,8 +17,8 @@ public class Player extends GameObject {
     private final InputHandler inputHandler = new InputHandler(this);
 
     public Player() {
-        super(2500, 175, 16, 32);
-        playerAnimation = new AnimationLoader("Sprites/Player.png", "8x6");
+        super(1744, 175, 16, 32);
+        playerAnimation = new AnimationLoader("Sprites/CollegeMale1.png");
     }
 
     public void update() {
