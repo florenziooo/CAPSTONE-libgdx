@@ -29,6 +29,7 @@ public class MainGameUI extends UI {
     private Button menuBtn;
     private Label labelName;
     private Table currentTable;
+    private GameManager gameManager;
 
     private Button ngeBtn;
     private Button rtlBtn;
@@ -44,8 +45,8 @@ public class MainGameUI extends UI {
     private Button chapelBtn;
     private boolean descriptionViewMode = false;
 
-    public MainGameUI(ScreenState screenState, Game game, SoundManager sound) {
-        super(new ScreenViewport(), screenState, game, sound);
+    public MainGameUI(ScreenState screenState, Game game) {
+        super(new ScreenViewport(), screenState, game);
         playerHUD();
     }
 
@@ -403,7 +404,7 @@ public class MainGameUI extends UI {
             public void changed(ChangeEvent event, Actor actor) {
                 gameManager.setVolume(slider.getValue());
                 // Update background music volume
-                sound.setGlobalVolume(gameManager.getVolume());
+                gameManager.getSoundManager().setGlobalVolume(gameManager.getVolume());
             }
         });
 
