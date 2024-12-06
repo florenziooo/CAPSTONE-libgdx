@@ -17,6 +17,7 @@ import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
 import io.mygame.common.CollisionHandler;
+import io.mygame.common.GameManager;
 import io.mygame.entities.GameObject;
 import io.mygame.entities.NPC;
 import io.mygame.factories.EntityFactory;
@@ -55,9 +56,10 @@ public class GameScreen extends WildCatScreen {
     private float footstepTimer = 0f; // timer for footstep sound
     private static final float FOOTSTEP_DELAY = 0.5f; // delay in seconds between footsteps
 
+    private static final GameManager gameManagerInstance = GameManager.getInstance();
+
     /**
      * Constructor for the GameScreen class.
-     *
      * @param game the main game instance
      *
      */
@@ -93,7 +95,7 @@ public class GameScreen extends WildCatScreen {
                 System.out.println("Layer Name: " + (layerName != null ? layerName : "Unnamed Layer"));
 
                 if (layer instanceof TiledMapTileLayer tileLayer) {
-                    String type = null;
+                    String type;
                     try {
                         type = tileLayer.getProperties().get("type", String.class);
                     } catch (ClassCastException e) {
@@ -220,7 +222,7 @@ public class GameScreen extends WildCatScreen {
         }
 
         if (isMoving && footstepTimer >= FOOTSTEP_DELAY) {
-            gameManager.getSoundManager().addSound("walk");
+            gameManagerInstance.getSoundManager().addSound("walk");
             footstepTimer = 0f;
         }
 
