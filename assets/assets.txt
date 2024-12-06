@@ -56,5 +56,14 @@ sound/ui/select/select_2.ogg
 sound/ui/select/select_3.ogg
 sound/ui/smartphone/smartphone_in.wav
 sound/ui/smartphone/smartphone_out.wav
-sprites/CITBOY.png
+sprites/CollegeFemale1.png
+sprites/CollegeFemale2.png
 sprites/CollegeMale1.png
+sprites/CollegeMale2.png
+sprites/FemaleTeacher.png
+sprites/Guard1.png
+sprites/Guard2.png
+sprites/MaleTeacher.png
+sprites/Pet1.png
+sprites/Pet2.png
+sprites/Player.png

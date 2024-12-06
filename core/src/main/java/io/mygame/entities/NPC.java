@@ -1,34 +1,35 @@
 package io.mygame.entities;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.math.Vector2;
 import io.mygame.common.AnimationLoader;
 import io.mygame.enums.Direction;
 
 public class NPC extends GameObject {
-    private static final float SPEED = 100f;
-    private final boolean canWalk;
-    private boolean moving;
+    private static final float SPEED = 75f;
+    private boolean isMoving = false;
     private final AnimationLoader npcAnimation;
     private float stateTime = 0;
     private Direction direction = Direction.FRONT;
     private float targetX, targetY;
     private float currentX, currentY;
     private float previousX, previousY;
-    private final Vector2 movement = new Vector2();
     private final String movementType;
     private float originalX, originalY;
-
-    public NPC(TextureRegion texture, float x, float y, boolean canWalk, String movementType) {
-        super(texture, x, y);
+    private float pauseTime;
+    private final String textureDimensions;
+    public NPC(String fileName, float x, float y, String movementType, String textureDimensions) {
+        super(new Texture(Gdx.files.internal(fileName)), x, y);
+        this.textureDimensions = textureDimensions;
         originalX = x;
         originalY = y;
-        this.npcAnimation = new AnimationLoader("Sprites/CITBOY.png", "npc");
-        this.canWalk = canWalk;
-        this.moving = canWalk;
+        this.npcAnimation = new AnimationLoader(fileName, textureDimensions);
         this.movementType = movementType;
+        if(!movementType.equalsIgnoreCase("in-place")){
+            isMoving = true;
+        }
     }
 
     public void render(SpriteBatch batch) {
@@ -43,6 +44,9 @@ public class NPC extends GameObject {
             moveHorizontally();
         }else if(movementType.equalsIgnoreCase("vertical")) {
             moveVertically();
+        }else if(movementType.equalsIgnoreCase("in-place")){
+            isMoving = false;
+            setStopAnimation();
         }
         stateTime += Gdx.graphics.getDeltaTime();
     }
@@ -68,7 +72,8 @@ public class NPC extends GameObject {
 
             updateDirection();
         } else {
-            moving = false;
+            isMoving = false;
+            setStopAnimation();
         }
     }
 
@@ -81,8 +86,14 @@ public class NPC extends GameObject {
             setPosition(getX() + stepX, getY());
             updateDirection();
         } else {
-            targetX = originalX;
-            originalX = getX();
+            pauseTime += delta;
+            if(pauseTime >= 5) {
+                targetX = originalX;
+                originalX = getX();
+                pauseTime = 0;
+            }else{
+                setStopAnimation();
+            }
         }
     }
 
@@ -95,8 +106,14 @@ public class NPC extends GameObject {
             setPosition(getX(), getY() + stepY);
             updateDirection();
         } else {
-            targetY = originalY;
-            originalY = getY();
+            pauseTime += delta;
+            if(pauseTime >= 5) {
+                targetY = originalY;
+                originalY = getY();
+                pauseTime = 0;
+            }else{
+                setStopAnimation();
+            }
         }
     }
 
@@ -108,7 +125,7 @@ public class NPC extends GameObject {
         float dx = currentX - previousX;
         float dy = currentY - previousY;
 
-        if (Math.abs(dx) > 0.01f || Math.abs(dy) > 0.01f) { // To handle small changes
+        if (Math.abs(dx) > .1f || Math.abs(dy) > .1f) { // To handle small changes
             if (dx > 0 && dy > 0) {
                 direction = Direction.BACK_RIGHT;
             } else if (dx < 0 && dy > 0) {
@@ -136,19 +153,26 @@ public class NPC extends GameObject {
         }
     }
 
+    public void setStopAnimation(){
+        if(!textureDimensions.equalsIgnoreCase("4x3")) {
+            switch (direction) {
+                case RIGHT, FRONT_RIGHT, BACK_RIGHT -> npcAnimation.setCurrentAnimation("rightIdle");
+                case LEFT, FRONT_LEFT, BACK_LEFT -> npcAnimation.setCurrentAnimation("leftIdle");
+                case FRONT -> npcAnimation.setCurrentAnimation("frontIdle");
+                case BACK -> npcAnimation.setCurrentAnimation("backIdle");
+            }
+        }
+    }
+
 
     public void setTarget(float x, float y) {
         this.targetX = x;
         this.targetY = y;
-        this.moving = true;
+        this.isMoving = true;
     }
 
     public boolean isCanWalk() {
-        return canWalk;
-    }
-
-    public boolean isMoving() {
-        return moving;
+        return !movementType.equalsIgnoreCase("in-place");
     }
 
     public float getPreviousX() {
@@ -167,9 +191,8 @@ public class NPC extends GameObject {
         this.previousY = previousY;
     }
 
-    public void setMovement(float x, float y){
-        movement.x = x;
-        movement.y = y;
-    }
 
+    public void stop() {
+        isMoving = false;
+    }
 }

@@ -63,7 +63,7 @@ public class GameScreen extends WildCatScreen {
      */
     public GameScreen(Game game, SoundManager sound) {
         super(game);
-        super.sound = sound; // reuse the SoundManager from the MainMenu
+        this.sound = sound; // reuse the SoundManager from the MainMenu
     }
 
     private List<NPC> npcs;
@@ -162,9 +162,17 @@ public class GameScreen extends WildCatScreen {
 
         batch.begin();
         player.update();
-        player.render(batch);
-        for(NPC npc : npcs){
-            npc.render(batch);
+
+        List<GameObject> renderQueue = new ArrayList<>();
+        renderQueue.add(player);
+        renderQueue.addAll(npcs);
+
+// Sort by Y position in descending order
+        renderQueue.sort((a, b) -> Float.compare(b.getY(), a.getY()));
+
+// Render in sorted order
+        for (GameObject obj : renderQueue) {
+            obj.render(batch);
         }
         batch.end();
 
@@ -234,8 +242,8 @@ public class GameScreen extends WildCatScreen {
                 npc2 = npcs.get(6);
                 npc2.setTarget(player.getX() - 32, player.getY() + 32);
                 npc.updateBoundingBox(npc.getX(), npc.getY());
-                npc.update();
             }
+            npc.update();
         }
         collisionHandler.handleNpcCollision();
 //        System.out.println(player.getX() + " " + player.getY());

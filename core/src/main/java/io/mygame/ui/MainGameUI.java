@@ -27,6 +27,7 @@ public class MainGameUI extends UI {
     private TextButton returnBtn;
     private Button exitBtn;
     private Button menuBtn;
+    private Label labelName;
     private Table currentTable;
 
     private Button ngeBtn;
@@ -68,7 +69,7 @@ public class MainGameUI extends UI {
         container.padLeft(120.0f);
         container.padTop(12.0f);
 
-        Label labelName = new Label(gameManager.getPlayerName(), skin, "header3");
+        labelName = new Label(gameManager.getPlayerName() + " (CIT-U)", skin, "header3");
         container.setActor(labelName);
         stack.addActor(container);
         table.add(stack);
@@ -124,7 +125,7 @@ public class MainGameUI extends UI {
         table1.padTop(100.0f);
         table1.align(Align.topLeft);
 
-        Label label = new Label("Hello, " + gameManager.getPlayerName(), skin, "header");
+        Label label = new Label("Hello, <NAME>", skin, "header");
         table1.add(label).padBottom(40.0f).align(Align.left).colspan(2);
 
         table1.row();

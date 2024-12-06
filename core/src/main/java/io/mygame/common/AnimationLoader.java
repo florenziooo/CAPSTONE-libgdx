@@ -13,29 +13,29 @@ public class AnimationLoader {
     private Animation<TextureRegion> frontWalkAnimation, rightWalkAnimation, leftWalkAnimation, backWalkAnimation;
     private Animation<TextureRegion> currentAnimation;
 
-    public AnimationLoader(String path, String entityType) {
+    public AnimationLoader(String path, String numberOfColsAndRows) {
         this.path = path;
-        if(entityType.equalsIgnoreCase("player")) {
-            loadPlayer();
-        }else if(entityType.equalsIgnoreCase("npc")){
-            loadNpc();
+        if(numberOfColsAndRows.equals("8x6")) {
+            load8x6();
+        }else if(numberOfColsAndRows.equals("4x3")){
+            load4x3();
         }
     }
 
-    private void loadPlayer() {
+    private void load8x6() {
         try {
             Texture spriteSheet = new Texture(Gdx.files.internal(path));
             TextureRegion[][] tmpFrames = TextureRegion.split(spriteSheet, 16, 32);
 
-            frontIdleAnimation = extractFrames(tmpFrames, 0);
-            rightIdleAnimation = extractFrames(tmpFrames, 1);
-            leftIdleAnimation = extractFrames(tmpFrames, 3);
-            backIdleAnimation = extractFrames(tmpFrames, 2);
+            frontIdleAnimation = extractFrames(tmpFrames, 6, 0);
+            rightIdleAnimation = extractFrames(tmpFrames, 6, 1);
+            leftIdleAnimation = extractFrames(tmpFrames, 6, 3);
+            backIdleAnimation = extractFrames(tmpFrames, 6, 2);
 
-            frontWalkAnimation = extractFrames(tmpFrames, 4);
-            rightWalkAnimation = extractFrames(tmpFrames, 5);
-            leftWalkAnimation = extractFrames(tmpFrames, 7);
-            backWalkAnimation = extractFrames(tmpFrames, 6);
+            frontWalkAnimation = extractFrames(tmpFrames, 6, 4);
+            rightWalkAnimation = extractFrames(tmpFrames, 6, 5);
+            leftWalkAnimation = extractFrames(tmpFrames, 6, 7);
+            backWalkAnimation = extractFrames(tmpFrames, 6, 6);
 
             currentAnimation = frontIdleAnimation;
         } catch (GdxRuntimeException e) {
@@ -49,19 +49,18 @@ public class AnimationLoader {
         }
     }
 
-    private void loadNpc() {
+    private void load4x3() {
         try {
             Texture spriteSheet = new Texture(Gdx.files.internal(path));
+            TextureRegion[][] tmpFrames = TextureRegion.split(spriteSheet, 32, 32);
 
-            TextureRegion[][] tmpFrames = TextureRegion.split(spriteSheet, 16, 32);
-
-            frontWalkAnimation = extractFrames(tmpFrames, 0);
-            rightWalkAnimation = extractFrames(tmpFrames, 1);
-            backWalkAnimation = extractFrames(tmpFrames, 2);
-            leftWalkAnimation = extractFrames(tmpFrames, 3);
+            frontWalkAnimation = extractFrames(tmpFrames, 3,0);
+            leftWalkAnimation = extractFrames(tmpFrames, 3,1);
+            rightWalkAnimation = extractFrames(tmpFrames, 3,2);
+            backWalkAnimation = extractFrames(tmpFrames, 3,3);
 
             currentAnimation = frontWalkAnimation;
-        }catch (GdxRuntimeException e) {
+        } catch (GdxRuntimeException e) {
             System.err.println("Failed to load the texture. Ensure the file path is correct: " + e.getMessage());
         } catch (IllegalArgumentException e) {
             System.err.println("Invalid sprite sheet dimensions for splitting: " + e.getMessage());
@@ -72,10 +71,10 @@ public class AnimationLoader {
         }
     }
 
-    private Animation<TextureRegion> extractFrames(TextureRegion[][] tmpFrames, int column) {
-        TextureRegion[] frames = new TextureRegion[6];
+    private Animation<TextureRegion> extractFrames(TextureRegion[][] tmpFrames, int rows, int column) {
+        TextureRegion[] frames = new TextureRegion[rows];
 
-        for (int i = 0; i < 6; i++) {
+        for (int i = 0; i < rows; i++) {
             if (i < tmpFrames.length) {
                 frames[i] = tmpFrames[i][column];
             }
