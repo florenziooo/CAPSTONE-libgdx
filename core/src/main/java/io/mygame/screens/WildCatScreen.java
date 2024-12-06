@@ -2,14 +2,15 @@ package io.mygame.screens;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Screen;
-import io.mygame.common.SoundManager;
+import io.mygame.common.GameManager;
 
 public abstract class WildCatScreen implements Screen, ScreenState {
     protected Game game;
-    protected SoundManager sound;
+    protected GameManager gameManager;
 
     public WildCatScreen(Game game) {
         this.game = game;
+        gameManager = GameManager.getInstance();
     }
 
     @Override

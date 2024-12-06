@@ -10,6 +10,7 @@ PixelMaps/Tiles/Modern_Exteriors_Complete_Tileset.png
 PixelMaps/Tiles/asdasd.png
 PixelMaps/Tiles/ohNo.png
 cursor/cursor.png
+dialogues/dialogue.json
 hs_err_pid36261.log
 images/main_menu_bg.png
 skins/main_menu_button/red/C&C Red Alert [INET](1).fnt

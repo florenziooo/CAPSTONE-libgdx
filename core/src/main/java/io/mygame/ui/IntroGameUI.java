@@ -7,7 +7,6 @@ import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.Scaling;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
-import io.mygame.common.SoundManager;
 import io.mygame.datahandler.GameDataHandler;
 import io.mygame.screens.GameScreen;
 import io.mygame.screens.MainMenuScreen;
@@ -18,8 +17,8 @@ public class IntroGameUI extends UI {
     private TextButton returnBtn;
     private TextField nameField;
 
-    public IntroGameUI(ScreenState screenState, Game game, SoundManager soundManager) {
-        super(new ScreenViewport(), screenState, game, soundManager);
+    public IntroGameUI(ScreenState screenState, Game game) {
+        super(new ScreenViewport(), screenState, game);
 
         introUI();
     }
@@ -91,20 +90,19 @@ public class IntroGameUI extends UI {
         submitBtn.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                sound.addSound("click");
+                gameManager.getSoundManager().addSound("click");
                 gameManager.resetDefaultValues();
                 gameManager.setPlayerName(nameField.getText());
                 GameDataHandler.saveGameData();
-                screenState.changeScreen(new GameScreen(getGame(), sound));
+                screenState.changeScreen(new GameScreen(getGame()));
             }
         });
 
         returnBtn.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                sound.addSound("click");
+                gameManager.getSoundManager().addSound("click");
                 screenState.changeScreen(new MainMenuScreen(getGame()));
-                System.out.println("Pressed return button");
             }
         });
     }

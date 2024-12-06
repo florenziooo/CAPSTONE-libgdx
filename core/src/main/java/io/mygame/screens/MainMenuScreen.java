@@ -14,11 +14,11 @@ public class MainMenuScreen extends WildCatScreen {
 
     @Override
     public void show () {
-        sound = new SoundManager.Builder()
+        gameManager.setSoundManager (new SoundManager.Builder()
             .setbgMusic("sound/music/the_secret_spring_loopable.mp3")
-            .build();
+            .build());
 
-        mainMenuUI = new MainMenuUI(this, game, sound);
+        mainMenuUI = new MainMenuUI(this, game);
     }
 
     @Override

@@ -14,7 +14,6 @@ import io.mygame.datahandler.GameDataHandler;
 import io.mygame.screens.GameScreen;
 import io.mygame.screens.IntroScreen;
 import io.mygame.screens.ScreenState;
-import io.mygame.common.SoundManager;
 
 import java.io.File;
 
@@ -25,8 +24,8 @@ public class MainMenuUI extends UI {
     private TextButton loadBtn;
     private TextButton exitBtn;
 
-    public MainMenuUI(ScreenState screenState, Game game, SoundManager soundManager) {
-        super(new ScreenViewport(), screenState, game, soundManager);
+    public MainMenuUI(ScreenState screenState, Game game) {
+        super(new ScreenViewport(), screenState, game);
         mainMenuUI();
     }
 
@@ -66,17 +65,17 @@ public class MainMenuUI extends UI {
         startBtn.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                sound.addSound("click");
-                screenState.changeScreen(new IntroScreen(getGame(), sound));
+                gameManager.getSoundManager().addSound("click");
+                screenState.changeScreen(new IntroScreen(getGame()));
             }
         });
 
         loadBtn.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                sound.addSound("click");
+                gameManager.getSoundManager().addSound("click");
                 GameDataHandler.loadGameData();
-                screenState.changeScreen(new GameScreen(getGame(), sound));
+                screenState.changeScreen(new GameScreen(getGame()));
             }
         });
 
