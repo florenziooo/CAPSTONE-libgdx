@@ -76,3 +76,82 @@ sprites/MaleTeacher.png
 sprites/Pet1.png
 sprites/Pet2.png
 sprites/Player.png
+PixelMaps/CIT.tiled-project
+PixelMaps/CIT.tiled-session
+PixelMaps/TestMap.tmx
+PixelMaps/TileSets16x16/Canteen.tsx
+PixelMaps/TileSets16x16/GLE.tsx
+PixelMaps/TileSets16x16/Modern_Exteriors_Complete_Tileset.tsx
+PixelMaps/TileSets16x16/NGE.tsx
+PixelMaps/TileSets16x16/RTL.tsx
+PixelMaps/TileSets16x16/TIleset2.tsx
+PixelMaps/TileSets16x16/Tileset1.tsx
+PixelMaps/TileSets16x16/asdasd.tsx
+PixelMaps/Tiles/Canteen.png
+PixelMaps/Tiles/GLE.png
+PixelMaps/Tiles/KindaTiredNGL.png
+PixelMaps/Tiles/Modern_Exteriors_Complete_Tileset.png
+PixelMaps/Tiles/NGE.png
+PixelMaps/Tiles/RTL.png
+PixelMaps/Tiles/asdasd.png
+PixelMaps/Tiles/ohNo.png
+assets.txt
+cursor/cursor.png
+dialogues/dialogue.json
+hs_err_pid36261.log
+images/main_menu_bg.png
+skins/main_menu_button/red/C&C Red Alert [INET](1).fnt
+skins/main_menu_button/red/red.atlas
+skins/main_menu_button/red/red.json
+skins/main_menu_button/red/red.png
+skins/main_menu_button/red_scmp/main_menu_button_red.scmp
+skins/main_menu_button/yellow/C&C Red Alert [INET](1).fnt
+skins/main_menu_button/yellow/yellow.atlas
+skins/main_menu_button/yellow/yellow.json
+skins/main_menu_button/yellow/yellow.png
+skins/main_menu_button/yellow_scmp/main_menu_button_yellow.scmp
+skins/uiSkins/C&C Red Alert [INET](10).fnt
+skins/uiSkins/C&C Red Alert [INET](11).fnt
+skins/uiSkins/C&C Red Alert [INET](2).fnt
+skins/uiSkins/C&C Red Alert [INET](3).fnt
+skins/uiSkins/C&C Red Alert [INET](4).fnt
+skins/uiSkins/C&C Red Alert [INET](5).fnt
+skins/uiSkins/C&C Red Alert [INET](6).fnt
+skins/uiSkins/C&C Red Alert [INET](9).fnt
+skins/uiSkins/ui.atlas
+skins/uiSkins/ui.json
+skins/uiSkins/ui.png
+skins/uiSkins/ui2.png
+skins/uiSkins/ui3.png
+skins/uiSkins/ui4.png
+skins/uiSkins/ui5.png
+skins/uiSkins/ui6.png
+skins/uiSkins/ui7.png
+skins/uiSkins/ui8.png
+sound/ambience/mild_traffic.mp3
+sound/footsteps/walk_1.ogg
+sound/footsteps/walk_2.ogg
+sound/footsteps/walk_3.ogg
+sound/footsteps/walk_4.ogg
+sound/footsteps/walk_5.ogg
+sound/footsteps/walk_6.ogg
+sound/footsteps/walk_7.ogg
+sound/music/the_secret_spring_loopable.mp3
+sound/ui/popup/popup_1.wav
+sound/ui/popup/popup_2.wav
+sound/ui/select/select_1.ogg
+sound/ui/select/select_2.ogg
+sound/ui/select/select_3.ogg
+sound/ui/smartphone/smartphone_in.wav
+sound/ui/smartphone/smartphone_out.wav
+sprites/CollegeFemale1.png
+sprites/CollegeFemale2.png
+sprites/CollegeMale1.png
+sprites/CollegeMale2.png
+sprites/FemaleTeacher.png
+sprites/Guard1.png
+sprites/Guard2.png
+sprites/MaleTeacher.png
+sprites/Pet1.png
+sprites/Pet2.png
+sprites/Player.png
