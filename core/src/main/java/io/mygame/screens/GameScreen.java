@@ -186,6 +186,7 @@ public class GameScreen extends WildCatScreen {
         }
 
         ((MainGameUI) mainGameUI).keyMenuHandler();
+        gameManager.setPlayerPosition((int)player.getX(), (int)player.getY());
     }
 
 

@@ -4,20 +4,22 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import io.mygame.common.AnimationLoader;
+import io.mygame.common.GameManager;
 import io.mygame.common.InputHandler;
 import io.mygame.enums.Direction;
 
 public class Player extends Entity {
     private static final float SPEED = 200f; // 75
     private final AnimationLoader playerAnimation;
-
     private float stateTime = 0;
     private boolean isMoving = false;
     private Direction direction = Direction.FRONT;
     private final InputHandler inputHandler = new InputHandler(this);
 
     public Player() {
-        super(1744, 175, 16, 32);
+        super(16, 32);
+        GameManager gameManager = GameManager.getInstance();
+        setPosition(gameManager.getXPosition(), gameManager.getYPosition());
         playerAnimation = new AnimationLoader("Sprites/Player.png");
     }
 
@@ -61,7 +63,7 @@ public class Player extends Entity {
         }
     }
 
-    // Render the current animation frame
+
     public void render(SpriteBatch batch) {
         TextureRegion currentFrame = playerAnimation.getCurrentAnimation().getKeyFrame(stateTime, true);
         batch.draw(currentFrame, getX(), getY(), getWidth(), getHeight()); // Draw at the current position

@@ -1,6 +1,8 @@
 package io.mygame.datahandler;
 
 import io.mygame.common.GameManager;
+import io.mygame.entities.Player;
+
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -17,12 +19,15 @@ public class GameDataHandler {
     public static void loadGameData() {
         try(FileReader fileReader = new FileReader(dataPath)) {
             GameManager gameManager = jsonService.deserialize(fileReader, GameManager.class);
+
             gameManagerInstance.setPlayerName(gameManager.getPlayerName());
             gameManagerInstance.setNpcFound(gameManager.getNpcFound());
             gameManagerInstance.setBuildingFound(gameManager.getBuildingsFound());
             gameManagerInstance.setVolume(gameManager.getVolume());
+            gameManagerInstance.setPlayerPosition(gameManager.getPlayerPosition());
             gameManagerInstance.setAreasFound(gameManager.getAreasFound());
             gameManagerInstance.setNpcsFound(gameManager.getNpcInteracted());
+
         } catch(IOException e) {
             System.err.println("Could not read data file: " + dataPath);
         }

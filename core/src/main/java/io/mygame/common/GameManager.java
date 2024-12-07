@@ -9,9 +9,11 @@ public class GameManager implements Serializable {
     private int npcFound;
     private int buildingsFound;
     private float volume;
-    private transient SoundManager soundManager;
+    private int[] playerPosition;
     private HashMap<String, Boolean> areasFound;
     private HashMap<String, Boolean> npcInteracted;
+
+    private transient SoundManager soundManager;
 
     private GameManager() {
         resetDefaultValues();
@@ -38,6 +40,14 @@ public class GameManager implements Serializable {
         if (soundManager != null) {
             soundManager.setGlobalVolume(this.volume);
         }
+    }
+
+    public void setPlayerPosition(int[] playerPosition) {
+        this.playerPosition = playerPosition;
+    }
+
+    public void setPlayerPosition(int x, int y) {
+        this.playerPosition = new int[]{x, y};
     }
 
     public void setAreaFound(String key) {
@@ -81,6 +91,18 @@ public class GameManager implements Serializable {
 
     public SoundManager getSoundManager() { return soundManager; }
 
+    public int[] getPlayerPosition() {
+        return playerPosition;
+    }
+
+    public int getXPosition() {
+        return playerPosition[0];
+    }
+
+    public int getYPosition() {
+        return playerPosition[1];
+    }
+
     public boolean getAreaFound(String key) {
         Boolean value = areasFound.get(key);
         if (value == null) {
@@ -102,6 +124,8 @@ public class GameManager implements Serializable {
         npcFound = 0;
         buildingsFound = 0;
         volume = 1.0f;
+
+        playerPosition = new int[] {1744, 175};
 
         areasFound = new HashMap<>();
         areasFound.put("NGE", false);

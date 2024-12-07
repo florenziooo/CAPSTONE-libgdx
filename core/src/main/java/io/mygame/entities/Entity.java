@@ -13,16 +13,6 @@ public abstract class Entity {
     protected float collisionWidth, collisionHeight;
     protected Rectangle collisionBox;
     private Polygon collisionPolygon;
-    private final float yOffset = 5; // Made constant to ensure consistency
-
-    public Entity(TextureRegion textureRegion, float x, float y) {
-        this.textureRegion = textureRegion;
-        this.x = x;
-        this.y = y;
-        this.width = textureRegion.getRegionWidth();
-        this.height = textureRegion.getRegionHeight();
-        initializeCollisionBox();
-    }
 
     public Entity(Texture npcTexture, float x, float y) {
         this.textureRegion = new TextureRegion(npcTexture, 0, 0, 16, 32);;
@@ -33,14 +23,13 @@ public abstract class Entity {
         initializeCollisionBox();
     }
 
-    public Entity(float x, float y, float width, float height) {
+    public Entity(float width, float height) {
         this.textureRegion = null;
-        this.x = x;
-        this.y = y;
         this.width = width;
         this.height = height;
         initializeCollisionBox();
     }
+
 
     protected void initializeCollisionBox() {
         collisionWidth = width / 2;
@@ -55,6 +44,7 @@ public abstract class Entity {
     }
 
     private float calculateCollisionY() {
+        float yOffset = 5;
         return y + (height / 2) - (collisionHeight / 2) - yOffset;
     }
 

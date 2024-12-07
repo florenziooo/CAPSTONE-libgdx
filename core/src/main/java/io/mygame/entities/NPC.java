@@ -158,7 +158,6 @@ public abstract class NPC extends Entity {
         }
     }
 
-
     public void setTarget(float x, float y) {
         this.targetX = x;
         this.targetY = y;
