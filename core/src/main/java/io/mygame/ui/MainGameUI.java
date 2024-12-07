@@ -17,7 +17,6 @@ import io.mygame.screens.ScreenState;
 
 public class MainGameUI extends UI {
     private boolean descriptionViewMode = false;
-    private final ScreenViewport screenViewport = new ScreenViewport();
 
     private CheckBox statsCb;
     private CheckBox mapCb;
@@ -27,7 +26,6 @@ public class MainGameUI extends UI {
     private TextButton returnBtn;
     private Button exitBtn;
     private Button menuBtn;
-    private Label labelName;
     private Table currentTable;
     private Button ngeBtn;
     private Button rtlBtn;
@@ -67,7 +65,7 @@ public class MainGameUI extends UI {
         container.padLeft(120.0f);
         container.padTop(12.0f);
 
-        labelName = new Label(gameManager.getPlayerName(), skin, "header3");
+        Label labelName = new Label(gameManager.getPlayerName(), skin, "header3");
         container.setActor(labelName);
         stack.addActor(container);
         table.add(stack);
@@ -706,6 +704,10 @@ public class MainGameUI extends UI {
                 table.remove();
             }
         });
+    }
+
+    private void initializeMenuTable() {
+
     }
 
     @Override

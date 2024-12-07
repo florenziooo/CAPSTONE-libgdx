@@ -51,7 +51,7 @@ ElemPop
   orig: 1300, 900
   offset: 0, 0
   index: -1
-EspasyoPop
+GLEPop
   rotate: false
   xy: 1, 1
   size: 1300, 900
@@ -64,14 +64,14 @@ size: 2048, 2048
 format: RGBA8888
 filter: Linear, Linear
 repeat: none
-GLEPop
+GymPop
   rotate: false
   xy: 1, 903
   size: 1300, 900
   orig: 1300, 900
   offset: 0, 0
   index: -1
-GymPop
+LIBPop
   rotate: false
   xy: 1, 1
   size: 1300, 900
@@ -80,26 +80,6 @@ GymPop
   index: -1
 
 ui5.png
-size: 2048, 2048
-format: RGBA8888
-filter: Linear, Linear
-repeat: none
-LIBPop
-  rotate: false
-  xy: 1, 1
-  size: 1300, 900
-  orig: 1300, 900
-  offset: 0, 0
-  index: -1
-LearningPatioPop
-  rotate: false
-  xy: 1, 903
-  size: 1300, 900
-  orig: 1300, 900
-  offset: 0, 0
-  index: -1
-
-ui6.png
 size: 2048, 2048
 format: RGBA8888
 filter: Linear, Linear
@@ -119,6 +99,26 @@ RTLPop
   offset: 0, 0
   index: -1
 
+ui6.png
+size: 2048, 2048
+format: RGBA8888
+filter: Linear, Linear
+repeat: none
+EspasyoPop
+  rotate: false
+  xy: 1, 1
+  size: 1300, 900
+  orig: 1300, 900
+  offset: 0, 0
+  index: -1
+SALPop
+  rotate: false
+  xy: 1, 903
+  size: 1300, 900
+  orig: 1300, 900
+  offset: 0, 0
+  index: -1
+
 ui7.png
 size: 2048, 2048
 format: RGBA8888
@@ -131,7 +131,7 @@ Group 2
   orig: 1067, 285
   offset: 0, 0
   index: -1
-SALPop
+LearningPatioPop
   rotate: false
   xy: 1, 1090
   size: 1300, 900
