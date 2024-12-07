@@ -12,7 +12,6 @@ import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.math.*;
 import io.mygame.entities.GameObject;
 import io.mygame.entities.NPC;
-import io.mygame.ui.DialogueUI;
 
 import java.util.HashSet;
 import java.util.List;
@@ -25,7 +24,6 @@ import java.util.Set;
 public class CollisionHandler {
     private final GameObject entity;
     private final TiledMap map;
-    private final boolean debugMode = true;
     private final ShapeRenderer shapeRenderer;
     private final OrthographicCamera camera;
     private float previousX, previousY;
@@ -34,7 +32,8 @@ public class CollisionHandler {
     private float currentNpcX, currentNpcY;
     private List<NPC> npcs;
     private Circle interactionCircle;
-    private DialogueUI dialogue;
+
+    private final boolean debugMode = true;
 
     /**
      * Constructs a CollisionHandler for handling collisions of a specific entity on a TiledMap.
@@ -50,7 +49,6 @@ public class CollisionHandler {
         this.camera = camera;
         this.shapeRenderer = new ShapeRenderer();
 
-        // Create an interaction circle slightly larger than the player's collision box
         Rectangle playerBox = entity.getCollisionBox();
         float circleRadius = Math.max(playerBox.width, playerBox.height) * 3.0f;
         this.interactionCircle = new Circle(playerBox.x + playerBox.width / 2, playerBox.y + playerBox.height / 2, circleRadius);
@@ -95,16 +93,9 @@ public class CollisionHandler {
                 savePreviousPosition();
             }
 
-            // Update interaction circle position
             Rectangle playerBox = entity.getCollisionBox();
             interactionCircle.x = playerBox.x + playerBox.width / 2;
             interactionCircle.y = playerBox.y + playerBox.height / 2;
-
-            // Check for interactions
-//            checkObjectInteractions();
-
-            // Check for NPC interactions
-//            checkNPCInteractions();
 
             drawDebug(objectLayer);
         } catch (NullPointerException e) {

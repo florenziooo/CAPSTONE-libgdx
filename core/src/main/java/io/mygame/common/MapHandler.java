@@ -12,9 +12,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MapHandler {
-    private OrthogonalTiledMapRenderer renderer;
-    private List<TiledMapTileLayer> background;
-    private List<TiledMapTileLayer> foreground;
+    private final OrthogonalTiledMapRenderer renderer;
+    private final List<TiledMapTileLayer> background;
+    private final List<TiledMapTileLayer> foreground;
 
     public MapHandler(TiledMap map) {
         MapLayers mapLayers = map.getLayers();

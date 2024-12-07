@@ -85,15 +85,6 @@ public class NPCFactory {
 
             npc = npcs.get(29);
             npc.setTarget(npc.getX(), npc.getY() - 200);
-
-//            npc = npcs.get(4);
-//            npc.setTarget(npc.getX() + 100, npc.getY());
-//
-//            npc = npcs.get(6);
-//            npc.setTarget(npc.getX(), npc.getY() + 1000);
-//
-//            npc = npcs.get(7);
-//            npc.setTarget(npc.getX(), npc.getY() + 1450);
         } catch(IndexOutOfBoundsException e) {
             throw new RuntimeException("Error: Something went wrong when trying to set NPC targets.");
         }

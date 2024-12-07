@@ -1,7 +1,6 @@
 package io.mygame.common;
 
 import io.mygame.datahandler.Serializable;
-
 import java.util.HashMap;
 
 public class GameManager implements Serializable {
@@ -16,6 +15,47 @@ public class GameManager implements Serializable {
 
     private GameManager() {
         resetDefaultValues();
+    }
+
+    public void setPlayerName(String playerName) {
+        this.playerName = playerName;
+    }
+
+    public void setNpcFound(int npcFound) {
+        this.npcFound = npcFound;
+    }
+
+    public void setBuildingFound(int buildingsFound) {
+        this.buildingsFound = buildingsFound;
+    }
+
+    public void setSoundManager(SoundManager soundManager) {
+        this.soundManager = soundManager;
+    }
+
+    public void setVolume(float volume) {
+        this.volume = volume;
+        if (soundManager != null) {
+            soundManager.setGlobalVolume(this.volume);
+        }
+    }
+
+    public void setAreaFound(String key) {
+        if(!areasFound.containsKey(key)) buildingsFound++;
+        areasFound.put(key, true);
+    }
+
+    public void setAreasFound(HashMap<String, Boolean> areasFound) {
+        this.areasFound = areasFound;
+    }
+
+    public void setNpcInteracted(String key) {
+        if(!npcInteracted.get(key)) npcFound++;
+        npcInteracted.put(key, true);
+    }
+
+    public void setNpcsFound(HashMap<String, Boolean> npcInteracted) {
+        this.npcInteracted = npcInteracted;
     }
 
     public static GameManager getInstance() {
@@ -40,52 +80,6 @@ public class GameManager implements Serializable {
     }
 
     public SoundManager getSoundManager() { return soundManager; }
-
-    public void setPlayerName(String playerName) {
-        this.playerName = playerName;
-    }
-
-    public void setNpcFound(int npcFound) {
-        this.npcFound = npcFound;
-    }
-
-    public void setBuildingFound(int buildingsFound) {
-        this.buildingsFound = buildingsFound;
-    }
-
-    public void setSoundManager(SoundManager soundManager) { this.soundManager = soundManager; }
-
-    public void setVolume(float volume) {
-        this.volume = volume;
-        if (soundManager != null) {
-            soundManager.setGlobalVolume(this.volume);
-        }
-    }
-
-    public void setAreaFound(String key) {
-        areasFound.put(key, true);
-    }
-
-    public void setAreasFound(HashMap<String, Boolean> areasFound) {
-        this.areasFound = areasFound;
-    }
-
-    public void setNpcInteracted(String key) {
-        if(!npcInteracted.get(key)) npcFound++;
-        npcInteracted.put(key, true);
-    }
-
-    public void setNpcsFound(HashMap<String, Boolean> npcInteracted) {
-        this.areasFound = areasFound;
-    }
-
-    public void increaseNpcFound() {
-        npcFound++;
-    }
-
-    public void increaseBuildingsFound() {
-        buildingsFound++;
-    }
 
     public boolean getAreaFound(String key) {
         Boolean value = areasFound.get(key);

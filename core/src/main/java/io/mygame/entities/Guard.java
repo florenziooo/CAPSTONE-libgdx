@@ -1,9 +1,8 @@
 package io.mygame.entities;
 
 public abstract class Guard extends NPC {
-    private final static String textureDimensions = "8x6";
     public Guard(String fileName, float x, float y, String movementType) {
-        super(fileName, x, y, movementType, textureDimensions, "Guard");
+        super(fileName, x, y, movementType,"Guard");
     }
 
     public static class Guard1 extends Guard{

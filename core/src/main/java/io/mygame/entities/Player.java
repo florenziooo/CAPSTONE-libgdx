@@ -18,7 +18,7 @@ public class Player extends GameObject {
 
     public Player() {
         super(1744, 175, 16, 32);
-        playerAnimation = new AnimationLoader("Sprites/Player.png", "8x6");
+        playerAnimation = new AnimationLoader("Sprites/Player.png");
     }
 
     public void update() {

@@ -1,9 +1,8 @@
 package io.mygame.entities;
 
 public abstract class Student extends NPC {
-    private final static String textureDimensions = "8x6";
     public Student(String fileName, float x, float y, String movementType, String npcType) {
-        super(fileName, x, y, movementType, textureDimensions, npcType);
+        super(fileName, x, y, movementType, npcType);
     }
 
     public static class CollegeMale1 extends Student{

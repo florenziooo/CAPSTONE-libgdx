@@ -3,6 +3,7 @@ package io.mygame.common;
 import com.badlogic.gdx.Gdx;
 import io.mygame.enums.Direction;
 import io.mygame.entities.Player;
+
 public class InputHandler{
     Player player;
     public InputHandler(Player player){

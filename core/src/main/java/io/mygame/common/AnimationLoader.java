@@ -13,19 +13,12 @@ public class AnimationLoader {
     private Animation<TextureRegion> frontWalkAnimation, rightWalkAnimation, leftWalkAnimation, backWalkAnimation;
     private Animation<TextureRegion> currentAnimation;
 
-    public AnimationLoader(String path, String numberOfColsAndRows) {
-//        this.path = path;
-//        if(numberOfColsAndRows.equals("8x6")) {
-//            load8x6();
-//        }else if(numberOfColsAndRows.equals("4x3")){
-//            load4x3();
-//        }
-
+    public AnimationLoader(String path) {
         this.path = path;
-        load8x6();
+        loadSprite();
     }
 
-    private void load8x6() {
+    private void loadSprite() {
         try {
             Texture spriteSheet = new Texture(Gdx.files.internal(path));
             TextureRegion[][] tmpFrames = TextureRegion.split(spriteSheet, 16, 32);
@@ -41,28 +34,6 @@ public class AnimationLoader {
             backWalkAnimation = extractFrames(tmpFrames, 6, 6);
 
             currentAnimation = frontIdleAnimation;
-        } catch (GdxRuntimeException e) {
-            System.err.println("Failed to load the texture. Ensure the file path is correct: " + e.getMessage());
-        } catch (IllegalArgumentException e) {
-            System.err.println("Invalid sprite sheet dimensions for splitting: " + e.getMessage());
-        } catch (NullPointerException e) {
-            System.err.println("A null value was encountered. Check the 'path' variable or texture operations: " + e.getMessage());
-        } catch (Exception e) {
-            System.err.println("An unexpected error occurred: " + e.getMessage());
-        }
-    }
-
-    private void load4x3() {
-        try {
-            Texture spriteSheet = new Texture(Gdx.files.internal(path));
-            TextureRegion[][] tmpFrames = TextureRegion.split(spriteSheet, 32, 32);
-
-            frontWalkAnimation = extractFrames(tmpFrames, 3,0);
-            leftWalkAnimation = extractFrames(tmpFrames, 3,1);
-            rightWalkAnimation = extractFrames(tmpFrames, 3,2);
-            backWalkAnimation = extractFrames(tmpFrames, 3,3);
-
-            currentAnimation = frontWalkAnimation;
         } catch (GdxRuntimeException e) {
             System.err.println("Failed to load the texture. Ensure the file path is correct: " + e.getMessage());
         } catch (IllegalArgumentException e) {
