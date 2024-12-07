@@ -7,7 +7,7 @@ import io.mygame.common.AnimationLoader;
 import io.mygame.common.InputHandler;
 import io.mygame.enums.Direction;
 
-public class Player extends GameObject {
+public class Player extends Entity {
     private static final float SPEED = 200f; // 75
     private final AnimationLoader playerAnimation;
 

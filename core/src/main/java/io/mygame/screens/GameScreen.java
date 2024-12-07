@@ -16,7 +16,7 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 import io.mygame.common.CollisionHandler;
 import io.mygame.common.GameManager;
 import io.mygame.common.MapHandler;
-import io.mygame.entities.GameObject;
+import io.mygame.entities.Entity;
 import io.mygame.entities.NPC;
 import io.mygame.factories.NPCFactory;
 import io.mygame.entities.Player;
@@ -130,13 +130,13 @@ public class GameScreen extends WildCatScreen {
         batch.begin();
         player.update();
 
-        List<GameObject> renderQueue = new ArrayList<>();
+        List<Entity> renderQueue = new ArrayList<>();
         renderQueue.add(player);
         renderQueue.addAll(npcs);
 
         renderQueue.sort((a, b) -> Float.compare(b.getY(), a.getY()));
 
-        for (GameObject obj : renderQueue) {
+        for (Entity obj : renderQueue) {
             obj.render(batch);
         }
         batch.end();

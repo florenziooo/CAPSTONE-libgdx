@@ -7,7 +7,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import io.mygame.common.AnimationLoader;
 import io.mygame.enums.Direction;
 
-public abstract class NPC extends GameObject {
+public abstract class NPC extends Entity {
     private final String npcType;
 
     private static final float SPEED = 75f;

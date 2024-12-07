@@ -10,7 +10,7 @@ import com.badlogic.gdx.maps.objects.PolygonMapObject;
 import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.math.*;
-import io.mygame.entities.GameObject;
+import io.mygame.entities.Entity;
 import io.mygame.entities.NPC;
 
 import java.util.HashSet;
@@ -22,7 +22,7 @@ import java.util.Set;
  * Provides methods for checking collisions, drawing debug information, and managing entity positions.
  */
 public class CollisionHandler {
-    private final GameObject entity;
+    private final Entity entity;
     private final TiledMap map;
     private final ShapeRenderer shapeRenderer;
     private final OrthographicCamera camera;
@@ -42,7 +42,7 @@ public class CollisionHandler {
      * @param map     The TiledMap that contains the collision objects.
      * @param camera  The camera used for rendering debug information.
      */
-    public CollisionHandler(GameObject entity, List<NPC> npcs, TiledMap map, OrthographicCamera camera) {
+    public CollisionHandler(Entity entity, List<NPC> npcs, TiledMap map, OrthographicCamera camera) {
         this.entity = entity;
         this.npcs = npcs;
         this.map = map;

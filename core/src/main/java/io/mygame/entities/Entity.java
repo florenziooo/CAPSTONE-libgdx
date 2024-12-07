@@ -6,7 +6,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Polygon;
 import com.badlogic.gdx.math.Rectangle;
 
-public class GameObject {
+public abstract class Entity {
     private final TextureRegion textureRegion;
     private float x, y;
     private float width, height;
@@ -15,7 +15,7 @@ public class GameObject {
     private Polygon collisionPolygon;
     private final float yOffset = 5; // Made constant to ensure consistency
 
-    public GameObject(TextureRegion textureRegion, float x, float y) {
+    public Entity(TextureRegion textureRegion, float x, float y) {
         this.textureRegion = textureRegion;
         this.x = x;
         this.y = y;
@@ -24,7 +24,7 @@ public class GameObject {
         initializeCollisionBox();
     }
 
-    public GameObject(Texture npcTexture, float x, float y) {
+    public Entity(Texture npcTexture, float x, float y) {
         this.textureRegion = new TextureRegion(npcTexture, 0, 0, 16, 32);;
         this.x = x;
         this.y = y;
@@ -33,7 +33,7 @@ public class GameObject {
         initializeCollisionBox();
     }
 
-    public GameObject(float x, float y, float width, float height) {
+    public Entity(float x, float y, float width, float height) {
         this.textureRegion = null;
         this.x = x;
         this.y = y;
@@ -103,8 +103,6 @@ public class GameObject {
 
     public float getWidth() { return width; }
     public float getHeight() { return height; }
-    public float getCollisionWidth() { return collisionWidth; }
-    public float getCollisionHeight() { return collisionHeight; }
 
     // Setters
     public void setX(float newX) {

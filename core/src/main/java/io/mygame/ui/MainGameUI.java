@@ -531,6 +531,7 @@ public class MainGameUI extends UI {
         if(Gdx.input.isKeyJustPressed(Input.Keys.Q)) {
             if(descriptionViewMode) return;
 
+            gameManager.getSoundManager().addSound("click");
             if(menuBtn.getTouchable() == Touchable.enabled) {
                 menuBtn.setTouchable(Touchable.disabled);
                 statsTable();
