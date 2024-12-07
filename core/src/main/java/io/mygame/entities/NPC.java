@@ -52,7 +52,6 @@ public abstract class NPC extends GameObject {
         }else if(movementType.equalsIgnoreCase("vertical")) {
             moveVertically();
         }else if(movementType.equalsIgnoreCase("in-place")){
-            isMoving = false;
             setStopAnimation();
         }
         stateTime += Gdx.graphics.getDeltaTime();
@@ -79,7 +78,6 @@ public abstract class NPC extends GameObject {
 
             updateDirection();
         } else {
-            isMoving = false;
             setStopAnimation();
         }
     }
@@ -125,10 +123,9 @@ public abstract class NPC extends GameObject {
     }
 
     private void updateDirection() {
-        if(npcPause) return;
 
-        currentX = getX();
-        currentY = getY();
+        float currentX = getX();
+        float currentY = getY();
 
         float dx = currentX - previousX;
         float dy = currentY - previousY;
@@ -176,7 +173,6 @@ public abstract class NPC extends GameObject {
     public void setTarget(float x, float y) {
         this.targetX = x;
         this.targetY = y;
-        this.isMoving = true;
     }
 
     public boolean isCanWalk() {
@@ -201,5 +197,10 @@ public abstract class NPC extends GameObject {
 
     public void setPreviousY(float previousY) {
         this.previousY = previousY;
+    }
+
+
+    public void stop() {
+        isMoving = false;
     }
 }

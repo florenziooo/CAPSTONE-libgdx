@@ -56,6 +56,17 @@ In the `GameLauncher` class, which extends `Game`, the `create()` method initial
 
 This design pattern ensures that the game's state remains synchronized with the rendering process, providing smooth gameplay and responsiveness.
 
+### Factory Design Pattern
+#### NPCFactory Class
+
+The **Factory Design Pattern** is implemented in the `NPCFactory` class to simplify the creation of NPCs with predefined attributes and behaviors.
+
+- **Methods**:
+    - createNPCs() method: Generates a list of NPCs with specified positions and movement types.
+    - setTargets() method: Configures dynamic movement targets for specific NPCs. 
+
+This pattern ensures consistent NPC initialization and supports easy expansion or modification of NPC types.
+
 ## Additional References
 
 This is a [libGDX](https://libgdx.com/) project generated with [gdx-liftoff](https://github.com/libgdx/gdx-liftoff).

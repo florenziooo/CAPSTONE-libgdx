@@ -18,7 +18,7 @@ import io.mygame.common.GameManager;
 import io.mygame.common.MapHandler;
 import io.mygame.entities.GameObject;
 import io.mygame.entities.NPC;
-import io.mygame.factories.EntityFactory;
+import io.mygame.factories.NPCFactory;
 import io.mygame.entities.Player;
 import io.mygame.ui.DialogueUI;
 import io.mygame.ui.MainGameUI;
@@ -89,7 +89,7 @@ public class GameScreen extends WildCatScreen {
 
         npcs = new ArrayList<>();
 
-        npcs = EntityFactory.createNPCs();
+        npcs = NPCFactory.createNPCs();
         collisionHandler = new CollisionHandler(player, npcs, map, camera);
     }
 
