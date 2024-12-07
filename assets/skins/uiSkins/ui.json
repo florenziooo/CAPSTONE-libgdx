@@ -1,5 +1,11 @@
 {
 "com.badlogic.gdx.graphics.g2d.BitmapFont": {
+	"DialogueFont": {
+		"file": "C&C Red Alert [INET](12).fnt",
+		"scaledSize": -1,
+		"markupEnabled": false,
+		"flip": false
+	},
 	"header3": {
 		"file": "C&C Red Alert [INET](6).fnt",
 		"scaledSize": -1,
@@ -89,10 +95,6 @@
 	},
 	"exit_btn": {
 		"up": "exit_btn"
-	},
-	"areas_btn": {
-		"up": "paper",
-		"over": "paper_focus.9"
 	},
 	"NGE": {
 		"up": "NGE",
@@ -187,18 +189,8 @@
 		"fontColor": "black"
 	}
 },
-"com.badlogic.gdx.scenes.scene2d.ui.ImageButton$ImageButtonStyle": {
-	"default": {
-		"imageDisabled": "paper_disabled",
-		"up": "paper",
-		"over": "paper_focus.9",
-		"disabled": "paper_disabled"
-	}
-},
 "com.badlogic.gdx.scenes.scene2d.ui.ImageTextButton$ImageTextButtonStyle": {
 	"default": {
-		"imageUp": "paper",
-		"imageDown": "paper",
 		"font": "Red_Alert",
 		"fontColor": "black"
 	}
@@ -230,6 +222,10 @@
 	},
 	"header3": {
 		"font": "header3",
+		"fontColor": "black"
+	},
+	"dialogueLabel": {
+		"font": "DialogueFont",
 		"fontColor": "black"
 	}
 },
@@ -276,11 +272,23 @@
 	"description": {
 		"font": "popUpDescription",
 		"fontColor": "black"
+	},
+	"dialogue": {
+		"font": "DialogueFont",
+		"fontColor": "black"
 	}
 },
 "com.badlogic.gdx.scenes.scene2d.ui.TextTooltip$TextTooltipStyle": {
 	"default": {
 		"label": "default"
+	}
+},
+"com.badlogic.gdx.scenes.scene2d.ui.Window$WindowStyle": {
+	"default": {
+		"background": "dialogbox.9",
+		"titleFont": "DialogueFont",
+		"titleFontColor": "black",
+		"stageBackground": "Group 2"
 	}
 }
 }

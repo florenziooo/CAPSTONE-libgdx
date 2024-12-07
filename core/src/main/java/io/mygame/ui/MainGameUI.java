@@ -16,6 +16,9 @@ import io.mygame.screens.MainMenuScreen;
 import io.mygame.screens.ScreenState;
 
 public class MainGameUI extends UI {
+    private boolean descriptionViewMode = false;
+    private final ScreenViewport screenViewport = new ScreenViewport();
+
     private CheckBox statsCb;
     private CheckBox mapCb;
     private CheckBox expCb;
@@ -26,7 +29,6 @@ public class MainGameUI extends UI {
     private Button menuBtn;
     private Label labelName;
     private Table currentTable;
-
     private Button ngeBtn;
     private Button rtlBtn;
     private Button gleBtn;
@@ -39,10 +41,9 @@ public class MainGameUI extends UI {
     private Button gymBtn;
     private Button canteenBtn;
     private Button chapelBtn;
-    private boolean descriptionViewMode = false;
 
-    public MainGameUI(ScreenState screenState, Game game) {
-        super(new ScreenViewport(), screenState, game);
+    public MainGameUI(ScreenViewport screenViewport, ScreenState screenState, Game game) {
+        super(screenViewport, screenState, game);
         playerHUD();
     }
 
@@ -143,11 +144,11 @@ public class MainGameUI extends UI {
         table2.add(label).padBottom(20.0f).align(Align.left);
 
         table2.row();
-        label = new Label("Building Explored: 0/20", skin, "body");
+        label = new Label("Building Explored: " + gameManager.getBuildingsFound() + "/12", skin, "body");
         table2.add(label).padBottom(15.0f).align(Align.left);
 
         table2.row();
-        label = new Label("NPCs Interacted: 0/20", skin, "body");
+        label = new Label("NPCs Interacted: " + gameManager.getNpcFound() + "/6", skin, "body");
         table2.add(label).align(Align.left);
         table1.add(table2).padTop(40.0f).align(Align.top);
         stack.addActor(table1);

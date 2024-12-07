@@ -10,17 +10,19 @@ public class GameDataHandler {
     private static final GameManager gameManagerInstance = GameManager.getInstance();
     public static final String dataDirectory = "../GameData";
     private static final String dataPath = dataDirectory + "/data.json";
+    private static final JSONService jsonService = new JSONService();
 
     private GameDataHandler() {}
 
     public static void loadGameData() {
         try(FileReader fileReader = new FileReader(dataPath)) {
-            GameManager gameManager = JSONService.deserialize(fileReader, GameManager.class);
+            GameManager gameManager = jsonService.deserialize(fileReader, GameManager.class);
             gameManagerInstance.setPlayerName(gameManager.getPlayerName());
             gameManagerInstance.setNpcFound(gameManager.getNpcFound());
             gameManagerInstance.setBuildingFound(gameManager.getBuildingsFound());
             gameManagerInstance.setVolume(gameManager.getVolume());
             gameManagerInstance.setAreasFound(gameManager.getAreasFound());
+            gameManagerInstance.setNpcsFound(gameManager.getNpcInteracted());
         } catch(IOException e) {
             System.err.println("Could not read data file: " + dataPath);
         }
@@ -33,7 +35,7 @@ public class GameDataHandler {
         }
 
         try(FileWriter fileWriter = new FileWriter(dataPath)) {
-            JSONService.serializedObject(gameManagerInstance, fileWriter);
+            jsonService.serializedObject(gameManagerInstance, fileWriter);
         } catch(IOException e) {
             System.err.println("Could not create data file: " + dataPath);
         }

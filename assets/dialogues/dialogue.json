@@ -1,45 +1,47 @@
 {
-  "janitor": [
+  "janitorDialogue": [
     "Watch your step! Just mopped here.",
-    "The trash bins don’t empty themselves, you know.",
-    "Lost something? Gihatag nako’s lain. Charot check bitaw L&F.",
-    "BASTA PIODOS!",
-    "Sige sad mo’g katamak og tae oi, limpyo na baya unta’g dalan."
+    "The trash bins do not empty themselves, you know.",
+    "Lost something? Gihatag nako ni sa lain. Charot check bitaw L&F.",
+    "Sige sad mo’g katamak og tae oi, limpyo na baya untag dalan."
   ],
 
-  "guard": [
-    "Asa imong ID? Wa na’y daghang storya, lakaw dayon SSO.",
+  "guardDialogue": [
+    "Asa imong ID? Wa nay daghang storya, lakaw dayon SSO.",
     "Good morning! /*tusok tusok*/",
     "Boss, bawal parking diha, boss.",
-    "Naa mo’y PE ron, sir? Wala? Ambi imong ID, sir. SSO padulong.",
-    "I’m just doing my job here."
+    "Naa moy PE ron, sir? Wala? Ambi imong ID, sir. SSO padulong.",
+    "I am just doing my job here."
   ],
 
-  "teacher": [
+  "teacherDialogue": [
     "Cool and normal.",
     "But mind you! Sergio Osmena was actually… /*starts yapping*/",
-    "Study the Philippine Constitution cover-to-cover.",
+    "Study the Philippine Constitution cover to cover.",
     "I despise teaching this class… online.",
     "SAKSI NI JAVA, you get plus points."
   ],
 
-  "collegeMale": [
-    "Nag in-OA na sad ka bai.",
+  "collegeMaleDialogue": [
+    "Nag inOA na sad ka bai.",
     "Gwapaha jud sa taga COMSCI oie.",
     "Katol kaayo akong ulo.",
-    "Mag-quiz mi ni Sir Gemota ugma, wala pa ko ka review.",
+    "TOPS AGAIN!",
+    "BASTA PIODOS!",
+    "Mag-quiz mi ni Sir ugma, wala pa ko ka review.",
     "Suspended nasad? Ganahan baya ko maka-learn. :(("
   ],
 
-  "collegeFemale": [
-    "BERNUS ASSIGNMENT!",
+  "collegeFemaleDialogue": [
+    "ANG ASSIGNMENT!",
     "Suspend! Suspend!",
-    "HALA! ANG CODECHUM",
-    "AGWA later girlies (girls’ night out only).",
-    "Kinsay single diha na laki, naa ko reto ninyo."
+    "Kinsay ganahan makig-friends diha? I’m a freshman pa gud. Drinks on me! :))",
+    "Guys, ayg kalimot activity sa CodeChum huhu.",
+    "PASADO SA EXAMS CUTIEEE!!!",
+    "Naa nasay na top? :O"
   ],
 
-  "cat": [
+  "petDialogue": [
     "Meow. Were Brunaur?",
     "meow meow meow meow",
     "catTalk()",

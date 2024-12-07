@@ -14,12 +14,15 @@ public class AnimationLoader {
     private Animation<TextureRegion> currentAnimation;
 
     public AnimationLoader(String path, String numberOfColsAndRows) {
+//        this.path = path;
+//        if(numberOfColsAndRows.equals("8x6")) {
+//            load8x6();
+//        }else if(numberOfColsAndRows.equals("4x3")){
+//            load4x3();
+//        }
+
         this.path = path;
-        if(numberOfColsAndRows.equals("8x6")) {
-            load8x6();
-        }else if(numberOfColsAndRows.equals("4x3")){
-            load4x3();
-        }
+        load8x6();
     }
 
     private void load8x6() {

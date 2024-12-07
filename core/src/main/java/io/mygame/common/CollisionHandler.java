@@ -12,6 +12,7 @@ import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.math.*;
 import io.mygame.entities.GameObject;
 import io.mygame.entities.NPC;
+import io.mygame.ui.DialogueUI;
 
 import java.util.HashSet;
 import java.util.List;
@@ -30,11 +31,10 @@ public class CollisionHandler {
     private float previousX, previousY;
     private final Vector2 movement = new Vector2();
     private float currentX, currentY;
-    private float previousNpcX, previousNpcY;
-    private final Vector2 movementNpc = new Vector2();
     private float currentNpcX, currentNpcY;
     private List<NPC> npcs;
     private Circle interactionCircle;
+    private DialogueUI dialogue;
 
     /**
      * Constructs a CollisionHandler for handling collisions of a specific entity on a TiledMap.
@@ -52,7 +52,7 @@ public class CollisionHandler {
 
         // Create an interaction circle slightly larger than the player's collision box
         Rectangle playerBox = entity.getCollisionBox();
-        float circleRadius = Math.max(playerBox.width, playerBox.height) * 5.0f;
+        float circleRadius = Math.max(playerBox.width, playerBox.height) * 3.0f;
         this.interactionCircle = new Circle(playerBox.x + playerBox.width / 2, playerBox.y + playerBox.height / 2, circleRadius);
     }
 
@@ -101,7 +101,10 @@ public class CollisionHandler {
             interactionCircle.y = playerBox.y + playerBox.height / 2;
 
             // Check for interactions
-            checkInteractions();
+//            checkObjectInteractions();
+
+            // Check for NPC interactions
+//            checkNPCInteractions();
 
             drawDebug(objectLayer);
         } catch (NullPointerException e) {
@@ -118,7 +121,7 @@ public class CollisionHandler {
 
     private Set<String> interactedObjects = new HashSet<>();
 
-    private void checkInteractions() {
+    private void checkObjectInteractions() {
         MapLayer interactionLayer = map.getLayers().get("interaction layer");
         if (interactionLayer == null) return;
 
@@ -142,6 +145,17 @@ public class CollisionHandler {
             }
             // Similar logic can be added for PolygonMapObject if needed
         }
+    }
+
+    public String checkNPCInteractions() {
+        for (NPC npc : npcs) {
+            if (Intersector.overlaps(interactionCircle, npc.getCollisionBox())) {
+                if (Gdx.input.isKeyJustPressed(Input.Keys.E)) {
+                    return npc.getType();
+                }
+            }
+        }
+        return null;
     }
 
     public void handleNpcCollision() {

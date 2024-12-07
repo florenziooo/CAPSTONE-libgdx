@@ -12,6 +12,7 @@ public class GameManager implements Serializable {
     private float volume;
     private transient SoundManager soundManager;
     private HashMap<String, Boolean> areasFound;
+    private HashMap<String, Boolean> npcInteracted;
 
     private GameManager() {
         resetDefaultValues();
@@ -69,6 +70,15 @@ public class GameManager implements Serializable {
         this.areasFound = areasFound;
     }
 
+    public void setNpcInteracted(String key) {
+        if(!npcInteracted.get(key)) npcFound++;
+        npcInteracted.put(key, true);
+    }
+
+    public void setNpcsFound(HashMap<String, Boolean> npcInteracted) {
+        this.areasFound = areasFound;
+    }
+
     public void increaseNpcFound() {
         npcFound++;
     }
@@ -85,6 +95,10 @@ public class GameManager implements Serializable {
         return value;
     }
 
+    public HashMap<String, Boolean> getNpcInteracted() {
+        return npcInteracted;
+    }
+
     public HashMap<String, Boolean> getAreasFound() {
         return areasFound;
     }
@@ -94,6 +108,7 @@ public class GameManager implements Serializable {
         npcFound = 0;
         buildingsFound = 0;
         volume = 1.0f;
+
         areasFound = new HashMap<>();
         areasFound.put("NGE", false);
         areasFound.put("RTL", false);
@@ -107,5 +122,13 @@ public class GameManager implements Serializable {
         areasFound.put("Gym", false);
         areasFound.put("Canteen", false);
         areasFound.put("Chapel", false);
+
+        npcInteracted = new HashMap<>();
+        npcInteracted.put("Janitor", false);
+        npcInteracted.put("Guard", false);
+        npcInteracted.put("Teacher", false);
+        npcInteracted.put("MaleStudent", false);
+        npcInteracted.put("FemaleStudent", false);
+        npcInteracted.put("Pet", false);
     }
 }

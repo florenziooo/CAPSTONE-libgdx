@@ -7,7 +7,6 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import io.mygame.common.GameManager;
 import io.mygame.screens.ScreenState;
-import io.mygame.common.SoundManager;
 
 
 public abstract class UI {
@@ -16,7 +15,6 @@ public abstract class UI {
     protected Skin skin;
     protected ScreenState screenState;
     protected final GameManager gameManager;
-    protected SoundManager sound;
 
     public UI(Viewport viewport, ScreenState screenState, Game game) {
         stage = new Stage(viewport);

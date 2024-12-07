@@ -3,7 +3,7 @@ package io.mygame.entities;
 public abstract class Teacher extends NPC {
     private final static String textureDimensions = "8x6";
     public Teacher(String fileName, float x, float y, String movementType) {
-        super(fileName, x, y, movementType, textureDimensions);
+        super(fileName, x, y, movementType, textureDimensions, "Teacher");
     }
 
     public static class MaleTeacher extends Teacher{

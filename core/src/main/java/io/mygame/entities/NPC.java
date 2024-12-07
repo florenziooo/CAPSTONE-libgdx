@@ -7,9 +7,12 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import io.mygame.common.AnimationLoader;
 import io.mygame.enums.Direction;
 
-public class NPC extends GameObject {
+public abstract class NPC extends GameObject {
+    private final String npcType;
+
     private static final float SPEED = 75f;
     private boolean isMoving = false;
+    private boolean npcPause = false;
     private final AnimationLoader npcAnimation;
     private float stateTime = 0;
     private Direction direction = Direction.FRONT;
@@ -20,13 +23,17 @@ public class NPC extends GameObject {
     private float originalX, originalY;
     private float pauseTime;
     private final String textureDimensions;
-    public NPC(String fileName, float x, float y, String movementType, String textureDimensions) {
+
+    public NPC(String fileName, float x, float y, String movementType, String textureDimensions, String type) {
         super(new Texture(Gdx.files.internal(fileName)), x, y);
+
+        npcType = type;
         this.textureDimensions = textureDimensions;
         originalX = x;
         originalY = y;
         this.npcAnimation = new AnimationLoader(fileName, textureDimensions);
         this.movementType = movementType;
+
         if(!movementType.equalsIgnoreCase("in-place")){
             isMoving = true;
         }
@@ -118,6 +125,7 @@ public class NPC extends GameObject {
     }
 
     private void updateDirection() {
+        if(npcPause) return;
 
         currentX = getX();
         currentY = getY();
@@ -125,7 +133,7 @@ public class NPC extends GameObject {
         float dx = currentX - previousX;
         float dy = currentY - previousY;
 
-        if (Math.abs(dx) > .1f || Math.abs(dy) > .1f) { // To handle small changes
+        if (Math.abs(dx) > .1f || Math.abs(dy) > .1f) {
             if (dx > 0 && dy > 0) {
                 direction = Direction.BACK_RIGHT;
             } else if (dx < 0 && dy > 0) {
@@ -183,16 +191,15 @@ public class NPC extends GameObject {
         return previousY;
     }
 
+    public String getType() {
+        return npcType;
+    }
+
     public void setPreviousX(float previousX) {
         this.previousX = previousX;
     }
 
     public void setPreviousY(float previousY) {
         this.previousY = previousY;
-    }
-
-
-    public void stop() {
-        isMoving = false;
     }
 }

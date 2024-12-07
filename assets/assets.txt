@@ -33,6 +33,7 @@ skins/main_menu_button/yellow/yellow.png
 skins/main_menu_button/yellow_scmp/main_menu_button_yellow.scmp
 skins/uiSkins/C&C Red Alert [INET](10).fnt
 skins/uiSkins/C&C Red Alert [INET](11).fnt
+skins/uiSkins/C&C Red Alert [INET](12).fnt
 skins/uiSkins/C&C Red Alert [INET](2).fnt
 skins/uiSkins/C&C Red Alert [INET](3).fnt
 skins/uiSkins/C&C Red Alert [INET](4).fnt
@@ -65,6 +66,7 @@ sound/ui/select/select_2.ogg
 sound/ui/select/select_3.ogg
 sound/ui/smartphone/smartphone_in.wav
 sound/ui/smartphone/smartphone_out.wav
+sprites/BrunoCat.png
 sprites/CollegeFemale1.png
 sprites/CollegeFemale2.png
 sprites/CollegeMale1.png
@@ -72,6 +74,7 @@ sprites/CollegeMale2.png
 sprites/FemaleTeacher.png
 sprites/Guard1.png
 sprites/Guard2.png
+sprites/Janitor.png
 sprites/MaleTeacher.png
 sprites/Pet1.png
 sprites/Pet2.png

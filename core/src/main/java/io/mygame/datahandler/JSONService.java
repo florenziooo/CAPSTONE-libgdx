@@ -12,11 +12,11 @@ public class JSONService {
         .serializeNulls()
         .create();
 
-    public static void serializedObject(Serializable obj, FileWriter fw) {
+    public void serializedObject(Serializable obj, FileWriter fw) {
         gson.toJson(obj, fw);
     }
 
-    public static <T extends Serializable> T deserialize(FileReader fr, Class<T> clazz) {
+    public <T extends Serializable> T deserialize(FileReader fr, Class<T> clazz) {
         return gson.fromJson(fr, clazz);
     }
 }

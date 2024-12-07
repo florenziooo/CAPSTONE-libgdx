@@ -6,22 +6,21 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.Input;
-import com.badlogic.gdx.maps.MapLayer;
-import com.badlogic.gdx.maps.MapLayers;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.maps.tiled.TiledMap;
-import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
+import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
 import io.mygame.common.CollisionHandler;
 import io.mygame.common.GameManager;
+import io.mygame.common.MapHandler;
 import io.mygame.entities.GameObject;
 import io.mygame.entities.NPC;
 import io.mygame.factories.EntityFactory;
 import io.mygame.entities.Player;
+import io.mygame.ui.DialogueUI;
 import io.mygame.ui.MainGameUI;
 import io.mygame.ui.UI;
 
@@ -31,27 +30,30 @@ import java.util.List;
 public class GameScreen extends WildCatScreen {
     /************ RENDERERS ************/
     private SpriteBatch batch;
-    private OrthogonalTiledMapRenderer renderer;
 
     /************ ENTITY ************/
     private Player player;
+    private List<NPC> npcs;
 
     /************ COLLISION HANDLER ************/
     private CollisionHandler collisionHandler;
 
     /************ USER INTERFACES ***********/
     private UI mainGameUI;
+    private UI dialogueUI;
 
     /************ SCREEN VIEWPORT SIZE ************/
     private Viewport viewport;
+    private ScreenViewport sharedViewport;
     private OrthographicCamera camera;
     private final int SCREEN_WIDTH = 640;
     private final int WORLD_HEIGHT = 360;
 
-    /************ TILED MAPS ************/
+    private MapHandler mapHandler;
     private TiledMap map;
-    private List<TiledMapTileLayer> background;
-    private List<TiledMapTileLayer> foreground;
+
+    private boolean isPaused = false;
+
 
     private float footstepTimer = 0f; // timer for footstep sound
     private static final float FOOTSTEP_DELAY = 0.5f; // delay in seconds between footsteps
@@ -67,60 +69,25 @@ public class GameScreen extends WildCatScreen {
         super(game);
     }
 
-    private List<NPC> npcs;
     /**
      * Called when the screen is shown. Initializes the map, renderer, camera, viewport, player, and other components.
      */
     @Override
     public void show() {
+        sharedViewport = new ScreenViewport();
+
         map = new TmxMapLoader().load("PixelMaps/TestMap.tmx");
-        renderer = new OrthogonalTiledMapRenderer(map);
+        mapHandler = new MapHandler(map);
         camera = new OrthographicCamera();
         viewport = new FitViewport(SCREEN_WIDTH, WORLD_HEIGHT, camera);
 
         batch = new SpriteBatch();
         player = new Player();
 
-        mainGameUI = new MainGameUI(this, game);
-
-        MapLayers mapLayers = map.getLayers();
-        background = new ArrayList<>();
-        foreground = new ArrayList<>();
+        dialogueUI = new DialogueUI(sharedViewport, this, game);
+        mainGameUI = new MainGameUI(sharedViewport,this, game);
 
         npcs = new ArrayList<>();
-        // Iterate through each layer
-        for (MapLayer layer : mapLayers) {
-            try {
-                String layerName = layer.getName();
-                System.out.println("Layer Name: " + (layerName != null ? layerName : "Unnamed Layer"));
-
-                if (layer instanceof TiledMapTileLayer tileLayer) {
-                    String type;
-                    try {
-                        type = tileLayer.getProperties().get("type", String.class);
-                    } catch (ClassCastException e) {
-                        System.err.println("Error: 'type' property in layer '" + layerName + "' is not a String.");
-                        throw new RuntimeException("Error: " + e.getMessage());
-                    }
-
-                    if (type != null) {
-                        if (type.equals("foreground")) {
-                            foreground.add(tileLayer);
-                            System.out.println("FOREGROUND FOUND");
-                        } else {
-                            background.add(tileLayer);
-                            System.out.println("BACKGROUND FOUND");
-                        }
-                    } else {
-                        background.add(tileLayer);
-                        System.out.println("BACKGROUND FOUND");
-                    }
-                }
-            } catch (Exception e) {
-                System.err.println("An error occurred while processing a layer: " + e.getMessage());
-                throw new RuntimeException("Error: " + e.getMessage());
-            }
-        }
 
         npcs = EntityFactory.createNPCs();
         collisionHandler = new CollisionHandler(player, npcs, map, camera);
@@ -133,10 +100,17 @@ public class GameScreen extends WildCatScreen {
      */
     @Override
     public void render(float delta) {
-        input(delta);
         draw();
-        logic();
+
+        if(!isPaused) {
+            input(delta);
+            entityLogic();
+        }
+
+        dialogueLogic();
+
         mainGameUI.render();
+        dialogueUI.render();
     }
 
     /**
@@ -146,20 +120,12 @@ public class GameScreen extends WildCatScreen {
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-        // Update camera
         camera.position.set(player.getX() + 8, player.getY() + 16, 0);
         camera.update();
         viewport.apply();
 
         batch.setProjectionMatrix(camera.combined);
-        renderer.setView(camera);
-
-        renderer.getBatch().begin();
-
-        for(TiledMapTileLayer layer : background) {
-            renderer.renderTileLayer(layer);
-        }
-        renderer.getBatch().end();
+        mapHandler.loadBackground(camera);
 
         batch.begin();
         player.update();
@@ -168,20 +134,14 @@ public class GameScreen extends WildCatScreen {
         renderQueue.add(player);
         renderQueue.addAll(npcs);
 
-// Sort by Y position in descending order
         renderQueue.sort((a, b) -> Float.compare(b.getY(), a.getY()));
 
-// Render in sorted order
         for (GameObject obj : renderQueue) {
             obj.render(batch);
         }
         batch.end();
 
-        renderer.getBatch().begin();
-        for(TiledMapTileLayer layer : foreground) {
-            renderer.renderTileLayer(layer);
-        }
-        renderer.getBatch().end();
+        mapHandler.loadForeground(camera);
     }
 
     /**
@@ -190,7 +150,6 @@ public class GameScreen extends WildCatScreen {
     private void input(float delta) {
         player.stop();
 
-        // Update the footstep timer
         footstepTimer += delta;
 
         boolean isMoving = false;
@@ -233,21 +192,28 @@ public class GameScreen extends WildCatScreen {
     /**
      * Contains game logic updates, including collision handling and player bounding box updates.
      */
-    private void logic() {
+    private void entityLogic() {
         player.updateBoundingBox(player.getX(), player.getY());
         collisionHandler.handlePlayerCollision();
+
         for(NPC npc : npcs){
-            if(npc.isCanWalk()){
-                NPC npc2 = npcs.get(4);
-                npc2.setTarget(player.getX() + 32, player.getY() + 32);
-                npc2 = npcs.get(6);
-                npc2.setTarget(player.getX() - 32, player.getY() + 32);
-                npc.updateBoundingBox(npc.getX(), npc.getY());
-            }
             npc.update();
         }
+
         collisionHandler.handleNpcCollision();
+
 //        System.out.println(player.getX() + " " + player.getY());
+    }
+
+    private void dialogueLogic() {
+        String npcType = collisionHandler.checkNPCInteractions();
+        if (npcType != null) {
+            ((DialogueUI) dialogueUI).dialogueBox(npcType);
+        }
+    }
+
+    public void setPaused(boolean state) {
+        this.isPaused = state;
     }
 
     /**
@@ -278,8 +244,8 @@ public class GameScreen extends WildCatScreen {
         mainGameUI.dispose();
         batch.dispose();
         map.dispose();
-        renderer.dispose();
         collisionHandler.dispose();
+        mapHandler.dispose();
     }
 
     /**
