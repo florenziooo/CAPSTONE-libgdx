@@ -7,14 +7,12 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import io.mygame.common.AnimationLoader;
 import io.mygame.enums.Direction;
 
-public class NPC extends GameObject {
+public abstract class NPC extends GameObject {
     private static final float SPEED = 75f;
-    private boolean isMoving = false;
     private final AnimationLoader npcAnimation;
     private float stateTime = 0;
     private Direction direction = Direction.FRONT;
     private float targetX, targetY;
-    private float currentX, currentY;
     private float previousX, previousY;
     private final String movementType;
     private float originalX, originalY;
@@ -27,9 +25,6 @@ public class NPC extends GameObject {
         originalY = y;
         this.npcAnimation = new AnimationLoader(fileName, textureDimensions);
         this.movementType = movementType;
-        if(!movementType.equalsIgnoreCase("in-place")){
-            isMoving = true;
-        }
     }
 
     public void render(SpriteBatch batch) {
@@ -45,7 +40,6 @@ public class NPC extends GameObject {
         }else if(movementType.equalsIgnoreCase("vertical")) {
             moveVertically();
         }else if(movementType.equalsIgnoreCase("in-place")){
-            isMoving = false;
             setStopAnimation();
         }
         stateTime += Gdx.graphics.getDeltaTime();
@@ -72,7 +66,6 @@ public class NPC extends GameObject {
 
             updateDirection();
         } else {
-            isMoving = false;
             setStopAnimation();
         }
     }
@@ -119,8 +112,8 @@ public class NPC extends GameObject {
 
     private void updateDirection() {
 
-        currentX = getX();
-        currentY = getY();
+        float currentX = getX();
+        float currentY = getY();
 
         float dx = currentX - previousX;
         float dy = currentY - previousY;
@@ -168,7 +161,6 @@ public class NPC extends GameObject {
     public void setTarget(float x, float y) {
         this.targetX = x;
         this.targetY = y;
-        this.isMoving = true;
     }
 
     public boolean isCanWalk() {
@@ -191,8 +183,4 @@ public class NPC extends GameObject {
         this.previousY = previousY;
     }
 
-
-    public void stop() {
-        isMoving = false;
-    }
 }

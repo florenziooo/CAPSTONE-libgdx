@@ -5,7 +5,7 @@ import io.mygame.entities.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class EntityFactory {
+public class NPCFactory {
     public static List<NPC> createNPCs() {
         List<NPC> npcs = new ArrayList<>();
 
