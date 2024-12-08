@@ -9,12 +9,14 @@ PixelMaps/TileSets16x16/ELEMTARY.tsx
 PixelMaps/TileSets16x16/GLE.tsx
 PixelMaps/TileSets16x16/GYM.tsx
 PixelMaps/TileSets16x16/I need Help.tsx
+PixelMaps/TileSets16x16/LOOP.tsx
 PixelMaps/TileSets16x16/Modern_Exteriors_Complete_Tileset.tsx
 PixelMaps/TileSets16x16/NGE.tsx
 PixelMaps/TileSets16x16/RTL.tsx
 PixelMaps/TileSets16x16/Roofs.tsx
 PixelMaps/TileSets16x16/TIleset2.tsx
 PixelMaps/TileSets16x16/Tileset1.tsx
+PixelMaps/TileSets16x16/asdadasdadadsadadsad.tsx
 PixelMaps/TileSets16x16/asdasd.tsx
 PixelMaps/TileSets16x16/roogf2.tsx
 PixelMaps/TileSets16x16/sad nana siyay iya.tsx
@@ -33,7 +35,9 @@ PixelMaps/Tiles/RTL.png
 PixelMaps/Tiles/Roof2.png
 PixelMaps/Tiles/Roofs.png
 PixelMaps/Tiles/UNSAON NING GYM.png
+PixelMaps/Tiles/asdadasdadadsadadsad.png
 PixelMaps/Tiles/asdasd.png
+PixelMaps/Tiles/asdasdaaaaaaaaaaa.png
 PixelMaps/Tiles/bruh.png
 PixelMaps/Tiles/goobkpgrg.png
 PixelMaps/Tiles/ohNo.png
