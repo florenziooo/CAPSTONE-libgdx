@@ -54,6 +54,11 @@ public class GameManager implements Serializable {
         this.areasFound = areasFound;
     }
 
+    public void setAreaFound(String type) {
+        if(!areasFound.get(type)) buildingsFound++;
+        areasFound.put(type, true);
+    }
+
     public void setNpcInteracted(String key) {
         if(!npcInteracted.get(key)) npcFound++;
         npcInteracted.put(key, true);

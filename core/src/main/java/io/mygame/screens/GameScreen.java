@@ -109,6 +109,7 @@ public class GameScreen extends WildCatScreen {
             entityLogic();
         }
 
+        mapSignLogic();
         dialogueLogic();
 
         mainGameUI.render();
@@ -215,8 +216,14 @@ public class GameScreen extends WildCatScreen {
         }
 
         collisionHandler.handleNpcCollision();
+        System.out.println(player.getX() + " " + player.getY());
+    }
 
-//        System.out.println(player.getX() + " " + player.getY());
+    private void mapSignLogic() {
+        String type = collisionHandler.checkObjectInteractions();
+        if(type != null) {
+            ((MainGameUI) mainGameUI).signDescription(type);
+        }
     }
 
     private void dialogueLogic() {

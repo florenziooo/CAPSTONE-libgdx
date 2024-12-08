@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.maps.MapGroupLayer;
 import com.badlogic.gdx.maps.MapLayer;
 import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.maps.objects.PolygonMapObject;
@@ -13,7 +14,9 @@ import com.badlogic.gdx.math.*;
 import io.mygame.entities.Entity;
 import io.mygame.entities.NPC;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Handles collision detection for an entity against objects in a TiledMap.
@@ -27,6 +30,7 @@ public class CollisionHandler {
     private float previousX, previousY;
     private final List<NPC> npcs;
     private final Circle interactionCircle;
+    private Set<String> interactedObjects = new HashSet<>();
 
     /**
      * Constructs a CollisionHandler for handling collisions of a specific entity on a TiledMap.
@@ -96,6 +100,36 @@ public class CollisionHandler {
             System.err.println("Exception: " + e.getMessage());
             throw new RuntimeException("Error: " + e.getMessage());
         }
+    }
+
+    public String checkObjectInteractions() {
+        try {
+            MapLayer interactionGroupLayer = map.getLayers().get("InteractionLayer");
+            if (interactionGroupLayer == null) throw new IllegalArgumentException("MapLayer not found on checkObjectInteraction method not found");
+
+            if(interactionGroupLayer instanceof MapGroupLayer) {
+                MapGroupLayer groupLayer = (MapGroupLayer) interactionGroupLayer;
+
+                for(MapLayer childLayer : groupLayer.getLayers()) {
+                    String layerName = childLayer.getName();
+
+                    for(MapObject object : childLayer.getObjects()) {
+                        if (object instanceof RectangleMapObject) {
+                            Rectangle rectangle = ((RectangleMapObject) object).getRectangle();
+                            if (Intersector.overlaps(interactionCircle, rectangle) &&
+                                Gdx.input.isKeyJustPressed(Input.Keys.E)) {
+
+                                return layerName;
+                            }
+                        }
+                    }
+                }
+            }
+        } catch (IllegalArgumentException e){
+            throw new RuntimeException(e.getMessage());
+        }
+
+        return null;
     }
 
     public String checkNPCInteractions() {
@@ -235,16 +269,16 @@ public class CollisionHandler {
      * @param objectLayer The MapLayer containing collision objects to be drawn.
      */
     private void drawDebug(MapLayer objectLayer) {
-        boolean debugMode = true;
+        boolean debugMode = false;
         if (!debugMode) return;
 
         shapeRenderer.setProjectionMatrix(camera.combined);
         shapeRenderer.begin(ShapeRenderer.ShapeType.Line);
 
         // Draw player collision box
-//        shapeRenderer.setColor(0, 1, 0, 1);
-//        Rectangle playerBox = entity.getCollisionBox();
-//        shapeRenderer.rect(playerBox.x, playerBox.y, playerBox.width, playerBox.height);
+        shapeRenderer.setColor(0, 1, 0, 1);
+        Rectangle playerBox = entity.getCollisionBox();
+        shapeRenderer.rect(playerBox.x, playerBox.y, playerBox.width, playerBox.height);
 
         // Draw interaction circle
         shapeRenderer.setColor(0, 1, 1, 1);  // Cyan color for interaction circle

@@ -6,6 +6,19 @@ filter: Linear, Linear
 repeat: none
 IntroScreen
   rotate: false
+  xy: 1, 839
+  size: 1920, 1080
+  orig: 1920, 1080
+  offset: 0, 0
+  index: -1
+
+ui2.png
+size: 2048, 2048
+format: RGBA8888
+filter: Linear, Linear
+repeat: none
+Instruction Screen
+  rotate: false
   xy: 1, 903
   size: 1920, 1080
   orig: 1920, 1080
@@ -19,7 +32,7 @@ ACADPop
   offset: 0, 0
   index: -1
 
-ui2.png
+ui3.png
 size: 2048, 2048
 format: RGBA8888
 filter: Linear, Linear
@@ -39,7 +52,7 @@ ChapelPop
   offset: 0, 0
   index: -1
 
-ui3.png
+ui4.png
 size: 2048, 2048
 format: RGBA8888
 filter: Linear, Linear
@@ -59,7 +72,7 @@ GLEPop
   offset: 0, 0
   index: -1
 
-ui4.png
+ui5.png
 size: 2048, 2048
 format: RGBA8888
 filter: Linear, Linear
@@ -79,7 +92,7 @@ LIBPop
   offset: 0, 0
   index: -1
 
-ui5.png
+ui6.png
 size: 2048, 2048
 format: RGBA8888
 filter: Linear, Linear
@@ -99,7 +112,7 @@ RTLPop
   offset: 0, 0
   index: -1
 
-ui6.png
+ui7.png
 size: 2048, 2048
 format: RGBA8888
 filter: Linear, Linear
@@ -119,7 +132,7 @@ SALPop
   offset: 0, 0
   index: -1
 
-ui7.png
+ui8.png
 size: 2048, 2048
 format: RGBA8888
 filter: Linear, Linear
@@ -146,7 +159,7 @@ menu_bg
   offset: 0, 0
   index: -1
 
-ui8.png
+ui9.png
 size: 2048, 2048
 format: RGBA8888
 filter: Linear, Linear

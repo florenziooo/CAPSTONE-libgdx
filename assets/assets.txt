@@ -42,7 +42,6 @@ PixelMaps/Tiles/tf is this-sheet.png
 PixelMaps/Tiles/tf is this.png
 PixelMaps/Tiles/wall.png
 PixelMaps/Tiles/wallsssss.png
-Sprites/CollegeMale1.png
 cursor/cursor.png
 dialogues/dialogue.json
 hs_err_pid36261.log
@@ -76,6 +75,7 @@ skins/uiSkins/ui5.png
 skins/uiSkins/ui6.png
 skins/uiSkins/ui7.png
 skins/uiSkins/ui8.png
+skins/uiSkins/ui9.png
 sound/ambience/mild_traffic.mp3
 sound/footsteps/walk_1.ogg
 sound/footsteps/walk_2.ogg

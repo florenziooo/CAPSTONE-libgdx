@@ -1,6 +1,9 @@
 package io.mygame.ui;
 
 import com.badlogic.gdx.Game;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
+import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
@@ -16,6 +19,8 @@ public class IntroGameUI extends UI {
     private TextButton submitBtn;
     private TextButton returnBtn;
     private TextField nameField;
+    private Table instructionTable1, instructionTable2, introTable;
+    private boolean anyKeyPressed = false;
 
     public IntroGameUI(ScreenState screenState, Game game) {
         super(new ScreenViewport(), screenState, game);
@@ -24,8 +29,8 @@ public class IntroGameUI extends UI {
     }
 
     private void introUI() {
-        Table table = new Table();
-        table.setFillParent(true);
+        introTable = new Table();
+        introTable.setFillParent(true);
 
         Stack stack = new Stack();
 
@@ -73,10 +78,35 @@ public class IntroGameUI extends UI {
         submitBtnContainer.setActor(submitBtn);
         outerSubmitContainer.setActor(submitBtnContainer);
         stack.addActor(outerSubmitContainer);
-        table.add(stack);
-        stage.addActor(table);
+        introTable.add(stack);
+        stage.addActor(introTable);
 
         buttonListener();
+    }
+
+    private void instructionUI1() {
+        instructionTable1 = new Table();
+        instructionTable1.setFillParent(true);
+
+        Image image = new Image(skin, "Instruction Screen");
+        image.setScaling(Scaling.fit);
+        instructionTable1.add(image);
+        stage.addActor(instructionTable1);
+    }
+
+    private void instructionUI2() {
+        instructionTable2 = new Table();
+        instructionTable2.setFillParent(true);
+
+        Image image = new Image(skin, "Instruction Screen");
+        image.setScaling(Scaling.fill);
+        instructionTable2.add(image);
+
+        if (instructionTable1 != null) {
+            instructionTable1.remove();
+        }
+
+        stage.addActor(instructionTable2);
     }
 
     private void buttonListener() {
@@ -94,7 +124,9 @@ public class IntroGameUI extends UI {
                 gameManager.resetDefaultValues();
                 gameManager.setPlayerName(nameField.getText());
                 GameDataHandler.saveGameData();
-                screenState.changeScreen(new GameScreen(getGame()));
+                introTable.remove();
+
+                instructionUI1();
             }
         });
 
@@ -105,5 +137,22 @@ public class IntroGameUI extends UI {
                 screenState.changeScreen(new MainMenuScreen(getGame()));
             }
         });
+    }
+
+    @Override
+    public void render() {
+        super.render();
+
+        if(introTable.getParent() == null) {
+            if(Gdx.input.isKeyJustPressed(Input.Keys.ANY_KEY)) {
+                if(instructionTable1.getParent() != null) {
+                    gameManager.getSoundManager().addSound("click");
+                    instructionUI2();
+                } else if(instructionTable1.getParent() == null && instructionTable2.getParent() != null) {
+                    gameManager.getSoundManager().addSound("click");
+                    screenState.changeScreen(new GameScreen(getGame()));
+                }
+            }
+        }
     }
 }

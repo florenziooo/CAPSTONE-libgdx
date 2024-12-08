@@ -9,7 +9,7 @@ import io.mygame.common.InputHandler;
 import io.mygame.enums.Direction;
 
 public class Player extends Entity {
-    private static final float SPEED = 200f; // 75
+    private static final float SPEED = 100f;
     private final AnimationLoader playerAnimation;
     private float stateTime = 0;
     private boolean isMoving = false;

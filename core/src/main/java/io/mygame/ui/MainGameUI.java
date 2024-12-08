@@ -56,6 +56,11 @@ public class MainGameUI extends UI {
         Stack stack = getStack();
         table.add(stack);
 
+        statsCb = new CheckBox(null, skin, "stats_cb");
+        mapCb = new CheckBox(null, skin, "map_cb");
+        expCb = new CheckBox(null, skin, "exp_cb");
+        settingCb = new CheckBox(null, skin, "settings_cb");
+
         table.row();
         menuBtn = new Button(skin, "open_menu_btn");
         table.add(menuBtn).padLeft(10.0f).padTop(19.0f).align(Align.left).minSize(80.0f);
@@ -570,6 +575,12 @@ public class MainGameUI extends UI {
             button.addListener(new ChangeListener() {
                 @Override
                 public void changed(ChangeEvent event, Actor actor) {
+
+                    statsCb.setTouchable(Touchable.disabled);
+                    mapCb.setTouchable(Touchable.disabled);
+                    expCb.setTouchable(Touchable.disabled);
+                    settingCb.setTouchable(Touchable.disabled);
+
                     gameManager.getSoundManager().addSound("click");
 
                     if(actor == ngeBtn) {
@@ -625,10 +636,17 @@ public class MainGameUI extends UI {
     }
 
     public void signDescription(String type) {
+        if(descriptionViewMode) return;
+
+        ((GameScreen) screenState).setPaused(true);
+        gameManager.getSoundManager().addSound("click");
+
         Table table = new Table();
         table.setFillParent(true);
         Stack stack = new Stack();
         Image image;
+
+        gameManager.setAreaFound(type);
 
         switch(type) {
             case "NGE":
@@ -701,10 +719,6 @@ public class MainGameUI extends UI {
         container.padTop(20.0f);
 
         descriptionViewMode = true;
-        statsCb.setTouchable(Touchable.disabled);
-        mapCb.setTouchable(Touchable.disabled);
-        expCb.setTouchable(Touchable.disabled);
-        settingCb.setTouchable(Touchable.disabled);
 
         Button button = new Button(skin);
         container.setActor(button);
@@ -715,14 +729,15 @@ public class MainGameUI extends UI {
         button.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                descriptionViewMode = false;
-                statsCb.setTouchable(Touchable.enabled);
-                mapCb.setTouchable(Touchable.enabled);
-                expCb.setTouchable(Touchable.enabled);
-                settingCb.setTouchable(Touchable.enabled);
+            descriptionViewMode = false;
+            statsCb.setTouchable(Touchable.enabled);
+            mapCb.setTouchable(Touchable.enabled);
+            expCb.setTouchable(Touchable.enabled);
+            settingCb.setTouchable(Touchable.enabled);
 
-                gameManager.getSoundManager().addSound("click");
-                table.remove();
+            gameManager.getSoundManager().addSound("click");
+                ((GameScreen) screenState).setPaused(false);
+            table.remove();
             }
         });
     }
