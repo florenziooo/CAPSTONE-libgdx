@@ -12,6 +12,7 @@ import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.Scaling;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import io.mygame.datahandler.GameDataHandler;
+import io.mygame.screens.GameScreen;
 import io.mygame.screens.MainMenuScreen;
 import io.mygame.screens.ScreenState;
 
@@ -81,6 +82,11 @@ public class MainGameUI extends UI {
             @Override
             public void changed(ChangeEvent changeEvent, Actor actor) {
                 menuBtn.setTouchable(Touchable.disabled);
+
+                if (screenState instanceof GameScreen) {
+                    ((GameScreen)screenState).setOverlayVisible(true);
+                }
+
                 statsTable();
             }
         });
@@ -504,6 +510,11 @@ public class MainGameUI extends UI {
             public void changed(ChangeEvent changeEvent, Actor actor) {
                 gameManager.getSoundManager().addSound("click");
                 menuBtn.setTouchable(Touchable.enabled);
+
+                if (screenState instanceof GameScreen) {
+                    ((GameScreen)screenState).setOverlayVisible(false);
+                }
+
                 currentTable.remove();
             }
         });
