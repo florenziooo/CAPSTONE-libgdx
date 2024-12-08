@@ -3,7 +3,6 @@ package io.mygame.ui;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
-import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
@@ -23,7 +22,6 @@ public class IntroGameUI extends UI {
     private boolean instructionOneDone = false, instructionTwoDone = false;
     private boolean isLoading = false;
     private float elapsedTime = 0f;
-    private float delta;
 
     public IntroGameUI(ScreenState screenState, Game game) {
         super(new ScreenViewport(), screenState, game);
