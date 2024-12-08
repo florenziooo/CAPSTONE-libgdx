@@ -6,8 +6,8 @@
     "activeFile": "TestMap.tmx",
     "expandedProjectPaths": [
         "TileSets",
-        "TileSets16x16",
-        "."
+        ".",
+        "TileSets16x16"
     ],
     "file.lastUsedOpenFilter": "All Files (*)",
     "fileStates": {
@@ -78,11 +78,11 @@
             "expandedGroupLayers": [
                 59
             ],
-            "scale": 1,
-            "selectedLayer": 9,
+            "scale": 0.75,
+            "selectedLayer": 26,
             "viewCenter": {
-                "x": 1231.5,
-                "y": 1637.5
+                "x": 1328.6666666666665,
+                "y": 1336.6666666666665
             }
         },
         "TileSets/CollegeMale1.tsx": {
@@ -136,6 +136,10 @@
             "scaleInDock": 1,
             "scaleInEditor": 1
         },
+        "TileSets16x16/LOOP.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
         "TileSets16x16/Modern_Exteriors_Complete_Tileset.tsx": {
             "scaleInDock": 1,
             "scaleInEditor": 0.33
@@ -156,6 +160,10 @@
         },
         "TileSets16x16/Tileset1.tsx": {
             "scaleInDock": 1
+        },
+        "TileSets16x16/asdadasdadadsadadsad.tsx": {
+            "scaleInDock": 3,
+            "scaleInEditor": 1
         },
         "TileSets16x16/asdasd.tsx": {
             "scaleInDock": 1,
@@ -178,7 +186,7 @@
             "scaleInEditor": 1
         },
         "TileSets16x16/wallsssss.tsx": {
-            "scaleInDock": 1,
+            "scaleInDock": 1.5,
             "scaleInEditor": 1
         }
     },
@@ -195,6 +203,8 @@
     "project": "CIT.tiled-project",
     "recentFiles": [
         "TestMap.tmx",
+        "TileSets16x16/LOOP.tsx",
+        "TileSets16x16/asdadasdadadsadadsad.tsx",
         "TileSets16x16/I need Help.tsx",
         "TileSets16x16/wallsssss.tsx",
         "TileSets16x16/ACAD.tsx",
@@ -203,9 +213,7 @@
         "TileSets16x16/sad nana siyay iya.tsx",
         "TileSets16x16/Roofs.tsx",
         "TileSets16x16/tf is this.tsx",
-        "TileSets16x16/roogf2.tsx",
-        "TileSets16x16/Covered Court.tsx",
-        "TileSets16x16/walll.tsx"
+        "TileSets16x16/roogf2.tsx"
     ],
     "tileset.lastUsedFormat": "tsx",
     "tileset.tileSize": {
