@@ -6,6 +6,10 @@ import com.google.gson.GsonBuilder;
 import java.io.FileReader;
 import java.io.FileWriter;
 
+/**
+ * Provides methods for serializing and deserializing objects to and from JSON using Gson.
+ * Uses a Gson instance configured with pretty printing and null serialization.
+ */
 public class JSONService {
     /************ GSON INSTANCE ************/
     private static final Gson gson = new GsonBuilder()

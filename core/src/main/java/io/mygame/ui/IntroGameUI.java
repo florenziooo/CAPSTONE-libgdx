@@ -14,21 +14,45 @@ import io.mygame.screens.GameScreen;
 import io.mygame.screens.MainMenuScreen;
 import io.mygame.screens.ScreenState;
 
+/**
+ * The IntroGameUI class represents the user interface for the game's introduction sequence.
+ * It handles the initial setup, user input for player name, and navigation to the next screen.
+ */
 public class IntroGameUI extends UI {
+    /************ UI ELEMENTS ************/
     private TextButton submitBtn;
     private TextButton returnBtn;
     private TextField nameField;
-    private Table instructionTable1, instructionTable2, instructionTable3, introTable;
-    private boolean instructionOneDone = false, instructionTwoDone = false;
-    private boolean isLoading = false;
-    private float elapsedTime = 0f;
 
+    /************ INSTRUCTION TABLES ************/
+    private Table instructionTable1;
+    private Table instructionTable2;
+    private Table instructionTable3;
+    private Table introTable;
+
+    /************ INSTRUCTION PROGRESS ************/
+    private boolean instructionOneDone;
+    private boolean instructionTwoDone;
+
+    /************ LOADING AND TIME TRACKING ************/
+    private boolean isLoading;
+    private float elapsedTime;
+
+    /**
+     * Constructs an IntroGameUI instance with the provided screen state and game reference.
+     *
+     * @param screenState the current screen state
+     * @param game the game instance
+     */
     public IntroGameUI(ScreenState screenState, Game game) {
         super(new ScreenViewport(), screenState, game);
 
         introUI();
     }
 
+    /**
+     * Initializes the user interface for the introduction screen, including text fields, buttons, and images.
+     */
     private void introUI() {
         introTable = new Table();
         introTable.setFillParent(true);
@@ -85,6 +109,9 @@ public class IntroGameUI extends UI {
         buttonListener();
     }
 
+    /**
+     * Displays the first instruction screen.
+     */
     private void instructionUI1() {
         instructionTable1 = new Table();
         instructionTable1.setFillParent(true);
@@ -95,6 +122,9 @@ public class IntroGameUI extends UI {
         stage.addActor(instructionTable1);
     }
 
+    /**
+     * Displays the second instruction screen and removes the first instruction screen if present.
+     */
     private void instructionUI2() {
         instructionTable2 = new Table();
         instructionTable2.setFillParent(true);
@@ -110,6 +140,9 @@ public class IntroGameUI extends UI {
         stage.addActor(instructionTable2);
     }
 
+    /**
+     * Displays the third instruction screen and removes the second instruction screen if present.
+     */
     private void instructionUI3() {
         instructionTable3 = new Table();
         instructionTable3.setFillParent(true);
@@ -125,6 +158,9 @@ public class IntroGameUI extends UI {
         stage.addActor(instructionTable3);
     }
 
+    /**
+     * Displays the loading screen and removes the third instruction screen if present.
+     */
     private void loadingScreen() {
         Table table = new Table();
         table.setFillParent(true);
@@ -140,6 +176,9 @@ public class IntroGameUI extends UI {
         stage.addActor(table);
     }
 
+    /**
+     * Sets up listeners for the buttons and text field interactions, including name input validation and screen transitions.
+     */
     private void buttonListener() {
         nameField.addListener(new ChangeListener() {
             @Override
@@ -170,6 +209,9 @@ public class IntroGameUI extends UI {
         });
     }
 
+    /**
+     * Renders the UI, including handling the transition between instruction screens and loading screens.
+     */
     @Override
     public void render() {
         super.render();

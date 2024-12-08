@@ -5,10 +5,21 @@ import io.mygame.entities.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Factory class that creates and initializes NPCs (guards, students, teachers, janitors, pets) with movement behaviors and target positions.
+ */
 public class NPCFactory {
+
+    /**
+     * Creates and returns a list of NPCs with predefined positions and movement types (e.g., in-place, vertical, horizontal).
+     * NPC types include guards, students, teachers, janitors, and pets, each with specific behaviors and roles.
+     *
+     * @return A list of NPC entities with initial positions, movement types, and roles.
+     */
     public static List<NPC> createNPCs() {
         List<NPC> npcs = new ArrayList<>();
 
+        // Adding Guard NPCs
         npcs.add(new Guard.Guard1(1790, 287, "in-place"));
         npcs.add(new Guard.Guard2(1919, 233, "in-place"));
         npcs.add(new Guard.Guard2(1546, 735, "in-place"));
@@ -16,7 +27,7 @@ public class NPCFactory {
         npcs.add(new Guard.Guard2(1409, 2516, "in-place"));
         npcs.add(new Guard.Guard1(1305, 2475, "in-place"));
 
-        // 6
+        // Adding Male Student NPCs
         npcs.add(new Student.CollegeMale2(1154, 1457, "horizontal"));
         npcs.add(new Student.CollegeMale1(1014, 654, "horizontal"));
         npcs.add(new Student.CollegeMale1(1805, 1024, "in-place"));
@@ -26,7 +37,7 @@ public class NPCFactory {
         npcs.add(new Student.CollegeMale2(1439, 2342, "in-place"));
         npcs.add(new Student.CollegeMale1(1506, 2250, "in-place"));
 
-        // 14
+        // Adding Female Student NPCs
         npcs.add(new Student.CollegeFemale1(1807, 226, "in-place"));
         npcs.add(new Student.CollegeFemale2(1701, 351, "in-place"));
         npcs.add(new Student.CollegeFemale1(942, 1160, "vertical"));
@@ -36,25 +47,32 @@ public class NPCFactory {
         npcs.add(new Student.CollegeFemale2(1736, 2470, "in-place"));
         npcs.add(new Student.CollegeFemale1(1772, 1753, "in-place"));
 
-        // 22
+        // Adding Teacher NPCs
         npcs.add(new Teacher.MaleTeacher(1385, 681, "in-place"));
         npcs.add(new Teacher.FemaleTeacher(1554, 900, "in-place"));
 
-        // 24
+        // Adding Janitor NPCs
         npcs.add(new Janitor.Janitor1(901, 607, "vertical"));
         npcs.add(new Janitor.Janitor1(900, 1982, "vertical"));
         npcs.add(new Janitor.Janitor1(1562, 2137, "in-place"));
 
-        // 27
+        // Adding Pet NPCs
         npcs.add(new Pet.Pet1(1708, 2215, "vertical"));
         npcs.add(new Pet.Pet2(1914, 1885, "in-place"));
         npcs.add(new Pet.Pet1(1974, 520, "vertical"));
 
+        // Set target positions for specific NPCs
         setTargets(npcs);
 
         return npcs;
     }
 
+    /**
+     * Sets target positions for specific NPCs based on their initial coordinates and movement type.
+     *
+     * @param npcs A list of NPCs to update target positions.
+     * @throws RuntimeException If an index out of bounds error occurs while setting targets.
+     */
     public static void setTargets(List<NPC> npcs){
         try {
             NPC npc;

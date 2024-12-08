@@ -8,11 +8,10 @@ import com.badlogic.gdx.math.Rectangle;
 
 /**
  * Abstract class representing an in-game entity with a texture, position, and collision box.
- * Provides functionality for rendering the entity, handling collision detection, and updating its position.
- * <p>
- * This class defines the core properties of an entity, such as its texture, size, and position.
- * It also includes a collision box (represented as a rectangle) and optionally a collision polygon for more complex collision detection.
- * Derived classes can extend this class to implement specific behavior and rendering logic.
+ * Provides functionality for rendering, collision detection, and position updates.
+ * This class defines core properties like texture, size, position, and a collision box,
+ * with support for complex collision detection via a polygon. Derived classes can extend it
+ * to implement specific behavior and rendering.
  */
 public abstract class Entity {
     /************ ENTITY TEXTURE ************/
@@ -151,29 +150,75 @@ public abstract class Entity {
         return collisionPolygon;
     }
 
-    // Getters
+    /**
+     * Gets the x-coordinate of the entity's position.
+     * @return The x-coordinate of the entity.
+     */
     public float getX() { return x; }
+
+    /**
+     * Gets the y-coordinate of the entity's position.
+     * @return The y-coordinate of the entity.
+     */
     public float getY() { return y; }
+
+    /**
+     * Gets the width of the entity.
+     * @return The width of the entity.
+     */
     public float getWidth() { return width; }
+
+    /**
+     * Gets the height of the entity.
+     * @return The height of the entity.
+     */
     public float getHeight() { return height; }
 
-    // Setters
+    /**
+     * Sets the x-coordinate of the entity's position.
+     * Updates the collision box position based on the new x-coordinate.
+     * @param newX The new x-coordinate to set.
+     */
     public void setX(float newX) {
         this.x = newX;
         updateCollisionPositions();
     }
 
+    /**
+     * Sets the y-coordinate of the entity's position.
+     * Updates the collision box position based on the new y-coordinate.
+     * @param newY The new y-coordinate to set.
+     */
     public void setY(float newY) {
         this.y = newY;
         updateCollisionPositions();
     }
 
+    /**
+     * Sets the position of the entity.
+     * Updates both the x and y coordinates and the collision box position.
+     * @param newX The new x-coordinate to set.
+     * @param newY The new y-coordinate to set.
+     */
     public void setPosition(float newX, float newY) {
         this.x = newX;
         this.y = newY;
         updateCollisionPositions();
     }
 
-    public void setWidth(float width) { this.width = width; }
-    public void setHeight(float height) { this.height = height; }
+    /**
+     * Sets the width of the entity.
+     * @param width The new width to set.
+     */
+    public void setWidth(float width) {
+        this.width = width;
+    }
+
+    /**
+     * Sets the height of the entity.
+     * @param height The new height to set.
+     */
+    public void setHeight(float height) {
+        this.height = height;
+    }
 }

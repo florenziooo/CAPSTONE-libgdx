@@ -16,18 +16,32 @@ import io.mygame.screens.GameScreen;
 import io.mygame.screens.MainMenuScreen;
 import io.mygame.screens.ScreenState;
 
+/**
+ * The MainGameUI class represents the user interface for the main game screen.
+ * It extends the UI class and provides a variety of UI components, including
+ * buttons, checkboxes, and tables for settings and exploration. The class
+ * handles rendering the UI elements and listening for user interactions.
+ */
 public class MainGameUI extends UI {
-    private boolean descriptionViewMode = false;
+    /************ VIEW MODE AND UI ELEMENTS ************/
+    private boolean descriptionViewMode;
 
+    /************ CHECKBOXES ************/
     private CheckBox statsCb;
     private CheckBox mapCb;
     private CheckBox expCb;
     private CheckBox settingCb;
+
+    /************ BUTTONS ************/
     private TextButton saveBtn;
     private TextButton returnBtn;
     private Button exitBtn;
     private Button menuBtn;
+
+    /************ TABLE ************/
     private Table currentTable;
+
+    /************ LOCATION BUTTONS ************/
     private Button ngeBtn;
     private Button rtlBtn;
     private Button gleBtn;
@@ -41,11 +55,21 @@ public class MainGameUI extends UI {
     private Button canteenBtn;
     private Button chapelBtn;
 
+    /**
+     * Constructs the MainGameUI instance and initializes the player HUD.
+     *
+     * @param screenViewport the viewport for the screen
+     * @param screenState the current state of the screen
+     * @param game the game instance
+     */
     public MainGameUI(ScreenViewport screenViewport, ScreenState screenState, Game game) {
         super(screenViewport, screenState, game);
         playerHUD();
     }
 
+    /**
+     * Initializes and configures the player's HUD elements, including the menu button and checkboxes.
+     */
     private void playerHUD() {
         Table table = new Table();
         table.top().left();
@@ -80,6 +104,13 @@ public class MainGameUI extends UI {
         });
     }
 
+    /**
+     * Returns a Stack containing a player's HUD with their name displayed.
+     * It includes a label with the player's name, positioned with padding
+     * and aligned to the left of the screen.
+     *
+     * @return Stack containing the HUD elements including player's name label.
+     */
     private Stack getStack() {
         Stack stack = new Stack();
 
@@ -100,6 +131,11 @@ public class MainGameUI extends UI {
         return stack;
     }
 
+    /**
+     * Displays the statistics table with player's information including name,
+     * areas discovered, NPCs interacted, and other details. Includes options
+     * for navigating to different sections like stats, map, exploration, and settings.
+     */
     private void statsTable() {
         currentTable = new Table();
         currentTable.setFillParent(true);
@@ -181,6 +217,10 @@ public class MainGameUI extends UI {
         buttonListener();
     }
 
+    /**
+     * Displays the map screen with options for navigation, settings, and player stats.
+     * Includes an image of the campus map and checkboxes to toggle different views.
+     */
     private void mapTable() {
         currentTable = new Table();
         currentTable.setFillParent(true);
@@ -240,6 +280,11 @@ public class MainGameUI extends UI {
         buttonListener();
     }
 
+    /**
+     * Displays the exploration screen where the player can explore different areas
+     * within the game. This table shows the areas discovered and includes buttons
+     * for the available areas.
+     */
     private void explorationTable() {
         currentTable = new Table();
         currentTable.setFillParent(true);
@@ -356,6 +401,9 @@ public class MainGameUI extends UI {
         explorationButtonListener();
     }
 
+    /**
+     * Sets up the settings menu UI with options like volume, key bindings, and buttons for saving game data and returning to the main menu.
+     */
     private void settingsTable() {
         currentTable = new Table();
         currentTable.setFillParent(true);
@@ -463,6 +511,11 @@ public class MainGameUI extends UI {
         settingButtonListener();
     }
 
+    /**
+     * Creates and configures a slider for adjusting the volume. The slider's value is bound to the game's volume setting.
+     *
+     * @return the configured slider
+     */
     private Slider getSlider() {
         Slider slider = new Slider(0.0f, 1.0f, 0.1f, false, skin, "default-horizontal");
         slider.setValue(gameManager.getVolume());
@@ -481,6 +534,9 @@ public class MainGameUI extends UI {
         return slider;
     }
 
+    /**
+     * Adds listeners to the menu buttons, changing the current menu based on the button clicked.
+     */
     private void buttonListener() {
         statsCb.addListener(new ChangeListener() {
             @Override
@@ -533,6 +589,9 @@ public class MainGameUI extends UI {
         });
     }
 
+    /**
+     * Adds listeners to the save and return buttons in the settings menu.
+     */
     private void settingButtonListener() {
         saveBtn.addListener(new ChangeListener() {
             @Override
@@ -551,6 +610,9 @@ public class MainGameUI extends UI {
         });
     }
 
+    /**
+     * Handles the Q key press to toggle the menu visibility and switch to the stats menu if applicable.
+     */
     public void keyMenuHandler() {
         if(Gdx.input.isKeyJustPressed(Input.Keys.Q)) {
             if(descriptionViewMode) return;
@@ -566,6 +628,9 @@ public class MainGameUI extends UI {
         }
     }
 
+    /**
+     * Adds listeners to the exploration buttons to show a description of a specific area when clicked.
+     */
     private void explorationButtonListener() {
         Button[] buttons = new Button[] {ngeBtn, rtlBtn, gleBtn, salBtn,
             libBtn, espasyoBtn, patioBtn, acadBtn, elemBtn, gymBtn,
@@ -635,6 +700,11 @@ public class MainGameUI extends UI {
         }
     }
 
+    /**
+     * Displays a description for the selected area.
+     *
+     * @param type the type of area to display (e.g., "NGE", "Library")
+     */
     public void signDescription(String type) {
         if(descriptionViewMode) return;
 
@@ -742,11 +812,17 @@ public class MainGameUI extends UI {
         });
     }
 
+    /**
+     * Renders the current screen by calling the superclass render method.
+     */
     @Override
     public void render() {
         super.render();
     }
 
+    /**
+     * Disposes of resources when the screen is no longer needed.
+     */
     @Override
     public void dispose() {
         super.dispose();

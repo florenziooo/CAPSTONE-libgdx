@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"io.mygame.common"},{"l":"io.mygame.datahandler"},{"l":"io.mygame.entities"},{"l":"io.mygame.enums"},{"l":"io.mygame.factories"},{"l":"io.mygame.lwjgl3"},{"l":"io.mygame.main"},{"l":"io.mygame.screens"},{"l":"io.mygame.ui"}];updateSearchResults();

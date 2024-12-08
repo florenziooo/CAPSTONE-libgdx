@@ -17,7 +17,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+/**
+ * Manages and displays NPC dialogue with a typewriter effect. Handles dialogue flow
+ * for various NPC types (e.g., janitors, guards, teachers) and loads dialogue data
+ * from a JSON file for player interaction.
+ */
 public class DialogueUI extends UI implements Serializable {
+    /************ DIALOGUE VARIABLES ************/
     private String[] janitorDialogue;
     private String[] guardDialogue;
     private String[] teacherDialogue;
@@ -25,6 +31,7 @@ public class DialogueUI extends UI implements Serializable {
     private String[] collegeFemaleDialogue;
     private String[] petDialogue;
 
+    /************ RANDOM AND UNUSED DIALOGUE ************/
     private final transient Random random;
     private transient List<String> unusedJanitorDialogues;
     private transient List<String> unusedGuardDialogues;
@@ -33,15 +40,26 @@ public class DialogueUI extends UI implements Serializable {
     private transient List<String> unusedCollegeFemaleDialogues;
     private transient List<String> unusedPetDialogues;
 
+    /************ DIALOGUE DISPLAY ************/
     private transient String fullDialogue;
-    private transient float typewriterTimer = 0;
-    private transient int visibleCharacters = 0;
+    private transient float typewriterTimer;
+    private transient int visibleCharacters;
+
+    /************ UI ELEMENTS ************/
     private transient Table root;
-    private transient boolean isDialogueOn = false;
-    private transient boolean isDialogueTextFinished = false;
+    private transient boolean isDialogueOn;
+    private transient boolean isDialogueTextFinished;
     private transient Label dialogueLabel;
     private transient Label nameLabel;
 
+    /**
+     * Constructor for the DialogueUI class.
+     * Initializes random number generator, dialogue lists, and loads dialogue data from a JSON file.
+     *
+     * @param screenViewport the screen viewport to set up the UI
+     * @param screenState the screen state that handles the game screen state
+     * @param game the game instance associated with this UI
+     */
     public DialogueUI(ScreenViewport screenViewport, ScreenState screenState, Game game) {
         super(screenViewport, screenState, game);
 
@@ -70,6 +88,12 @@ public class DialogueUI extends UI implements Serializable {
         }
     }
 
+    /**
+     * Displays the dialogue box for the given NPC type.
+     * Allows the player to interact and view the dialogue text.
+     *
+     * @param npcType the type of NPC whose dialogue will be shown (e.g., "Janitor", "Guard", etc.)
+     */
     public void dialogueBox(String npcType) {
         if(isDialogueOn) {
             if(Gdx.input.isTouched() || Gdx.input.isKeyPressed(Input.Keys.E))  {
@@ -129,6 +153,11 @@ public class DialogueUI extends UI implements Serializable {
         setDialogue(npcType);
     }
 
+    /**
+     * Sets the dialogue text and the NPC name based on the provided NPC type.
+     *
+     * @param npcType the type of NPC whose dialogue will be set (e.g., "Janitor", "Guard", etc.)
+     */
     public void setDialogue(String npcType) {
         switch (npcType) {
             case "Janitor":
@@ -168,6 +197,12 @@ public class DialogueUI extends UI implements Serializable {
         typewriterTimer = 0;
     }
 
+    /**
+     * Updates the dialogue by incrementing the visible characters one by one,
+     * creating a typewriter effect, and finishing the dialogue once all characters are displayed.
+     *
+     * @param delta the time in seconds since the last frame
+     */
     public void update(float delta) {
         if (fullDialogue != null && visibleCharacters < fullDialogue.length() && !isDialogueTextFinished) {
             typewriterTimer += delta;
@@ -184,10 +219,18 @@ public class DialogueUI extends UI implements Serializable {
         }
     }
 
+    /**
+     * Removes the dialogue box from the stage.
+     */
     public void removeDialogue() {
         root.remove();
     }
 
+    /**
+     * Retrieves a random dialogue from the unused janitor dialogues.
+     *
+     * @return the selected janitor dialogue
+     */
     private String getJanitorRandomDialogue() {
         if (unusedJanitorDialogues.isEmpty()) {
             unusedJanitorDialogues = new ArrayList<>(List.of(janitorDialogue));
@@ -201,6 +244,11 @@ public class DialogueUI extends UI implements Serializable {
         return selectedDialogue;
     }
 
+    /**
+     * Retrieves a random dialogue from the unused guard dialogues.
+     *
+     * @return the selected guard dialogue
+     */
     private String getGuardRandomDialogue() {
         if (unusedGuardDialogues.isEmpty()) {
             unusedGuardDialogues = new ArrayList<>(List.of(guardDialogue));
@@ -214,6 +262,11 @@ public class DialogueUI extends UI implements Serializable {
         return selectedDialogue;
     }
 
+    /**
+     * Retrieves a random dialogue from the unused teacher dialogues.
+     *
+     * @return the selected teacher dialogue
+     */
     private String getTeacherRandomDialogue() {
         if (unusedTeacherDialogues.isEmpty()) {
             unusedTeacherDialogues = new ArrayList<>(List.of(teacherDialogue));
@@ -227,6 +280,11 @@ public class DialogueUI extends UI implements Serializable {
         return selectedDialogue;
     }
 
+    /**
+     * Retrieves a random dialogue from the unused male student dialogues.
+     *
+     * @return the selected male student dialogue
+     */
     private String getCollegeMaleRandomDialogue() {
         if (unusedCollegeMaleDialogues.isEmpty()) {
             unusedCollegeMaleDialogues = new ArrayList<>(List.of(collegeMaleDialogue));
@@ -240,6 +298,11 @@ public class DialogueUI extends UI implements Serializable {
         return selectedDialogue;
     }
 
+    /**
+     * Retrieves a random dialogue from the unused female student dialogues.
+     *
+     * @return the selected female student dialogue
+     */
     private String getCollegeFemaleRandomDialogue() {
         if (unusedCollegeFemaleDialogues.isEmpty()) {
             unusedCollegeFemaleDialogues = new ArrayList<>(List.of(collegeFemaleDialogue));
@@ -253,6 +316,11 @@ public class DialogueUI extends UI implements Serializable {
         return selectedDialogue;
     }
 
+    /**
+     * Retrieves a random dialogue from the unused pet dialogues.
+     *
+     * @return the selected pet dialogue
+     */
     private String getPetRandomDialogue() {
         if (unusedPetDialogues.isEmpty()) {
             unusedPetDialogues = new ArrayList<>(List.of(petDialogue));
@@ -266,17 +334,26 @@ public class DialogueUI extends UI implements Serializable {
         return selectedDialogue;
     }
 
+    /**
+     * Starts a new dialogue interaction.
+     */
     private void startDialogue() {
         ((GameScreen) screenState).setPaused(true);
         isDialogueOn = true;
         isDialogueTextFinished = false;
     }
 
+    /**
+     * Ends the dialogue and resets necessary variables.
+     */
     private void endDialogue() {
         ((GameScreen) screenState).setPaused(false);
         isDialogueOn = false;
     }
 
+    /**
+     * Sets the dialogue text finished status to false for a new interaction.
+     */
     @Override
     public void render() {
         update(Gdx.graphics.getDeltaTime());

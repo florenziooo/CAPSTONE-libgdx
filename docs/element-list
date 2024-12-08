@@ -1,0 +1,9 @@
+io.mygame.common
+io.mygame.datahandler
+io.mygame.entities
+io.mygame.enums
+io.mygame.factories
+io.mygame.lwjgl3
+io.mygame.main
+io.mygame.screens
+io.mygame.ui
