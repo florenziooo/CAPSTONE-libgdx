@@ -8,6 +8,7 @@ PixelMaps/TileSets16x16/Covered Court.tsx
 PixelMaps/TileSets16x16/ELEMTARY.tsx
 PixelMaps/TileSets16x16/GLE.tsx
 PixelMaps/TileSets16x16/GYM.tsx
+PixelMaps/TileSets16x16/I need Help.tsx
 PixelMaps/TileSets16x16/Modern_Exteriors_Complete_Tileset.tsx
 PixelMaps/TileSets16x16/NGE.tsx
 PixelMaps/TileSets16x16/RTL.tsx
@@ -19,6 +20,7 @@ PixelMaps/TileSets16x16/roogf2.tsx
 PixelMaps/TileSets16x16/sad nana siyay iya.tsx
 PixelMaps/TileSets16x16/tf is this.tsx
 PixelMaps/TileSets16x16/walll.tsx
+PixelMaps/TileSets16x16/wallsssss.tsx
 PixelMaps/Tiles/Canteen.png
 PixelMaps/Tiles/CivilE.png
 PixelMaps/Tiles/Covered Court.png
@@ -39,6 +41,7 @@ PixelMaps/Tiles/sad nana siyay iya.png
 PixelMaps/Tiles/tf is this-sheet.png
 PixelMaps/Tiles/tf is this.png
 PixelMaps/Tiles/wall.png
+PixelMaps/Tiles/wallsssss.png
 Sprites/CollegeMale1.png
 cursor/cursor.png
 dialogues/dialogue.json
