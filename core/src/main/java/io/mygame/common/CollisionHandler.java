@@ -14,30 +14,41 @@ import com.badlogic.gdx.math.*;
 import io.mygame.entities.Entity;
 import io.mygame.entities.NPC;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 /**
  * Handles collision detection for an entity against objects in a TiledMap.
  * Provides methods for checking collisions, drawing debug information, and managing entity positions.
  */
 public class CollisionHandler {
+    /************ ENTITY ************/
     private final Entity entity;
+
+    /************ MAP ************/
     private final TiledMap map;
+
+    /************ DEBUG RENDERING ************/
     private final ShapeRenderer shapeRenderer;
     private final OrthographicCamera camera;
-    private float previousX, previousY;
+
+    /************ ENTITY POSITION ************/
+    private float previousX;
+    private float previousY;
+
+    /************ NPC List ************/
     private final List<NPC> npcs;
+
+    /************ INTERACTION DETECTION ************/
     private final Circle interactionCircle;
-    private Set<String> interactedObjects = new HashSet<>();
 
     /**
-     * Constructs a CollisionHandler for handling collisions of a specific entity on a TiledMap.
+     * Constructs a CollisionHandler for managing collisions involving a specific entity
+     * and NPCs on a TiledMap, with debug information rendered using the specified camera.
      *
-     * @param entity  The GameObject entity that will be checked for collisions.
-     * @param map     The TiledMap that contains the collision objects.
-     * @param camera  The camera used for rendering debug information.
+     * @param entity  the main game entity whose collisions will be handled
+     * @param npcs    the list of non-playable characters (NPCs) for interaction and collision
+     * @param map     the TiledMap containing the collision objects
+     * @param camera  the OrthographicCamera used for rendering debug information
      */
     public CollisionHandler(Entity entity, List<NPC> npcs, TiledMap map, OrthographicCamera camera) {
         this.entity = entity;
@@ -52,12 +63,13 @@ public class CollisionHandler {
     }
 
     /**
-     * Handles the collision detection and resolution for the entity.
-     * This method checks if the entity collides with objects in the map and adjusts its position accordingly.
-     * If the entity collides, it attempts to move in a way that avoids the collision.
-     * It also draws debug information if debug mode is enabled.
+     * Handles collision detection and resolution for the entity.
+     * This method checks if the entity collides with objects in the TiledMap and attempts to resolve the collision
+     * by adjusting the entity's position. It also updates the interaction circle's position and renders debug
+     * information if debug mode is enabled.
      *
-     * @throws RuntimeException If there is an error related to the collision detection process (e.g., null or cast exceptions).
+     * @throws RuntimeException if an error occurs during the collision detection process, such as a missing collision
+     *                          layer or an incompatible object type
      */
     public void handlePlayerCollision() {
         String collisionName = "COLLISION";
@@ -102,13 +114,19 @@ public class CollisionHandler {
         }
     }
 
+    /**
+     * Checks for object interactions in the interaction layer of the TiledMap.
+     * Returns the name of the layer where an interaction is detected.
+     *
+     * @return the name of the interaction layer, or null if no interaction occurs
+     * @throws RuntimeException if the interaction layer is not found
+     */
     public String checkObjectInteractions() {
         try {
             MapLayer interactionGroupLayer = map.getLayers().get("InteractionLayer");
             if (interactionGroupLayer == null) throw new IllegalArgumentException("MapLayer not found on checkObjectInteraction method not found");
 
-            if(interactionGroupLayer instanceof MapGroupLayer) {
-                MapGroupLayer groupLayer = (MapGroupLayer) interactionGroupLayer;
+            if(interactionGroupLayer instanceof MapGroupLayer groupLayer) {
 
                 for(MapLayer childLayer : groupLayer.getLayers()) {
                     String layerName = childLayer.getName();
@@ -132,6 +150,12 @@ public class CollisionHandler {
         return null;
     }
 
+    /**
+     * Checks for NPC interactions within the interaction circle.
+     * Returns the type of the NPC being interacted with.
+     *
+     * @return the type of the NPC, or null if no interaction occurs
+     */
     public String checkNPCInteractions() {
         for (NPC npc : npcs) {
             if (Intersector.overlaps(interactionCircle, npc.getCollisionBox())) {
@@ -143,6 +167,12 @@ public class CollisionHandler {
         return null;
     }
 
+    /**
+     * Handles collisions between NPCs and other objects or tiles in the map.
+     * Updates NPC positions to avoid overlapping.
+     *
+     * @throws RuntimeException if a critical error occurs during NPC collision handling
+     */
     public void handleNpcCollision() {
         String collisionName = "COLLISION";
         try {
@@ -187,11 +217,10 @@ public class CollisionHandler {
     }
 
     /**
-     * Checks if the entity collides with any objects in the specified MapLayer.
-     * This method checks if the entity's collision box overlaps with rectangular or polygonal objects in the map layer.
+     * Checks if the player collides with any tile objects in the specified layer.
      *
-     * @param objectLayer The MapLayer containing collision objects.
-     * @return true if the entity collides with any object in the MapLayer, false otherwise.
+     * @param objectLayer the layer containing collision objects
+     * @return true if a collision is detected, false otherwise
      */
     private boolean checkPlayerTileCollision(MapLayer objectLayer) {
         try {
@@ -217,6 +246,11 @@ public class CollisionHandler {
         }
     }
 
+    /**
+     * Checks if the player collides with any NPC.
+     *
+     * @return true if a collision with an NPC is detected, false otherwise
+     */
     private boolean checkPlayerNpcCollision() {
         if(npcs == null || npcs.isEmpty()) return false;
         for (NPC npc : npcs) {
@@ -228,11 +262,23 @@ public class CollisionHandler {
         return false;
     }
 
+    /**
+     * Checks if an NPC collides with the player.
+     *
+     * @param npc the NPC to check for collisions
+     * @return true if a collision is detected, false otherwise
+     */
     private boolean checkNpcPlayerCollision(NPC npc) {
         return entity.getCollisionBox().overlaps(npc.getCollisionBox()) ||
             Intersector.overlapConvexPolygons(entity.getCollisionPolygon(), npc.getCollisionPolygon());
     }
 
+    /**
+     * Checks if an NPC collides with another NPC.
+     *
+     * @param npc1 the NPC to check for collisions
+     * @return true if a collision is detected, false otherwise
+     */
     private boolean checkNpcCollision(NPC npc1) {
         for (NPC npc2 : npcs) {
             if(!(npc1.equals(npc2))) {
@@ -245,6 +291,13 @@ public class CollisionHandler {
         return false;
     }
 
+    /**
+     * Checks if an NPC collides with tiles in the specified layer.
+     *
+     * @param objectLayer the layer containing collision objects
+     * @param npc         the NPC to check for collisions
+     * @return true if a collision is detected, false otherwise
+     */
     private boolean checkNpcTileCollision(MapLayer objectLayer, NPC npc) {
         for (MapObject object : objectLayer.getObjects()) {
             if (object instanceof RectangleMapObject rectangleObj) {
@@ -305,8 +358,7 @@ public class CollisionHandler {
     }
 
     /**
-     * Saves the current position of the entity to be used later for collision handling.
-     * This method records the current X and Y positions of the entity.
+     * Saves the current position of the player entity for collision rollback.
      */
     public void savePreviousPosition() {
         previousX = entity.getX();
@@ -314,26 +366,35 @@ public class CollisionHandler {
     }
 
     /**
-     * Reverts the entity's position to its previous saved position.
-     * This is used to restore the entity's position if a collision occurs.
+     * Reverts the player entity's position to the last saved position.
      */
     public void revertToPreviousPosition() {
         entity.setX(previousX);
         entity.setY(previousY);
     }
 
+    /**
+     * Saves the current position of an NPC for collision rollback.
+     *
+     * @param npc the NPC whose position will be saved
+     */
     public void savePreviousPositionNpc(NPC npc) {
         npc.setPreviousX(npc.getX());
         npc.setPreviousY(npc.getY());
     }
 
+    /**
+     * Reverts the position of an NPC to the last saved position.
+     *
+     * @param npc the NPC whose position will be reverted
+     */
     public void revertToPreviousPositionNpc(NPC npc) {
         npc.setX(npc.getPreviousX());
         npc.setY(npc.getPreviousY());
     }
 
     /**
-     * Disposes of resources used by the CollisionHandler, including the ShapeRenderer and the TiledMap.
+     * Releases resources used by the CollisionHandler.
      */
     public void dispose() {
         shapeRenderer.dispose();

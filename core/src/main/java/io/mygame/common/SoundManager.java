@@ -8,19 +8,33 @@ import com.badlogic.gdx.utils.Array;
 
 import static com.badlogic.gdx.math.MathUtils.random;
 
+/**
+ * Manages the background music, sound effects, and global volume settings for the game.
+ * Provides methods to play and stop sounds, adjust volume levels, and manage sound resources.
+ */
 public class SoundManager implements Disposable {
+    /************ BACKGROUND MUSIC ************/
     private static Music bgMusic;
+
+    /************ VOLUME SETTINGS ************/
     private float globalVolume;
     private final float musicVolume;
     private final float ambienceVolume;
     private final float walkVolume;
 
+    /************ AMBIENCE SOUND ************/
     private Sound ambience;
     private long ambienceLoopId;
 
+    /************ ACTIVE SOUND EFFECTS ************/
     private final Array<Sound> activeSounds;
     private final Array<Music> activeMusic;
 
+    /**
+     * Constructs a SoundManager with the specified background music and default volume settings.
+     *
+     * @param builder the builder that provides the background music to be set
+     */
     public SoundManager(Builder builder) {
         this.globalVolume = 1.0f;
         this.musicVolume = 0.2f;
@@ -43,6 +57,12 @@ public class SoundManager implements Disposable {
         }
     }
 
+    /**
+     * Sets the global volume for all active sounds and background music.
+     * The volume is applied to both background music and ambience sounds.
+     *
+     * @param volume the global volume level to be set
+     */
     public void setGlobalVolume(float volume) {
         this.globalVolume = volume;
 
@@ -55,6 +75,12 @@ public class SoundManager implements Disposable {
         }
     }
 
+    /**
+     * Adds a sound effect to be played based on the specified sound name.
+     * Supports sound effects like "walk", "click", and "ambience".
+     *
+     * @param name the name of the sound effect to be played
+     */
     public void addSound(String name) {
         switch (name) {
             case "walk":
@@ -75,6 +101,10 @@ public class SoundManager implements Disposable {
         }
     }
 
+    /**
+     * Disposes of all active sounds and music, releasing associated resources.
+     * This method stops all currently playing sounds and music, and clears the active sound lists.
+     */
     @Override
     public void dispose() {
         if (ambience != null) {
@@ -95,14 +125,28 @@ public class SoundManager implements Disposable {
         activeSounds.clear();
     }
 
+    /**
+     * Builder class for constructing a SoundManager with a specific background music.
+     */
     public static class Builder {
         private Music bgMusic;
 
+        /**
+         * Sets the background music for the SoundManager.
+         *
+         * @param name the file path of the background music to be set
+         * @return this Builder instance for chaining
+         */
         public Builder setbgMusic(String name) {
             this.bgMusic = Gdx.audio.newMusic(Gdx.files.internal(name));
             return this;
         }
 
+        /**
+         * Builds and returns the configured SoundManager instance.
+         *
+         * @return the SoundManager instance
+         */
         public SoundManager build() {
             return new SoundManager(this);
         }
