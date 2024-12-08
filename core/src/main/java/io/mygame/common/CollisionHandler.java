@@ -13,10 +13,7 @@ import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.math.*;
 import io.mygame.entities.Entity;
 import io.mygame.entities.NPC;
-
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 /**
  * Handles collision detection for an entity against objects in a TiledMap.
@@ -106,8 +103,7 @@ public class CollisionHandler {
             MapLayer interactionGroupLayer = map.getLayers().get("InteractionLayer");
             if (interactionGroupLayer == null) throw new IllegalArgumentException("MapLayer not found on checkObjectInteraction method not found");
 
-            if(interactionGroupLayer instanceof MapGroupLayer) {
-                MapGroupLayer groupLayer = (MapGroupLayer) interactionGroupLayer;
+            if(interactionGroupLayer instanceof MapGroupLayer groupLayer) {
 
                 for(MapLayer childLayer : groupLayer.getLayers()) {
                     String layerName = childLayer.getName();

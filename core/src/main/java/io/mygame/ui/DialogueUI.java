@@ -57,7 +57,7 @@ public class DialogueUI extends UI implements Serializable {
         JSONService jsonService = new JSONService();
         DialogueUI dialogues;
 
-        String dialogueJsonPath = "assets/dialogues/dialogue.json";
+        String dialogueJsonPath = "dialogues/dialogue.json";
         try (FileReader fileReader = new FileReader(dialogueJsonPath)) {
             dialogues = jsonService.deserialize(fileReader, DialogueUI.class);
             this.janitorDialogue = dialogues.janitorDialogue;
