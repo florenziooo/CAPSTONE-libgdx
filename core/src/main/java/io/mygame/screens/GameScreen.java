@@ -3,7 +3,6 @@ package io.mygame.screens;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
-import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
@@ -47,8 +46,6 @@ public class GameScreen extends WildCatScreen {
     /************ SCREEN VIEWPORT SIZE ************/
     private Viewport viewport;
     private OrthographicCamera camera;
-    private final int SCREEN_WIDTH = 640;
-    private final int WORLD_HEIGHT = 360;
 
     private MapHandler mapHandler;
     private TiledMap map;
@@ -61,7 +58,7 @@ public class GameScreen extends WildCatScreen {
     private static final float FOOTSTEP_DELAY = 0.5f; // delay in seconds between footsteps
 
     private static final GameManager gameManagerInstance = GameManager.getInstance();
-    private ShapeRenderer shapeRenderer = new ShapeRenderer();;
+    private final ShapeRenderer shapeRenderer = new ShapeRenderer();
 
     /**
      * Constructor for the GameScreen class.
@@ -82,6 +79,8 @@ public class GameScreen extends WildCatScreen {
         map = new TmxMapLoader().load("PixelMaps/TestMap.tmx");
         mapHandler = new MapHandler(map);
         camera = new OrthographicCamera();
+        int WORLD_HEIGHT = 360;
+        int SCREEN_WIDTH = 640;
         viewport = new ExtendViewport(SCREEN_WIDTH, WORLD_HEIGHT, camera);
 
         batch = new SpriteBatch();
@@ -155,7 +154,7 @@ public class GameScreen extends WildCatScreen {
 
         Gdx.gl.glDisable(GL20.GL_BLEND);
 
-        mapHandler.loadForeground(camera);
+        mapHandler.loadForeground();
     }
 
     /**
