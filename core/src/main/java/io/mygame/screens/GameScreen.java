@@ -1,7 +1,8 @@
 package io.mygame.screens;
 
 import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.utils.viewport.FitViewport;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
@@ -50,12 +51,14 @@ public class GameScreen extends WildCatScreen {
     private TiledMap map;
 
     private boolean isPaused = false;
+    private boolean drawOverlay = false;
 
 
     private float footstepTimer = 0f; // timer for footstep sound
     private static final float FOOTSTEP_DELAY = 0.5f; // delay in seconds between footsteps
 
     private static final GameManager gameManagerInstance = GameManager.getInstance();
+    private final ShapeRenderer shapeRenderer = new ShapeRenderer();
 
     /**
      * Constructor for the GameScreen class.
@@ -76,9 +79,9 @@ public class GameScreen extends WildCatScreen {
         map = new TmxMapLoader().load("PixelMaps/TestMap.tmx");
         mapHandler = new MapHandler(map);
         camera = new OrthographicCamera();
-        int SCREEN_WIDTH = 640;
         int WORLD_HEIGHT = 360;
-        viewport = new FitViewport(SCREEN_WIDTH, WORLD_HEIGHT, camera);
+        int SCREEN_WIDTH = 640;
+        viewport = new ExtendViewport(SCREEN_WIDTH, WORLD_HEIGHT, camera);
 
         batch = new SpriteBatch();
         player = new Player();
@@ -139,6 +142,17 @@ public class GameScreen extends WildCatScreen {
             obj.render(batch);
         }
         batch.end();
+
+        Gdx.gl.glEnable(GL20.GL_BLEND);
+        Gdx.gl.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
+
+        shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
+        if (drawOverlay) shapeRenderer.setColor(0, 0, 0, 0.5f);
+        else shapeRenderer.setColor(0, 0, 0, 0.0f);
+        shapeRenderer.rect(0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+        shapeRenderer.end();
+
+        Gdx.gl.glDisable(GL20.GL_BLEND);
 
         mapHandler.loadForeground();
     }
@@ -246,6 +260,10 @@ public class GameScreen extends WildCatScreen {
         map.dispose();
         collisionHandler.dispose();
         mapHandler.dispose();
+    }
+
+    public void setOverlayVisible(boolean visible) {
+        this.drawOverlay = visible;
     }
 
     /**

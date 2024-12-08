@@ -58,7 +58,7 @@ public class SoundManager implements Disposable {
     public void addSound(String name) {
         switch (name) {
             case "walk":
-                Sound walkSound = Gdx.audio.newSound(Gdx.files.internal("sound/footsteps/walk_" + (random.nextInt(7) + 1) + ".ogg"));
+                Sound walkSound = Gdx.audio.newSound(Gdx.files.internal("sound/footsteps/walk_" + (random.nextInt(5) + 1) + ".ogg"));
                 walkSound.play(globalVolume * walkVolume);
                 activeSounds.add(walkSound);
                 break;
