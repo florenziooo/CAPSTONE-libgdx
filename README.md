@@ -3,6 +3,22 @@ Welcome to Wildcat's Den, an exploration game that transforms CIT-U into a virtu
 
 Whether you're a newcomer eager to familiarize yourself with your new academic home or simply curious about what CIT-U has to offer, Wildcat's Den is your ultimate guide.
 
+Here’s an improved version of your instructions:
+
+## How to Run
+1. **Build the Project**:  
+   Use Gradle to build the project. Run the following command in the terminal from the project's root directory:
+   ```bash
+   ./gradlew build
+   ```  
+
+2. **Run the Launcher**:  
+   Navigate to the `lwjgl3` module and execute the launcher. The main class is located at:
+   ```plaintext
+   lwjgl3/src/main/java/io/mygame/lwjgl3/Lwjgl3Launcher
+   ```  
+   You can run it directly using your IDE or with a terminal command if you're using a Gradle run task.
+
 ## Get Involved
 - 🎨 Got a knack for design or storytelling? Help us craft more engaging quests and areas.
 - 🐾 Join our team of testers to refine gameplay and improve the experience for all Wildcats.
@@ -66,6 +82,11 @@ The **Factory Design Pattern** is implemented in the `NPCFactory` class to simpl
     - setTargets() method: Configures dynamic movement targets for specific NPCs. 
 
 This pattern ensures consistent NPC initialization and supports easy expansion or modification of NPC types.
+
+## WildCat's Den Java Documentation
+All of our source code is documented to improve the maintainability, usability, and readability of our code.
+
+Access the documentation [here](docs/index.html).
 
 ## Additional References
 

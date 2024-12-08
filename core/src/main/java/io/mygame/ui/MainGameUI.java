@@ -813,6 +813,9 @@ public class MainGameUI extends UI {
         });
     }
 
+    /**
+     *  Creates and displays a congratulatory user interface on the screen.
+     */
     public void congratsUI() {
         Table table = new Table();
         table.setFillParent(true);
