@@ -70,6 +70,7 @@ skins/uiSkins/ui.json
 skins/uiSkins/ui.png
 skins/uiSkins/ui10.png
 skins/uiSkins/ui11.png
+skins/uiSkins/ui12.png
 skins/uiSkins/ui2.png
 skins/uiSkins/ui3.png
 skins/uiSkins/ui4.png

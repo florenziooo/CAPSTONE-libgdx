@@ -21,6 +21,9 @@ public class IntroGameUI extends UI {
     private TextField nameField;
     private Table instructionTable1, instructionTable2, instructionTable3, introTable;
     private boolean instructionOneDone = false, instructionTwoDone = false;
+    private boolean isLoading = false;
+    private float elapsedTime = 0f;
+    private float delta;
 
     public IntroGameUI(ScreenState screenState, Game game) {
         super(new ScreenViewport(), screenState, game);
@@ -110,18 +113,33 @@ public class IntroGameUI extends UI {
     }
 
     private void instructionUI3() {
-        instructionTable2 = new Table();
-        instructionTable2.setFillParent(true);
+        instructionTable3 = new Table();
+        instructionTable3.setFillParent(true);
 
         Image image = new Image(skin, "Instruction Screen2-1");
         image.setScaling(Scaling.fill);
-        instructionTable2.add(image);
+        instructionTable3.add(image);
 
         if (instructionTable2 != null) {
             instructionTable2.remove();
         }
 
-        stage.addActor(instructionTable2);
+        stage.addActor(instructionTable3);
+    }
+
+    private void loadingScreen() {
+        Table table = new Table();
+        table.setFillParent(true);
+
+        Image image = new Image(skin, "LoadingScreen");
+        image.setScaling(Scaling.fill);
+        table.add(image);
+
+        if (instructionTable3 != null) {
+            instructionTable3.remove();
+        }
+
+        stage.addActor(table);
     }
 
     private void buttonListener() {
@@ -158,16 +176,26 @@ public class IntroGameUI extends UI {
     public void render() {
         super.render();
 
-        if(introTable.getParent() == null) {
-            if(Gdx.input.isKeyJustPressed(Input.Keys.ANY_KEY)) {
-                if(instructionTwoDone) {
+        if (isLoading) {
+            elapsedTime += Gdx.graphics.getDeltaTime();
+
+            loadingScreen();
+
+            if (elapsedTime >= 0.1f) {
+                screenState.changeScreen(new GameScreen(getGame()));
+                isLoading = false;
+            }
+        } else if (introTable.getParent() == null) {
+            if (Gdx.input.isKeyJustPressed(Input.Keys.ANY_KEY)) {
+                if (instructionTwoDone) {
+                    isLoading = true;
+                    elapsedTime = 0f; // Reset the timer
                     gameManager.getSoundManager().addSound("click");
-                    screenState.changeScreen(new GameScreen(getGame()));
-                } else if(instructionOneDone) {
+                } else if (instructionOneDone) {
                     gameManager.getSoundManager().addSound("click");
                     instructionTwoDone = true;
                     instructionUI3();
-                } else if(instructionTable1.getParent() != null) {
+                } else if (instructionTable1.getParent() != null) {
                     gameManager.getSoundManager().addSound("click");
                     instructionOneDone = true;
                     instructionUI2();
