@@ -1,6 +1,7 @@
 PixelMaps/CIT.tiled-project
 PixelMaps/CIT.tiled-session
 PixelMaps/TestMap.tmx
+PixelMaps/TileSets16x16/ACAD.tsx
 PixelMaps/TileSets16x16/CIvilE.tsx
 PixelMaps/TileSets16x16/Canteen.tsx
 PixelMaps/TileSets16x16/Covered Court.tsx
@@ -15,6 +16,7 @@ PixelMaps/TileSets16x16/TIleset2.tsx
 PixelMaps/TileSets16x16/Tileset1.tsx
 PixelMaps/TileSets16x16/asdasd.tsx
 PixelMaps/TileSets16x16/roogf2.tsx
+PixelMaps/TileSets16x16/sad nana siyay iya.tsx
 PixelMaps/TileSets16x16/tf is this.tsx
 PixelMaps/TileSets16x16/walll.tsx
 PixelMaps/Tiles/Canteen.png
@@ -30,8 +32,11 @@ PixelMaps/Tiles/Roof2.png
 PixelMaps/Tiles/Roofs.png
 PixelMaps/Tiles/UNSAON NING GYM.png
 PixelMaps/Tiles/asdasd.png
+PixelMaps/Tiles/bruh.png
 PixelMaps/Tiles/goobkpgrg.png
 PixelMaps/Tiles/ohNo.png
+PixelMaps/Tiles/sad nana siyay iya.png
+PixelMaps/Tiles/tf is this-sheet.png
 PixelMaps/Tiles/tf is this.png
 PixelMaps/Tiles/wall.png
 Sprites/CollegeMale1.png
