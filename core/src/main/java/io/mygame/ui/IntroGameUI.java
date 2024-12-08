@@ -19,8 +19,8 @@ public class IntroGameUI extends UI {
     private TextButton submitBtn;
     private TextButton returnBtn;
     private TextField nameField;
-    private Table instructionTable1, instructionTable2, introTable;
-    private boolean anyKeyPressed = false;
+    private Table instructionTable1, instructionTable2, instructionTable3, introTable;
+    private boolean instructionOneDone = false, instructionTwoDone = false;
 
     public IntroGameUI(ScreenState screenState, Game game) {
         super(new ScreenViewport(), screenState, game);
@@ -89,7 +89,7 @@ public class IntroGameUI extends UI {
         instructionTable1.setFillParent(true);
 
         Image image = new Image(skin, "Instruction Screen");
-        image.setScaling(Scaling.fit);
+        image.setScaling(Scaling.fill);
         instructionTable1.add(image);
         stage.addActor(instructionTable1);
     }
@@ -98,12 +98,27 @@ public class IntroGameUI extends UI {
         instructionTable2 = new Table();
         instructionTable2.setFillParent(true);
 
-        Image image = new Image(skin, "Instruction Screen");
+        Image image = new Image(skin, "Instruction Screen2");
         image.setScaling(Scaling.fill);
         instructionTable2.add(image);
 
         if (instructionTable1 != null) {
             instructionTable1.remove();
+        }
+
+        stage.addActor(instructionTable2);
+    }
+
+    private void instructionUI3() {
+        instructionTable2 = new Table();
+        instructionTable2.setFillParent(true);
+
+        Image image = new Image(skin, "Instruction Screen2-1");
+        image.setScaling(Scaling.fill);
+        instructionTable2.add(image);
+
+        if (instructionTable2 != null) {
+            instructionTable2.remove();
         }
 
         stage.addActor(instructionTable2);
@@ -145,12 +160,17 @@ public class IntroGameUI extends UI {
 
         if(introTable.getParent() == null) {
             if(Gdx.input.isKeyJustPressed(Input.Keys.ANY_KEY)) {
-                if(instructionTable1.getParent() != null) {
-                    gameManager.getSoundManager().addSound("click");
-                    instructionUI2();
-                } else if(instructionTable1.getParent() == null && instructionTable2.getParent() != null) {
+                if(instructionTwoDone) {
                     gameManager.getSoundManager().addSound("click");
                     screenState.changeScreen(new GameScreen(getGame()));
+                } else if(instructionOneDone) {
+                    gameManager.getSoundManager().addSound("click");
+                    instructionTwoDone = true;
+                    instructionUI3();
+                } else if(instructionTable1.getParent() != null) {
+                    gameManager.getSoundManager().addSound("click");
+                    instructionOneDone = true;
+                    instructionUI2();
                 }
             }
         }

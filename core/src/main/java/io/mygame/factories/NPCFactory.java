@@ -27,7 +27,7 @@ public class NPCFactory {
         npcs.add(new Student.CollegeMale1(1506, 2250, "in-place"));
 
         // 14
-        npcs.add(new Student.CollegeFemale1(1730, 180, "in-place"));
+        npcs.add(new Student.CollegeFemale1(1807, 226, "in-place"));
         npcs.add(new Student.CollegeFemale2(1701, 351, "in-place"));
         npcs.add(new Student.CollegeFemale1(942, 1160, "vertical"));
         npcs.add(new Student.CollegeFemale1(1769, 781, "in-place"));
