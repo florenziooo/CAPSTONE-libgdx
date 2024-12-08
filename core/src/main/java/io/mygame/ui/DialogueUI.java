@@ -75,7 +75,7 @@ public class DialogueUI extends UI implements Serializable {
         JSONService jsonService = new JSONService();
         DialogueUI dialogues;
 
-        String dialogueJsonPath = "dialogues/dialogue.json";
+        String dialogueJsonPath = "assets/dialogues/dialogue.json";
         try (FileReader fileReader = new FileReader(dialogueJsonPath)) {
             dialogues = jsonService.deserialize(fileReader, DialogueUI.class);
             this.janitorDialogue = dialogues.janitorDialogue;
@@ -84,6 +84,8 @@ public class DialogueUI extends UI implements Serializable {
             this.collegeMaleDialogue = dialogues.collegeMaleDialogue;
             this.collegeFemaleDialogue = dialogues.collegeFemaleDialogue;
             this.petDialogue = dialogues.petDialogue;
+
+            System.out.println(Arrays.toString(dialogues.janitorDialogue));
         } catch (IOException e) {
             System.err.println("DialogueUIManager: Failed to load dialogues json");
         }
