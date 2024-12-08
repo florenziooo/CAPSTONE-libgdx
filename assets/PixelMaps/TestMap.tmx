@@ -6313,7 +6313,7 @@
   <object id="271" x="960.5" y="1777" width="15.25" height="302.25"/>
   <object id="272" x="960.75" y="1345.5" width="14.75" height="333"/>
  </objectgroup>
- <group id="59" name="Interactive Layers">
+ <group id="59" name="InteractionLayer">
   <objectgroup id="34" name="ELEM">
    <object id="236" x="1424" y="848" width="16" height="16"/>
   </objectgroup>

@@ -30,7 +30,6 @@ public class CollisionHandler {
     private float previousX, previousY;
     private final List<NPC> npcs;
     private final Circle interactionCircle;
-    private Set<String> interactedObjects = new HashSet<>();
 
     /**
      * Constructs a CollisionHandler for handling collisions of a specific entity on a TiledMap.
