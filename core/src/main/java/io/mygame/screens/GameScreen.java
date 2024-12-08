@@ -74,8 +74,8 @@ public class GameScreen extends WildCatScreen {
 
     /**
      * Constructor for the GameScreen class.
-     * @param game the main game instance
      *
+     * @param game the main game instance
      */
     public GameScreen(Game game) {
         super(game);

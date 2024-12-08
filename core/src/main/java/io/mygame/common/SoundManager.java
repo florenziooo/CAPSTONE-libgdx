@@ -82,22 +82,26 @@ public class SoundManager implements Disposable {
      * @param name the name of the sound effect to be played
      */
     public void addSound(String name) {
-        switch (name) {
-            case "walk":
-                Sound walkSound = Gdx.audio.newSound(Gdx.files.internal("sound/footsteps/walk_" + (random.nextInt(5) + 1) + ".ogg"));
-                walkSound.play(globalVolume * walkVolume);
-                activeSounds.add(walkSound);
-                break;
-            case "click":
-                Sound clickSound = Gdx.audio.newSound(Gdx.files.internal("sound/ui/select/select_" + (random.nextInt(3) + 1) + ".ogg"));
-                clickSound.play(globalVolume);
-                activeSounds.add(clickSound);
-                break;
-            case "ambience":
-                ambience = Gdx.audio.newSound(Gdx.files.internal("sound/ambience/mild_traffic.mp3"));
-                ambienceLoopId = ambience.loop(globalVolume * ambienceVolume);
-                activeSounds.add(ambience);
-                break;
+        try {
+            switch (name) {
+                case "walk":
+                    Sound walkSound = Gdx.audio.newSound(Gdx.files.internal("sound/footsteps/walk_" + (random.nextInt(5) + 1) + ".ogg"));
+                    walkSound.play(globalVolume * walkVolume);
+                    activeSounds.add(walkSound);
+                    break;
+                case "click":
+                    Sound clickSound = Gdx.audio.newSound(Gdx.files.internal("sound/ui/select/select_" + (random.nextInt(3) + 1) + ".ogg"));
+                    clickSound.play(globalVolume);
+                    activeSounds.add(clickSound);
+                    break;
+                case "ambience":
+                    ambience = Gdx.audio.newSound(Gdx.files.internal("sound/ambience/mild_traffic.mp3"));
+                    ambienceLoopId = ambience.loop(globalVolume * ambienceVolume);
+                    activeSounds.add(ambience);
+                    break;
+            }
+        } catch (NullPointerException e) {
+            System.out.println("Error adding sound: ");
         }
     }
 
@@ -138,7 +142,11 @@ public class SoundManager implements Disposable {
          * @return this Builder instance for chaining
          */
         public Builder setbgMusic(String name) {
-            this.bgMusic = Gdx.audio.newMusic(Gdx.files.internal(name));
+            try {
+                this.bgMusic = Gdx.audio.newMusic(Gdx.files.internal(name));
+            } catch (NullPointerException e) {
+                System.out.println("Error setting the bgMusic correctly.");
+            }
             return this;
         }
 
