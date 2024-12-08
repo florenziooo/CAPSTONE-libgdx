@@ -155,6 +155,9 @@
 		"up": "SAL",
 		"over": "SAL-over",
 		"disabled": "Disabled"
+	},
+	"exitBtn": {
+		"up": "exit_btn"
 	}
 },
 "com.badlogic.gdx.scenes.scene2d.ui.CheckBox$CheckBoxStyle": {

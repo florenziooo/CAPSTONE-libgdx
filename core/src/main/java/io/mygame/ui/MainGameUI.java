@@ -277,6 +277,8 @@ public class MainGameUI extends UI {
 
         currentTable.add(stack);
         stage.addActor(currentTable);
+
+        buttonListener();
     }
 
     /**
@@ -647,8 +649,6 @@ public class MainGameUI extends UI {
                     expCb.setTouchable(Touchable.disabled);
                     settingCb.setTouchable(Touchable.disabled);
 
-                    gameManager.getSoundManager().addSound("click");
-
                     if(actor == ngeBtn) {
                         signDescription("NGE");
                     }
@@ -809,6 +809,36 @@ public class MainGameUI extends UI {
             gameManager.getSoundManager().addSound("click");
                 ((GameScreen) screenState).setPaused(false);
             table.remove();
+            }
+        });
+    }
+
+    public void congratsUI() {
+        Table table = new Table();
+        table.setFillParent(true);
+
+        Stack stack = new Stack();
+
+        Image image = new Image(skin, "CongratsUI");
+        image.setScaling(Scaling.fill);
+        stack.addActor(image);
+
+        Container container = new Container();
+        container.align(Align.topRight);
+        container.padRight(20.0f);
+        container.padTop(20.0f);
+
+        Button button = new Button(skin);
+        container.setActor(button);
+        stack.addActor(container);
+        table.add(stack);
+        stage.addActor(table);
+
+        button.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                gameManager.getSoundManager().addSound("click");
+                table.remove();
             }
         });
     }

@@ -69,6 +69,9 @@ public class GameScreen extends WildCatScreen {
     /************ RENDERING ************/
     private final ShapeRenderer shapeRenderer = new ShapeRenderer();
 
+    /************ SOUND HANDLING ************/
+    private boolean isExplorationDone = false;
+
     /**
      * Constructor for the GameScreen class.
      * @param game the main game instance
@@ -225,7 +228,13 @@ public class GameScreen extends WildCatScreen {
         }
 
         collisionHandler.handleNpcCollision();
-        System.out.println(player.getX() + " " + player.getY());
+
+        if(gameManagerInstance.getNpcFound() == 6 && gameManagerInstance.getBuildingsFound() == 12 &&
+            !isExplorationDone) {
+            System.out.println("ey");
+            ((MainGameUI) mainGameUI).congratsUI();
+            isExplorationDone = true;
+        }
     }
 
     /**

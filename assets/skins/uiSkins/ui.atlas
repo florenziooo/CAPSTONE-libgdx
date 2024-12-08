@@ -63,11 +63,11 @@ LoadingScreen
   orig: 1920, 1080
   offset: 0, 0
   index: -1
-ACADPop
+CongratsUI
   rotate: false
   xy: 1, 1
-  size: 1300, 900
-  orig: 1300, 900
+  size: 1301, 900
+  orig: 1301, 900
   offset: 0, 0
   index: -1
 
@@ -76,14 +76,14 @@ size: 2048, 2048
 format: RGBA8888
 filter: Linear, Linear
 repeat: none
-CanteenPop
+ACADPop
   rotate: false
   xy: 1, 903
   size: 1300, 900
   orig: 1300, 900
   offset: 0, 0
   index: -1
-ChapelPop
+CanteenPop
   rotate: false
   xy: 1, 1
   size: 1300, 900
@@ -96,14 +96,14 @@ size: 2048, 2048
 format: RGBA8888
 filter: Linear, Linear
 repeat: none
-ElemPop
+ChapelPop
   rotate: false
   xy: 1, 903
   size: 1300, 900
   orig: 1300, 900
   offset: 0, 0
   index: -1
-GLEPop
+ElemPop
   rotate: false
   xy: 1, 1
   size: 1300, 900
@@ -116,14 +116,14 @@ size: 2048, 2048
 format: RGBA8888
 filter: Linear, Linear
 repeat: none
-GymPop
+GLEPop
   rotate: false
   xy: 1, 903
   size: 1300, 900
   orig: 1300, 900
   offset: 0, 0
   index: -1
-LIBPop
+GymPop
   rotate: false
   xy: 1, 1
   size: 1300, 900
@@ -136,14 +136,14 @@ size: 2048, 2048
 format: RGBA8888
 filter: Linear, Linear
 repeat: none
-NGEPop
+LIBPop
   rotate: false
   xy: 1, 903
   size: 1300, 900
   orig: 1300, 900
   offset: 0, 0
   index: -1
-RTLPop
+NGEPop
   rotate: false
   xy: 1, 1
   size: 1300, 900
@@ -156,16 +156,16 @@ size: 2048, 2048
 format: RGBA8888
 filter: Linear, Linear
 repeat: none
-EspasyoPop
+RTLPop
   rotate: false
-  xy: 1, 1
+  xy: 1, 903
   size: 1300, 900
   orig: 1300, 900
   offset: 0, 0
   index: -1
 SALPop
   rotate: false
-  xy: 1, 903
+  xy: 1, 1
   size: 1300, 900
   orig: 1300, 900
   offset: 0, 0
@@ -176,25 +176,18 @@ size: 2048, 2048
 format: RGBA8888
 filter: Linear, Linear
 repeat: none
-Group 2
+EspasyoPop
   rotate: false
-  xy: 1, 1
-  size: 1067, 285
-  orig: 1067, 285
-  offset: 0, 0
-  index: -1
-LearningPatioPop
-  rotate: false
-  xy: 1, 1090
+  xy: 1, 903
   size: 1300, 900
   orig: 1300, 900
   offset: 0, 0
   index: -1
-menu_bg
+LearningPatioPop
   rotate: false
-  xy: 1, 288
-  size: 1200, 800
-  orig: 1200, 800
+  xy: 1, 1
+  size: 1300, 900
+  orig: 1300, 900
   offset: 0, 0
   index: -1
 
@@ -203,233 +196,86 @@ size: 2048, 2048
 format: RGBA8888
 filter: Linear, Linear
 repeat: none
+Group 2
+  rotate: false
+  xy: 1, 957
+  size: 1067, 285
+  orig: 1067, 285
+  offset: 0, 0
+  index: -1
 C&C Red Alert [INET](11)
   rotate: false
-  xy: 1, 87
+  xy: 1203, 1296
   size: 506, 87
   orig: 506, 87
   offset: 0, 0
   index: -1
 C&C Red Alert [INET](12)
   rotate: false
-  xy: 1523, 915
+  xy: 1511, 145
   size: 505, 129
   orig: 505, 129
   offset: 0, 0
   index: -1
 C&C Red Alert [INET](2)
   rotate: false
-  xy: 1, 1068
+  xy: 1070, 893
   size: 506, 82
   orig: 506, 82
   offset: 0, 0
   index: -1
 C&C Red Alert [INET](3)
   rotate: false
-  xy: 1, 744
+  xy: 1070, 569
   size: 506, 322
   orig: 506, 322
   offset: 0, 0
   index: -1
 C&C Red Alert [INET](4)
   rotate: false
-  xy: 509, 866
+  xy: 1511, 389
   size: 505, 178
   orig: 505, 178
   offset: 0, 0
   index: -1
 C&C Red Alert [INET](5)
   rotate: false
-  xy: 1, 460
+  xy: 1003, 285
   size: 506, 282
   orig: 506, 282
   offset: 0, 0
   index: -1
 C&C Red Alert [INET](10)
   rotate: false
-  xy: 1, 460
+  xy: 1003, 285
   size: 506, 282
   orig: 506, 282
   offset: 0, 0
   index: -1
 C&C Red Alert [INET](6)
   rotate: false
-  xy: 1016, 933
+  xy: 1511, 276
   size: 505, 111
   orig: 505, 111
   offset: 0, 0
   index: -1
 C&C Red Alert [INET](9)
   rotate: false
-  xy: 1, 176
+  xy: 1003, 1
   size: 506, 282
   orig: 506, 282
   offset: 0, 0
   index: -1
 CITMap
   rotate: false
-  xy: 1003, 1046
+  xy: 1203, 1385
   size: 625, 584
   orig: 625, 584
   offset: 0, 0
   index: -1
-avatar_frame
-  rotate: false
-  xy: 1630, 1197
-  size: 346, 433
-  orig: 346, 433
-  offset: 0, 0
-  index: -1
-ACAD
-  rotate: false
-  xy: 1517, 734
-  size: 300, 179
-  orig: 300, 179
-  offset: 0, 0
-  index: -1
-Canteen
-  rotate: false
-  xy: 811, 645
-  size: 300, 179
-  orig: 300, 179
-  offset: 0, 0
-  index: -1
-Chapel
-  rotate: false
-  xy: 509, 504
-  size: 300, 179
-  orig: 300, 179
-  offset: 0, 0
-  index: -1
-Disabled
-  rotate: false
-  xy: 509, 685
-  size: 300, 179
-  orig: 300, 179
-  offset: 0, 0
-  index: -1
-Elem
-  rotate: false
-  xy: 1113, 645
-  size: 300, 179
-  orig: 300, 179
-  offset: 0, 0
-  index: -1
-Espasyo
-  rotate: false
-  xy: 509, 323
-  size: 300, 179
-  orig: 300, 179
-  offset: 0, 0
-  index: -1
-GLE
-  rotate: false
-  xy: 509, 142
-  size: 300, 179
-  orig: 300, 179
-  offset: 0, 0
-  index: -1
-Gym
-  rotate: false
-  xy: 1415, 553
-  size: 300, 179
-  orig: 300, 179
-  offset: 0, 0
-  index: -1
-LearningPatio
-  rotate: false
-  xy: 1717, 553
-  size: 300, 179
-  orig: 300, 179
-  offset: 0, 0
-  index: -1
-Library
-  rotate: false
-  xy: 811, 464
-  size: 300, 179
-  orig: 300, 179
-  offset: 0, 0
-  index: -1
-NGE
-  rotate: false
-  xy: 1113, 464
-  size: 300, 179
-  orig: 300, 179
-  offset: 0, 0
-  index: -1
-RTL
-  rotate: false
-  xy: 811, 283
-  size: 300, 179
-  orig: 300, 179
-  offset: 0, 0
-  index: -1
-SAL
-  rotate: false
-  xy: 811, 102
-  size: 300, 179
-  orig: 300, 179
-  offset: 0, 0
-  index: -1
-ACAD-over
-  rotate: false
-  xy: 1113, 283
-  size: 300, 179
-  orig: 300, 179
-  offset: 0, 0
-  index: -1
-Canteen-over
-  rotate: false
-  xy: 1113, 102
-  size: 300, 179
-  orig: 300, 179
-  offset: 0, 0
-  index: -1
-Chapel-over
-  rotate: false
-  xy: 1415, 372
-  size: 300, 179
-  orig: 300, 179
-  offset: 0, 0
-  index: -1
-Elem-over
-  rotate: false
-  xy: 1717, 372
-  size: 300, 179
-  orig: 300, 179
-  offset: 0, 0
-  index: -1
-Espasyo-over
-  rotate: false
-  xy: 1415, 191
-  size: 300, 179
-  orig: 300, 179
-  offset: 0, 0
-  index: -1
-GLE-over
-  rotate: false
-  xy: 1415, 10
-  size: 300, 179
-  orig: 300, 179
-  offset: 0, 0
-  index: -1
-Gym-over
-  rotate: false
-  xy: 1717, 191
-  size: 300, 179
-  orig: 300, 179
-  offset: 0, 0
-  index: -1
-LearningPatio-over
-  rotate: false
-  xy: 1717, 10
-  size: 300, 179
-  orig: 300, 179
-  offset: 0, 0
-  index: -1
 dialogbox.9
   rotate: false
-  xy: 1070, 1774
+  xy: 1070, 977
   size: 971, 265
   split: 11, 11, 39, 33
   pad: 0, 0, 0, 0
@@ -438,7 +284,7 @@ dialogbox.9
   index: -1
 dialogueBox.9
   rotate: false
-  xy: 1, 1754
+  xy: 1, 670
   size: 1067, 285
   split: 13, 13, 9, 9
   orig: 1067, 285
@@ -446,21 +292,21 @@ dialogueBox.9
   index: -1
 map_frame2
   rotate: false
-  xy: 1, 1152
+  xy: 1, 68
   size: 1000, 600
   orig: 1000, 600
   offset: 0, 0
   index: -1
 player_hud
   rotate: false
-  xy: 1016, 826
+  xy: 1511, 38
   size: 499, 105
   orig: 499, 105
   offset: 0, 0
   index: -1
 textFieldBg
   rotate: false
-  xy: 1070, 1699
+  xy: 1203, 1971
   size: 775, 73
   split: 0, 0, 0, 0
   orig: 775, 73
@@ -468,35 +314,42 @@ textFieldBg
   index: -1
 textFieldSelection
   rotate: false
-  xy: 1003, 1632
+  xy: 1, 1
   size: 746, 65
   split: 0, 0, 0, 0
   orig: 746, 65
   offset: 0, 0
   index: -1
+menu_bg
+  rotate: false
+  xy: 1, 1244
+  size: 1200, 800
+  orig: 1200, 800
+  offset: 0, 0
+  index: -1
 
 ui13.png
-size: 1024, 1024
+size: 2048, 2048
 format: RGBA8888
 filter: Linear, Linear
 repeat: none
 Rectangle 5
   rotate: false
-  xy: 460, 1
+  xy: 303, 34
   size: 11, 539
   orig: 11, 539
   offset: 0, 0
   index: -1
 Rectangle 6
   rotate: false
-  xy: 445, 159
+  xy: 303, 575
   size: 13, 381
   orig: 13, 381
   offset: 0, 0
   index: -1
 menu_button-disabled
   rotate: false
-  xy: 1, 141
+  xy: 1859, 1834
   size: 90, 27
   split: 0, 0, 0, 0
   pad: 4, 3, 3, 5
@@ -505,7 +358,7 @@ menu_button-disabled
   index: -1
 exit_btn
   rotate: false
-  xy: 303, 388
+  xy: 697, 1350
   size: 60, 60
   split: 9, 9, 7, 8
   pad: 0, 0, 0, 0
@@ -514,7 +367,7 @@ exit_btn
   index: -1
 exp_btn1
   rotate: false
-  xy: 1, 170
+  xy: 1951, 1955
   size: 90, 90
   split: 0, 0, 0, 0
   pad: 10, 17, 10, 16
@@ -523,7 +376,7 @@ exp_btn1
   index: -1
 exp_btn2
   rotate: false
-  xy: 93, 262
+  xy: 605, 1320
   size: 90, 90
   split: 10, 0, 0, 0
   pad: 18, 2, 11, 16
@@ -532,7 +385,7 @@ exp_btn2
   index: -1
 hud_btn1
   rotate: false
-  xy: 93, 200
+  xy: 1951, 1893
   size: 60, 60
   split: 10, 10, 6, 8
   pad: 0, 0, 0, 0
@@ -541,7 +394,7 @@ hud_btn1
   index: -1
 hud_btn2
   rotate: false
-  xy: 185, 292
+  xy: 605, 1258
   size: 60, 60
   split: 9, 9, 11, 8
   pad: 0, 0, 0, 0
@@ -550,7 +403,7 @@ hud_btn2
   index: -1
 map_btn1
   rotate: false
-  xy: 303, 542
+  xy: 303, 1050
   size: 90, 90
   split: 4, 13, 4, 11
   pad: 11, 17, 11, 17
@@ -559,7 +412,7 @@ map_btn1
   index: -1
 map_btn2
   rotate: false
-  xy: 697, 805
+  xy: 1859, 1863
   size: 90, 90
   split: 11, 0, 1, 1
   pad: 19, 3, 11, 17
@@ -568,7 +421,7 @@ map_btn2
   index: -1
 menu_button
   rotate: false
-  xy: 605, 776
+  xy: 1, 53
   size: 90, 27
   split: 0, 0, 0, 0
   pad: 11, 13, 7, 9
@@ -577,7 +430,7 @@ menu_button
   index: -1
 menu_button2
   rotate: false
-  xy: 789, 868
+  xy: 395, 1113
   size: 90, 27
   split: 0, 0, 0, 0
   pad: 10, 10, 7, 7
@@ -586,7 +439,7 @@ menu_button2
   index: -1
 settings_btn1
   rotate: false
-  xy: 303, 450
+  xy: 697, 1412
   size: 90, 90
   split: 0, 0, 0, 0
   pad: 10, 17, 10, 17
@@ -595,7 +448,7 @@ settings_btn1
   index: -1
 settings_btn2
   rotate: false
-  xy: 395, 542
+  xy: 303, 958
   size: 90, 90
   split: 10, 0, 0, 0
   pad: 18, 2, 10, 16
@@ -604,7 +457,7 @@ settings_btn2
   index: -1
 stats_btn1
   rotate: false
-  xy: 605, 805
+  xy: 1859, 1955
   size: 90, 90
   split: 3, 12, 3, 10
   pad: 10, 17, 11, 16
@@ -613,7 +466,7 @@ stats_btn1
   index: -1
 stats_btn2
   rotate: false
-  xy: 1, 262
+  xy: 605, 1412
   size: 90, 90
   split: 13, 0, 3, 10
   pad: 18, 3, 10, 17
@@ -622,7 +475,7 @@ stats_btn2
   index: -1
 volume
   rotate: false
-  xy: 555, 698
+  xy: 253, 146
   size: 48, 16
   split: 2, 2, 2, 2
   orig: 48, 16
@@ -630,7 +483,7 @@ volume
   index: -1
 volume2.9
   rotate: false
-  xy: 555, 698
+  xy: 253, 146
   size: 48, 16
   split: 0, 0, 0, 0
   pad: 2, 2, 2, 2
@@ -639,7 +492,7 @@ volume2.9
   index: -1
 volume_knob
   rotate: false
-  xy: 487, 601
+  xy: 303, 1579
   size: 16, 31
   split: 1, 1, 5, 5
   pad: 0, 0, 0, 0
@@ -648,7 +501,7 @@ volume_knob
   index: -1
 volume_knobb.9
   rotate: false
-  xy: 395, 463
+  xy: 789, 1425
   size: 48, 77
   split: 0, 0, 0, 0
   orig: 48, 77
@@ -656,43 +509,197 @@ volume_knobb.9
   index: -1
 volumeb.9
   rotate: false
-  xy: 303, 634
+  xy: 1, 82
   size: 250, 80
   split: 0, 0, 0, 0
   orig: 250, 80
   offset: 0, 0
   index: -1
+avatar_frame
+  rotate: false
+  xy: 1, 1612
+  size: 346, 433
+  orig: 346, 433
+  offset: 0, 0
+  index: -1
+ACAD
+  rotate: false
+  xy: 349, 1866
+  size: 300, 179
+  orig: 300, 179
+  offset: 0, 0
+  index: -1
+Canteen
+  rotate: false
+  xy: 1, 1250
+  size: 300, 179
+  orig: 300, 179
+  offset: 0, 0
+  index: -1
+Chapel
+  rotate: false
+  xy: 349, 1685
+  size: 300, 179
+  orig: 300, 179
+  offset: 0, 0
+  index: -1
+Disabled
+  rotate: false
+  xy: 1, 1431
+  size: 300, 179
+  orig: 300, 179
+  offset: 0, 0
+  index: -1
+Elem
+  rotate: false
+  xy: 651, 1866
+  size: 300, 179
+  orig: 300, 179
+  offset: 0, 0
+  index: -1
+Espasyo
+  rotate: false
+  xy: 1, 1069
+  size: 300, 179
+  orig: 300, 179
+  offset: 0, 0
+  index: -1
+GLE
+  rotate: false
+  xy: 651, 1685
+  size: 300, 179
+  orig: 300, 179
+  offset: 0, 0
+  index: -1
+Gym
+  rotate: false
+  xy: 953, 1866
+  size: 300, 179
+  orig: 300, 179
+  offset: 0, 0
+  index: -1
+LearningPatio
+  rotate: false
+  xy: 1, 888
+  size: 300, 179
+  orig: 300, 179
+  offset: 0, 0
+  index: -1
+Library
+  rotate: false
+  xy: 953, 1685
+  size: 300, 179
+  orig: 300, 179
+  offset: 0, 0
+  index: -1
+NGE
+  rotate: false
+  xy: 1255, 1866
+  size: 300, 179
+  orig: 300, 179
+  offset: 0, 0
+  index: -1
+RTL
+  rotate: false
+  xy: 1, 707
+  size: 300, 179
+  orig: 300, 179
+  offset: 0, 0
+  index: -1
+SAL
+  rotate: false
+  xy: 1255, 1685
+  size: 300, 179
+  orig: 300, 179
+  offset: 0, 0
+  index: -1
+ACAD-over
+  rotate: false
+  xy: 1557, 1866
+  size: 300, 179
+  orig: 300, 179
+  offset: 0, 0
+  index: -1
+Canteen-over
+  rotate: false
+  xy: 1, 526
+  size: 300, 179
+  orig: 300, 179
+  offset: 0, 0
+  index: -1
+Chapel-over
+  rotate: false
+  xy: 1557, 1685
+  size: 300, 179
+  orig: 300, 179
+  offset: 0, 0
+  index: -1
+Elem-over
+  rotate: false
+  xy: 1, 345
+  size: 300, 179
+  orig: 300, 179
+  offset: 0, 0
+  index: -1
+Espasyo-over
+  rotate: false
+  xy: 1, 164
+  size: 300, 179
+  orig: 300, 179
+  offset: 0, 0
+  index: -1
+GLE-over
+  rotate: false
+  xy: 349, 1504
+  size: 300, 179
+  orig: 300, 179
+  offset: 0, 0
+  index: -1
+Gym-over
+  rotate: false
+  xy: 651, 1504
+  size: 300, 179
+  orig: 300, 179
+  offset: 0, 0
+  index: -1
+LearningPatio-over
+  rotate: false
+  xy: 953, 1504
+  size: 300, 179
+  orig: 300, 179
+  offset: 0, 0
+  index: -1
 Library-over
   rotate: false
-  xy: 1, 716
+  xy: 1255, 1504
   size: 300, 179
   orig: 300, 179
   offset: 0, 0
   index: -1
 NGE-over
   rotate: false
-  xy: 1, 535
+  xy: 1557, 1504
   size: 300, 179
   orig: 300, 179
   offset: 0, 0
   index: -1
 RTL-over
   rotate: false
-  xy: 303, 716
+  xy: 303, 1323
   size: 300, 179
   orig: 300, 179
   offset: 0, 0
   index: -1
 SAL-over
   rotate: false
-  xy: 1, 354
+  xy: 303, 1142
   size: 300, 179
   orig: 300, 179
   offset: 0, 0
   index: -1
 textFieldCursor
   rotate: false
-  xy: 605, 709
+  xy: 2043, 1980
   size: 4, 65
   orig: 4, 65
   offset: 0, 0
