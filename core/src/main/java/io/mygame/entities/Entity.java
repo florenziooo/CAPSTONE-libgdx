@@ -6,14 +6,36 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Polygon;
 import com.badlogic.gdx.math.Rectangle;
 
+/**
+ * Abstract class representing an in-game entity with a texture, position, and collision box.
+ * Provides functionality for rendering the entity, handling collision detection, and updating its position.
+ * <p>
+ * This class defines the core properties of an entity, such as its texture, size, and position.
+ * It also includes a collision box (represented as a rectangle) and optionally a collision polygon for more complex collision detection.
+ * Derived classes can extend this class to implement specific behavior and rendering logic.
+ */
 public abstract class Entity {
+    /************ ENTITY TEXTURE ************/
     private final TextureRegion textureRegion;
+
+    /************ ENTITY POSITION ************/
     private float x, y;
+
+    /************ ENTITY DIMENSIONS ************/
     private float width, height;
+
+    /************ COLLISION PARAMETERS ************/
     protected float collisionWidth, collisionHeight;
     protected Rectangle collisionBox;
     private Polygon collisionPolygon;
 
+    /**
+     * Constructs an Entity with a texture and initial position.
+     *
+     * @param npcTexture the texture for the entity
+     * @param x the initial x position
+     * @param y the initial y position
+     */
     public Entity(Texture npcTexture, float x, float y) {
         this.textureRegion = new TextureRegion(npcTexture, 0, 0, 16, 32);
         this.x = x;
@@ -23,6 +45,12 @@ public abstract class Entity {
         initializeCollisionBox();
     }
 
+    /**
+     * Constructs an Entity with a specified size (without a texture).
+     *
+     * @param width the width of the entity
+     * @param height the height of the entity
+     */
     public Entity(float width, float height) {
         this.textureRegion = null;
         this.width = width;
@@ -30,7 +58,9 @@ public abstract class Entity {
         initializeCollisionBox();
     }
 
-
+    /**
+     * Initializes the collision box for the entity based on its dimensions.
+     */
     protected void initializeCollisionBox() {
         collisionWidth = width / 2;
         collisionHeight = height / 4;
@@ -39,21 +69,40 @@ public abstract class Entity {
         collisionBox = new Rectangle(collisionX, collisionY, collisionWidth, collisionHeight);
     }
 
+    /**
+     * Calculates the x position of the collision box.
+     *
+     * @return the calculated x position
+     */
     private float calculateCollisionX() {
         return x + (width / 2) - (collisionWidth / 2);
     }
 
+    /**
+     * Calculates the y position of the collision box.
+     *
+     * @return the calculated y position
+     */
     private float calculateCollisionY() {
         float yOffset = 5;
         return y + (height / 2) - (collisionHeight / 2) - yOffset;
     }
 
+    /**
+     * Updates the entity's position and its collision box accordingly.
+     *
+     * @param newX the new x position
+     * @param newY the new y position
+     */
     public void updateBoundingBox(float newX, float newY) {
         this.x = newX;
         this.y = newY;
         updateCollisionPositions();
     }
 
+    /**
+     * Updates the position of the collision box and the collision polygon (if present).
+     */
     private void updateCollisionPositions() {
         collisionBox.setPosition(calculateCollisionX(), calculateCollisionY());
 
@@ -62,16 +111,31 @@ public abstract class Entity {
         }
     }
 
+    /**
+     * Renders the entity's texture to the screen.
+     *
+     * @param batch the SpriteBatch used for rendering
+     */
     public void render(SpriteBatch batch) {
         if (textureRegion != null) {
             batch.draw(textureRegion, x, y);
         }
     }
 
+    /**
+     * Retrieves the collision box of the entity.
+     *
+     * @return the collision box
+     */
     public Rectangle getCollisionBox() {
         return collisionBox;
     }
 
+    /**
+     * Retrieves the collision polygon for more complex collision detection.
+     *
+     * @return the collision polygon
+     */
     public Polygon getCollisionPolygon() {
         if (collisionPolygon == null) {
             // Create polygon vertices relative to origin (0,0)
@@ -90,7 +154,6 @@ public abstract class Entity {
     // Getters
     public float getX() { return x; }
     public float getY() { return y; }
-
     public float getWidth() { return width; }
     public float getHeight() { return height; }
 
