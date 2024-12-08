@@ -6,8 +6,14 @@ import com.badlogic.gdx.graphics.Cursor;
 import com.badlogic.gdx.graphics.Pixmap;
 import io.mygame.screens.MainMenuScreen;
 
-/** {@link com.badlogic.gdx.ApplicationListener} implementation shared by all platforms. */
+/**
+ * Main entry point of the game that sets a custom cursor and initializes the main menu screen.
+ */
 public class GameLauncher extends Game {
+
+    /**
+     * Sets up a custom cursor and initializes the main menu screen.
+     */
     @Override
     public void create() {
         Pixmap cursor = new Pixmap(Gdx.files.internal("cursor/cursor.png"));

@@ -6,18 +6,34 @@ import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.utils.GdxRuntimeException;
 
+/**
+ * The AnimationLoader class loads a sprite sheet and manages character animations for different
+ * movement states (idle, walking) and directions (front, right, left, back).
+ * It splits the sprite sheet into frames and provides methods to switch and retrieve the current animation.
+ * The constructor initializes animations from the provided sprite sheet path.
+ */
 public class AnimationLoader {
+    /************ PATH ************/
     private final String path;
 
+    /************ ANIMATIONS ************/
     private Animation<TextureRegion> frontIdleAnimation, rightIdleAnimation, leftIdleAnimation, backIdleAnimation;
     private Animation<TextureRegion> frontWalkAnimation, rightWalkAnimation, leftWalkAnimation, backWalkAnimation;
     private Animation<TextureRegion> currentAnimation;
 
+    /**
+     * Constructor that initializes the AnimationLoader with the given path
+     * and calls the loadSprite method to load animations.
+     * @param path The path to the sprite sheet.
+     */
     public AnimationLoader(String path) {
         this.path = path;
         loadSprite();
     }
 
+    /**
+     * Loads the sprite sheet and initializes the animations.
+     */
     private void loadSprite() {
         try {
             Texture spriteSheet = new Texture(Gdx.files.internal(path));
@@ -45,6 +61,12 @@ public class AnimationLoader {
         }
     }
 
+    /**
+     * Extracts animation frames from the sprite sheet.
+     * @param tmpFrames 2D array of texture regions split from the sprite sheet.
+     * @param column Column index of the desired animation in the sprite sheet.
+     * @return Animation created from the extracted frames.
+     */
     private Animation<TextureRegion> extractFrames(TextureRegion[][] tmpFrames, int column) {
         TextureRegion[] frames = new TextureRegion[6];
 
@@ -57,6 +79,10 @@ public class AnimationLoader {
         return new Animation<>(0.2f, frames);
     }
 
+    /**
+     * Sets the current animation based on the provided animation name.
+     * @param animation The name of the animation to set.
+     */
     public void setCurrentAnimation(String animation) {
         switch(animation) {
             case "frontIdle":
@@ -86,6 +112,10 @@ public class AnimationLoader {
         }
     }
 
+    /**
+     * Gets the currently active animation.
+     * @return The current animation.
+     */
     public Animation<TextureRegion> getCurrentAnimation() {
         return currentAnimation;
     }

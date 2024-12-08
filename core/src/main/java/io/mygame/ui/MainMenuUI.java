@@ -5,12 +5,10 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
-import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
-import com.badlogic.gdx.utils.Scaling;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import io.mygame.datahandler.GameDataHandler;
 import io.mygame.screens.GameScreen;
@@ -19,18 +17,35 @@ import io.mygame.screens.ScreenState;
 
 import java.io.File;
 
+/**
+ * The MainMenuUI class handles the main menu screen of the game.
+ * It provides the UI elements for starting a new game, loading an existing game,
+ * or exiting the game. It also manages the appearance and functionality of the main menu buttons.
+ */
 public class MainMenuUI extends UI {
+    /************ UI ELEMENTS AND GRAPHICS ************/
     private SpriteBatch batch;
     private Texture background;
+
+    /************ BUTTONS ************/
     private TextButton startBtn;
     private TextButton loadBtn;
     private TextButton exitBtn;
 
+
+    /**
+     * Constructs the MainMenuUI and initializes the main menu UI elements.
+     * @param screenState The current screen state.
+     * @param game The game instance.
+     */
     public MainMenuUI(ScreenState screenState, Game game) {
         super(new ScreenViewport(), screenState, game);
         mainMenuUI();
     }
 
+    /**
+     * Initializes the UI elements for the main menu, including buttons and background.
+     */
     private void mainMenuUI() {
         background = new Texture("images/main_menu_bg.png");
         batch = new SpriteBatch();
@@ -63,6 +78,9 @@ public class MainMenuUI extends UI {
         buttonListener();
     }
 
+    /**
+     * Adds listeners for the buttons to handle user interaction.
+     */
     private void buttonListener() {
         startBtn.addListener(new ChangeListener() {
             @Override
@@ -89,6 +107,9 @@ public class MainMenuUI extends UI {
         });
     }
 
+    /**
+     * Renders the main menu screen, including the background and UI elements.
+     */
     @Override
     public void render() {
         batch.begin();
@@ -99,6 +120,9 @@ public class MainMenuUI extends UI {
         stage.draw();
     }
 
+    /**
+     * Disposes of the resources used by the main menu UI.
+     */
     @Override
     public void dispose() {
         skin.dispose();

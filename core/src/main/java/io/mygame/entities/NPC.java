@@ -7,22 +7,51 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import io.mygame.common.AnimationLoader;
 import io.mygame.enums.Direction;
 
+/**
+ * Represents an NPC (Non-Player Character) entity in the game. This class is responsible for handling
+ * NPC movement, animation, and rendering. It extends from the {@link Entity} class and includes
+ * functionality for updating the NPC’s state and rendering the NPC’s animations.
+ * The NPC can move in different patterns (targeted, horizontal, vertical) and animations are updated
+ * based on the NPC’s movement state.
+ */
 public abstract class NPC extends Entity {
+
+    /************ NPC TYPE AND IDENTIFICATION ************/
     private final String npcType;
 
+    /************ NPC SPEED ************/
     private static final float SPEED = 75f;
+
+    /************ NPC ANIMATION ************/
     private final AnimationLoader npcAnimation;
+
+    /************ STATE AND DIRECTION ************/
     private float stateTime = 0;
     private Direction direction = Direction.FRONT;
-    private float targetX, targetY;
-    private float previousX, previousY;
+
+    /************ TARGET AND POSITION ************/
+    private float targetX;
+    private float targetY;
+    private float previousX;
+    private float previousY;
+
+    /************ MOVEMENT BEHAVIOR ************/
     private final String movementType;
-    private float originalX, originalY;
+    private float originalX;
+    private float originalY;
     private float pauseTime;
 
+    /**
+     * Constructs an NPC with the specified attributes.
+     *
+     * @param fileName     the texture file name for the NPC
+     * @param x            the initial X position
+     * @param y            the initial Y position
+     * @param movementType the movement pattern of the NPC
+     * @param type         the type of the NPC
+     */
     public NPC(String fileName, float x, float y, String movementType, String type) {
         super(new Texture(Gdx.files.internal(fileName)), x, y);
-
         npcType = type;
         originalX = x;
         originalY = y;
@@ -30,24 +59,35 @@ public abstract class NPC extends Entity {
         this.movementType = movementType;
     }
 
+    /**
+     * Renders the NPC using the provided {@link SpriteBatch}.
+     *
+     * @param batch the sprite batch for rendering
+     */
     public void render(SpriteBatch batch) {
         TextureRegion currentFrame = npcAnimation.getCurrentAnimation().getKeyFrame(stateTime, true);
         batch.draw(currentFrame, getX(), getY(), getWidth(), getHeight());
     }
 
+    /**
+     * Updates the NPC's state, including movement and animation.
+     */
     public void update() {
-        if(movementType.equalsIgnoreCase("targeted")) {
+        if (movementType.equalsIgnoreCase("targeted")) {
             moveTowardsTarget();
-        }else if(movementType.equalsIgnoreCase("horizontal")) {
+        } else if (movementType.equalsIgnoreCase("horizontal")) {
             moveHorizontally();
-        }else if(movementType.equalsIgnoreCase("vertical")) {
+        } else if (movementType.equalsIgnoreCase("vertical")) {
             moveVertically();
-        }else if(movementType.equalsIgnoreCase("in-place")){
+        } else if (movementType.equalsIgnoreCase("in-place")) {
             setStopAnimation();
         }
         stateTime += Gdx.graphics.getDeltaTime();
     }
 
+    /**
+     * Moves the NPC towards its target position.
+     */
     private void moveTowardsTarget() {
         float delta = Gdx.graphics.getDeltaTime();
         float dx = targetX - getX();
@@ -55,24 +95,25 @@ public abstract class NPC extends Entity {
         float distance = (float) Math.sqrt(dx * dx + dy * dy);
 
         if (distance > 1) {
-
             float stepX = (dx / distance) * SPEED * delta;
             float stepY = (dy / distance) * SPEED * delta;
 
-            // Set diagonal movement adjustment
+            // Adjust for diagonal movement
             if (Math.abs(dx) > 0 && Math.abs(dy) > 0) {
                 stepX /= (float) Math.sqrt(2);
                 stepY /= (float) Math.sqrt(2);
             }
 
             setPosition(getX() + stepX, getY() + stepY);
-
             updateDirection();
         } else {
             setStopAnimation();
         }
     }
 
+    /**
+     * Moves the NPC horizontally between two points.
+     */
     private void moveHorizontally() {
         float delta = Gdx.graphics.getDeltaTime();
         float distance = targetX - getX();
@@ -83,16 +124,19 @@ public abstract class NPC extends Entity {
             updateDirection();
         } else {
             pauseTime += delta;
-            if(pauseTime >= 5) {
+            if (pauseTime >= 5) {
                 targetX = originalX;
                 originalX = getX();
                 pauseTime = 0;
-            }else{
+            } else {
                 setStopAnimation();
             }
         }
     }
 
+    /**
+     * Moves the NPC vertically between two points.
+     */
     private void moveVertically() {
         float delta = Gdx.graphics.getDeltaTime();
         float distance = targetY - getY();
@@ -103,18 +147,20 @@ public abstract class NPC extends Entity {
             updateDirection();
         } else {
             pauseTime += delta;
-            if(pauseTime >= 5) {
+            if (pauseTime >= 5) {
                 targetY = originalY;
                 originalY = getY();
                 pauseTime = 0;
-            }else{
+            } else {
                 setStopAnimation();
             }
         }
     }
 
+    /**
+     * Updates the NPC's direction based on movement.
+     */
     private void updateDirection() {
-
         float currentX = getX();
         float currentY = getY();
 
@@ -142,14 +188,17 @@ public abstract class NPC extends Entity {
         }
 
         switch (direction) {
-            case RIGHT, FRONT_RIGHT, BACK_RIGHT-> npcAnimation.setCurrentAnimation("rightWalk");
+            case RIGHT, FRONT_RIGHT, BACK_RIGHT -> npcAnimation.setCurrentAnimation("rightWalk");
             case LEFT, FRONT_LEFT, BACK_LEFT -> npcAnimation.setCurrentAnimation("leftWalk");
             case FRONT -> npcAnimation.setCurrentAnimation("frontWalk");
             case BACK -> npcAnimation.setCurrentAnimation("backWalk");
         }
     }
 
-    public void setStopAnimation(){
+    /**
+     * Sets the NPC's animation to an idle state based on its current direction.
+     */
+    public void setStopAnimation() {
         switch (direction) {
             case RIGHT, FRONT_RIGHT, BACK_RIGHT -> npcAnimation.setCurrentAnimation("rightIdle");
             case LEFT, FRONT_LEFT, BACK_LEFT -> npcAnimation.setCurrentAnimation("leftIdle");
@@ -158,27 +207,58 @@ public abstract class NPC extends Entity {
         }
     }
 
+    /**
+     * Sets the NPC's target position.
+     *
+     * @param x the target X position
+     * @param y the target Y position
+     */
     public void setTarget(float x, float y) {
         this.targetX = x;
         this.targetY = y;
     }
 
+    /**
+     * Gets the NPC's previous X position.
+     *
+     * @return the previous X position
+     */
     public float getPreviousX() {
         return previousX;
     }
 
+    /**
+     * Gets the NPC's previous Y position.
+     *
+     * @return the previous Y position
+     */
     public float getPreviousY() {
         return previousY;
     }
 
+    /**
+     * Gets the NPC's type.
+     *
+     * @return the NPC type
+     */
     public String getType() {
         return npcType;
     }
 
+    /**
+     * Sets the NPC's previous X position.
+     *
+     * @param previousX the previous X position
+     */
     public void setPreviousX(float previousX) {
         this.previousX = previousX;
     }
 
+    /**
+     * Sets the NPC's previous Y position.
+     *
+     * @param previousY the previous Y position
+     */
     public void setPreviousY(float previousY) {
         this.previousY = previousY;
     }

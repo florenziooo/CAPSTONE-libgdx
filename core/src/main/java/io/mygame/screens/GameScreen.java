@@ -28,6 +28,10 @@ import io.mygame.ui.UI;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Represents the game screen where gameplay occurs.
+ * Manages rendering, player and NPC interactions, collision handling, and UI updates.
+ */
 public class GameScreen extends WildCatScreen {
     /************ RENDERERS ************/
     private SpriteBatch batch;
@@ -47,17 +51,22 @@ public class GameScreen extends WildCatScreen {
     private Viewport viewport;
     private OrthographicCamera camera;
 
+    /************ MAP HANDLING ************/
     private MapHandler mapHandler;
     private TiledMap map;
 
+    /************ GAME STATE ************/
     private boolean isPaused = false;
     private boolean drawOverlay = false;
 
+    /************ SOUND HANDLING ************/
+    private float footstepTimer = 0f;
+    private static final float FOOTSTEP_DELAY = 0.5f;
 
-    private float footstepTimer = 0f; // timer for footstep sound
-    private static final float FOOTSTEP_DELAY = 0.5f; // delay in seconds between footsteps
-
+    /************ GAME MANAGEMENT ************/
     private static final GameManager gameManagerInstance = GameManager.getInstance();
+
+    /************ RENDERING ************/
     private final ShapeRenderer shapeRenderer = new ShapeRenderer();
 
     /**
@@ -219,6 +228,9 @@ public class GameScreen extends WildCatScreen {
         System.out.println(player.getX() + " " + player.getY());
     }
 
+    /**
+     * Handles logic related to map signs interactions.
+     */
     private void mapSignLogic() {
         String type = collisionHandler.checkObjectInteractions();
         if(type != null) {
@@ -226,6 +238,9 @@ public class GameScreen extends WildCatScreen {
         }
     }
 
+    /**
+     * Handles logic related to NPC interactions.
+     */
     private void dialogueLogic() {
         String npcType = collisionHandler.checkNPCInteractions();
         if (npcType != null) {
@@ -233,6 +248,10 @@ public class GameScreen extends WildCatScreen {
         }
     }
 
+    /**
+     * Pauses or unpauses the game.
+     * @param state true to pause, false to unpause
+     */
     public void setPaused(boolean state) {
         this.isPaused = state;
     }
@@ -269,6 +288,10 @@ public class GameScreen extends WildCatScreen {
         mapHandler.dispose();
     }
 
+    /**
+     * Sets the overlay visibility.
+     * @param visible true to show the overlay, false to hide it
+     */
     public void setOverlayVisible(boolean visible) {
         this.drawOverlay = visible;
     }
