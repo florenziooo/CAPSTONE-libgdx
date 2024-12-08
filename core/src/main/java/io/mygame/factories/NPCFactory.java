@@ -9,7 +9,7 @@ public class NPCFactory {
     public static List<NPC> createNPCs() {
         List<NPC> npcs = new ArrayList<>();
 
-        npcs.add(new Guard.Guard1(1790, 287, "in-place"));
+        npcs.add(new Guard.Guard1(1770, 283, "in-place"));
         npcs.add(new Guard.Guard2(1919, 233, "in-place"));
         npcs.add(new Guard.Guard2(1546, 735, "in-place"));
         npcs.add(new Guard.Guard1(1466, 1953, "vertical"));
@@ -48,7 +48,7 @@ public class NPCFactory {
         // 27
         npcs.add(new Pet.Pet1(1708, 2215, "vertical"));
         npcs.add(new Pet.Pet2(1914, 1885, "in-place"));
-        npcs.add(new Pet.Pet1(1974, 520, "vertical"));
+        npcs.add(new Pet.Pet1(1945, 520, "vertical"));
 
         setTargets(npcs);
 
