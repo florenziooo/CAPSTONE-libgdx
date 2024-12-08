@@ -286,9 +286,9 @@ public class CollisionHandler {
         shapeRenderer.begin(ShapeRenderer.ShapeType.Line);
 
         // Draw player collision box
-        shapeRenderer.setColor(0, 1, 0, 1);
-        Rectangle playerBox = entity.getCollisionBox();
-        shapeRenderer.rect(playerBox.x, playerBox.y, playerBox.width, playerBox.height);
+//        shapeRenderer.setColor(0, 1, 0, 1);
+//        Rectangle playerBox = entity.getCollisionBox();
+//        shapeRenderer.rect(playerBox.x, playerBox.y, playerBox.width, playerBox.height);
 
         // Draw interaction circle
         shapeRenderer.setColor(0, 1, 1, 1);  // Cyan color for interaction circle
