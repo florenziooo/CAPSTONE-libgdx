@@ -5,8 +5,8 @@
     },
     "activeFile": "TestMap.tmx",
     "expandedProjectPaths": [
-        "TileSets16x16",
         "TileSets",
+        "TileSets16x16",
         "."
     ],
     "file.lastUsedOpenFilter": "All Files (*)",
@@ -75,11 +75,14 @@
             "scaleInDock": 1
         },
         "TestMap.tmx": {
-            "scale": 1.5,
-            "selectedLayer": 32,
+            "expandedGroupLayers": [
+                59
+            ],
+            "scale": 1,
+            "selectedLayer": 9,
             "viewCenter": {
-                "x": 1705.6666666666665,
-                "y": 2735
+                "x": 1231.5,
+                "y": 1637.5
             }
         },
         "TileSets/CollegeMale1.tsx": {
