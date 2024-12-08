@@ -67,6 +67,27 @@ The **Factory Design Pattern** is implemented in the `NPCFactory` class to simpl
 
 This pattern ensures consistent NPC initialization and supports easy expansion or modification of NPC types.
 
+## Javadoc Documentation
+
+The **Javadoc** for the Wildcat's Den project is located in the docs/ directory of the project.
+    
+- Accessing the Documentation: 
+  - To access the Javadoc, follow these steps:
+    - Navigate to the docs/ directory in the project folder.
+    - Open any of the html files by clicking them.
+    - Once a file is open, you will see browser icons at the top right of the html file(for Google Chrome, Mozilla Firefox, Microsoft Edge, or IntelliJ IDEA). Click on the icon of your preferred browser to view the documentation.
+
+- Documentation Structure 
+  - The Javadoc is structured as a tree and provides comprehensive details about the project. It includes the following components:
+    - `Packages`: Overview of the project’s packages.
+    - `Interfaces`: Description and methods of all interfaces.
+    - `Classes`: Detailed information about the classes, including:
+    - `Fields`: Information about class fields.
+    - `Constructors`: Descriptions of constructors and how they initialize class objects.
+    - `Methods`: Descriptions of each method, along with parameters and return values.
+  
+Each section allows you to navigate through the project's structure, providing clear documentation for developers and users to understand the codebase.
+
 ## Additional References
 
 This is a [libGDX](https://libgdx.com/) project generated with [gdx-liftoff](https://github.com/libgdx/gdx-liftoff).
