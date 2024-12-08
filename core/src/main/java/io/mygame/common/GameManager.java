@@ -50,11 +50,6 @@ public class GameManager implements Serializable {
         this.playerPosition = new int[]{x, y};
     }
 
-    public void setAreaFound(String key) {
-        if(!areasFound.containsKey(key)) buildingsFound++;
-        areasFound.put(key, true);
-    }
-
     public void setAreasFound(HashMap<String, Boolean> areasFound) {
         this.areasFound = areasFound;
     }

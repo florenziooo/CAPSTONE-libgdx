@@ -44,10 +44,7 @@ public class GameScreen extends WildCatScreen {
 
     /************ SCREEN VIEWPORT SIZE ************/
     private Viewport viewport;
-    private ScreenViewport sharedViewport;
     private OrthographicCamera camera;
-    private final int SCREEN_WIDTH = 640;
-    private final int WORLD_HEIGHT = 360;
 
     private MapHandler mapHandler;
     private TiledMap map;
@@ -74,11 +71,13 @@ public class GameScreen extends WildCatScreen {
      */
     @Override
     public void show() {
-        sharedViewport = new ScreenViewport();
+        ScreenViewport sharedViewport = new ScreenViewport();
 
         map = new TmxMapLoader().load("PixelMaps/TestMap.tmx");
         mapHandler = new MapHandler(map);
         camera = new OrthographicCamera();
+        int SCREEN_WIDTH = 640;
+        int WORLD_HEIGHT = 360;
         viewport = new FitViewport(SCREEN_WIDTH, WORLD_HEIGHT, camera);
 
         batch = new SpriteBatch();
@@ -141,7 +140,7 @@ public class GameScreen extends WildCatScreen {
         }
         batch.end();
 
-        mapHandler.loadForeground(camera);
+        mapHandler.loadForeground();
     }
 
     /**
@@ -256,6 +255,6 @@ public class GameScreen extends WildCatScreen {
      */
     @Override
     public void changeScreen(Screen screen) {
-        game.setScreen(screen);
+        super.changeScreen(screen);
     }
 }

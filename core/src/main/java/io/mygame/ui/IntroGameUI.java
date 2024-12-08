@@ -33,46 +33,46 @@ public class IntroGameUI extends UI {
         image.setScaling(Scaling.fill);
         stack.addActor(image);
 
-        Container container = new Container();
-        container.padTop(155.0f);
+        Container<Container<TextField>> outerContainer = new Container<>();
+        outerContainer.padTop(155.0f);
 
-        Container container1 = new Container();
-        container1.width(750.0f);
-        container1.padLeft(200.0f);
+        Container<TextField> nameFieldContainer = new Container<>();
+        nameFieldContainer.width(750.0f);
+        nameFieldContainer.padLeft(200.0f);
 
         nameField = new TextField(null, skin);
         nameField.setMaxLength(20);
         nameField.setMessageText("Type Your Name Here");
-        container1.setActor(nameField);
-        container.setActor(container1);
-        stack.addActor(container);
+        nameFieldContainer.setActor(nameField);
+        outerContainer.setActor(nameFieldContainer);
+        stack.addActor(outerContainer);
 
-        container = new Container();
-        container.align(Align.bottomRight);
-        container.padRight(40.0f);
-        container.padBottom(40.0f);
+        Container<Container<TextButton>> outerReturnContainer = new Container<>();
+        outerReturnContainer.align(Align.bottomRight);
+        outerReturnContainer.padRight(40.0f);
+        outerReturnContainer.padBottom(40.0f);
 
-        container1 = new Container();
-        container1.width(300.0f);
-        container1.height(75.0f);
+        Container<TextButton> returnBtnContainer = new Container<>();
+        returnBtnContainer.width(300.0f);
+        returnBtnContainer.height(75.0f);
 
         returnBtn = new TextButton("Return To Main", skin);
-        container1.setActor(returnBtn);
-        container.setActor(container1);
-        stack.addActor(container);
+        returnBtnContainer.setActor(returnBtn);
+        outerReturnContainer.setActor(returnBtnContainer);
+        stack.addActor(outerReturnContainer);
 
-        container = new Container();
-        container.padTop(450.0f);
+        Container<Container<TextButton>> outerSubmitContainer = new Container<>();
+        outerSubmitContainer.padTop(450.0f);
 
-        container1 = new Container();
-        container1.width(300.0f);
-        container1.height(75.0f);
+        Container<TextButton> submitBtnContainer = new Container<>();
+        submitBtnContainer.width(300.0f);
+        submitBtnContainer.height(75.0f);
 
         submitBtn = new TextButton("Submit Name", skin);
         submitBtn.setDisabled(true);
-        container1.setActor(submitBtn);
-        container.setActor(container1);
-        stack.addActor(container);
+        submitBtnContainer.setActor(submitBtn);
+        outerSubmitContainer.setActor(submitBtnContainer);
+        stack.addActor(outerSubmitContainer);
         table.add(stack);
         stage.addActor(table);
 

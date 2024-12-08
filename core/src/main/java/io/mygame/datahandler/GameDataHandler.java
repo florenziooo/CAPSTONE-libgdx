@@ -1,7 +1,6 @@
 package io.mygame.datahandler;
 
 import io.mygame.common.GameManager;
-import io.mygame.entities.Player;
 
 import java.io.File;
 import java.io.FileReader;
@@ -36,7 +35,10 @@ public class GameDataHandler {
     public static void saveGameData() {
         File directory = new File(dataDirectory);
         if(!directory.exists()) {
-            directory.mkdir();
+            if (!directory.mkdir()) {
+                System.err.println("Failed to create directory: " + dataDirectory);
+                return;
+            }
         }
 
         try(FileWriter fileWriter = new FileWriter(dataPath)) {

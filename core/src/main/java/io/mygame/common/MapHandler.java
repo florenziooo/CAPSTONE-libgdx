@@ -5,7 +5,6 @@ import com.badlogic.gdx.maps.MapLayer;
 import com.badlogic.gdx.maps.MapLayers;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
-import com.badlogic.gdx.maps.tiled.renderers.OrthoCachedTiledMapRenderer;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 
 import java.util.ArrayList;
@@ -69,7 +68,7 @@ public class MapHandler {
         renderer.getBatch().end();
     }
 
-    public void loadForeground(OrthographicCamera camera) {
+    public void loadForeground() {
         renderer.getBatch().begin();
         for(TiledMapTileLayer layer : foreground) {
             renderer.renderTileLayer(layer);

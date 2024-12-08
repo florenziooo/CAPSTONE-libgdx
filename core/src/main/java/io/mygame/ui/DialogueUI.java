@@ -96,11 +96,11 @@ public class DialogueUI extends UI implements Serializable {
         Image image = new Image(skin, "dialogueBox.9");
         stack.addActor(image);
 
-        Container container = new Container();
-        container.align(Align.left);
-        container.padLeft(125.0f);
+        Container<Container<Label>> outerContainer = new Container<>();
+        outerContainer.align(Align.left);
+        outerContainer.padLeft(125.0f);
 
-        Container container1 = new Container();
+        Container<Label> container1 = new Container<>();
         container1.align(Align.left);
         container1.fillX();
         container1.width(750.0f);
@@ -111,17 +111,17 @@ public class DialogueUI extends UI implements Serializable {
         dialogueLabel.setAlignment(Align.topLeft);
         dialogueLabel.setWrap(true);
         container1.setActor(dialogueLabel);
-        container.setActor(container1);
-        stack.addActor(container);
+        outerContainer.setActor(container1);
+        stack.addActor(outerContainer);
 
-        container = new Container();
-        container.align(Align.topLeft);
-        container.padLeft(100.0f);
-        container.padTop(25.0f);
+        Container<Label> container2 = new Container<>();
+        container2.align(Align.topLeft);
+        container2.padLeft(100.0f);
+        container2.padTop(25.0f);
 
         nameLabel = new Label("", skin, "dialogueLabel");
-        container.setActor(nameLabel);
-        stack.addActor(container);
+        container2.setActor(nameLabel);
+        stack.addActor(container2);
 
         root.add(stack);
         stage.addActor(root);
