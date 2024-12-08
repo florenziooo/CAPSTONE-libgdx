@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" width="156" height="208" tilewidth="16" tileheight="16" infinite="0" nextlayerid="59" nextobjectid="215">
+<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" width="156" height="208" tilewidth="16" tileheight="16" infinite="0" nextlayerid="59" nextobjectid="234">
  <tileset firstgid="1" source="TileSets16x16/Modern_Exteriors_Complete_Tileset.tsx"/>
  <tileset firstgid="69345" source="TileSets16x16/Tileset1.tsx"/>
  <tileset firstgid="69415" source="TileSets16x16/TIleset2.tsx"/>
@@ -4389,16 +4389,40 @@
   <object id="213" x="1104.25" y="1759.75" width="271.25" height="54.5"/>
   <object id="214" x="1967.67" y="3056.33" width="83.3333" height="30.6667"/>
  </objectgroup>
- <objectgroup id="34" name="ELEM"/>
- <objectgroup id="35" name="SAL"/>
- <objectgroup id="37" name="NGE"/>
- <objectgroup id="36" name="Patio"/>
- <objectgroup id="41" name="ACAD"/>
- <objectgroup id="40" name="Library"/>
- <objectgroup id="39" name="RTL"/>
- <objectgroup id="38" name="Gym"/>
- <objectgroup id="45" name="Espasyo"/>
- <objectgroup id="44" name="Chapel"/>
- <objectgroup id="43" name="Canteen"/>
- <objectgroup id="42" name="GLE"/>
+ <objectgroup id="34" name="ELEM">
+  <object id="215" gid="78225" x="1415.82" y="863.818" width="16" height="16"/>
+ </objectgroup>
+ <objectgroup id="35" name="SAL">
+  <object id="219" gid="78226" x="1087.67" y="1727.67" width="16" height="16"/>
+ </objectgroup>
+ <objectgroup id="37" name="NGE">
+  <object id="222" gid="78226" x="1551.33" y="2720.33" width="16" height="16"/>
+ </objectgroup>
+ <objectgroup id="36" name="Patio">
+  <object id="223" gid="78226" x="1535.33" y="2240" width="16" height="16"/>
+ </objectgroup>
+ <objectgroup id="41" name="ACAD">
+  <object id="225" gid="78225" x="1872" y="1487" width="16" height="16"/>
+ </objectgroup>
+ <objectgroup id="40" name="Library">
+  <object id="226" gid="78226" x="1567" y="2143.5" width="16" height="16"/>
+ </objectgroup>
+ <objectgroup id="39" name="RTL">
+  <object id="227" gid="78225" x="1216.5" y="2639.5" width="16" height="16"/>
+ </objectgroup>
+ <objectgroup id="38" name="Gym">
+  <object id="229" gid="78225" x="911.5" y="1121" width="16" height="16"/>
+ </objectgroup>
+ <objectgroup id="45" name="Espasyo">
+  <object id="230" gid="78225" x="1648" y="1646.5" width="16" height="16"/>
+ </objectgroup>
+ <objectgroup id="44" name="Chapel">
+  <object id="231" gid="78227" x="1759" y="1263" width="16" height="16"/>
+ </objectgroup>
+ <objectgroup id="43" name="Canteen">
+  <object id="232" gid="78225" x="1584.5" y="1040" width="16" height="16"/>
+ </objectgroup>
+ <objectgroup id="42" name="GLE">
+  <object id="233" gid="78227" x="1953.5" y="1888" width="16" height="16"/>
+ </objectgroup>
 </map>

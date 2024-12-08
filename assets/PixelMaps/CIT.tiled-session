@@ -76,10 +76,10 @@
         },
         "TestMap.tmx": {
             "scale": 1,
-            "selectedLayer": 20,
+            "selectedLayer": 32,
             "viewCenter": {
-                "x": 1216.5,
-                "y": 2332.5
+                "x": 1819.5,
+                "y": 1696.5
             }
         },
         "TileSets/CollegeMale1.tsx": {
@@ -134,7 +134,7 @@
             "scaleInEditor": 1
         },
         "TileSets16x16/Modern_Exteriors_Complete_Tileset.tsx": {
-            "scaleInDock": 0.75,
+            "scaleInDock": 1,
             "scaleInEditor": 0.33
         },
         "TileSets16x16/NGE.tsx": {
