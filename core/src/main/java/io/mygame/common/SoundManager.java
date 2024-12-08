@@ -11,15 +11,15 @@ import static com.badlogic.gdx.math.MathUtils.random;
 public class SoundManager implements Disposable {
     private static Music bgMusic;
     private float globalVolume;
-    private float musicVolume;
-    private float ambienceVolume;
-    private float walkVolume;
+    private final float musicVolume;
+    private final float ambienceVolume;
+    private final float walkVolume;
 
     private Sound ambience;
     private long ambienceLoopId;
 
-    private Array<Sound> activeSounds;
-    private Array<Music> activeMusic;
+    private final Array<Sound> activeSounds;
+    private final Array<Music> activeMusic;
 
     public SoundManager(Builder builder) {
         this.globalVolume = 1.0f;
@@ -54,17 +54,6 @@ public class SoundManager implements Disposable {
             ambience.setVolume(ambienceLoopId, volume * ambienceVolume);
         }
     }
-//
-//    public void setAmbienceVolume(float volume) {
-//        this.ambienceVolume = volume;
-//        if (ambience != null) {
-//            ambience.setVolume(ambienceLoopId, globalVolume * volume);
-//        }
-//    }
-//
-//    public void setWalkVolume(float volume) {
-//        this.walkVolume = volume;
-//    }
 
     public void addSound(String name) {
         switch (name) {

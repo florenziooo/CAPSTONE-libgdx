@@ -53,22 +53,7 @@ public class MainGameUI extends UI {
         table.padLeft(15f);
         table.setFillParent(true);
 
-        Stack stack = new Stack();
-
-        Image image = new Image(skin, "player_hud");
-        stack.addActor(image);
-
-        Table table1 = new Table();
-        stack.addActor(table1);
-
-        Container container = new Container();
-        container.align(Align.left);
-        container.padLeft(120.0f);
-        container.padTop(12.0f);
-
-        Label labelName = new Label(gameManager.getPlayerName(), skin, "header3");
-        container.setActor(labelName);
-        stack.addActor(container);
+        Stack stack = getStack();
         table.add(stack);
 
         table.row();
@@ -88,6 +73,26 @@ public class MainGameUI extends UI {
                 statsTable();
             }
         });
+    }
+
+    private Stack getStack() {
+        Stack stack = new Stack();
+
+        Image image = new Image(skin, "player_hud");
+        stack.addActor(image);
+
+        Table table1 = new Table();
+        stack.addActor(table1);
+
+        Container<Label> container = new Container<>();
+        container.align(Align.left);
+        container.padLeft(120.0f);
+        container.padTop(12.0f);
+
+        Label labelName = new Label(gameManager.getPlayerName(), skin, "header3");
+        container.setActor(labelName);
+        stack.addActor(container);
+        return stack;
     }
 
     private void statsTable() {
@@ -157,7 +162,7 @@ public class MainGameUI extends UI {
         table1.add(table2).padTop(40.0f).align(Align.top);
         stack.addActor(table1);
 
-        Container container = new Container();
+        Container<Button> container = new Container<>();
         container.align(Align.topRight);
         container.padRight(35.0f);
         container.padTop(20.0f);
@@ -216,7 +221,7 @@ public class MainGameUI extends UI {
         table1.add(image);
         stack.addActor(table1);
 
-        Container container = new Container();
+        Container<Button> container = new Container<>();
         container.align(Align.topRight);
         container.padRight(35.0f);
         container.padTop(20.0f);
@@ -331,7 +336,7 @@ public class MainGameUI extends UI {
         table1.add(scrollPane).align(Align.top).width(1000.0f).height(550.0f);
         stack.addActor(table1);
 
-        Container container = new Container();
+        Container<Button> container = new Container<>();
         container.align(Align.topRight);
         container.padRight(35.0f);
         container.padTop(20.0f);
@@ -394,20 +399,7 @@ public class MainGameUI extends UI {
         table2.add(label).padBottom(15.0f).growX();
 
         table2.row();
-        Slider slider = new Slider(0.0f, 1.0f, 0.1f, false, skin, "default-horizontal");
-        slider.setValue(gameManager.getVolume());
-
-        slider.setAnimateInterpolation(Interpolation.smooth);
-        slider.setVisualInterpolation(Interpolation.smooth);
-
-        slider.addListener(new ChangeListener() {
-            @Override
-            public void changed(ChangeEvent event, Actor actor) {
-                gameManager.setVolume(slider.getValue());
-                // Update background music volume
-                gameManager.getSoundManager().setGlobalVolume(gameManager.getVolume());
-            }
-        });
+        Slider slider = getSlider();
 
         table2.add(slider).padBottom(50.0f).fillX();
 
@@ -451,7 +443,7 @@ public class MainGameUI extends UI {
         table1.add(table2).spaceLeft(80.0f);
         stack.addActor(table1);
 
-        Container container = new Container();
+        Container<Button> container = new Container<>();
         container.align(Align.topRight);
         container.padRight(35.0f);
         container.padTop(20.0f);
@@ -464,6 +456,24 @@ public class MainGameUI extends UI {
 
         buttonListener();
         settingButtonListener();
+    }
+
+    private Slider getSlider() {
+        Slider slider = new Slider(0.0f, 1.0f, 0.1f, false, skin, "default-horizontal");
+        slider.setValue(gameManager.getVolume());
+
+        slider.setAnimateInterpolation(Interpolation.smooth);
+        slider.setVisualInterpolation(Interpolation.smooth);
+
+        slider.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                gameManager.setVolume(slider.getValue());
+                // Update background music volume
+                gameManager.getSoundManager().setGlobalVolume(gameManager.getVolume());
+            }
+        });
+        return slider;
     }
 
     private void buttonListener() {
@@ -685,7 +695,7 @@ public class MainGameUI extends UI {
                 throw new RuntimeException("Sign Description Type does not exist");
         }
 
-        Container container = new Container();
+        Container<Button> container = new Container<>();
         container.align(Align.topRight);
         container.padRight(20.0f);
         container.padTop(20.0f);
@@ -715,10 +725,6 @@ public class MainGameUI extends UI {
                 table.remove();
             }
         });
-    }
-
-    private void initializeMenuTable() {
-
     }
 
     @Override

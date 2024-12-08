@@ -13,9 +13,7 @@ import com.badlogic.gdx.math.*;
 import io.mygame.entities.Entity;
 import io.mygame.entities.NPC;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 /**
  * Handles collision detection for an entity against objects in a TiledMap.
@@ -27,13 +25,8 @@ public class CollisionHandler {
     private final ShapeRenderer shapeRenderer;
     private final OrthographicCamera camera;
     private float previousX, previousY;
-    private final Vector2 movement = new Vector2();
-    private float currentX, currentY;
-    private float currentNpcX, currentNpcY;
-    private List<NPC> npcs;
-    private Circle interactionCircle;
-
-    private final boolean debugMode = true;
+    private final List<NPC> npcs;
+    private final Circle interactionCircle;
 
     /**
      * Constructs a CollisionHandler for handling collisions of a specific entity on a TiledMap.
@@ -67,11 +60,6 @@ public class CollisionHandler {
         try {
             MapLayer objectLayer = map.getLayers().get(collisionName);
             if (objectLayer == null) throw new NullPointerException();
-
-            currentX = entity.getX();
-            currentY = entity.getY();
-            movement.x = currentX - previousX;
-            movement.y = currentY - previousY;
 
             if (checkPlayerNpcCollision() || checkPlayerTileCollision(objectLayer)) {
                 float tempY = entity.getY();
@@ -110,34 +98,6 @@ public class CollisionHandler {
         }
     }
 
-    private Set<String> interactedObjects = new HashSet<>();
-
-    private void checkObjectInteractions() {
-        MapLayer interactionLayer = map.getLayers().get("interaction layer");
-        if (interactionLayer == null) return;
-
-        for (MapObject object : interactionLayer.getObjects()) {
-            if (object instanceof RectangleMapObject) {
-                Rectangle rectangle = ((RectangleMapObject) object).getRectangle();
-                String objectName = object.getName();
-
-                if (Intersector.overlaps(interactionCircle, rectangle) &&
-                    Gdx.input.isKeyJustPressed(Input.Keys.E) &&
-                    !interactedObjects.contains(objectName)) {
-
-                    System.out.println("HAS INTERACTED WITH: " + objectName);
-                    interactedObjects.add(objectName);
-                }
-
-                // Optional: Allow re-interaction if the player moves away and returns
-                if (!Intersector.overlaps(interactionCircle, rectangle)) {
-                    interactedObjects.remove(objectName);
-                }
-            }
-            // Similar logic can be added for PolygonMapObject if needed
-        }
-    }
-
     public String checkNPCInteractions() {
         for (NPC npc : npcs) {
             if (Intersector.overlaps(interactionCircle, npc.getCollisionBox())) {
@@ -157,8 +117,6 @@ public class CollisionHandler {
 
             for (NPC npc : npcs) {
 
-                currentNpcX = npc.getX();
-                currentNpcY = npc.getY();
 
                 if (checkNpcPlayerCollision(npc) || checkNpcTileCollision(objectLayer, npc) || checkNpcCollision(npc)) {
                     float tempY = npc.getY();
@@ -237,11 +195,8 @@ public class CollisionHandler {
     }
 
     private boolean checkNpcPlayerCollision(NPC npc) {
-        if (entity.getCollisionBox().overlaps(npc.getCollisionBox()) ||
-            Intersector.overlapConvexPolygons(entity.getCollisionPolygon(), npc.getCollisionPolygon())) {
-            return true;
-        }
-        return false;
+        return entity.getCollisionBox().overlaps(npc.getCollisionBox()) ||
+            Intersector.overlapConvexPolygons(entity.getCollisionPolygon(), npc.getCollisionPolygon());
     }
 
     private boolean checkNpcCollision(NPC npc1) {
@@ -280,6 +235,7 @@ public class CollisionHandler {
      * @param objectLayer The MapLayer containing collision objects to be drawn.
      */
     private void drawDebug(MapLayer objectLayer) {
+        boolean debugMode = true;
         if (!debugMode) return;
 
         shapeRenderer.setProjectionMatrix(camera.combined);

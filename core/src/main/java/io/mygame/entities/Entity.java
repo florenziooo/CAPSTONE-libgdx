@@ -15,7 +15,7 @@ public abstract class Entity {
     private Polygon collisionPolygon;
 
     public Entity(Texture npcTexture, float x, float y) {
-        this.textureRegion = new TextureRegion(npcTexture, 0, 0, 16, 32);;
+        this.textureRegion = new TextureRegion(npcTexture, 0, 0, 16, 32);
         this.x = x;
         this.y = y;
         this.width = textureRegion.getRegionWidth();
