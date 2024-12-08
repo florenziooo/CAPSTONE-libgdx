@@ -219,14 +219,14 @@ public class MainGameUI extends UI {
         table1.align(Align.top);
 
         Label label = new Label("CIT-U Campus Map", skin, "header");
-        table1.add(label);
+        table1.add(label).padBottom(20.0f);
 
         table1.row();
-        image = new Image(skin, "map_frame2");
+        image = new Image(skin, "CITMap");
         table1.add(image);
         stack.addActor(table1);
 
-        Container<Button> container = new Container<>();
+        Container container = new Container();
         container.align(Align.topRight);
         container.padRight(35.0f);
         container.padTop(20.0f);
@@ -234,10 +234,9 @@ public class MainGameUI extends UI {
         exitBtn = new Button(skin);
         container.setActor(exitBtn);
         stack.addActor(container);
+
         currentTable.add(stack);
         stage.addActor(currentTable);
-
-        buttonListener();
     }
 
     private void explorationTable() {
@@ -558,9 +557,11 @@ public class MainGameUI extends UI {
             gameManager.getSoundManager().addSound("click");
             if(menuBtn.getTouchable() == Touchable.enabled) {
                 menuBtn.setTouchable(Touchable.disabled);
+                ((GameScreen)screenState).setOverlayVisible(true);
                 statsTable();
             } else {
                 menuBtn.setTouchable(Touchable.enabled);
+                ((GameScreen)screenState).setOverlayVisible(false);
                 currentTable.remove();
             }
         }
