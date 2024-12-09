@@ -50,6 +50,7 @@ cursor/cursor.png
 dialogues/dialogue.json
 hs_err_pid36261.log
 images/main_menu_bg.png
+images/wildcat's_den_logo.png
 skins/main_menu_button/red/C&C Red Alert [INET](1).fnt
 skins/main_menu_button/red/red.atlas
 skins/main_menu_button/red/red.json

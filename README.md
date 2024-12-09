@@ -1,3 +1,7 @@
+<div style="text-align: center;">
+  <img src="assets/images/wildcat's_den_logo.png" height="300" width="500" alt="WildCat's Den">
+</div>
+
 # Wildcat's Den: Explore the Heart of CIT-U
 Welcome to Wildcat's Den, an exploration game that transforms CIT-U into a virtual playground for learning and discovery. This interactive experience is designed specifically for students, allowing them to explore the university’s facilities, programs, and organizations in an engaging and fun way.
 
@@ -36,6 +40,9 @@ This game is a tribute to the vibrant community and culture of Cebu Institute of
  - CIT-U Staff and Alumni for their invaluable insights.
  - Members of the Supreme Student Government for their support.
  - Players Like You who bring the Wildcat’s Den to life.
+
+## Class Diagram
+The class diagram can be accessed [here](CLASSDIAGRAM/CLASS_DIAGRAM.png).
 
 
 ## Design Patterns
@@ -86,7 +93,7 @@ This pattern ensures consistent NPC initialization and supports easy expansion o
 ## WildCat's Den Java Documentation
 All of our source code is documented to improve the maintainability, usability, and readability of our code.
 
-Access the documentation [here](http://localhost:63342/CapstoneLIBGDX/docs/index.html?_ijt=qlic4f2lr80udgsgmh1n5c4j0k).
+Access the documentation [here](docs/index.html).
 
 ## Additional References
 
