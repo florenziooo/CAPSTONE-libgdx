@@ -93,7 +93,7 @@ This pattern ensures consistent NPC initialization and supports easy expansion o
 ## WildCat's Den Java Documentation
 All of our source code is documented to improve the maintainability, usability, and readability of our code.
 
-Access the documentation [here](docs/index.html).
+Access the documentation [here](https://florenziooo.github.io/CAPSTONE-libgdx/).
 
 ## Additional References
 
